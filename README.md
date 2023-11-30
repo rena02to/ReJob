@@ -22,21 +22,26 @@
   <hr/>
   
   <h2>Sobre o projeto</h2>
-    <p>É fato que a taxa de reincidência de crimes é muito alta pela questão da falta de oportunidades de emprego para ex-detentos e pessoas no processo de detenção. O ReJob é uma plataforma de recrutamento que, diferentemente da Gupy, será totalmente voltado para esta parcela da população e empresas interessadas em empregar eles.</p>
+    <p>É fato que a taxa de reincidência de crimes é muito alta pela questão da falta de oportunidades de emprego para ex-detentos e pessoas no processo de detenção. O ReJob é uma plataforma de recrutamento que, diferentemente da Gupy, será totalmente voltado para esta parcela da população e empresas interessadas em empregar eles. O ReJob busca ser um intermediário eficaz, conectando empresas interessadas em oferecer oportunidades de emprego a detentos e ex-detentos que buscam reintegração na sociedade. Isso não apenas contribui para reduzir as taxas de reincidência criminal, mas também promove a inclusão social e proporciona uma chance significativa para essas pessoas reconstruírem suas vidas por meio do emprego e estabilidade financeira.</p>
     <h3>Problemas</h3>
     <ol>
-      <li>Falta de oportunidade para ex-detento e detentos</li>
-      <li>Falta de escolaridade de ex-detento e detentos</li>
-      <li>Taxa de reincidência de crimes</li>
+      <li>Falta de oportunidade para ex-detento e detentos, Quando ainda estão atrás das grades, os presos que trabalham não estão sujeitos às regras da CLT, o que acaba por ser um benefício à contratação de presidiários por parte das empresas. Nesses casos, a remuneração mínima é de 3/4 do salário mínimo. Presos dos regimes fechado e semiaberto não são, ainda, considerados segurados obrigatórios da Previdência.</li>
+ 
+<li>Após saírem da prisão, contudo, os ex-detentos são considerados cidadãos comuns e, quando contratados, são regidos pela CLT, tornando-os menos atrativos para os empregadores.</li>
+      <li>Falta de escolaridade é um desafio significativo enfrentado por ex-detentos e detentos, impactando diretamente sua capacidade de inserção no mercado de trabalho. Conforme dados do Ministério da Justiça em 2016, aproximadamente 75% dos detentos possuíam apenas o ensino fundamental, evidenciando uma lacuna educacional substancial nesse grupo. Limitando a oportunidade de emprego para este grupo</li>
+      <li>A falta de qualificações educacionais dificulta a obtenção de empregos significativos e bem remunerados. Isso pode levar ex-detentos a aceitarem posições de baixa remuneração, temporárias ou instáveis, o que não oferece uma base sólida para a reintegração.</li>
+      <li>A urgência de atender às necessidades financeiras imediatas pode levar ex-detentos a tomar decisões precipitadas, recorrendo a atividades ilegais para garantir meios de subsistência. Gerando um ciclo de reincidencia criminal</li>
     </ol>
   
   <h3>Expectativas</h3>
   <ol>
-    <li>Mais oportunidades geradas para esta parte da população</li>
-    <li>Cursos ofertados e certificação gerada na plataforma</li>
-    <li>Baixa na reincidência de crimes</li>
-    <li>Reintegração na sociedade</li>
-    <li>Incentivos fiscais a empresas</li>
+    <li>Facilitar a reintegração ao mercado de trabalho, conectando ex-detentose detentos a empresas que valorizam a inclusão e oferecem oportunidades justas./li>
+    <li>Colaborar com empresas e ONGS para oferecer programas de capacitação e treinamento profissional específicos para as necessidades do ReJob. Isso visa equipar os ex-detentos e detentos com habilidades relevantes, tornando-os candidatos mais competitivos para empregos significativos e bem remunerados.</li>
+    <li>O ReJob buscará esclarecer e promover os benefícios fiscais disponíveis para empresas que contratam ex-detentos e detentos. Esses incentivos visam tornar a contratação mais atrativa, destacando as vantagens financeiras e sociais para as empresas que aderirem ao programa.</li>
+    <li>Empresas que se comprometem com o ReJob e mantêm ex-detentos em seus quadros, demonstrando desempenho positivo, receberão um "Certificado de Empregador Socialmente Responsável (CESR)". Esse reconhecimento destaca o compromisso social da empresa e incentiva outras a seguir o exemplo.
+</li>
+    <li>O ReJob fornecerá suporte abrangente para ex-detentos durante a transição do sistema prisional para o emprego. Isso incluirá a oferta de programas de preparação para entrevistas, treinamento profissional e a promoção de habilidades sociais essenciais.</li>
+    <li>O ReJob busca reduzir a reincidência ao conectar ex-detentos a empregos e educação, agindo como uma ponte eficaz. Ao transformar vidas e promover comunidades resilientes, busca quebrar o ciclo criminal e criar uma sociedade mais justa.</li>
   </ol>
   <hr/>
   
