@@ -124,12 +124,12 @@ Desenvolvedor Front-End, Designer UI/UX, Analista/PO <br/>
 jvcl@ic.ufal.br <br/>
 <a href="https://github.com/Jvictor-7" target="_blank" rel="noopener noreferer">https://github.com/Jvictor-7</a></p>
 
-<p>Pedro Tenório <br/>
+<p><strong>Pedro Tenório</strong> <br/>
 Desenvolvedor FullStack, DBA, Gerente <br/>
 phbt@ic.ufal.br <br/>
 <a href="https://github.com/pedrobtenorio" target="_blank" rel="noopener noreferer">https://github.com/pedrobtenorio</a></p>
 
-<p>Renato Alves <br/>
+<p><strong>Renato Alves</strong> <br/>
 Desenvolvedor Front-End, Designer UI/UX, QA <br/>
 rena02to@gmail.com <br/>
 <a href="https://github.com/rena02to" target="_blank" rel="noopener noreferer">https://github.com/rena02to</a></p>
