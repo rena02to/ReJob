@@ -35,7 +35,7 @@
   
   <h3>Expectativas</h3>
   <ol>
-    <li>Facilitar a reintegração ao mercado de trabalho, conectando ex-detentose detentos a empresas que valorizam a inclusão e oferecem oportunidades justas./li>
+    <li>Facilitar a reintegração ao mercado de trabalho, conectando ex-detentose detentos a empresas que valorizam a inclusão e oferecem oportunidades justas.</li>
     <li>Colaborar com empresas e ONGS para oferecer programas de capacitação e treinamento profissional específicos para as necessidades do ReJob. Isso visa equipar os ex-detentos e detentos com habilidades relevantes, tornando-os candidatos mais competitivos para empregos significativos e bem remunerados.</li>
     <li>O ReJob buscará esclarecer e promover os benefícios fiscais disponíveis para empresas que contratam ex-detentos e detentos. Esses incentivos visam tornar a contratação mais atrativa, destacando as vantagens financeiras e sociais para as empresas que aderirem ao programa.</li>
     <li>Empresas que se comprometem com o ReJob e mantêm ex-detentos em seus quadros, demonstrando desempenho positivo, receberão um "Certificado de Empregador Socialmente Responsável (CESR)". Esse reconhecimento destaca o compromisso social da empresa e incentiva outras a seguir o exemplo.
