@@ -48,10 +48,63 @@
   <h2>Personas</h2>
     <p>Uma persona representa um usuário do produto e essa descrição deve falar não só o papel, mas também suas necessidades e seus objetivos. Isso cria uma representação realista dos usuários, auxiliando a equipe a descrever funcionalidades a partir do ponto de vista de quem vai usar o produto (Aguiar, 2021).</p>
   
-  Persona | O que ela faz? | O que ela espera?
-  --- | --- | ---
-  Persona X | Maria, de 32 anos, é uma ex-detenta que recentemente completou sua pena por um crime não violento. Ela está determinada a reconstruir sua vida e busca oportunidades de emprego compatíveis com suas habilidades em costura, adquiridas durante seu tempo na prisão. Maria está interessada em participar de programas de capacitação para aprimorar suas habilidades e garantir uma reintegração bem-sucedida. | Espera encontrar uma plataforma onde se possa facilmente encontrar vagas de emprego relacionadas à costura e design de moda. Ela busca aprimoração profissional para atualizar seu perfil, por meio de cursos. 
-  Persona Y | João de 30 anos é um profissional de recursos humanos que trabalha em uma empresa comprometida com a inclusão social. Ele está encarregado de encontrar candidatos para preencher posições na empresa e está interessado em diversificar a equipe, oferecendo oportunidades a ex-detentos. João está em busca de uma plataforma que facilite a identificação de talentos reintegrados ao mercado de trabalho. | João espera encontrar na plataforma uma enorme variedade de perfis profissionais de ex-detentos com habilidades diversas. Uma plataforma onde se possa publicar vagas de empregos e acessar informações relevantes sobre os candidatos, filtrando por habilidades específicas e outras características relevantes. Além disso, João espera que por meio do site seja possível obter insights sobre o processo de reintegração, assim como recursos educacionais para apoiar os colaboradores reintegrados em sua jornada profissional.
+  <h2>Persona 1: Empregador Socialmente Consciente (Maria Oliveira)</h2>
+  <table>
+    <tr>
+      <th>Objetivo Principal</th>
+      <td>Contratar talentos qualificados, promover a inclusão social e buscar incentivos fiscais.</td>
+    </tr>
+    <tr>
+      <th>Jornada</th>
+      <td>
+        <ol>
+          <li><strong>Descoberta:</strong> Maria pesquisa online sobre responsabilidade social corporativa. Encontra o ReJob e seus benefícios para empresas.</li>
+          <li><strong>Consideração:</strong> Explora casos de sucesso e participa de webinars do ReJob. Avalia os incentivos fiscais e a certificação oferecida.</li>
+          <li><strong>Decisão:</strong> Decide cadastrar sua empresa no ReJob. Completa o processo de cadastro e inicia o recrutamento.</li>
+          <li><strong>Ação:</strong> Seleciona candidatos na plataforma. Contrata ex-detentos qualificados e busca os incentivos fiscais disponíveis. Recebe o Certificado de Empregador Socialmente Responsável.</li>
+        </ol>
+      </td>
+    </tr>
+  </table>
+
+  <h2>Persona 2: Ex-Detento em Busca de Reintegração (Rafael Silva)</h2>
+  <table>
+    <tr>
+      <th>Objetivo Principal</th>
+      <td>Encontrar emprego estável para reconstruir sua vida.</td>
+    </tr>
+    <tr>
+      <th>Jornada</th>
+      <td>
+        <ol>
+          <li><strong>Saída da Prisão:</strong> Rafael participa de programas de reabilitação. Recebe informações sobre oportunidades pelo ReJob.</li>
+          <li><strong>Exploração:</strong> Acessa o ReJob, preenche seu perfil e explora vagas. Participa de treinamentos sugeridos pela plataforma.</li>
+          <li><strong>Candidatura:</strong> Se candidata a vagas compatíveis com seu perfil. Recebe feedback e suporte da equipe do ReJob.</li>
+          <li><strong>Entrevistas e Seleção:</strong> Realiza entrevistas com empresas interessadas. Participa de treinamentos adicionais sugeridos pelas empresas.</li>
+          <li><strong>Colocação:</strong> É contratado por uma empresa, iniciando sua reintegração. Recebe suporte contínuo do ReJob para garantir sucesso na transição.</li>
+        </ol>
+      </td>
+    </tr>
+  </table>
+
+  <h2>Persona 3: Parceiro Social e Educacional (Ana Mendes)</h2>
+  <table>
+    <tr>
+      <th>Objetivo Principal</th>
+      <td>Facilitar a integração de ex-detentos na sociedade.</td>
+    </tr>
+    <tr>
+      <th>Jornada</th>
+      <td>
+        <ol>
+          <li><strong>Parceria com o ReJob:</strong> Ana conhece o ReJob em eventos sociais. Inicia uma parceria para promover oportunidades de emprego.</li>
+          <li><strong>Programas Educacionais:</strong> Colabora com o ReJob para implementar programas educacionais. Participa de workshops educacionais promovidos pela plataforma.</li>
+          <li><strong>Acompanhamento:</strong> Acompanha o progresso dos assistidos inscritos no ReJob. Colabora com empresas para garantir ambientes de trabalho acolhedores.</li>
+          <li><strong>Impacto Social:</strong> Celebra o sucesso de ex-detentos que encontram emprego. Destaca casos de sucesso em relatórios e eventos.</li>
+        </ol>
+      </td>
+    </tr>
+  </table>
   <hr/>
   
   <h2>Marcos do projeto</h2>
