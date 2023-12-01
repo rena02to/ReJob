@@ -1,0 +1,108 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(50, 50, 50);
+}
+.main form {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.5);
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.main form h2 {
+  margin: 40px 25px 0px 25px;
+  font-size: 2.2rem;
+}
+.main form p {
+  margin: 10px 30px 20px 30px;
+  font-size: 1.2rem;
+}
+.main form button {
+  margin: 20px 20px 20px 20px;
+  background-color: rgb(0, 100, 255);
+  border: 0px solid transparent;
+  border-radius: 15px;
+  height: 40px;
+  width: 120px;
+  font-size: 1rem;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.main form button:hover {
+  background-color: rgb(0, 125, 0);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 2px black;
+}
+.main form .inputBox {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+.main form .inputBox input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  z-index: 10;
+  padding: 25px 25px 10px 50px;
+  font-size: 1rem;
+  color: white;
+}
+.main form .inputBox input:valid ~ label, .main form .inputBox input:focus ~ label {
+  color: green;
+  transform: translateX(0) translateY(-34px);
+  font-size: 1rem;
+}
+.main form .inputBox label {
+  position: absolute;
+  left: 0;
+  transition: 0.5s;
+  font-size: 1.15rem;
+}
+.main form .inputBox span {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  transition: 0.5s;
+  pointer-events: none;
+  background-color: red;
+  z-index: 9;
+}
+.main form .inputBox input:valid ~ label ~ span, .main form .inputBox input:focus ~ label ~ span {
+  height: 44px;
+}
+.main form .links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+}
+.main form .links a {
+  text-decoration: none;
+}
+.main form .links .registro {
+  font-weight: 600;
+  color: green;
+}
+
+/*# sourceMappingURL=login.module.css.map */
