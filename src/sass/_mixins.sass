@@ -1,8 +1,26 @@
+@use 'variables'
+    
 @mixin flex-align($ordenacao)
     display: flex
     flex-direction: $ordenacao
     justify-content: center
     align-items: center
+
+@mixin buttons
+    background-color: rgb(0, 100, 255)
+    border: 0px solid transparent
+    border-radius: 15px
+    height: 40px
+    width: 120px
+    font-size: 1rem
+    color: white
+    margin-top: 30px
+    margin-bottom: 30px
+    cursor: pointer
+    &:hover
+        background-color: rgb(0, 125, 0)
+        letter-spacing: 2px
+        text-shadow: 2px 2px 2px black
 
 @mixin responsivo-1200
     @media (max-width: 1200px)
