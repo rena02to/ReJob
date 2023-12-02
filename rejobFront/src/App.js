@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import Login from './pages/Login';
+import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound';
 
 function App() {
