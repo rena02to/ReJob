@@ -1,0 +1,52 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+.main img {
+  height: 600px;
+  width: 1100px;
+}
+@media (max-width: 1200px) {
+  .main img {
+    height: 400px;
+    width: 730px;
+  }
+}
+@media (max-width: 800px) {
+  .main img {
+    height: 250px;
+    width: 450px;
+  }
+}
+@media (max-width: 500px) {
+  .main img {
+    height: 150px;
+    width: 270px;
+  }
+}
+.main p {
+  font-size: 2rem;
+  margin-bottom: 50px;
+  margin-left: 25%;
+  margin-right: 25%;
+  text-align: center;
+}
+@media (max-width: 1200px) {
+  .main p {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 500px) {
+  .main p {
+    font-size: 1.2rem;
+  }
+}
+.main p span {
+  color: red;
+}
+
+/*# sourceMappingURL=NotFound.module.css.map */

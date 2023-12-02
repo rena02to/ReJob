@@ -2,4 +2,16 @@
     display: flex
     flex-direction: $ordenacao
     justify-content: center
-    align-items: center 
+    align-items: center
+
+@mixin responsivo-1200
+    @media (max-width: 1200px)
+        @content
+
+@mixin responsivo-800
+    @media (max-width: 800px)
+        @content
+
+@mixin responsivo-500
+    @media (max-width: 500px)
+        @content

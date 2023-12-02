@@ -17,7 +17,7 @@ function Login(){
 
                         <span className={style.inputBox}>
                             <Field name="cpf" id="cpf" type="text" required />
-                            <label id="cpf">CPF</label>
+                            <label id="cpf">CPF ou e-mail</label>
                             <span />
                         </span>
 
