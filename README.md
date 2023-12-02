@@ -199,5 +199,12 @@
   >rena02to@gmail.com <br/>
   ><a href="https://github.com/rena02to" target="_blank" rel="noopener noreferer">https://github.com/rena02to</a></p>
 
+  <hr />
+  <h2>Atribuição de crédito aos criadores</h2>
+
+  Caminho para a imagem | Créditos
+  ---|---
+  /src/images/404.jpg | <a target="_blank" rel="noopener noreferer" href="https://br.freepik.com/vetores-gratis/conceito-de-erro-404-para-a-pagina-de-destino_5358339.htm#query=404&position=9&from_view=search&track=sph&uuid=df37a229-feba-4fb2-9c81-f4a10710e212">Imagem de pikisuperstar</a> em Freepik
+
 
 </div>
