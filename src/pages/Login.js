@@ -1,10 +1,11 @@
 import { Formik, Form, Field } from 'formik';
 import { FaEyeLowVision, FaEye } from "react-icons/fa6";
+import { useDispatch, useSelector } from 'react-redux';
 import style from './../css/Login.module.css';
-import { useState } from 'react';
 
 function Login(){
-    const [mostrarSenha, setMostrarSenha] = useState(false);
+    const dispatch = useDispatch();
+    const { mostrarSenhaLogin } = useSelector(rootReducer => rootReducer.useReducer);
 
     const initialValues = {
         cpf: '',
@@ -14,7 +15,9 @@ function Login(){
     const MostrarOcultar = () => {
         const senha = document.getElementById('senha');
         senha.type = senha.type === 'password' ? 'text' : 'password';
-        setMostrarSenha(!mostrarSenha);
+        dispatch({
+            type: 'MostrarSenhaLogin',
+        })
     }
 
     const Logar = () => {
@@ -38,7 +41,7 @@ function Login(){
                         <span className={style.inputBox}>
                             <Field name="senha" id="senha" type="password" required/>
                             <button type='button' onClick={MostrarOcultar}>
-                                {mostrarSenha ? <FaEyeLowVision /> : <FaEye />}
+                                {mostrarSenhaLogin ? <FaEyeLowVision /> : <FaEye />}
                             </button>
                             <label id="senha">Senha</label>
                             <span />

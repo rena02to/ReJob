@@ -46,13 +46,13 @@
 }
 .main form .inputBox {
   width: 70%;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  margin-top: 25px;
-  margin-bottom: 10px;
 }
 .main form .inputBox input {
   width: 100%;
