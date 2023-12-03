@@ -172,6 +172,19 @@
   
   <hr/>
   
+  <h2>Padrões de Commit</h2>
+  <p>O projeto segue as seguintes convenções de mensagens de commit. Utilizamos o formato do <a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener noreferrer">Conventional Commits</a>.</p>
+  <p><strong>feat</strong>: Adição de nova funcionalidade</p>
+  <p><strong>fix</strong>: Correção de bugs</p>
+  <p><strong>chore</strong>: Tarefas de rotina, ajustes na estrutura, etc.</p>
+  <p><strong>docs</strong>: Atualizações na documentação</p>
+  <p><strong>style</strong>: Alterações que não afetam o significado do código (espaço em branco, formatação, ponto e vírgula, etc.)</p>
+  <p><strong>refactor</strong>: Refatoração de código existente</p>
+  <p><strong>test</strong>: Adição ou modificação de testes</p>
+  <p><strong>ci</strong>: Alterações em configurações de integração contínua</p>
+  
+  <hr/>
+  
   <h2>Equipe</h2>
 
   ><p><strong>Elygledson Bezerra</strong> <br/>
@@ -205,6 +218,4 @@
   Caminho para a imagem | Créditos
   ---|---
   /src/images/404.jpg | <a target="_blank" rel="noopener noreferer" href="https://br.freepik.com/vetores-gratis/conceito-de-erro-404-para-a-pagina-de-destino_5358339.htm#query=404&position=9&from_view=search&track=sph&uuid=df37a229-feba-4fb2-9c81-f4a10710e212">Imagem de pikisuperstar</a> em Freepik
-
-
 </div>
