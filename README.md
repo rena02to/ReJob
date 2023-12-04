@@ -78,7 +78,7 @@
       <td>
         <ol>
           <li><strong>Saída da Prisão:</strong> Rafael participa de programas de reabilitação. Recebe informações sobre oportunidades pelo ReJob.</li>
-          <li><strong>Exploração:</strong> Acessa o ReJob, preenche seu perfil e explora vagas. Participa de treinamentos sugeridos pela plataforma.</li>
+          <li><strong>Exploração:</strong> Com a ajudade um membro autorizado ou parceiro socio-educacional do rejob ele acessa o ReJob, preenche seu perfil e explora vagas. Participa de treinamentos sugeridos pela plataforma.</li>
           <li><strong>Candidatura:</strong> Se candidata a vagas compatíveis com seu perfil. Recebe feedback e suporte da equipe do ReJob.</li>
           <li><strong>Entrevistas e Seleção:</strong> Realiza entrevistas com empresas interessadas. Participa de treinamentos adicionais sugeridos pelas empresas.</li>
           <li><strong>Colocação:</strong> É contratado por uma empresa, iniciando sua reintegração. Recebe suporte contínuo do ReJob para garantir sucesso na transição.</li>
@@ -99,6 +99,7 @@
         <ol>
           <li><strong>Parceria com o ReJob:</strong> Ana conhece o ReJob em eventos sociais. Inicia uma parceria para promover oportunidades de emprego.</li>
           <li><strong>Programas Educacionais:</strong> Colabora com o ReJob para implementar programas educacionais. Participa de workshops educacionais promovidos pela plataforma.</li>
+          <li><strong>Auxilio de detentos:</strong> Com a ajuda de sua ONG e pessoas do rejob faz os tramites para cadastrar ex-detentos e detento na plataforma.</li>
           <li><strong>Acompanhamento:</strong> Acompanha o progresso dos assistidos inscritos no ReJob. Colabora com empresas para garantir ambientes de trabalho acolhedores.</li>
           <li><strong>Impacto Social:</strong> Celebra o sucesso de ex-detentos que encontram emprego. Destaca casos de sucesso em relatórios e eventos.</li>
         </ol>
