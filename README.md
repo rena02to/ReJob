@@ -30,6 +30,7 @@
 <li>Após saírem da prisão, contudo, os ex-detentos são considerados cidadãos comuns e, quando contratados, são regidos pela CLT, tornando-os menos atrativos para os empregadores.</li>
       <li>Falta de escolaridade é um desafio significativo enfrentado por ex-detentos e detentos, impactando diretamente sua capacidade de inserção no mercado de trabalho. Conforme dados do Ministério da Justiça em 2016, aproximadamente 75% dos detentos possuíam apenas o ensino fundamental, evidenciando uma lacuna educacional substancial nesse grupo. Limitando a oportunidade de emprego para este grupo</li>
       <li>A falta de qualificações educacionais dificulta a obtenção de empregos significativos e bem remunerados. Isso pode levar ex-detentos a aceitarem posições de baixa remuneração, temporárias ou instáveis, o que não oferece uma base sólida para a reintegração.</li>
+        <li>A falta de integração com a sociedade faz com que aquelas pessoas se sintam sozinhas e desamparadas, muitas vezes perpetuando ciclos que as fazem voltar para o crime.</li>
       <li>A urgência de atender às necessidades financeiras imediatas pode levar ex-detentos a tomar decisões precipitadas, recorrendo a atividades ilegais para garantir meios de subsistência. Gerando um ciclo de reincidencia criminal</li>
     </ol>
   
