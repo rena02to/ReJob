@@ -78,7 +78,7 @@
       <td>
         <ol>
           <li><strong>Saída da Prisão:</strong> Rafael participa de programas de reabilitação. Recebe informações sobre oportunidades pelo ReJob.</li>
-          <li><strong>Exploração:</strong> Com a ajudade um membro autorizado ou parceiro socio-educacional do rejob ele acessa o ReJob, preenche seu perfil e explora vagas. Participa de treinamentos sugeridos pela plataforma.</li>
+          <li><strong>Exploração:</strong> Com a ajuda de um membro autorizado ou parceiro socio-educacional do rejob ele acessa o ReJob, preenche seu perfil e explora vagas. Participa de treinamentos sugeridos pela plataforma.</li>
           <li><strong>Candidatura:</strong> Se candidata a vagas compatíveis com seu perfil. Recebe feedback e suporte da equipe do ReJob.</li>
           <li><strong>Entrevistas e Seleção:</strong> Realiza entrevistas com empresas interessadas. Participa de treinamentos adicionais sugeridos pelas empresas.</li>
           <li><strong>Colocação:</strong> É contratado por uma empresa, iniciando sua reintegração. Recebe suporte contínuo do ReJob para garantir sucesso na transição.</li>
