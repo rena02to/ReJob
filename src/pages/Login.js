@@ -49,7 +49,7 @@ function Login(){
 
                         <div className={style.links}>
                             <a href="/recover" className={style.recuperar}>Recuperar senha</a>
-                            <a href="#" className={style.registro}>Registrar-se</a>
+                            <a href="/register" className={style.registro}>Registrar-se</a>
                         </div>
 
                         <button type='submit' className={style.submit}>Entrar</button>

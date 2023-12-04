@@ -4,6 +4,7 @@ import store from './redux/store';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import RecoverPassword from "./pages/RecoverPassword";
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route exact path="/login" element={<Login/>}/>
             <Route exact path="/recover" element={<RecoverPassword/>}/>
+            <Route exact path="/register" element={<Register/>}/>
             <Route path='/*' element={<NotFound />} />
           </Routes>
         </Router>

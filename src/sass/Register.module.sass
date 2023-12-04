@@ -1,0 +1,57 @@
+@use 'mixins'
+@use 'variables'
+
+.main
+    @include mixins.flex-align(column)
+    height: 100vh
+    width: 100%
+    background-color: variables.$background-login
+    form
+        min-width: 500px
+        @include mixins.flex-align(column)
+        background-color: variables.$form-login
+        border-radius: 15px
+        box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.5)
+        margin-left: 20px
+        margin-right: 20px
+        @include mixins.responsivo-500
+            min-width: 300px
+        h2
+            margin: 25px 20px 0px 20px
+            font-size: 2rem
+        p
+            margin: 10px 20px 20px 20px
+            font-size: 1rem
+        .inputBox
+            @include mixins.flex-align(column)
+            @include mixins.input-box
+            position: relative
+            width: 70%
+            margin-top: 25px
+            margin-bottom: 10px
+        .error
+            color: red
+            width: 70%
+            text-align: center
+        .optionsUser
+            width: 70%
+            margin-top: 20px
+            .legend
+                font-size: 1.2rem
+            &Radios
+                display: flex
+                flex-direction: column
+                margin-top: 10px
+                label
+                    font-size: 1rem
+                .option
+                    display: flex
+                    flex-direction: row
+                    align-items: center
+                    margin-top: 5px
+                    input
+                        height: 15px
+                        width: 15px
+                        cursor: pointer
+        button
+            @include mixins.buttons
