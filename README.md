@@ -115,46 +115,46 @@
   Acreditamos que o `Marco 1` vai conseguir deixar o sistema funcional para criação e edição de perfil, e criação de vagas. Saberemos que isso aconteceu com base na taxa de cadastros e número de vagas postadas.
   <h4>Funcionalidades</h4>
   
-  - [ ] Cadastro de empresas e colaboradores socio-educacionais (problema 1 e 2)
-  - [ ] Cadastro de detentos e ex-detentos (problema 1 e 2)
-  - [ ] Autenticação (problema 1 e 2)
-  - [ ] Postagem de vagas (problema 1 e 2)
-  - [ ] Edição de perfil (problema 1 e 2)
+  - [ ] Cadastro de empresas e colaboradores socio-educacionais (problemas 1 e 2)
+  - [ ] Cadastro de detentos e ex-detentos (problemas 1 e 2)
+  - [ ] Autenticação (problemas 1 e 2)
+  - [ ] Postagem de vagas (problemas 1 e 2)
+  - [ ] Edição de perfil (problemas 1 e 2)
     
     <h3>Marco 2</h3>
     
     Acreditamos que o `Marco 2` vai permitir que os clientes consigam procurar vagas de interesse e se inscrever nelas. Saberemos que isso aconteceu com base em taxa de pesquisas realizadas e número de inscrições.
     <h4>Funcionalidades</h4>
                       
-  - [ ] Filtro de pesquisa (problema 1 e 2)
-  - [ ] Inscrição nas vagas de trabalho (problema 1 e 2)
+  - [ ] Filtro de pesquisa (problemas 1 e 2)
+  - [ ] Inscrição nas vagas de trabalho (problemas 1 e 2)
   
     <h3>Marco 3</h3>
     
     Acreditamos que o `Marco 3` vai conseguir validar o quão eficaz está sendo o processo seletivo. Saberemos que isso aconteceu com base na taxa de conversão de vagas, número total de processos, tempo médio de duração dos processos e taxa de feedbacks.
     <h4>Funcionalidades</h4>
     
-  - [ ] Gerenciamento de processo seletivo (problema 1, 2 e 4)
-  - [ ] Cadastro de testes do processo seletivo (problema 1, 2 e 4)
-  - [ ] Feedback do processo seletivo (problema 1, 2, 3 e 4)
+  - [ ] Gerenciamento de processo seletivo (problemas 1, 2 e 4)
+  - [ ] Cadastro de testes do processo seletivo (problemas 1, 2 e 4)
+  - [ ] Feedback do processo seletivo (problemas 1, 2, 3 e 4)
   
     <h3>Marco 4</h3>
     
     Acreditamos que esse `Marco 4` vai conseguir aumentar a visibilidade dos usuários em relação as vagas e facilitar a comunicação e acompanhamento das vagas e inscrições. Saberemos que isso aconteceu com base no número de publicações, engajamento nas publicações e quantidade de interação com as notificações.
     <h4>Funcionalidades</h4>
   
-  - [ ] Publicar conquistas/portfólio (problema 3 e 4)
-  - [ ] Notificações (problema 1, 2, 3, 4 e 5)
-  - [ ] Engajar nas publicações
+  - [ ] Publicar conquistas/portfólio (problemas 3 e 4)
+  - [ ] Notificações (problemas 1, 2, 3, 4)
+  - [ ] Engajar nas publicações (problema 5)
   
     <h3>Marco 5</h3>
     
     Acreditamos que esse `Marco 5` vai conseguir engajar os usuários em cursos profissionalizantes. Saberemos que isso aconteceu com base na quantidade de cursos inscritos na plataforma, quantidade de inscrições nos cursos e a porcentagem de emissão de certificados.
     <h4>Funcionalidades</h4>
   
-  - [ ] Inscrições nos cursos (problema 3 e 4)
-  - [ ] Inscrições de cursos (problema 3 e 4)
-  - [ ] Geração de certificados (problema 3 e 4)
+  - [ ] Inscrições de cursos (problemas 3, 4 e 5)
+  - [ ] Inscrições nos cursos (problemas 3, 4 e 5)
+  - [ ] Geração de certificados (problemas 3, 4 e 5)
   <hr/>
   
   <h2>Riscos</h2>
