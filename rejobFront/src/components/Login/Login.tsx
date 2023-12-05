@@ -1,14 +1,13 @@
-import React from 'react';
-import { Formik, Form, Field } from 'formik';
-import AuthRequest from '../../core/User/authRequest';
-import '../../css/login.css';
-import LoginService from './LoginService';
-import AuthResponse from '../../core/User/AuthResponse';
+import React from "react";
+import { Formik, Form, Field } from "formik";
+import AuthRequest from "../../core/User/authRequest";
+import "../../styles/login.css";
+import LoginService from "./LoginService";
 
 function Login() {
   const initialValues: AuthRequest = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   };
 
   const handleSubmit = async (values: AuthRequest) => {
@@ -18,12 +17,9 @@ function Login() {
         values.password
       );
 
-      console.log('Login successful:', AuthResponse);
-
-    
+      console.log("Login successful:", AuthResponse);
     } catch (error) {
-      
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
     }
   };
 

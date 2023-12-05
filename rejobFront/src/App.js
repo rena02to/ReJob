@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import Login from './pages/Login/Login';
-import NotFound from './pages/NotFound';
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import Login from "./components/Login/Login";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -10,8 +10,8 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
-            <Route exact path="/login" element={<Login/>}/>
-            <Route path='/*' element={<NotFound />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </Router>
       </div>
