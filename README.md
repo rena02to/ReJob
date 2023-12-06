@@ -39,6 +39,7 @@
             </ul>
         </ol>
     </li>
+            <br>
     <li><b>Os ex-dententos não são percebidos como contratações atrativas pelos empregadores.</b>
         <ol type="a">
           <br>
