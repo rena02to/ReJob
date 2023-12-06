@@ -70,6 +70,7 @@
         <ol type="a">
             <li><b>Soluções</b></li>
             <p>Conteúdos sobre habilidades emocionais.</p>
+            <p>Assistencia dos colaboradores(ONGS) durante o processo de ressocialização.</p>
         </ol>
     </li>
 </ol>
@@ -166,31 +167,31 @@
     <h3>Marco 3</h3>
     
     Acreditamos que o `Marco 3` vai conseguir validar o quão eficaz está sendo o processo seletivo. Saberemos que isso aconteceu com base na taxa de conversão de vagas, número total de processos, tempo médio de duração dos processos e taxa de feedbacks.
-    <h4>Funcionalidades</h4>
+        <h4>Em relação às funcionalidades, este marco se concentrará em atacar os problemas 1 e 2, enquanto continuamos a criar e fortalecer a ponte, levando mais vagas aos usuarios, nos tentaremos tornar eles mais atrativos para as empresas em um primeiro momento, por meio da emissao de certificados e prioridades no sistema,</h4>
     
-  - [ ] Gerenciamento de processo seletivo (problemas 1, 2 e 4)
-  - [ ] Cadastro de testes do processo seletivo (problemas 1, 2 e 4)
-  - [ ] Feedback do processo seletivo (problemas 1, 2, 3 e 4)
+  - [ ] Gerenciamento de processo seletivo
+  - [ ] Cadastro de testes do processo seletivo 
+  - [ ] Feedback do processo seletivo 
   - [ ] Geração de selos e certificados para empresas parceiras
   - [ ] Implementação da prioridade para contratação por empresas parceiras
   
     <h3>Marco 4</h3>
     
     Acreditamos que esse `Marco 4` vai conseguir aumentar a visibilidade dos usuários em relação as vagas e facilitar a comunicação e acompanhamento das vagas e inscrições. Saberemos que isso aconteceu com base no número de publicações, engajamento nas publicações e quantidade de interação com as notificações.
-    <h4>Funcionalidades</h4>
+               <h4>Em relação às funcionalidades, este marco se concentrará em atacar oo problema 4, criando um senso de bem-estar ao publicar suas conquista e ao fazer se sentir parte de uma comunidade ao poder interagir com outros.</h4>
   
-  - [ ] Publicar conquistas/portfólio (problemas 3 e 4)
-  - [ ] Notificações (problemas 1, 2, 3, 4)
-  - [ ] Engajar nas publicações (problema 5)
+  - [ ] Publicar conquistas/portfólio 
+  - [ ] Notificações 
+  - [ ] Engajar nas publicações 
   
     <h3>Marco 5</h3>
     
     Acreditamos que esse `Marco 5` vai conseguir engajar os usuários em cursos profissionalizantes. Saberemos que isso aconteceu com base na quantidade de cursos inscritos na plataforma, quantidade de inscrições nos cursos e a porcentagem de emissão de certificados.
-    <h4>Funcionalidades</h4>
+           <h4>Em relação às funcionalidades, este marco se concentrará em atacar os problemas 2 e 3, estaremos juntamente das empresas, dando educação de qualidade e aperfeiçoando os trabalhadores para que eles se tornem mais atrativos para novas empresas ou ate para aquelas que eles ja estão.</h4>
   
-  - [ ] Inscrições de cursos (problemas 3, 4 e 5)
-  - [ ] Inscrições nos cursos (problemas 3, 4 e 5)
-  - [ ] Geração de certificados (problemas 3, 4 e 5)
+  - [ ] Inscrições de cursos 
+  - [ ] Inscrições nos cursos 
+  - [ ] Geração de certificados 
   <hr/>
   
   <h2>Riscos</h2>
