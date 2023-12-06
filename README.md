@@ -26,6 +26,19 @@
 
 <h3>Problemas</h3>
 <ol>
+   <li><b>Falta de Emprego e oportunidades para Ex-Detentos</b>
+        <ol type="a">
+            <li><b>Contexto</b></li>
+            <p>Ex-detentos enfrentam uma significativa escassez de oportunidades de emprego, resultando em altas taxas de desemprego após sua liberação. Muitas empresas relutam em contratar ex-detentos devido a estigmas sociais, preocupações com segurança ou falta de compreensão sobre as experiências e habilidades dos indivíduos que passaram pelo sistema prisional.</p>
+            <li><b>Soluções</b></li>
+            <ul>
+                <li>Ponte entre ex-detentos e empresas interessadas</li>
+                <li>Descriçaõ detalhada das habilidades e conqusitas dos ex-detentos</li>
+              <li>Informação sobre discontos fiscais ao empregar detentos e ex-detentos a depender da localidade</li>
+              <li>Emissão de certificados e vantagens para empresas parceiras</li>
+            </ul>
+        </ol>
+    </li>
     <li><b>Os ex-dententos não são percebidos como contratações atrativas pelos empregadores.</b>
         <ol type="a">
           <br>
@@ -131,21 +144,23 @@
   <h3>Marco 1</h3>
   
   Acreditamos que o `Marco 1` vai conseguir deixar o sistema funcional para criação e edição de perfil, e criação de vagas. Saberemos que isso aconteceu com base na taxa de cadastros e número de vagas postadas.
-  <h4>Funcionalidades</h4>
+  <h4>Em relação às funcionalidades, este marco será um esforço inicial para as demais características. Ele não resolverá necessariamente nenhum dos problemas mencionados anteriormente no texto, mas servirá como alicerce para a existência do sistema.</h4>
   
-  - [ ] Cadastro de empresas e colaboradores socio-educacionais (problemas 1 e 2)
-  - [ ] Cadastro de detentos e ex-detentos (problemas 1 e 2)
-  - [ ] Autenticação (problemas 1 e 2)
-  - [ ] Postagem de vagas (problemas 1 e 2)
-  - [ ] Edição de perfil (problemas 1 e 2)
+  - [ ] Cadastro de empresas e colaboradores socio-educacionais 
+  - [ ] Cadastro de detentos e ex-detentos
+  - [ ] Autenticação
+  - [ ] Postagem de vagas 
+  - [ ] Edição de perfil
+        
     
     <h3>Marco 2</h3>
     
     Acreditamos que o `Marco 2` vai permitir que os clientes consigam procurar vagas de interesse e se inscrever nelas. Saberemos que isso aconteceu com base em taxa de pesquisas realizadas e número de inscrições.
-    <h4>Funcionalidades</h4>
+    <h4>Em relação às funcionalidades, este marco se concentrará em atacar o problema 1, criando uma ponte entre os empregadores e ex-detentos como maneira de facilitar a busca de emprego e tambem informado para as empresas quais vantagens fiscais elas podem conseguir</h4>
                       
-  - [ ] Filtro de pesquisa (problemas 1 e 2)
-  - [ ] Inscrição nas vagas de trabalho (problemas 1 e 2)
+  - [ ] Filtro de pesquisa 
+  - [ ] Inscrição nas vagas de trabalho 
+  - [ ] Pagina para pesquisa de vantagens fiscais para empresas e explicação sobre certificados
   
     <h3>Marco 3</h3>
     
@@ -155,6 +170,8 @@
   - [ ] Gerenciamento de processo seletivo (problemas 1, 2 e 4)
   - [ ] Cadastro de testes do processo seletivo (problemas 1, 2 e 4)
   - [ ] Feedback do processo seletivo (problemas 1, 2, 3 e 4)
+  - [ ] Geração de selos e certificados para empresas parceiras
+  - [ ] Implementação da prioridade para contratação por empresas parceiras
   
     <h3>Marco 4</h3>
     
