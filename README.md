@@ -167,7 +167,7 @@
     <h3>Marco 3</h3>
     
     Acreditamos que o `Marco 3` vai conseguir validar o quão eficaz está sendo o processo seletivo. Saberemos que isso aconteceu com base na taxa de conversão de vagas, número total de processos, tempo médio de duração dos processos e taxa de feedbacks.
-        <h4>Em relação às funcionalidades, este marco se concentrará em atacar os problemas 1 e 2, enquanto continuamos a criar e fortalecer a ponte, levando mais vagas aos usuarios, nos tentaremos tornar eles mais atrativos para as empresas em um primeiro momento, pro meio da criação de certificados para as empresas que manterem os funcionarios e dando prioridade na contratação por empresas parceiras.</h4>
+        <h4>Em relação às funcionalidades, este marco se concentrará em atacar os problemas 1 e 2, enquanto continuamos a criar e fortalecer a ponte, levando mais vagas aos usuários, nós tentaremos tornar eles mais atrativos para as empresas em um primeiro momento, por meio da criação de certificados para as empresas que manterem os funcionarios e dando prioridade na contratação por empresas parceiras.</h4>
     
   - [ ] Gerenciamento de processo seletivo
   - [ ] Cadastro de testes do processo seletivo 
