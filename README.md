@@ -158,7 +158,7 @@
     <h3>Marco 2</h3>
     
     Acreditamos que o `Marco 2` vai permitir que os clientes consigam procurar vagas de interesse e se inscrever nelas. Saberemos que isso aconteceu com base em taxa de pesquisas realizadas e número de inscrições.
-    <h4>Em relação às funcionalidades, este marco se concentrará em atacar o problema 1, criando uma ponte entre os empregadores e ex-detentos como maneira de facilitar a busca de emprego e tambem informado para as empresas quais vantagens fiscais elas podem conseguir</h4>
+    <h4>Em relação às funcionalidades, este marco se concentrará em atacar o problema 1 (Falta de Emprego e oportunidades para Ex-Detentos), criando uma ponte entre os empregadores e ex-detentos como maneira de facilitar a busca de emprego e tambem informado para as empresas quais vantagens fiscais elas podem conseguir</h4>
                       
   - [ ] Filtro de pesquisa 
   - [ ] Inscrição nas vagas de trabalho 
@@ -167,7 +167,7 @@
     <h3>Marco 3</h3>
     
     Acreditamos que o `Marco 3` vai conseguir validar o quão eficaz está sendo o processo seletivo. Saberemos que isso aconteceu com base na taxa de conversão de vagas, número total de processos, tempo médio de duração dos processos e taxa de feedbacks.
-        <h4>Em relação às funcionalidades, este marco se concentrará em atacar os problemas 1 e 2, enquanto continuamos a criar e fortalecer a ponte, levando mais vagas aos usuários, nós tentaremos tornar eles mais atrativos para as empresas em um primeiro momento, por meio da criação de certificados para as empresas que manterem os funcionarios e dando prioridade na contratação por empresas parceiras.</h4>
+        <h4>Em relação às funcionalidades, este marco se concentrará em atacar os problemas 1 (Falta de Emprego e oportunidades para Ex-Detentos) e 2 (Os ex-dententos não são percebidos como contratações atrativas pelos empregadores.), enquanto continuamos a criar e fortalecer a ponte, levando mais vagas aos usuários, nós tentaremos tornar eles mais atrativos para as empresas em um primeiro momento, por meio da criação de certificados para as empresas que manterem os funcionarios e dando prioridade na contratação por empresas parceiras.</h4>
     
   - [ ] Gerenciamento de processo seletivo
   - [ ] Cadastro de testes do processo seletivo 
@@ -178,7 +178,7 @@
     <h3>Marco 4</h3>
     
     Acreditamos que esse `Marco 4` vai conseguir aumentar a visibilidade dos usuários em relação as vagas e facilitar a comunicação e acompanhamento das vagas e inscrições. Saberemos que isso aconteceu com base no número de publicações, engajamento nas publicações e quantidade de interação com as notificações.
-               <h4>Em relação às funcionalidades, este marco se concentrará em atacar oo problema 4, criando um senso de bem-estar ao publicar suas conquista e ao fazer se sentir parte de uma comunidade ao poder interagir com outros.</h4>
+               <h4>Em relação às funcionalidades, este marco se concentrará em atacar oo problema 4 (A falta de integração com a sociedade faz com que aquelas pessoas se sintam sozinhas e desamparadas), criando um senso de bem-estar ao publicar suas conquista e ao fazer se sentir parte de uma comunidade ao poder interagir com outros.</h4>
   
   - [ ] Publicar conquistas/portfólio 
   - [ ] Notificações 
@@ -187,11 +187,12 @@
     <h3>Marco 5</h3>
     
     Acreditamos que esse `Marco 5` vai conseguir engajar os usuários em cursos profissionalizantes. Saberemos que isso aconteceu com base na quantidade de cursos inscritos na plataforma, quantidade de inscrições nos cursos e a porcentagem de emissão de certificados.
-           <h4>Em relação às funcionalidades, este marco se concentrará em atacar os problemas 2 e 3, estaremos juntamente das empresas, dando educação de qualidade e aperfeiçoando os trabalhadores para que eles se tornem mais atrativos para novas empresas ou ate para aquelas que eles ja estão.</h4>
+           <h4>Em relação às funcionalidades, este marco se concentrará em atacar os problemas 2 (Os ex-dententos não são percebidos como contratações atrativas pelos empregadores) e 3 (Quando existem opções de emprego, elas oferecem baixa remuneração ou ofertas temporárias.), estaremos juntamente das empresas, dando educação de qualidade e aperfeiçoando os trabalhadores para que eles se tornem mais atrativos para novas empresas ou ate para aquelas que eles ja estão.</h4>
   
   - [ ] Inscrições de cursos 
   - [ ] Inscrições nos cursos 
-  - [ ] Geração de certificados 
+  - [ ] Geração de certificados
+  - [ ] criação do sistema de fidelidade de empresa parceira ( niveis e privilegios mais a fundo)
   <hr/>
   
   <h2>Riscos</h2>
