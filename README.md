@@ -70,7 +70,7 @@
         <ol type="a">
             <li><b>Soluções</b></li>
             <p>Conteúdos sobre habilidades emocionais.</p>
-            <p>Assistencia dos colaboradores(ONGS) durante o processo de ressocialização.</p>
+            <p>Assistencia dos colaboradores (ongs) durante o processo de ressocialização.</p>
         </ol>
     </li>
 </ol>
