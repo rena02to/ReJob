@@ -49,7 +49,7 @@
             <p>Além disso, a falta de escolaridade é um desafio significativo enfrentado por ex-detentos e detentos, impactando diretamente sua capacidade de inserção no mercado de trabalho. Conforme dados do Ministério da Justiça em 2016, aproximadamente 75% dos detentos possuíam apenas o ensino fundamental, evidenciando uma lacuna educacional substancial nesse grupo. Limitando a oportunidade de emprego para este grupo.</p>
             <p>Além das questões de qualificação, existe também uma urgência para atender às necessidades financeiras imediatas desses ex-detentos. Muitas vezes, essas pressões os levam a tomar decisões precipitadas, recorrendo a atividades ilegais para garantir meios de subsistência. Gerando um ciclo de reincidencia criminal.</p>
             <li><b>Soluções</b></li>
-            <p>No contexto do sistema, iremos propor a intermediação entre entidades que promovem a qualificação profissional desses dententos ainda na condição de dentento e os próprios detentos.</p>
+            <p>No contexto do sistema, iremos propor a intermediação entre entidades que promovem a qualificação profissional desses dententos e ex-detentos.</p>
             <p>Desta forma, melhor qualificados e com reputação rastreada pelo sistema, espera-se que eles sejam percebidos com maior valor perante os empregadores.</p>
         </ol>
     </li>
