@@ -1,5 +1,6 @@
 package com.efjpr.rejob.domain;
 
+import com.efjpr.rejob.domain.Enums.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,7 @@ public class User implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    private String phoneNumber;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)

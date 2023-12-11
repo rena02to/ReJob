@@ -2,8 +2,9 @@ package com.efjpr.rejob.service;
 
 import com.efjpr.rejob.domain.Dto.AuthRequest;
 import com.efjpr.rejob.domain.Dto.AuthResponse;
-import com.efjpr.rejob.domain.Dto.RegisterRequest;
-import com.efjpr.rejob.domain.Role;
+import com.efjpr.rejob.domain.Dto.CollaboratorRegisterRequest;
+import com.efjpr.rejob.domain.Dto.EmployeeRegisterRequest;
+import com.efjpr.rejob.domain.Enums.Role;
 import com.efjpr.rejob.domain.User;
 import com.efjpr.rejob.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -21,23 +26,27 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final CollaboratorService collaboratorService;
+    private final EmployeeService employeeService;
 
 
-    public AuthResponse register(RegisterRequest request) {
-        if (userRepository.existsByEmail(request.getEmail())) {
-
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email is already registered");
-        }
-        User user = User.builder()
-                .name(request.getName())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
-                .email(request.getEmail())
-                .build();
-
-        userRepository.save(user);
-
+    public AuthResponse register(CollaboratorRegisterRequest request) {
+        User user = createUser(request.getEmail(), request.getName(), request.getPassword(), request.getPhoneNumber(), Role.COLLABORATOR);
         var token = jwtService.generateToken(user);
+
+        collaboratorService.create(request, user);
+
+        return AuthResponse.builder()
+                .token(token)
+                .build();
+    }
+
+    public AuthResponse register(EmployeeRegisterRequest request) {
+
+        User user = createUser(request.getEmail(), request.getName(), request.getPassword(), request.getPhoneNumber(), Role.USER);
+        var token = jwtService.generateToken(user);
+
+        employeeService.create(request, user);
 
         return AuthResponse.builder()
                 .token(token)
@@ -51,10 +60,29 @@ public class AuthService {
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow();
 
+
         var token = jwtService.generateToken(user);
 
         return AuthResponse.builder()
                 .token(token)
                 .build();
+    }
+
+    private User createUser(String email, String name, String password, String phoneNumber, Role type) {
+        if (userRepository.existsByEmail(email)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email is already registered");
+        }
+        User user = User.builder()
+                .name(name)
+                .password(passwordEncoder.encode(password))
+                .role(type)
+                .email(email)
+                .phoneNumber(phoneNumber)
+                .createdDate(Date.from(Instant.now()))
+                .lastUpdatedDate(Date.from(Instant.now()))
+                .build();
+
+
+       return userRepository.save(user);
     }
 }
