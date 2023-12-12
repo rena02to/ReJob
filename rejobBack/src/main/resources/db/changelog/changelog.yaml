@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/0000000000_initial_schema.sql
   - include:
       file: db/changelog/migration01.xml
+  - include:
+      file: db/changelog/0000000001_create_job_table.sql

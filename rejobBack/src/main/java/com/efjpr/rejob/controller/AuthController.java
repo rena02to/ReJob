@@ -6,6 +6,7 @@ import com.efjpr.rejob.domain.Dto.CollaboratorRegisterRequest;
 import com.efjpr.rejob.domain.Dto.EmployeeRegisterRequest;
 import com.efjpr.rejob.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,18 +22,18 @@ public class AuthController {
 
     @PostMapping("/register-employee")
     public ResponseEntity<AuthResponse> register(@RequestBody EmployeeRegisterRequest request){
-        return ResponseEntity.ok(authService.register(request));
+        return new ResponseEntity<>(authService.register(request), HttpStatus.OK);
     }
 
     @PostMapping("/register-collaborator")
     public ResponseEntity<AuthResponse> register(@RequestBody CollaboratorRegisterRequest request){
-        return ResponseEntity.ok(authService.register(request));
+        return new ResponseEntity<>(authService.register(request), HttpStatus.OK);
     }
 
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequest request){
-        return ResponseEntity.ok(authService.authenticate(request));
+        return new ResponseEntity<>(authService.authenticate(request), HttpStatus.OK);
     }
 
 }
