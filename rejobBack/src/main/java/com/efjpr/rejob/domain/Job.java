@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@Table(name = "jobs")
+@Table(name = "job")
 @Data
 @Builder
 @NoArgsConstructor
@@ -33,6 +33,7 @@ public class Job {
     private String benefits;
     private String employmentType;
     private Date applicationDeadline;
+    private SalaryRange salaryRange;
 
     @Enumerated(EnumType.STRING)
     private JobStatus jobStatus;

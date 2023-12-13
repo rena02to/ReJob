@@ -1,6 +1,8 @@
 package com.efjpr.rejob.service;
 
+import com.efjpr.rejob.domain.Collaborator;
 import com.efjpr.rejob.domain.Job;
+import com.efjpr.rejob.repository.CollaboratorRepository;
 import com.efjpr.rejob.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,19 @@ import java.util.List;
 public class JobService {
 
     private final JobRepository jobRepository;
+    private final CollaboratorRepository collaboratorRepository;
 
     public List<Job> getAllJobs() {
         return jobRepository.findAll();
     }
 
     public Job createJob(Job job) {
+        Collaborator contactPerson = collaboratorRepository.findById(job.getContactPerson().getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Collaborator with ID " + job.getContactPerson().getId() + " not found"));
+
+
+        job.setContactPerson(contactPerson);
+
         return jobRepository.save(job);
     }
 
