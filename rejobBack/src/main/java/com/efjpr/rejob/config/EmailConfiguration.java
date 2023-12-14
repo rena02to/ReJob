@@ -11,8 +11,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 
-@ComponentScan(basePackages = { "com.baeldung.spring.mail" })
-@PropertySource(value={"classpath:application.properties"})
 public class EmailConfiguration {
 
     @Value("${spring.mail.host}")
