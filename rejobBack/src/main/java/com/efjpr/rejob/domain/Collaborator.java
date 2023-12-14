@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Collaborators")
 @Data
@@ -27,5 +29,11 @@ public class Collaborator  {
 
     @Enumerated(EnumType.STRING)
     private CollaboratorType collaboratorType;
+
+    @ManyToOne
+    private Company company;
+
+    @OneToMany(mappedBy = "contactPerson")
+    private List<Job> jobs;
 
 }

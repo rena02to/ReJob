@@ -3,3 +3,11 @@ databaseChangeLog:
       file: db/changelog/0000000000_initial_schema.sql
   - include:
       file: db/changelog/migration01.xml
+  - include:
+      file: db/changelog/0000000001_create_job_table.sql
+  - include:
+      file: db/changelog/0000000002_add_salary_range.sql
+  - include:
+      file: db/changelog/0000000003_redo_job_table.sql
+  - include:
+      file: db/changelog/0000000004_add_company_to_collaborator.sql
