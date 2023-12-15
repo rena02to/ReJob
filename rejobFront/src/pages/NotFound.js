@@ -1,4 +1,4 @@
-import _404 from "./../assets/404.jpg";
+import _404 from "../images/404.jpg";
 import style from "./../styles/NotFound.module.css";
 
 function NotFound() {
