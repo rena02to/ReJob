@@ -1,5 +1,5 @@
 import _404 from "../images/404.jpg";
-import style from "./../styles/NotFound.module.css";
+import style from "./../styles/css/NotFound.module.css";
 
 function NotFound() {
   return (

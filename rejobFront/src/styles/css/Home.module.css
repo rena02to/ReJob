@@ -1,0 +1,130 @@
+.vagas {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #D9D9D9;
+}
+.vagas .containerMain {
+  width: 85%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.vagas .containerMain .perfilHome {
+  display: flex;
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+@media (max-width: 500px) {
+  .vagas .containerMain .perfilHome {
+    height: 500px;
+  }
+}
+.vagas .containerMain .perfilHome img {
+  width: 100%;
+  height: 100%;
+}
+.vagas .containerMain .perfilHome .conteudo {
+  position: absolute;
+  top: 10px;
+  left: 35px;
+  color: white;
+}
+.vagas .containerMain .perfilHome .conteudo .title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.vagas .containerMain .perfilHome .conteudo .title span {
+  color: #ffa100;
+}
+.vagas .containerMain .perfilHome .conteudo .cadastre {
+  margin-top: 0px;
+}
+.vagas .containerMain .perfilHome .conteudo .buttons {
+  margin-top: 40px;
+}
+@media (max-width: 700px) {
+  .vagas .containerMain .perfilHome .conteudo .buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+}
+.vagas .containerMain .perfilHome .conteudo .buttons button {
+  color: white;
+  background-color: #ffa100;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 45px;
+  width: 250px;
+}
+.vagas .containerMain .perfilHome .conteudo .buttons .colaborador {
+  margin-right: 15px;
+}
+@media (max-width: 700px) {
+  .vagas .containerMain .perfilHome .conteudo .buttons .colaborador {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+.vagas .containerMain .perfilHome .conteudo .legenda {
+  margin-top: 60px;
+  margin-right: 30px;
+}
+@media (max-width: 700px) {
+  .vagas .containerMain .perfilHome .conteudo .legenda {
+    margin-top: 20px;
+  }
+}
+.vagas .containerMain .ultimasVagas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.vagas .containerMain .ultimasVagas h2 {
+  font-size: 30px;
+  margin: 30px 0 30px 0;
+}
+.vagas .containerMain .ultimasVagas .cards {
+  margin-bottom: 50px;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+}
+.vagas .containerMain .ultimasVagas .cards .cardVaga {
+  height: 400px;
+  width: 320px;
+  background-color: #D9D9D9;
+  border-radius: 5px;
+}
+.vagas .containerMain .ultimasVagas button {
+  color: white;
+  background-color: #ffa100;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 45px;
+  color: #ffa100;
+  background-color: white;
+  border: 2px solid #ffa100;
+  margin-bottom: 50px;
+}
+
+/*# sourceMappingURL=Home.module.css.map */

@@ -1,0 +1,112 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+}
+.footer .main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0 30px 0;
+}
+@media (max-width: 1200px) {
+  .footer .main {
+    flex-direction: column;
+  }
+}
+.footer .main .rejob, .footer .main .infos, .footer .main .links {
+  height: 200px;
+}
+@media (max-width: 1200px) {
+  .footer .main .rejob, .footer .main .infos, .footer .main .links {
+    width: 300px;
+  }
+}
+.footer .main .rejob {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 58px;
+  font-style: normal;
+  font-weight: 700;
+  border-right: 2px solid white;
+  padding-right: 50px;
+}
+@media (max-width: 1200px) {
+  .footer .main .rejob {
+    border-right: 0px solid transparent;
+  }
+}
+.footer .main .rejob span {
+  color: #ffa100;
+}
+.footer .main .infos, .footer .main .links {
+  padding-left: 50px;
+}
+@media (max-width: 1200px) {
+  .footer .main .infos, .footer .main .links {
+    padding-left: 0;
+  }
+}
+.footer .main .infos {
+  border-right: 2px solid white;
+  padding-right: 50px;
+}
+@media (max-width: 1200px) {
+  .footer .main .infos {
+    border-right: 0px solid transparent;
+  }
+}
+.footer .main .infos .endereco, .footer .main .infos .contato {
+  font-weight: 600;
+  font-size: 1.2rem;
+  border-bottom: 2px solid white;
+  padding-bottom: 5px;
+  margin-bottom: 0;
+}
+.footer .main .infos .contato {
+  margin-top: 35px;
+}
+.footer .main .infos .endereco {
+  margin-top: 15px;
+}
+.footer .main .infos .textEndereco {
+  margin-bottom: 20px;
+}
+.footer .main .infos .textEndereco, .footer .main .infos .email {
+  font-size: 0.9rem;
+}
+.footer .main .links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.footer .main .links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+.footer .main .links a svg {
+  height: 25px;
+  width: 25px;
+}
+.footer .university {
+  background-color: white;
+  color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  padding-top: 5px;
+  margin-top: 0;
+}
+
+/*# sourceMappingURL=Footer.module.css.map */

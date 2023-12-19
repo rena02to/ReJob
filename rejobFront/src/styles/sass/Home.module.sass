@@ -1,0 +1,77 @@
+@use 'mixins'
+@use 'variables'
+    
+.vagas
+    margin-top: 70px
+    @include mixins.flex-align(column)
+    background-color: variables.$gray-color
+    .containerMain
+        width: 85%
+        background-color: white
+        @include mixins.flex-align(column)
+        .perfilHome
+            display: flex
+            width: 100%
+            height: 400px
+            position: relative
+            @include mixins.responsivo-500
+                height: 500px
+            img
+                width: 100%
+                height: 100%
+            .conteudo
+                position: absolute
+                top: 10px
+                left: 35px
+                color: white
+                .title
+                    font-size: 30px
+                    font-weight: 600
+                    margin-bottom: 10px
+                    span
+                        color: variables.$main-color
+                .cadastre
+                    margin-top: 0px
+                .buttons
+                    margin-top: 40px
+                    @include mixins.responsivo-700
+                        display: flex
+                        flex-direction: column
+                        margin-top: 20px
+                    button
+                        @include mixins.buttons
+                        width: 250px
+                    .colaborador
+                        margin-right: 15px
+                        @include mixins.responsivo-700
+                            margin-right: 0
+                            margin-bottom: 10px
+                .legenda
+                    margin-top: 60px
+                    margin-right: 30px
+                    @include mixins.responsivo-700
+                        margin-top: 20px
+        .ultimasVagas
+            @include mixins.flex-align(column)
+            width: 100%
+            h2
+                font-size: 30px
+                margin: 30px 0 30px 0
+            .cards
+                margin-bottom: 50px
+                display: flex
+                gap: 25px
+                flex-wrap: wrap
+                justify-content: center
+                width: 90%
+                .cardVaga
+                    height: 400px
+                    width: 320px
+                    background-color: variables.$gray-color
+                    border-radius: 5px
+            button
+                @include mixins.buttons
+                color: variables.$main-color
+                background-color: white
+                border: 2px solid variables.$main-color
+                margin-bottom: 50px

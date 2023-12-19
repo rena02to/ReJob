@@ -1,0 +1,110 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  justify-content: space-between;
+  position: fixed;
+  padding: 5px 20px;
+  top: 0;
+  width: calc(100% - 40px);
+  height: 60px;
+  background-color: white;
+  z-index: 99999;
+}
+.navbar .textIcon {
+  font-weight: 600;
+  font-size: 36px;
+  display: flex;
+}
+.navbar .textIcon .job {
+  color: #ffa100;
+}
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  margin: 15px 0px;
+}
+.navbar ul a {
+  margin: 0px 20px;
+  color: black;
+  text-decoration: none;
+}
+.navbar ul .ativado {
+  color: #ffa100;
+}
+.navbar .loginLink {
+  margin-right: 20px;
+}
+.navbar .loginLink button {
+  color: white;
+  background-color: #ffa100;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 45px;
+}
+.navbar .profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+}
+.navbar .profile svg {
+  height: 45px;
+  width: 45px;
+}
+.navbar .containerMenu {
+  position: relative;
+}
+.navbar .containerMenu .menuOpen, .navbar .containerMenu .menuClose {
+  border: 0px solid transparent;
+  background-color: white;
+  height: 45px;
+  width: 45px;
+  margin: 15px 0px;
+  cursor: pointer;
+}
+.navbar .containerMenu .menuOpen svg, .navbar .containerMenu .menuClose svg {
+  height: 40px;
+  width: 40px;
+}
+.navbar .containerMenu .menuClose {
+  transition: transform 0.5s ease;
+}
+.navbar .containerMenu .menuOpen {
+  transform: rotateZ(90deg);
+  transition: transform 0.5s ease;
+}
+.navbar .containerMenu .menu {
+  position: absolute;
+  right: -120px;
+  top: 60px;
+  background-color: white;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  padding: 15px;
+  width: 250px;
+}
+.navbar .containerMenu .menu ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 !important;
+}
+.navbar .containerMenu .menu ul a {
+  margin: 10px 0px;
+}
+
+/*# sourceMappingURL=NavBar.module.css.map */
