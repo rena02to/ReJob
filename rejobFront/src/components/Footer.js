@@ -1,5 +1,5 @@
 import style from './../styles/css/Footer.module.css';
-import Icon from './../images/newJob.jpg';
+import Icon from './../images/newJob.png';
 import { TbArrowBadgeRightFilled } from "react-icons/tb";
 
 function Footer(){

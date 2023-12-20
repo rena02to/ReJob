@@ -20,7 +20,7 @@
   display: flex;
 }
 .navbar .textIcon .job {
-  color: #ffa100;
+  color: #00A3FF;
 }
 .navbar ul {
   display: flex;
@@ -35,14 +35,14 @@
   text-decoration: none;
 }
 .navbar ul .ativado {
-  color: #ffa100;
+  color: #00A3FF;
 }
 .navbar .loginLink {
   margin-right: 20px;
 }
 .navbar .loginLink button {
   color: white;
-  background-color: #ffa100;
+  background-color: #00A3FF;
   border: 0px solid transparent;
   border-radius: 5px;
   font-size: 24px;

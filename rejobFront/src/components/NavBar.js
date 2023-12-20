@@ -1,5 +1,5 @@
 import style from './../styles/css/NavBar.module.css';
-import Icone from './../images/newJob.jpg';
+import Icone from './../images/newJob.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { CgProfile, CgMenuCheese, CgClose } from "react-icons/cg";
 import { useEffect, useRef } from 'react';

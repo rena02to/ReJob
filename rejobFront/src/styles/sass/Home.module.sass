@@ -65,13 +65,244 @@
                 justify-content: center
                 width: 90%
                 .cardVaga
-                    height: 400px
                     width: 320px
-                    background-color: variables.$gray-color
-                    border-radius: 5px
+                    height: 610px
+                    background-color: white
+                    border-radius: 10px
+                    border: 3px solid variables.$gray-color
+                    overflow: hidden
+                    flex-wrap: wrap
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+                    text-align: center
+                    color: rgb(75, 75, 75)
+                    p
+                        margin: 0
+                    .imagem
+                        width: 100%
+                        background-color: variables.$gray-color
+                        box-shadow: 0px 5px 5px -1px rgba(0, 0, 0, 0.5)
+                        height: 20%
+                        @include mixins.flex-align(column)
+                        img
+                            height:85px
+                            width: 85px
+                            border-radius: 10px
+                    .titulo
+                        font-size: 20px
+                        margin: 15px 15px 15px 15px
+                        font-weight: 600
+                        width: 85%
+                        height: 50px
+                        flex-wrap: wrap
+                        overflow: hidden
+                    .area
+                        @include mixins.flex-align(row)
+                        margin-bottom: 15px
+                        height: 60px
+                        width: 85%
+                        flex-wrap: wrap
+                        overflow: hidden
+                        width: 85%
+                        svg
+                            margin-right: 2px
+                        p
+                            align-items: center
+                    .sobre
+                        @include mixins.flex-align(row)
+                        flex-wrap: wrap
+                        gap: 7px
+                        font-size: 15px
+                        margin: 0px 15px 0 15px
+                        height: 70px
+                        flex-wrap: wrap
+                        overflow: hidden
+                        width: 85%
+                        .empresa, .local, .nivel, .tipo
+                            @include mixins.flex-align(row)
+                            svg
+                                margin-right: 2px
+                        .empresa
+                            a
+                                text-decoration: none
+                                color: variables.$main-color
+                    .conhecimentos
+                        margin-top: 15px
+                        @include mixins.flex-align(row)
+                        flex-wrap: wrap
+                        gap: 7px
+                        height: 150px
+                        width: 85%
+                        flex-wrap: wrap
+                        overflow: hidden
+                        p
+                            background-color: rgb(200, 200, 200)
+                            padding: 10px
+                            border-radius: 5px
+                    .inscreva
+                        background-color: black
+                        border: 0px solid transparent
+                        padding: 5px 20px
+                        height: auto
+                        margin-top: 25px
+                        margin-bottom: 0
+                        a
+                            text-decoration: none
+                            color: white
+                            font-size: 18px
             button
                 @include mixins.buttons
                 color: variables.$main-color
                 background-color: white
                 border: 2px solid variables.$main-color
                 margin-bottom: 50px
+                a
+                    text-decoration: none
+                    color: variables.$main-color
+        .beneficios
+            width: 100%
+            background-color: variables.$main-color
+            @include mixins.flex-align(column)
+            padding-top: 50px
+            h2, p
+                width: 75%
+                text-align: center
+                flex-wrap: wrap
+                overflow: hidden
+                margin-bottom: 50px
+                font-size: 30px
+            p
+                font-size: 18px
+            .melhoresEmpresasContainer
+                background-color: black
+                width: 100%
+                @include mixins.flex-align(column)
+                flex-wrap: wrap
+                padding-bottom: 50px
+                h2
+                    color: variables.$main-color
+                    font-size: 30px
+                .melhoresEmpresas
+                    @include mixins.flex-align(row)
+                    gap: 15px
+                    flex-wrap: wrap
+                    width: 80%
+                    img
+                        border-radius: 10px
+                        width: 85px
+                        height: 85px
+        .futurosReconstruidos
+            @include mixins.flex-align(column)
+            text-align: center
+            .futurosTitulo
+                @include mixins.flex-align(column)
+                padding: 50px 0 25px 0
+                img
+                    height: 45px
+                    width: 45px
+                h2
+                    font-size: 30px
+                    margin: 0 20px
+                    span
+                        color: variables.$main-color
+                .simbolRejob
+                    @include mixins.flex-align(row)
+                    margin-bottom: 25px
+            .depoimentos
+                display: flex
+                flex-direction: row
+                gap: 25px
+                flex-wrap: wrap
+                justify-content: center
+                width: 90%
+                padding-bottom: 50px
+                text-align: center
+                .cardDepoimentos
+                    width: 320px
+                    height: 600px
+                    background-color: white
+                    border-radius: 10px
+                    border: 3px solid variables.$gray-color
+                    overflow: hidden
+                    flex-wrap: wrap
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+                    text-align: center
+                    color: rgb(75, 75, 75)
+                    .imagem
+                        width: 100%
+                        background-color: variables.$gray-color
+                        box-shadow: 0px 5px 5px -1px rgba(0, 0, 0, 0.5)
+                        height: 25%
+                        @include mixins.flex-align(column)
+                        img
+                            height: 80px
+                            width: 80px
+                            border-radius: 10px
+                    .nome
+                        font-size: 20px
+                        font-weight: 600
+                        height: 50px
+                        width: 80%
+                        overflow: hidden
+                        flex-wrap: wrap
+                        margin-bottom: 0
+                    .depoimento
+                        width: 85%
+                        overflow: hidden
+                        flex-wrap: wrap
+                        height: 200px
+                        font-size: 17px
+                    .infosContratacao
+                        @include mixins.flex-align(row)
+                        font-size: 17px
+                        color: black
+                        flex-wrap: wrap
+                        img
+                            border-radius: 50%
+                            width: 30px
+                            height: 30px
+                            margin-right: 5px
+                        a
+                            color: variables.$main-color
+                            text-decoration: none
+        .ongs
+            background-color: black
+            color: variables.$main-color
+            width: 100%
+            @include mixins.flex-align(column)
+            flex-wrap: wrap
+            text-align: center
+            padding-bottom: 50px
+            h2
+                margin: 50px 20px 25px 20px
+            .melhoresOngs
+                width: calc(100% - 80px)
+                @include mixins.flex-align(row)
+                flex-wrap: wrap
+                gap: 15px
+                a
+                    img
+                        border-radius: 10px
+                        width: 85px
+                        height: 85px
+        .sobreRejob
+            @include mixins.flex-align(column)
+            padding-bottom: 25px
+            h2
+                font-size: 30px
+                font-weight: 600
+                width: 80%
+                flex-wrap: wrap
+                span
+                    color: variables.$main-color
+            p
+                font-size: 18px
+                width: 80%
+                flex-wrap: wrap
+                span
+                    font-weight: 600
+                    span
+                        color: variables.$main-color
