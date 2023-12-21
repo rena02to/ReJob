@@ -13,11 +13,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Base64;
 
 @Service
 @RequiredArgsConstructor
@@ -30,8 +34,8 @@ public class AuthService {
     private final EmployeeService employeeService;
 
 
-    public AuthResponse register(CollaboratorRegisterRequest request) {
-        User user = createUser(request.getEmail(), request.getName(), request.getPassword(), request.getPhoneNumber(), Role.COLLABORATOR);
+    public AuthResponse register(CollaboratorRegisterRequest request, MultipartFile file) {
+        User user = createUser(request.getEmail(), request.getName(), request.getPassword(), request.getPhoneNumber(), Role.COLLABORATOR, file);
         var token = jwtService.generateToken(user);
 
         collaboratorService.create(request, user);
@@ -41,9 +45,9 @@ public class AuthService {
                 .build();
     }
 
-    public AuthResponse register(EmployeeRegisterRequest request) {
+    public AuthResponse register(EmployeeRegisterRequest request, MultipartFile file) {
 
-        User user = createUser(request.getEmail(), request.getName(), request.getPassword(), request.getPhoneNumber(), Role.USER);
+        User user = createUser(request.getEmail(), request.getName(), request.getPassword(), request.getPhoneNumber(), Role.USER, file);
         var token = jwtService.generateToken(user);
 
         employeeService.create(request, user);
@@ -68,10 +72,11 @@ public class AuthService {
                 .build();
     }
 
-    private User createUser(String email, String name, String password, String phoneNumber, Role type) {
+    private User createUser(String email, String name, String password, String phoneNumber, Role type, MultipartFile  file) {
         if (userRepository.existsByEmail(email)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email is already registered");
         }
+
         User user = User.builder()
                 .name(name)
                 .password(passwordEncoder.encode(password))
@@ -82,7 +87,27 @@ public class AuthService {
                 .lastUpdatedDate(Date.from(Instant.now()))
                 .build();
 
+        handleProfilePicture(user, file);
 
        return userRepository.save(user);
     }
+
+    private void handleProfilePicture(User user, MultipartFile file) {
+        if (file != null && !file.isEmpty()) {
+            if (!Arrays.asList("image/jpeg", "image/png", "image/gif", "image/jpg").contains(file.getContentType())) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file format. Only JPEG, PNG, and GIF are allowed.");
+            }
+
+            try {
+                byte[] profilePicBytes = file.getBytes();
+
+                String base64EncodedProfilePic = Base64.getEncoder().encodeToString(profilePicBytes);
+
+                user.setProfilePicBase64(base64EncodedProfilePic);
+            } catch (IOException e) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error processing the profile picture.");
+            }
+        }
+    }
+
 }

@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("api/v1/auth")
@@ -21,18 +22,20 @@ public class AuthController {
     private final EmailService emailService;
 
     @PostMapping("/register-employee")
-    public ResponseEntity<AuthResponse> register(@RequestBody EmployeeRegisterRequest request){
-        return new ResponseEntity<>(authService.register(request), HttpStatus.OK);
+    public ResponseEntity<AuthResponse> register(@RequestPart("data") EmployeeRegisterRequest request,
+                                                 @RequestPart(value = "file", required = false) MultipartFile file) {
+        return new ResponseEntity<>(authService.register(request, file), HttpStatus.OK);
     }
 
     @PostMapping("/register-collaborator")
-    public ResponseEntity<AuthResponse> register(@RequestBody CollaboratorRegisterRequest request){
-        return new ResponseEntity<>(authService.register(request), HttpStatus.OK);
+    public ResponseEntity<AuthResponse> register(@RequestPart("data")  CollaboratorRegisterRequest request,
+                                                 @RequestPart(value = "file", required = false) MultipartFile file) {
+        return new ResponseEntity<>(authService.register(request, file), HttpStatus.OK);
     }
 
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequest request){
+    public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequest request) {
         return new ResponseEntity<>(authService.authenticate(request), HttpStatus.OK);
     }
 

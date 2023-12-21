@@ -48,6 +48,9 @@ public class User implements UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdatedDate;
 
+    @Column(columnDefinition = "text")
+    private String  profilePicBase64;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
