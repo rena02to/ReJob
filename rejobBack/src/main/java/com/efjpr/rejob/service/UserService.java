@@ -43,7 +43,6 @@ public class UserService {
     }
 
     private void validateAndApplyUpdates(User existingUser, User updatedUser) {
-        existingUser.setName(updatedUser.getName());
         existingUser.setRole(updatedUser.getRole());
         existingUser.setEmail(updatedUser.getEmail());
         existingUser.setPassword(updatedUser.getPassword());
