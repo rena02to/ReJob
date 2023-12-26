@@ -11,3 +11,5 @@ databaseChangeLog:
       file: db/changelog/0000000003_redo_job_table.sql
   - include:
       file: db/changelog/0000000004_add_company_to_collaborator.sql
+  - include:
+      file: db/changelog/0000000005_add_profile_pic.sql
