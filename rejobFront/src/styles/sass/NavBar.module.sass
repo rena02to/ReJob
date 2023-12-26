@@ -31,18 +31,70 @@
             text-decoration: none
         .ativado
             color: variables.$main-color
-    .loginLink
-        margin-right: 20px
-        button
-            @include mixins.buttons
+    .buttons
+        .loginLink, .registerLink
+            margin-right: 20px
+            button
+                @include mixins.buttons
+    .entreCadastre
+        @include mixins.buttons
+        font-size: 20px
     .profile
-        @include mixins.flex-align(row)
-        height: 45px
-        width: 45px
-        cursor: pointer
-        svg
+        position: relative
+        &IconOpen, &IconClose
+            background-color: white
+            border-radius: 50%
             height: 45px
             width: 45px
+            @include mixins.flex-align(column)
+            border: 0px solid transparent
+            cursor: pointer
+            transition: transform 0.8s ease
+            svg
+                height: 45px
+                width: 45px
+                color: variables.$main-color
+        p
+            font-size: 22px
+            text-align: center
+            margin: 25px 15px 0 15px
+        &IconOpen
+            transform: rotateZ(360deg)
+        &Menu
+            width: 330px
+            position: absolute
+            background-color: white
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.8)
+            padding: 0 50px 25px 50px
+            right: 20px
+            top: 65px
+            border-radius: 5px
+            @include mixins.flex-align(column)
+            gap: 15px
+            p
+                margin-bottom: 0
+            a
+                text-decoration: none
+                button
+                    @include mixins.flex-align(column)
+                    @include mixins.buttons
+                    font-size: 18px
+                    width: 180px
+            .links
+                @include mixins.flex-align(column)
+                gap: 15px
+                padding-top: 25px
+                .interno
+                    @include mixins.flex-align(row)
+                    a
+                        color: black
+                        font-size: 20px
+                        font-weight: 600
+                    svg
+                        height: 30px
+                        width: 30px
+                        color: variables.$main-color
+                        margin-right: 10px
     .containerMenu
         position: relative
         .menuOpen, .menuClose
@@ -63,7 +115,7 @@
         .menu
             position: absolute
             right: -120px
-            top: 60px
+            top: 70px
             background-color: white
             box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.8)
             border-radius: 5px
@@ -72,5 +124,6 @@
             ul
                 @include mixins.flex-align(column)
                 padding: 0 !important
+                margin: 15px 0 0 0
                 a
                     margin: 10px 0px

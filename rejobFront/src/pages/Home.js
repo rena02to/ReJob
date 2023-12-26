@@ -1,6 +1,6 @@
 import style from './../styles/css/Home.module.css';
-import NavBar from './NavBar';
-import Footer from './Footer';
+import NavBar from './../components/NavBar';
+import Footer from './../components/Footer';
 import backImageHome from './../images/backImageHome.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -55,8 +55,12 @@ function Home(){
                             <p className={style.title}>OPORTUNIDADES DE <br />TRABALHO COM FOCO EM<br /><span>REINTEGRAÇÃO SOCIAL</span></p>
                             <p className={style.cadastre}>Cadastre-se e comece a construir um novo futuro!</p>
                             <div className={style.buttons}>
-                                <button className={style.colaborador}>Sou colaborador</button>
-                                <button>Sou empresa</button>
+                                <a href='/register/colaborador' className={style.colaborador}>
+                                    <button>Sou colaborador</button>
+                                </a>
+                                <a href='/register/empresa' className={style.colaboradorEmpresa}>
+                                    <button>Sou empresa</button>
+                                </a>
                             </div>
                             <i><p className={style.legenda}>Tenha acesso a diversas oportunidades de emprego.<br />Encontre a vaga perfeita para de acordo com o perfil do usuário.</p></i>
                         </div>

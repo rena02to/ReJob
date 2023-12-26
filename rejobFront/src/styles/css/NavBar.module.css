@@ -37,10 +37,10 @@
 .navbar ul .ativado {
   color: #00A3FF;
 }
-.navbar .loginLink {
+.navbar .buttons .loginLink, .navbar .buttons .registerLink {
   margin-right: 20px;
 }
-.navbar .loginLink button {
+.navbar .buttons .loginLink button, .navbar .buttons .registerLink button {
   color: white;
   background-color: #00A3FF;
   border: 0px solid transparent;
@@ -51,18 +51,109 @@
   cursor: pointer;
   height: 45px;
 }
+.navbar .entreCadastre {
+  color: white;
+  background-color: #00A3FF;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 45px;
+  font-size: 20px;
+}
 .navbar .profile {
+  position: relative;
+}
+.navbar .profileIconOpen, .navbar .profileIconClose {
+  background-color: white;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0px solid transparent;
+  cursor: pointer;
+  transition: transform 0.8s ease;
+}
+.navbar .profileIconOpen svg, .navbar .profileIconClose svg {
+  height: 45px;
+  width: 45px;
+  color: #00A3FF;
+}
+.navbar .profile p {
+  font-size: 22px;
+  text-align: center;
+  margin: 25px 15px 0 15px;
+}
+.navbar .profileIconOpen {
+  transform: rotateZ(360deg);
+}
+.navbar .profileMenu {
+  width: 330px;
+  position: absolute;
+  background-color: white;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.8);
+  padding: 0 50px 25px 50px;
+  right: 20px;
+  top: 65px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.navbar .profileMenu p {
+  margin-bottom: 0;
+}
+.navbar .profileMenu a {
+  text-decoration: none;
+}
+.navbar .profileMenu a button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #00A3FF;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 45px;
+  font-size: 18px;
+  width: 180px;
+}
+.navbar .profileMenu .links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding-top: 25px;
+}
+.navbar .profileMenu .links .interno {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 45px;
-  width: 45px;
-  cursor: pointer;
 }
-.navbar .profile svg {
-  height: 45px;
-  width: 45px;
+.navbar .profileMenu .links .interno a {
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+}
+.navbar .profileMenu .links .interno svg {
+  height: 30px;
+  width: 30px;
+  color: #00A3FF;
+  margin-right: 10px;
 }
 .navbar .containerMenu {
   position: relative;
@@ -89,7 +180,7 @@
 .navbar .containerMenu .menu {
   position: absolute;
   right: -120px;
-  top: 60px;
+  top: 70px;
   background-color: white;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.8);
   border-radius: 5px;
@@ -102,6 +193,7 @@
   justify-content: center;
   align-items: center;
   padding: 0 !important;
+  margin: 15px 0 0 0;
 }
 .navbar .containerMenu .menu ul a {
   margin: 10px 0px;

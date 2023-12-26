@@ -4,6 +4,7 @@ const initialState = {
     activatedItem: '/',
     windowWidth: 0,
     menuOpen: false,
+    profileOpen: false,
     vagas: [],
     empresas: [],
     depoimentos: [],
@@ -19,7 +20,7 @@ const useReducer = ( state = initialState, action ) => {
         case 'ChangeWindowWidth':
             return { ...state, windowWidth: action.payload };
         case 'ChangeMenuOpen':
-            return { ...state, menuOpen: !state.menuOpen };
+            return { ...state, menuOpen: action.payload };
         case 'setVagas':
             return { ...state, vagas: action.payload };
         case 'setEmpresas':
@@ -28,6 +29,8 @@ const useReducer = ( state = initialState, action ) => {
             return { ...state, depoimentos: action.payload };
         case 'setOngs':
             return { ...state, ongs: action.payload };
+        case 'ChangeProfileOpen':
+            return { ...state, profileOpen: action.payload };
         default:
             return state;
     }

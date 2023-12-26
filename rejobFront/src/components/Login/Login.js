@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import AuthRequest from "../../core/User/authRequest";
 import style from "./../../styles/css/Login.module.css";
-import LoginService from "./LoginService";
+import LoginService from "../../pages/Login/LoginService";
 
 function Login() {
   const initialValues: AuthRequest = {
