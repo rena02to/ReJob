@@ -1,0 +1,23 @@
+@use 'variables'
+@use 'mixins'
+    
+.login
+    background-color: variables.$gray-color
+    @include mixins.flex-align(column)
+    height: 100vh
+    position: relative
+    a
+        position: absolute
+        top: 30px
+        left: 35px
+        text-decoration: none
+        color: black
+        width: 40px
+        height: 40px
+        .back
+            height: 40px
+            width: 40px
+    form
+        background-color: white
+        height: 50px
+        width: 50px
