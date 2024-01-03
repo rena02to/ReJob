@@ -1,0 +1,13 @@
+version: '3'
+services:
+  postgres-db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rejob
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - "54321:5433"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
