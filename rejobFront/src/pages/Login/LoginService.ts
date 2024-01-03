@@ -39,4 +39,5 @@ class LoginService {
   }
 }
 
+// eslint-disable-next-line
 export default new LoginService();

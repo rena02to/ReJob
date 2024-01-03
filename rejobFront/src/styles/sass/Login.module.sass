@@ -6,9 +6,9 @@
     @include mixins.flex-align(column)
     height: 100vh
     position: relative
-    a
+    .back
         position: absolute
-        top: 30px
+        top: 20px
         left: 35px
         text-decoration: none
         color: black
@@ -19,5 +19,72 @@
             width: 40px
     form
         background-color: white
-        height: 50px
-        width: 50px
+        @include mixins.flex-align(column)
+        padding: 50px
+        border-radius: 5px
+        @include mixins.responsivo-500
+            padding: 50px 30px 50px 30px
+        .rejob
+            font-size: 32px
+            font-weight: 600
+            margin: 0
+            span
+                color: variables.$main-color
+        p
+            font-size: 20px
+        .inputBox
+            display: flex
+            flex-direction: column
+            margin-top: 20px
+            position: relative
+            label
+                font-weight: 600
+                margin-bottom: 10px
+            input
+                position: relative
+                width: 300px
+                height: 35px
+                border: 1px solid variables.$gray-color
+                border-radius: 5px
+                outline: none
+                padding-left: 40px
+                font-size: 16px
+                @include mixins.responsivo-500
+                    width: 250px
+                &:focus
+                    border: 3px solid variables.$main-color
+            svg
+                position: absolute
+                height: 25px
+                width: 25px
+                bottom: 10%
+                left: 8px
+                color: gray
+            .eye
+                position: absolute
+                left: 90%
+                cursor: pointer
+        .lembrarMe
+            margin-top: 5px
+            display: flex
+            flex-direction: row
+            align-items: center
+            width: 100%
+            gap: 5px
+            input
+                height: 17px
+                width: 17px
+                cursor: pointer
+            p
+                font-size: 15px
+        .acessar
+            width: 100%
+            @include mixins.buttons
+            font-size: 20px
+            margin-top: 15px
+            margin-bottom: 25px
+        .esqueceu, .crie
+            color: gray
+        .crie
+            margin-top: 15px
+            margin-bottom: 25px

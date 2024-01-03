@@ -5,6 +5,7 @@ const initialState = {
     windowWidth: 0,
     menuOpen: false,
     profileOpen: false,
+    visibilityPassword: false,
     vagas: [],
     empresas: [],
     depoimentos: [],
@@ -31,6 +32,8 @@ const useReducer = ( state = initialState, action ) => {
             return { ...state, ongs: action.payload };
         case 'ChangeProfileOpen':
             return { ...state, profileOpen: action.payload };
+        case 'ChangeVisibilityPassword':
+            return { ...state, visibilityPassword: !state.visibilityPassword };
         default:
             return state;
     }

@@ -7,23 +7,122 @@
   height: 100vh;
   position: relative;
 }
-.login a {
+.login .back {
   position: absolute;
-  top: 30px;
+  top: 20px;
   left: 35px;
   text-decoration: none;
   color: black;
   width: 40px;
   height: 40px;
 }
-.login a .back {
+.login .back .back {
   height: 40px;
   width: 40px;
 }
 .login form {
   background-color: white;
-  height: 50px;
-  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  border-radius: 5px;
+}
+@media (max-width: 500px) {
+  .login form {
+    padding: 50px 30px 50px 30px;
+  }
+}
+.login form .rejob {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+}
+.login form .rejob span {
+  color: #00A3FF;
+}
+.login form p {
+  font-size: 20px;
+}
+.login form .inputBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  position: relative;
+}
+.login form .inputBox label {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.login form .inputBox input {
+  position: relative;
+  width: 300px;
+  height: 35px;
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 40px;
+  font-size: 16px;
+}
+@media (max-width: 500px) {
+  .login form .inputBox input {
+    width: 250px;
+  }
+}
+.login form .inputBox input:focus {
+  border: 3px solid #00A3FF;
+}
+.login form .inputBox svg {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  bottom: 10%;
+  left: 8px;
+  color: gray;
+}
+.login form .inputBox .eye {
+  position: absolute;
+  left: 90%;
+  cursor: pointer;
+}
+.login form .lembrarMe {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+}
+.login form .lembrarMe input {
+  height: 17px;
+  width: 17px;
+  cursor: pointer;
+}
+.login form .lembrarMe p {
+  font-size: 15px;
+}
+.login form .acessar {
+  width: 100%;
+  color: white;
+  background-color: #00A3FF;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 45px;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+.login form .esqueceu, .login form .crie {
+  color: gray;
+}
+.login form .crie {
+  margin-top: 15px;
+  margin-bottom: 25px;
 }
 
 /*# sourceMappingURL=Login.module.css.map */
