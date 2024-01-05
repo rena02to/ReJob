@@ -103,7 +103,7 @@ public class AuthService {
 
                 String base64EncodedProfilePic = Base64.getEncoder().encodeToString(profilePicBytes);
 
-                user.setProfilePicBase64(base64EncodedProfilePic);
+                user.setProfilePic(base64EncodedProfilePic);
             } catch (IOException e) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error processing the profile picture.");
             }
