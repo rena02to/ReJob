@@ -34,7 +34,10 @@ public class JobService {
     }
 
     public Job getJobById(Long id) {
-        return jobRepository.getReferenceById(id);
+        Job job = jobRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Job with id " + id + " not found") {
+                });
+        return job;
     }
 
     public Job updateJob(Long id, Job updatedJob) {

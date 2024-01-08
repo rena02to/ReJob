@@ -1,11 +1,9 @@
 package com.efjpr.rejob.domain;
 
 import com.efjpr.rejob.domain.Enums.CollaboratorType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -31,9 +29,8 @@ public class Collaborator  {
     private CollaboratorType collaboratorType;
 
     @ManyToOne
+    @JsonIgnore
     private Company company;
 
-    @OneToMany(mappedBy = "contactPerson")
-    private List<Job> jobs;
 
 }

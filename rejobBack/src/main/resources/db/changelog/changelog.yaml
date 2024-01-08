@@ -13,3 +13,7 @@ databaseChangeLog:
       file: db/changelog/0000000004_add_company_to_collaborator.sql
   - include:
       file: db/changelog/0000000005_add_profile_pic.sql
+  - include:
+      file: db/changelog/0000000006_add_job_to_company.sql
+  - include:
+      file: db/changelog/0000000007_job_and_company_seeders.sql

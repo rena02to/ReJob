@@ -1,6 +1,7 @@
 package com.efjpr.rejob.domain;
 
 import com.efjpr.rejob.domain.Enums.JobStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +25,7 @@ public class Job {
     private String jobType;
     private String categories;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Collaborator contactPerson;
 
     private String jobTitle;
