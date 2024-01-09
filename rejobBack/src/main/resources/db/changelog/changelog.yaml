@@ -17,3 +17,5 @@ databaseChangeLog:
       file: db/changelog/0000000006_add_job_to_company.sql
   - include:
       file: db/changelog/0000000007_job_and_company_seeders.sql
+  - include:
+      file: db/changelog/0000000008_fix_sequences.sql
