@@ -1,10 +1,10 @@
 .vagas {
-  margin-top: 70px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }
 .vagas .containerMain {
   width: 85%;
@@ -41,7 +41,7 @@
   margin-bottom: 10px;
 }
 .vagas .containerMain .perfilHome .conteudo .title span {
-  color: #00A3FF;
+  color: #00a3ff;
 }
 .vagas .containerMain .perfilHome .conteudo .cadastre {
   margin-top: 0px;
@@ -58,7 +58,7 @@
 }
 .vagas .containerMain .perfilHome .conteudo .buttons button {
   color: white;
-  background-color: #00A3FF;
+  background-color: #00a3ff;
   border: 0px solid transparent;
   border-radius: 5px;
   font-size: 24px;
@@ -110,7 +110,7 @@
   height: 610px;
   background-color: white;
   border-radius: 10px;
-  border: 3px solid #D9D9D9;
+  border: 3px solid #d9d9d9;
   overflow: hidden;
   flex-wrap: wrap;
   display: flex;
@@ -124,7 +124,7 @@
 }
 .vagas .containerMain .ultimasVagas .cards .cardVaga .imagem {
   width: 100%;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   box-shadow: 0px 5px 5px -1px rgba(0, 0, 0, 0.5);
   height: 20%;
   display: flex;
@@ -178,18 +178,24 @@
   overflow: hidden;
   width: 85%;
 }
-.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .empresa, .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .local, .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .nivel, .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .tipo {
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .empresa,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .local,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .nivel,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .tipo {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .empresa svg, .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .local svg, .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .nivel svg, .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .tipo svg {
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .empresa svg,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .local svg,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .nivel svg,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .tipo svg {
   margin-right: 2px;
 }
 .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .empresa a {
   text-decoration: none;
-  color: #00A3FF;
+  color: #00a3ff;
 }
 .vagas .containerMain .ultimasVagas .cards .cardVaga .conhecimentos {
   margin-top: 15px;
@@ -224,7 +230,7 @@
 }
 .vagas .containerMain .ultimasVagas button {
   color: white;
-  background-color: #00A3FF;
+  background-color: #00a3ff;
   border: 0px solid transparent;
   border-radius: 5px;
   font-size: 24px;
@@ -232,25 +238,26 @@
   font-weight: 600;
   cursor: pointer;
   height: 45px;
-  color: #00A3FF;
+  color: #00a3ff;
   background-color: white;
-  border: 2px solid #00A3FF;
+  border: 2px solid #00a3ff;
   margin-bottom: 50px;
 }
 .vagas .containerMain .ultimasVagas button a {
   text-decoration: none;
-  color: #00A3FF;
+  color: #00a3ff;
 }
 .vagas .containerMain .beneficios {
   width: 100%;
-  background-color: #00A3FF;
+  background-color: #00a3ff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 50px;
 }
-.vagas .containerMain .beneficios h2, .vagas .containerMain .beneficios p {
+.vagas .containerMain .beneficios h2,
+.vagas .containerMain .beneficios p {
   width: 75%;
   text-align: center;
   flex-wrap: wrap;
@@ -272,7 +279,7 @@
   padding-bottom: 50px;
 }
 .vagas .containerMain .beneficios .melhoresEmpresasContainer h2 {
-  color: #00A3FF;
+  color: #00a3ff;
   font-size: 30px;
 }
 .vagas .containerMain .beneficios .melhoresEmpresasContainer .melhoresEmpresas {
@@ -284,7 +291,12 @@
   flex-wrap: wrap;
   width: 80%;
 }
-.vagas .containerMain .beneficios .melhoresEmpresasContainer .melhoresEmpresas img {
+.vagas
+  .containerMain
+  .beneficios
+  .melhoresEmpresasContainer
+  .melhoresEmpresas
+  img {
   border-radius: 10px;
   width: 85px;
   height: 85px;
@@ -312,7 +324,7 @@
   margin: 0 20px;
 }
 .vagas .containerMain .futurosReconstruidos .futurosTitulo h2 span {
-  color: #00A3FF;
+  color: #00a3ff;
 }
 .vagas .containerMain .futurosReconstruidos .futurosTitulo .simbolRejob {
   display: flex;
@@ -336,7 +348,7 @@
   height: 600px;
   background-color: white;
   border-radius: 10px;
-  border: 3px solid #D9D9D9;
+  border: 3px solid #d9d9d9;
   overflow: hidden;
   flex-wrap: wrap;
   display: flex;
@@ -345,9 +357,14 @@
   text-align: center;
   color: rgb(75, 75, 75);
 }
-.vagas .containerMain .futurosReconstruidos .depoimentos .cardDepoimentos .imagem {
+.vagas
+  .containerMain
+  .futurosReconstruidos
+  .depoimentos
+  .cardDepoimentos
+  .imagem {
   width: 100%;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   box-shadow: 0px 5px 5px -1px rgba(0, 0, 0, 0.5);
   height: 25%;
   display: flex;
@@ -355,12 +372,23 @@
   justify-content: center;
   align-items: center;
 }
-.vagas .containerMain .futurosReconstruidos .depoimentos .cardDepoimentos .imagem img {
+.vagas
+  .containerMain
+  .futurosReconstruidos
+  .depoimentos
+  .cardDepoimentos
+  .imagem
+  img {
   height: 80px;
   width: 80px;
   border-radius: 10px;
 }
-.vagas .containerMain .futurosReconstruidos .depoimentos .cardDepoimentos .nome {
+.vagas
+  .containerMain
+  .futurosReconstruidos
+  .depoimentos
+  .cardDepoimentos
+  .nome {
   font-size: 20px;
   font-weight: 600;
   height: 50px;
@@ -369,14 +397,24 @@
   flex-wrap: wrap;
   margin-bottom: 0;
 }
-.vagas .containerMain .futurosReconstruidos .depoimentos .cardDepoimentos .depoimento {
+.vagas
+  .containerMain
+  .futurosReconstruidos
+  .depoimentos
+  .cardDepoimentos
+  .depoimento {
   width: 85%;
   overflow: hidden;
   flex-wrap: wrap;
   height: 200px;
   font-size: 17px;
 }
-.vagas .containerMain .futurosReconstruidos .depoimentos .cardDepoimentos .infosContratacao {
+.vagas
+  .containerMain
+  .futurosReconstruidos
+  .depoimentos
+  .cardDepoimentos
+  .infosContratacao {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -385,19 +423,31 @@
   color: black;
   flex-wrap: wrap;
 }
-.vagas .containerMain .futurosReconstruidos .depoimentos .cardDepoimentos .infosContratacao img {
+.vagas
+  .containerMain
+  .futurosReconstruidos
+  .depoimentos
+  .cardDepoimentos
+  .infosContratacao
+  img {
   border-radius: 50%;
   width: 30px;
   height: 30px;
   margin-right: 5px;
 }
-.vagas .containerMain .futurosReconstruidos .depoimentos .cardDepoimentos .infosContratacao a {
-  color: #00A3FF;
+.vagas
+  .containerMain
+  .futurosReconstruidos
+  .depoimentos
+  .cardDepoimentos
+  .infosContratacao
+  a {
+  color: #00a3ff;
   text-decoration: none;
 }
 .vagas .containerMain .ongs {
   background-color: black;
-  color: #00A3FF;
+  color: #00a3ff;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -438,7 +488,7 @@
   flex-wrap: wrap;
 }
 .vagas .containerMain .sobreRejob h2 span {
-  color: #00A3FF;
+  color: #00a3ff;
 }
 .vagas .containerMain .sobreRejob p {
   font-size: 18px;
@@ -449,7 +499,7 @@
   font-weight: 600;
 }
 .vagas .containerMain .sobreRejob p span span {
-  color: #00A3FF;
+  color: #00a3ff;
 }
 
 /*# sourceMappingURL=Home.module.css.map */
