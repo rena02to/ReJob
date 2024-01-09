@@ -20,7 +20,6 @@ public class JobController {
     @Autowired
     private JobService jobService;
 
-
     @PostMapping
     public ResponseEntity<Job> createJob(@RequestBody Job job) {
         return new ResponseEntity<>(jobService.createJob(job), HttpStatus.CREATED);

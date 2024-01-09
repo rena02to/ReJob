@@ -1,10 +1,7 @@
 package com.efjpr.rejob.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -20,6 +17,7 @@ public class Company {
     private Long id;
 
     private String cnpj;
+    private String name;
     private String businessActivity;
     private int numberOfEmployees;
     private String headquarters;
@@ -27,5 +25,8 @@ public class Company {
     private String institutionalDescription;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Collaborator> collaborators;
+
+
 }

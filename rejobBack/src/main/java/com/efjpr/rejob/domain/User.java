@@ -49,7 +49,7 @@ public class User implements UserDetails {
     private Date lastUpdatedDate;
 
     @Column(columnDefinition = "text")
-    private String  profilePicBase64;
+    private String  profilePic;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
