@@ -7,6 +7,8 @@ import com.efjpr.rejob.domain.Dto.EmployeeRegisterRequest;
 import com.efjpr.rejob.domain.Enums.Role;
 import com.efjpr.rejob.domain.User;
 import com.efjpr.rejob.repository.UserRepository;
+import com.efjpr.rejob.service.email.EmailService;
+import com.efjpr.rejob.service.email.EmailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.thymeleaf.context.Context;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -32,13 +35,17 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final CollaboratorService collaboratorService;
     private final EmployeeService employeeService;
-
+    private final EmailServiceImpl emailService;
 
     public AuthResponse register(CollaboratorRegisterRequest request, MultipartFile file) {
         User user = createUser(request.getEmail(), request.getName(), request.getPassword(), request.getPhoneNumber(), Role.COLLABORATOR, file);
         var token = jwtService.generateToken(user);
 
         collaboratorService.create(request, user);
+
+        // funçao de enviar e-mail de boas-vindas para Colaborador
+        Context context = new Context();
+        emailService.sendEmailWithHtmlTemplate(user.getEmail(), "Boas-Vindas", "bemvindo_colaborador.html", context);
 
         return AuthResponse.builder()
                 .token(token)
@@ -51,6 +58,10 @@ public class AuthService {
         var token = jwtService.generateToken(user);
 
         employeeService.create(request, user);
+
+        // funçao de enviar e-mail de boas-vindas para Empregado
+        Context context = new Context();
+        emailService.sendEmailWithHtmlTemplate(user.getEmail(), "Boas-Vindas", "bemvindo_empregado.html", context);
 
         return AuthResponse.builder()
                 .token(token)
