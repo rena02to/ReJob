@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./../styles/css/Vacancies.module.css";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -7,9 +7,10 @@ import { Checkbox } from "primereact/checkbox";
 import { Slider } from "primereact/slider";
 
 function Vacancies() {
-  const [selectedCity, setSelectedCity] = useState(null);
+  const [state, setState] = useState(null);
   const [presencial, setPresencial] = useState(false);
   const [remoto, setRemoto] = useState(false);
+  const [salaryRange, setSalaryRange] = useState([1000, 30000]);
 
   const handlePresencialChange = () => {
     setPresencial(!presencial);
@@ -25,25 +26,62 @@ function Vacancies() {
     }
   };
 
-  const [faixaSalarial, setFaixaSalarial] = useState([1000, 30000]);
-
-  const handleFaixaSalarialChange = (e) => {
-    setFaixaSalarial(e.value);
+  const handleSalaryRangeChange = (e) => {
+    setSalaryRange(e.value);
   };
 
-  const cities = [
-    { label: "New York", value: "New York" },
-    { label: "Los Angeles", value: "Los Angeles" },
-    { label: "Chicago", value: "Chicago" },
-    { label: "Houston", value: "Houston" },
-    { label: "Dallas", value: "Dallas" },
+  const brazilianStates = [
+    { label: "Acre", value: "AC" },
+    { label: "Alagoas", value: "AL" },
+    { label: "Amapá", value: "AP" },
+    { label: "Amazonas", value: "AM" },
+    { label: "Bahia", value: "BA" },
+    { label: "Ceará", value: "CE" },
+    { label: "Distrito Federal", value: "DF" },
+    { label: "Espírito Santo", value: "ES" },
+    { label: "Goiás", value: "GO" },
+    { label: "Maranhão", value: "MA" },
+    { label: "Mato Grosso", value: "MT" },
+    { label: "Mato Grosso do Sul", value: "MS" },
+    { label: "Minas Gerais", value: "MG" },
+    { label: "Pará", value: "PA" },
+    { label: "Paraíba", value: "PB" },
+    { label: "Paraná", value: "PR" },
+    { label: "Pernambuco", value: "PE" },
+    { label: "Piauí", value: "PI" },
+    { label: "Rio de Janeiro", value: "RJ" },
+    { label: "Rio Grande do Norte", value: "RN" },
+    { label: "Rio Grande do Sul", value: "RS" },
+    { label: "Rondônia", value: "RO" },
+    { label: "Roraima", value: "RR" },
+    { label: "Santa Catarina", value: "SC" },
+    { label: "São Paulo", value: "SP" },
+    { label: "Sergipe", value: "SE" },
+    { label: "Tocantins", value: "TO" },
   ];
+
+  const handleFilterClick = () => {
+    const filters = {
+      state,
+      presencial,
+      remoto,
+      salaryRange,
+    };
+    console.log(filters);
+  };
+
+  const clearFilters = () => {
+    setState(null);
+    setPresencial(false);
+    setRemoto(false);
+    setSalaryRange([1000, 30000]);
+  };
 
   return (
     <>
       <NavBar></NavBar>
       <div className={styles.container}>
-        <div>
+        <div className={styles.section}>
           <div className={styles.header_container}>
             <h2>
               As melhores vagas com foco em <span>REINTEGRAÇÃO SOCIAL</span>
@@ -97,21 +135,21 @@ function Vacancies() {
             <div className={styles.filters_container}>
               <div className={styles.filter_header}>
                 <h2>Filtro de vagas</h2>
-                <button>Limpar</button>
+                <button onClick={clearFilters}>Limpar</button>
               </div>
               <div className={styles.filters}>
                 <p>Categoria da Vaga</p>
                 <Dropdown
-                  value={selectedCity}
-                  options={cities}
-                  onChange={(e) => setSelectedCity(e.value)}
+                  value={state}
+                  options={brazilianStates}
+                  onChange={(e) => setState(e.value)}
                   placeholder="Selecione a categoria"
                 />
                 <p>Habilidades</p>
                 <Dropdown
-                  value={selectedCity}
-                  options={cities}
-                  onChange={(e) => setSelectedCity(e.value)}
+                  value={state}
+                  options={brazilianStates}
+                  onChange={(e) => setState(e.value)}
                   placeholder="Selecione uma opção"
                 />
                 <p>Tipo de Vaga</p>
@@ -135,25 +173,27 @@ function Vacancies() {
                     <label htmlFor="presencialCheckbox"> Presencial</label>
                   </div>
                 </div>
-                <p>Cidade da empresa</p>
+                <p>Localização</p>
                 <Dropdown
-                  value={selectedCity}
-                  options={cities}
-                  onChange={(e) => setSelectedCity(e.value)}
+                  value={state}
+                  options={brazilianStates}
+                  onChange={(e) => setState(e.value)}
                   placeholder="Selecione uma opção"
                 />
                 <p>Faixa Salarial (Mensal)</p>
                 <div className={styles.salary_range}>
-                  <span>R$ 1.000 - R$ 30.000</span>
+                  <span>
+                    R$ {salaryRange[0]} - R$ {salaryRange[1]}
+                  </span>
                   <Slider
-                    value={faixaSalarial}
-                    onChange={handleFaixaSalarialChange}
+                    value={salaryRange}
+                    onChange={handleSalaryRangeChange}
                     range
                     min={0}
                     max={30000}
                     step={1000}
                   />
-                  <button>Filtrar</button>
+                  <button onClick={handleFilterClick}>Filtrar</button>
                 </div>
               </div>
             </div>
