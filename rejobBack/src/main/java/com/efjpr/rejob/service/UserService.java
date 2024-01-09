@@ -48,7 +48,7 @@ public class UserService {
         existingUser.setPassword(updatedUser.getPassword());
         existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
         existingUser.setLastUpdatedDate(updatedUser.getLastUpdatedDate());
-        existingUser.setProfilePicBase64(updatedUser.getProfilePicBase64());
+        existingUser.setProfilePic(updatedUser.getProfilePic());
     }
 
 }
