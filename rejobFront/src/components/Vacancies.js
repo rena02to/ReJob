@@ -5,12 +5,14 @@ import Footer from "../components/Footer";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { Slider } from "primereact/slider";
+import api from "../services/api";
 
 function Vacancies() {
   const [state, setState] = useState(null);
   const [presencial, setPresencial] = useState(false);
   const [remoto, setRemoto] = useState(false);
   const [salaryRange, setSalaryRange] = useState([1000, 30000]);
+  const [vacancies, setVacancies] = useState(null);
 
   const handlePresencialChange = () => {
     setPresencial(!presencial);
@@ -59,6 +61,20 @@ function Vacancies() {
     { label: "Sergipe", value: "SE" },
     { label: "Tocantins", value: "TO" },
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("http://localhost:8080/api/v1/jobs");
+        console.log(response);
+        setVacancies(response.data);
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleFilterClick = () => {
     const filters = {
