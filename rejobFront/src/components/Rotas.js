@@ -6,6 +6,8 @@ import NotFound from "./../pages/NotFound";
 import Register from'./../pages/Register/Register';
 import RegisterCollaboratory from './../pages/Register/RegisterCollaboratory';
 
+import NewVacancy from "../pages/NewVacancy/NewVacancy";
+
 function Rotas(){
   const { isLoged } = useSelector(rooteRedux => rooteRedux.useReducer);
 
@@ -19,6 +21,8 @@ function Rotas(){
         <Route exact path="/register/company/" element={isLoged ? <Navigate to="/" /> : <Register />} />
         <Route exact path="/register/remand/" element={isLoged ? <Navigate to="/" /> : <Register />} />
         <Route path="/*" element={<NotFound />} />
+
+        <Route path="/newVacancy" element={<NewVacancy/>} />
       </Routes>
     </Router>
   );

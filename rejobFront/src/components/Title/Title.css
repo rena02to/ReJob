@@ -1,0 +1,22 @@
+:root {
+    --first-blue: #00A3FF;
+    --dark-black: #0F0F0F;
+    --first-gray: #EDEFF0;
+    --second-gray: #D2D4D4;
+    --third-gray: #7C7C8A;
+}
+
+.title {
+    padding-top: 130px;
+    padding-bottom: 28px;
+}
+
+.title h1 {
+    color: var(--first-blue);
+    padding: 0;
+    margin: 0;
+}
+
+.title p {
+    font-size: 18px;
+}
