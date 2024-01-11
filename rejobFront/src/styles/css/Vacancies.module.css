@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1439px;
+  width: 100%;
   height: 250px;
   color: white;
   background-color: black;
@@ -38,9 +38,10 @@
 
 .body_container {
   display: flex;
-  width: 1439px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
   height: 1405px;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: #ffffff;
   padding-top: 1rem;
 }
@@ -48,7 +49,7 @@
 .job_list_container {
   display: flex;
   flex-direction: column;
-  width: 926px;
+  width: 65%;
 }
 
 .job_list_container h2 {
@@ -65,29 +66,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   background-color: #ffffff;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.job_list_container .job_list_view div {
+.job_list_container .job_list_view > div {
   margin-top: 1rem;
+  width: 98%;
 }
 
 .job_list_view .card_joblist {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   padding: 2rem;
-  width: 877px;
   height: 467px;
   border-radius: 5px;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
   margin-bottom: 2rem;
 }
 
+@media only screen and (max-width: 768px) {
+  .job_list_container {
+    width: 95%;
+  }
+}
+
 .filters_container {
-  border: radius;
-  width: 411px;
+  border-radius: 5px;
+  width: inherit;
   height: 623px;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -163,9 +172,9 @@
 }
 
 .job_description {
-  width: 800px;
   height: 222px;
   text-align: justify;
+  overflow: auto;
 }
 
 .button_outline {

@@ -103,7 +103,6 @@ function Vacancies() {
                           Serviços Gerais
                         </button>
                       </div>
-                      <div></div>
                     </div>
                     <div className={styles.job_description}>
                       Lorem Ipsum is simply dummy text of the printing and
@@ -132,68 +131,70 @@ function Vacancies() {
                 </div>
               </div>
             </div>
-            <div className={styles.filters_container}>
-              <div className={styles.filter_header}>
-                <h2>Filtro de vagas</h2>
-                <button onClick={clearFilters}>Limpar</button>
-              </div>
-              <div className={styles.filters}>
-                <p>Categoria da Vaga</p>
-                <Dropdown
-                  value={state}
-                  options={brazilianStates}
-                  onChange={(e) => setState(e.value)}
-                  placeholder="Selecione a categoria"
-                />
-                <p>Habilidades</p>
-                <Dropdown
-                  value={state}
-                  options={brazilianStates}
-                  onChange={(e) => setState(e.value)}
-                  placeholder="Selecione uma opção"
-                />
-                <p>Tipo de Vaga</p>
-                <div className={styles.type_of_vacancy}>
-                  <div>
-                    <Checkbox
-                      inputId="remoteCheckbox"
-                      value="remoto"
-                      onChange={handleRemotoChange}
-                      checked={remoto}
-                    />
-                    <label htmlFor="remoteCheckbox"> Remoto</label>
-                  </div>
-                  <div>
-                    <Checkbox
-                      inputId="presencialCheckbox"
-                      value="presencial"
-                      onChange={handlePresencialChange}
-                      checked={presencial}
-                    />
-                    <label htmlFor="presencialCheckbox"> Presencial</label>
-                  </div>
+            <div>
+              <div className={styles.filters_container}>
+                <div className={styles.filter_header}>
+                  <h2>Filtro de vagas</h2>
+                  <button onClick={clearFilters}>Limpar</button>
                 </div>
-                <p>Localização</p>
-                <Dropdown
-                  value={state}
-                  options={brazilianStates}
-                  onChange={(e) => setState(e.value)}
-                  placeholder="Selecione uma opção"
-                />
-                <p>Faixa Salarial (Mensal)</p>
-                <div className={styles.salary_range}>
-                  <span>
-                    R$ {salaryRange[0]} - R$ {salaryRange[1]}
-                  </span>
-                  <Slider
-                    value={salaryRange}
-                    onChange={handleSalaryRangeChange}
-                    range
-                    min={0}
-                    max={30000}
-                    step={1000}
+                <div className={styles.filters}>
+                  <p>Categoria da Vaga</p>
+                  <Dropdown
+                    value={state}
+                    options={brazilianStates}
+                    onChange={(e) => setState(e.value)}
+                    placeholder="Selecione a categoria"
                   />
-                  <button onClick={handleFilterClick}>Filtrar</button>
+                  <p>Habilidades</p>
+                  <Dropdown
+                    value={state}
+                    options={brazilianStates}
+                    onChange={(e) => setState(e.value)}
+                    placeholder="Selecione uma opção"
+                  />
+                  <p>Tipo de Vaga</p>
+                  <div className={styles.type_of_vacancy}>
+                    <div>
+                      <Checkbox
+                        inputId="remoteCheckbox"
+                        value="remoto"
+                        onChange={handleRemotoChange}
+                        checked={remoto}
+                      />
+                      <label htmlFor="remoteCheckbox"> Remoto</label>
+                    </div>
+                    <div>
+                      <Checkbox
+                        inputId="presencialCheckbox"
+                        value="presencial"
+                        onChange={handlePresencialChange}
+                        checked={presencial}
+                      />
+                      <label htmlFor="presencialCheckbox"> Presencial</label>
+                    </div>
+                  </div>
+                  <p>Localização</p>
+                  <Dropdown
+                    value={state}
+                    options={brazilianStates}
+                    onChange={(e) => setState(e.value)}
+                    placeholder="Selecione uma opção"
+                  />
+                  <p>Faixa Salarial (Mensal)</p>
+                  <div className={styles.salary_range}>
+                    <span>
+                      R$ {salaryRange[0]} - R$ {salaryRange[1]}
+                    </span>
+                    <Slider
+                      value={salaryRange}
+                      onChange={handleSalaryRangeChange}
+                      range
+                      min={0}
+                      max={30000}
+                      step={1000}
+                    />
+                    <button onClick={handleFilterClick}>Filtrar</button>
+                  </div>
                 </div>
               </div>
             </div>
