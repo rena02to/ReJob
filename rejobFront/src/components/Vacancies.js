@@ -65,7 +65,7 @@ function Vacancies() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get("http://localhost:8080/api/v1/jobs");
+        const response = await api.get("/jobs");
         console.log(response);
         setVacancies(response.data);
       } catch (error) {

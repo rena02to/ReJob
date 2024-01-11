@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/";
+const BASE_URL = "http://localhost:8080/api/v1";
 export const TOKEN_KEY = "@rejob-web-Token";
 
 const api = axios.create({
@@ -9,9 +9,9 @@ const api = axios.create({
 
 api.interceptors.request.use(async (config) => {
   const JWT =
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNDkzNzkxNywiZXhwIjoxNzA0OTM5MzU3fQ.ZCty0XVSgEjt_DwsG4jHcx99UazA91yFDtjwZwKIhu0";
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNDk0MDk0NiwiZXhwIjoxNzA0OTQyMzg2fQ.tPRdt_GHGzqO3o9kkE2LsXZt7U1NEEv8i8M4peOrD8w";
   if (JWT != null) {
-    config.headers.auth = JWT;
+    config.headers.Authorization = `Bearer ${JWT}`;
   }
 
   console.log("jdasd", config);
