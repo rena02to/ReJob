@@ -254,57 +254,287 @@
 }
 
 .background {
-  min-height: calc(100vh - 150px);
-  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 50px);
+  padding: 25px 25px;
+  background-color: white;
+  min-height: auto;
+}
+.background .title {
+  color: #00A3FF;
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+}
+.background .subtitle {
+  font-size: 20px;
+  text-align: center;
+}
+.background .foto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #D9D9D9;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+.background .foto svg {
+  width: 80px;
+  height: 80px;
 }
 .background form {
-  flex-direction: column;
-  width: auto;
-  align-items: center;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  margin-bottom: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-start;
 }
-.background form .lembrarMe {
+.background form .acoplamento {
+  display: flex;
+  flex-direction: column;
+}
+.background form .acoplamento .coincidir, .background form .acoplamento .regras {
+  width: auto;
+}
+.background form .selectBox .inputCidade {
   margin-top: 5px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  width: 100%;
+  gap: 10px;
+  position: relative;
+}
+.background form .selectBox .inputCidade .select {
+  width: 350px;
+}
+.background form .selectBox .inputCidade svg {
+  height: 20px;
+  width: 20px;
+  color: gray;
+}
+.background form .selectBox .inputCidade .icon {
+  position: absolute;
+  left: 10px;
+}
+.background form .selectBox .inputTextArea {
+  margin-top: 5px;
+  position: relative;
+}
+.background form .selectBox .inputTextArea textarea {
+  font-weight: 600;
+  width: 300px;
+  resize: none;
+  height: 100px;
+  font-family: "Mulish", sans-serif;
+  font-size: 15px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #D9D9D9;
+  color: rgb(100, 100, 100);
+  padding: 10px 10px 10px 40px;
+}
+.background form .selectBox .inputTextArea textarea:focus {
+  border: 3px solid #00A3FF;
+}
+.background form .selectBox .inputTextArea svg {
+  height: 20px;
+  width: 20px;
+  color: gray;
+  margin-top: 10px;
+  position: absolute;
+  left: 10px;
+}
+.background form .checkBoxes {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
   gap: 5px;
 }
-.background form .lembrarMe input {
-  height: 17px;
-  width: 17px;
-  cursor: pointer;
-}
-.background form .lembrarMe p {
-  font-size: 15px;
-}
-.background form .acessar {
-  width: 100%;
-  color: white;
-  background-color: #00A3FF;
-  border: 0px solid transparent;
-  border-radius: 5px;
-  font-size: 24px;
-  padding: 0px 24px;
+.background form .checkBoxes label {
   font-weight: 600;
-  cursor: pointer;
-  height: 45px;
+  margin-bottom: 5px;
   font-size: 20px;
-  margin-top: 15px;
-  margin-bottom: 25px;
 }
-.background form .esqueceu, .background form .crie {
+.background form .checkBoxes .boxCheckBox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.background form .checkBoxes .boxCheckBox .checkBoxArea {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.background form .checkBoxes .boxCheckBox .checkBoxArea p {
   font-size: 17px;
-  color: gray;
+  margin: 0;
 }
-.background form .crie {
-  margin-top: 15px;
-  margin-bottom: 25px;
+.background form .checkBoxes .boxCheckBox .checkBoxArea input {
+  width: 17px;
+  height: 17px;
 }
-.background form .crie a {
+.background form .inputbox {
+  position: relative;
+  width: 350px;
+}
+.background form .inputbox input {
+  font-weight: 600;
+  width: 100%;
+  height: 35px;
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+  padding-left: 40px;
+}
+.background form .inputbox input:focus {
+  border: 3px solid #00A3FF;
+}
+.background form .inputbox svg {
+  height: 20px;
+  width: 20px;
   color: gray;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.background form .inputBox .inputTextArea .histEducacional {
+  height: 200px;
+  width: 350px;
+}
+.background form .inputBox .add {
+  background-color: #D9D9D9;
+  color: #00A3FF;
+  width: 100%;
+}
+.background form .inputBox .habilidades {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.background form .inputBox .habilidades .geral {
+  border: 1px solid #D9D9D9 !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px !important;
+  gap: 10px;
+}
+.background form .inputBox .habilidades .geral .individual {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  align-items: center;
+  width: 320px;
+}
+.background form .inputBox .habilidades .geral .individual p {
+  padding: 0 10px;
+  margin: 10px 0;
+  word-wrap: break-word;
+}
+.background form .inputBox .habilidades .geral .individual .name {
+  width: 60%;
+  border-right: 2px solid #D9D9D9;
+}
+.background form .inputBox .habilidades .geral .individual .level {
+  margin: 10px;
+  width: 40%;
+}
+.background form .inputBox .habilidades .geral .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50px;
+}
+.background form .inputBox .habilidades .geral .buttons button {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.background form .inputBox .habilidades .geral .buttons button svg {
+  width: 20px;
+  height: 20px;
+  color: black;
+}
+.background form .inputBox .habilidades .addHabilidade {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #00A3FF;
+  border-radius: 5px;
+  padding: 0;
+  align-items: center;
+}
+.background form .inputBox .habilidades .addHabilidade .individualInput {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  gap: 3px;
+  border: 0px solid transparent;
+  border-radius: 0;
+}
+.background form .inputBox .habilidades .addHabilidade .individualInput .levelSelect {
+  width: 98%;
+  margin: 0;
+  font-weight: 600;
+}
+.background form .inputBox .habilidades .addHabilidade .individualInput .name {
+  border: 1px solid #D9D9D9;
+  margin: 0;
+  width: 90%;
+}
+.background form .inputBox .habilidades .addHabilidade .individualInput .levelSelect {
+  width: 320px;
+}
+.background form .inputBox .habilidades .addHabilidade .individualInput input {
+  font-weight: 600;
+  outline: none;
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+.background form .inputBox .habilidades .addHabilidade .individualInput input:focus {
+  border: 1px solid #00A3FF;
+}
+.background form .inputBox .habilidades .addHabilidade .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.background form .inputBox .habilidades .addHabilidade .buttons button {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.background form .inputBox .habilidades .addHabilidade .buttons button svg {
+  width: 30px;
+  height: 30px;
+}
+.background form .inputBox .habilidades .addHabilidade .buttons .cancel {
+  color: red;
+}
+.background form .inputBox .habilidades .addHabilidade .buttons .confirm {
+  color: green;
+}
+.background form .inputBox .habilidades .addHabilidade .buttons .edit, .background form .inputBox .habilidades .addHabilidade .buttons .dele {
+  color: black;
 }
 
-/*# sourceMappingURL=Login.module.css.map */
+/*# sourceMappingURL=RegisterRemand.module.css.map */
