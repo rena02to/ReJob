@@ -1,0 +1,231 @@
+@use 'mixins'
+@use 'variables'
+
+@include mixins.forms
+.background
+    @include mixins.flex-align(column)
+    width: calc( 100% -  50px)
+    padding: 25px 25px
+    background-color: white
+    min-height: auto
+    .title
+        color: variables.$main-color
+        font-size: 30px
+        font-weight: 600
+        margin: 0
+    .subtitle
+        font-size: 20px
+        text-align: center
+    .foto
+        @include mixins.flex-align(column)
+        background-color: variables.$gray-color
+        border-radius: 50%
+        width: 150px
+        height: 150px
+        svg
+            width: 80px
+            height: 80px
+    form
+        @include mixins.flex-align(row)
+        flex-wrap: wrap
+        gap: 15px
+        align-items: flex-start
+        .acoplamento
+            display: flex
+            flex-direction: column
+            .coincidir, .regras
+                width: auto
+        .selectBox
+            .inputCidade
+                margin-top: 5px
+                display: flex
+                flex-direction: row
+                justify-content: center
+                align-items: center
+                gap: 10px
+                position: relative
+                .select
+                    width: 350px
+                svg
+                    height: 20px
+                    width: 20px
+                    color: gray
+                .icon
+                    position: absolute
+                    left: 10px
+            .inputTextArea
+                margin-top: 5px
+                position: relative
+                textarea
+                    font-weight: 600
+                    width: 300px
+                    resize: none
+                    height: 100px
+                    font-family: "Mulish", sans-serif
+                    font-size: 15px
+                    outline: none
+                    border-radius: 5px
+                    border: 1px solid variables.$gray-color
+                    color: rgb(100, 100, 100)
+                    padding: 10px 10px 10px 40px
+                    &:focus
+                        border: 3px solid variables.$main-color
+                svg
+                    height: 20px
+                    width: 20px
+                    color: gray
+                    margin-top: 10px
+                    position: absolute
+                    left: 10px
+        .checkBoxes
+            margin-top: 20px
+            display: flex
+            flex-direction: column
+            gap: 5px
+            label
+                font-weight: 600
+                margin-bottom: 5px
+                font-size: 20px
+            .boxCheckBox
+                display: flex
+                flex-direction: column
+                gap: 10px
+                .checkBoxArea
+                    display: flex
+                    flex-direction: row
+                    gap: 10px
+                    p
+                        font-size: 17px
+                        margin: 0
+                    input
+                        width: 17px
+                        height: 17px
+        .inputbox
+            position: relative
+            width: 350px
+            input
+                font-weight: 600
+                width: 100%
+                height: 35px
+                border: 1px solid variables.$gray-color
+                border-radius: 5px
+                outline: none
+                font-size: 16px
+                padding-left: 40px
+                &:focus
+                    border: 3px solid variables.$main-color
+            svg
+                height: 20px
+                width: 20px
+                color: gray
+                position: absolute
+                left: 10px
+                top: 10px
+        .inputBox
+            .inputTextArea
+                .histEducacional
+                    height: 200px
+                    width: 350px
+            .add
+                background-color: variables.$gray-color
+                color: variables.$main-color
+                width: 100%
+            .habilidades
+                width: 400px
+                display: flex
+                flex-direction: column
+                gap: 3px
+                .geral
+                    border: 1px solid variables.$gray-color !important
+                    display: flex
+                    flex-direction: row
+                    align-items: center
+                    padding: 2px !important
+                    gap: 10px
+                    .individual
+                        display: flex
+                        flex-direction: row
+                        border: 1px solid variables.$gray-color
+                        border-radius: 5px
+                        align-items: center
+                        width: 320px
+                        p
+                            padding: 0 10px
+                            margin: 10px 0
+                            word-wrap: break-word
+                        .name
+                            width: 60%
+                            border-right: 2px solid variables.$gray-color
+                        .level
+                            margin: 10px
+                            width: 40%
+                    .buttons
+                        display: flex
+                        flex-direction: row
+                        justify-content: space-between
+                        width: 50px
+                        button
+                            width: 20px
+                            height: 20px
+                            background-color: transparent
+                            padding: 0
+                            margin: 0
+                            cursor: pointer
+                            svg
+                                width: 20px
+                                height: 20px
+                                color: black
+                .addHabilidade
+                    display: flex
+                    flex-direction: row
+                    border: 1px solid variables.$main-color
+                    border-radius: 5px
+                    padding: 0
+                    align-items: center
+                    .individualInput
+                        width: 350px
+                        display: flex
+                        flex-direction: column
+                        padding: 5px
+                        gap: 3px
+                        border: 0px solid transparent
+                        border-radius: 0
+                        .levelSelect
+                            width: 98%
+                            margin: 0
+                            font-weight: 600
+                        .name
+                            border: 1px solid variables.$gray-color
+                            margin: 0
+                            width: 90%
+                        .levelSelect
+                            width: 320px
+                        input
+                            font-weight: 600
+                            outline: none
+                            font-size: 16px
+                            margin: 10px 0
+                            padding: 10px
+                            border-radius: 5px
+                            &:focus
+                                border: 1px solid variables.$main-color
+                    .buttons
+                        display: flex
+                        flex-direction: row
+                        justify-content: space-between
+                        button
+                            width: 30px
+                            height: 30px
+                            background-color: transparent
+                            padding: 0
+                            margin: 0
+                            cursor: pointer
+                            svg
+                                width: 30px
+                                height: 30px
+                        .cancel
+                            color: red
+                        .confirm
+                            color: green
+                        .edit, .dele
+                            color: black

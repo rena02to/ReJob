@@ -253,58 +253,32 @@
   color: rgba(255, 0, 0, 0.7);
 }
 
-.background {
-  min-height: calc(100vh - 150px);
-  padding-top: 50px;
-}
 .background form {
   flex-direction: column;
   width: auto;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0;
 }
-.background form .lembrarMe {
+.background form .selectBox .inputCidade {
   margin-top: 5px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  gap: 5px;
+  gap: 10px;
+  position: relative;
 }
-.background form .lembrarMe input {
-  height: 17px;
-  width: 17px;
-  cursor: pointer;
+.background form .selectBox .inputCidade .select {
+  width: 350px;
 }
-.background form .lembrarMe p {
-  font-size: 15px;
-}
-.background form .acessar {
-  width: 100%;
-  color: white;
-  background-color: #00A3FF;
-  border: 0px solid transparent;
-  border-radius: 5px;
-  font-size: 24px;
-  padding: 0px 24px;
-  font-weight: 600;
-  cursor: pointer;
-  height: 45px;
-  font-size: 20px;
-  margin-top: 15px;
-  margin-bottom: 25px;
-}
-.background form .esqueceu, .background form .crie {
-  font-size: 17px;
+.background form .selectBox .inputCidade svg {
+  height: 20px;
+  width: 20px;
   color: gray;
 }
-.background form .crie {
-  margin-top: 15px;
-  margin-bottom: 25px;
-}
-.background form .crie a {
-  color: gray;
+.background form .selectBox .inputCidade .icon {
+  position: absolute;
+  left: 10px;
 }
 
-/*# sourceMappingURL=Login.module.css.map */
+/*# sourceMappingURL=RegisterCompany.module.css.map */
