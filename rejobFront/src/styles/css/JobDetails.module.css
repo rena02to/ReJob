@@ -230,7 +230,7 @@
   font-weight: 700;
   line-height: 100%;
 }
-.vacancyCard span {
+.vacancyCard a {
   color: var(--first-blue, #00a3ff);
   font-family: Mulish, sans-serif;
   font-size: 18px;
@@ -241,11 +241,11 @@
 }
 .vacancyCard {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   width: 417px;
   height: 252px;
-  flex-shrink: 0;
-  background-color: #fff;
   border-radius: 5px;
   background: var(--first-white, #fff);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);

@@ -1,18 +1,7 @@
 import React from "react";
-import style from "./../styles/css/GeneralServices.module.css";
-import Icone from "./../images/newJob.png";
-import image from "./../images/Ellipse 3.png";
-import { useDispatch, useSelector } from "react-redux";
-import { CgMenuCheese, CgClose } from "react-icons/cg";
-import {
-  FaCircleUser,
-  FaUserTie,
-  FaClipboardUser,
-  FaUsersViewfinder,
-} from "react-icons/fa6";
-import { FaUserEdit } from "react-icons/fa";
-import { MdWorkHistory } from "react-icons/md";
-import { useEffect, useRef } from "react";
+import style from "./../../styles/css/GeneralServices.module.css";
+import Icone from "./../../images/newJob.png";
+import image from "./../../images/Ellipse 3.png";
 
 const GeneralServices = () => {
   return (
