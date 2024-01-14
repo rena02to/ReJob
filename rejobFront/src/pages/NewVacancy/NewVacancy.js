@@ -1,264 +1,309 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Components
 import NavBar from '../../components/NavBar';
 import Title from '../../components/Title/Title';
+import TextareaCustom from "../../components/TextareaCustom/TextareaCustom";
+import SelectCustom from "../../components/SelectCustom/SelectCustom";
+import InputCustom from "../../components/InputCustom/InputCustom";
 
+// CSS
 import './NewVacancy.css'
 
 const NewVacancy = () => {
-    const [empresa, setEmpresa] = useState('Starbucks');
-    const [localidade, setLocalidade] = useState('');
-    const [tipoDeVaga, setTipoDeVaga] = useState('');
-    const [categorias, setCategorias] = useState('');
-    const [responsavel, setResponsavel] = useState('');
-    const [cargo, setCargo] = useState('');
-    const [escolaridade, setEscolaridade] = useState('');
-    const [experiencia, setExperiencia] = useState('');
-    const [regime, setRegime] = useState('');
-    const [descricao, setDescricao] = useState('');
-    const [beneficios, setBeneficios] = useState('');
-    const [prazo, setPrazo] = useState('');
+  // Variaveis
+  const [empresa, setEmpresa] = useState("Starbucks")
+  const [formData, setFormData] = useState({
+    companyLocation: "",
+    jobType: "",
+    categories: "",
+    contactPerson: {
+      id: ""
+    },
+    jobTitle: "",
+    requirements: "",
+    jobDescription: "",
+    benefits: "",
+    employmentType: "",
+    applicationDeadline: "",
+    salaryRange: {
+      salaryRangeMin: "",
+      salaryRangeMax: ""
+    },
+    jobStatus: "ACTIVE"
+  });
+  const [users, setUsers] = useState([]);
+  const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNTA4MjE5NCwiZXhwIjoxNzA1MDg1MDc0fQ.q-pHo6vH-i7kUTs_iQLStF-z9OrbnqXyZ_vwaqCqZFs';
 
-    const [users, setUsers] = useState([]);
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNDk0MjUwOSwiZXhwIjoxNzA0OTQzOTQ5fQ.NbPs-lAz4Epd_2rdL17fg2tPvrzmAe0nLA1_WqVOTZM';
+  // GET USERS
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/v1/users', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setUsers(response.data);
+      } catch (error) {
+        console.error('Erro ao obter usuários:', error);
+      }
+    };
 
-    useEffect(() => {
-      const fetchUsers = async () => {
-        try {
-          const response = await axios.get('http://localhost:8080/api/v1/users', {
-            headers: {
-              'Authorization': 'Bearer ${token}'
-            }
-          });
-          setUsers(response.data);
-          console.log(users);
-        } catch (error) {
-          console.error('Erro ao obter usuários:', error);
+    fetchUsers();
+  }, []);
+
+  // Atualizar valores dos inputs, selects e textareas nas variáveis
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name.startsWith("salaryRange")) {
+      // Se o campo pertencer a salaryRange, atualize apenas esse campo
+      setFormData((formData) => ({
+        ...formData,
+        salaryRange: {
+          ...formData.salaryRange,
+          [name]: parseFloat(value),
+        },
+      }));
+    } else if (name === "contactPerson") {
+      // Extrair o ID do valor selecionado
+      const selectedUserId = parseInt(event.target.value, 10);
+
+      // Encontrar o usuário correspondente no array 'users'
+      const selectedUser = users.find((user) => user.id === selectedUserId);
+
+      // Atualizar o estado 'contactPerson.id' com o ID do usuário selecionado
+      setFormData((formData) => ({
+        ...formData,
+        contactPerson: {
+          ...formData.contactPerson,
+          id: selectedUserId,
+        },
+      }));
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  // POST JOB
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // Verificação de campos vazios
+    if (!formData.companyLocation || !formData.jobType || !formData.categories || !formData.contactPerson ||
+      !formData.jobTitle || !formData.requirements || !formData.jobDescription ||
+      !formData.benefits || !formData.employmentType || !formData.applicationDeadline ||
+      !formData.salaryRange.salaryRangeMin || !formData.salaryRange.salaryRangeMax) {
+      toast.warn("Por favor, preencha todos os campos obrigatórios.", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+      return;
+    }
+
+    // Verificação de prazo da candidatura
+    const dataInseridaObj = new Date(formData.applicationDeadline)
+    const dataAtual = new Date()
+    if (dataInseridaObj <= dataAtual) {
+      toast.warn("A data inserida deve ser posterior à data atual.", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/jobs', formData, {
+        headers: {
+          'Authorization': `Bearer ${token}`
         }
-      };
-  
-      fetchUsers();
-    }, []); 
+      });
 
-    const handleLocalidadeChange = (event) => {
-        setLocalidade(event.target.value);
-      }
-      
-      const handleTipoVagaChange = (event) => {
-        setTipoDeVaga(event.target.value);
-      }
-      
-      const handleCategoriasChange = (event) => {
-        setCategorias(event.target.value);
-      }
-      
-      const handleResponsavelChange = (event) => {
-        setResponsavel(event.target.value);
-      }
-      
-      const handleCargoChange = (event) => {
-        setCargo(event.target.value);
-      }
-      
-      const handleEscolaridadeChange = (event) => {
-        setEscolaridade(event.target.value);
-      }
-      
-      const handleExperienciaChange = (event) => {
-        setExperiencia(event.target.value);
-      }
-      
-      const handleRegimeChange = (event) => {
-        setRegime(event.target.value);
-      }
-      
-      const handleDescricaoChange = (event) => {
-        setDescricao(event.target.value);
-      }
-      
-      const handleBeneficiosChange = (event) => {
-        setBeneficios(event.target.value);
-      }
-      
-      const handlePrazoChange = (event) => {
-        setPrazo(event.target.value);
-      }
+      console.log('Resposta da API:', response.data);
 
-      const handleFormSubmit = (event) => {
-        event.preventDefault();
+      toast.success("A nova vaga foi ofertada com sucesso.", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
 
-        // Verificação de campos vazios
-        if (!empresa || !localidade || !tipoDeVaga || !categorias || 
-            !responsavel || !cargo || !escolaridade || !experiencia || !regime || !descricao || !beneficios || !prazo) {
-          toast.warn("Por favor, preencha todos os campos obrigatórios.", {
-            position: toast.POSITION.BOTTOM_RIGHT
-          });
-          return;
-        }
+    } catch (error) {
+      console.error('Erro ao fazer a solicitação POST:', error);
+      console.log(formData)
+    }
+  };
 
-        // Verificação de prazo da candidatura
-        const dataInseridaObj = new Date(prazo)
-        const dataAtual = new Date()
-        if (dataInseridaObj <= dataAtual) {
-          toast.warn("A data inserida deve ser posterior à data atual.", {
-            position: toast.POSITION.BOTTOM_RIGHT
-          });
-          return;
-        }
+  return (
+    <div>
+      <NavBar></NavBar>
 
+      <main>
+        <Title
+          titulo="OFERTAR VAGA DE EMPREGO"
+          subtitulo="Registre uma nova vaga de emprego passando todas as informações necessárias abaixo.">
+        </Title>
 
-        console.log('Empresa:', empresa);
-        console.log('Localidade:', localidade);
-        console.log('Tipo de Vaga:', tipoDeVaga);
-        console.log('Categorias:', categorias);
-        console.log('Reponsável pela vaga:', responsavel);
-        console.log('Cargo ou Função:', cargo);
-        console.log('Escolaridade:', escolaridade);
-        console.log('Experiência:', experiencia);
-        console.log('Regime:', regime);
-        console.log('Descrição:', descricao);
-        console.log('Benefícios:', beneficios);
-        console.log('Prazo:', prazo);
-      }
+        <form>
+          <div className="campos">
+            <InputCustom
+              label="Título da Vaga"
+              placeholder="Digite o Título da Vaga"
+              type="text"
+              id="jobTitle"
+              name="jobTitle"
+              value={formData.jobTitle}
+              onChange={handleInputChange}
+            />
 
-    return (
-        <div>
-            <NavBar></NavBar>
+            <InputCustom
+              label="Tipo de Vaga"
+              placeholder="Digite o tipo da vaga"
+              type="text"
+              id="jobType"
+              name="jobType"
+              value={formData.jobType}
+              onChange={handleInputChange}
+            />
 
-            <main>
-                <Title 
-                titulo="OFERTAR VAGA DE EMPREGO" 
-                subtitulo="Registre uma nova vaga de emprego passando todas as informações necessárias abaixo.">
-                </Title>
-                
-                <form>
-                    <div className="campos">
-                        <div className="campo">
-                            <label>Empresa Contratante <span>*</span></label>
-                            <input 
-                            type="text" 
-                            value={empresa} 
-                            disabled
-                            >
+            <SelectCustom
+              label="Carga Horária"
+              id="employmentType"
+              name="employmentType"
+              value={formData.employmentType}
+              onChange={handleInputChange}
+              options={[
+                { value: 'Meio Período', label: 'Meio Período' },
+                { value: 'Período Integral', label: 'Período Integral' }
+              ]
+              }
+            />
 
-                            </input>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="localidade">Localidade <span>*</span></label>
-                            <input
-                                id="localidade"
-                                type="text"
-                                placeholder="Digite a Localidade da Vaga"
-                                value={localidade}
-                                onChange={handleLocalidadeChange}
-                            />
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="TipoVaga">Tipo de Vaga <span>*</span></label>
-                            <select id="TipoVaga" value={tipoDeVaga} onChange={handleTipoVagaChange}>
-                                <option value="">Selecione o tipo de vaga</option>
-                                <option value="Meio Período">Meio Período</option>
-                                <option value="Período Completo">Período Completo</option>
-                            </select>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="categorias">Categorias <span>*</span></label>
-                            <input
-                            id="categorias"
-                            placeholder="Digite as categorias da vaga"
-                            type="text"
-                            value={categorias}
-                            onChange={handleCategoriasChange}
-                            ></input>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="responsavel">Responsável pela vaga <span>*</span></label>
-                            <select id="responsavel" value={responsavel} onChange={handleResponsavelChange}>
-                                <option value="">Selecione o responsável pela vaga</option>
-                                <option value="Joao">Joao</option>
-                                <option value="Pedro">Pedro</option>
-                            </select>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="cargo">Cargo <span>*</span></label>
-                            <input
-                            id="cargo"
-                            type="text"
-                            value={cargo}
-                            onChange={handleCargoChange}
-                            placeholder="Digite o cargo ou função da vaga"
-                            ></input>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="escolaridade">Escolaridade <span>*</span></label>
-                            <select id="escolaridade" value={escolaridade} onChange={handleEscolaridadeChange}>
-                                <option value="">Selecione a escolaridade necessária</option>
-                                <option value="Ensino Médio">Ensino Médio</option>
-                                <option value="Ensino Superior Incompleto">Ensino Superior Incompleto</option>
-                                <option value="Ensino Superior Completo">Ensino Superior Completo</option>
-                            </select>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="experiencia">Experiência <span>*</span></label>
-                            <select id="experiencia" value={experiencia} onChange={handleExperienciaChange}>
-                                <option value="">Selecione a experiência necessária</option>
-                                <option value="1 Ano">1 Ano</option>
-                                <option value="2-3 Anos">2-3 Anos</option>
-                            </select>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="regime">Regime de Contratação <span>*</span></label>
-                            <select id="regime" value={regime} onChange={handleRegimeChange}>
-                                <option value="">Selecione o regime de contratação da vaga</option>
-                                <option value="CLT">CLT</option>
-                                <option value="PJ">PJ</option>
-                            </select>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="descricao">Descrição da vaga <span>*</span></label>
-                            <textarea 
-                            id="descricao"
-                            rows={8}
-                            placeholder="Digite uma descrição a respeito da vaga oferecida"
-                            value={descricao}
-                            onChange={handleDescricaoChange}                            
-                            >
-                            </textarea>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="beneficios">Benefícios <span>*</span></label>
-                            <textarea rows={8} placeholder="Digite uma descrição a respeito dos benefícios relacionados com a vaga"
-                            value={beneficios}
-                            id="beneficios"
-                            onChange={handleBeneficiosChange}
-                            >
-                            </textarea>
-                        </div>
-                        <div className="campo">
-                            <label htmlFor="prazo">Prazo para Candidatura <span>*</span></label>
-                            <input type="date" placeholder="Marque o prazo de candidatura"
-                            id="prazo"
-                            value={prazo}
-                            onChange={handlePrazoChange}
-                            ></input>
-                        </div>
-                    </div>
+            <InputCustom
+              label="Nome da Empresa"
+              type="text"
+              id="company"
+              name="company"
+              value={empresa}
+              disabled
+            />
 
-                    <div className="botoes">
-                        <button className="back">VOLTAR</button>
-                        <button type="submit" onClick={handleFormSubmit} className="save">CADASTRAR NOVA VAGA</button>
-                    </div>
-                </form> 
-            </main>
+            <InputCustom
+              label="Localidade"
+              placeholder="Digite a localização da empresa que oferta a vaga"
+              type="text"
+              id="companyLocation"
+              name="companyLocation"
+              value={formData.companyLocation}
+              onChange={handleInputChange}
+            />
 
-            <ToastContainer />
-        </div>
-     );
+            <SelectCustom
+              label="Responsável pela vaga"
+              id="contactPerson"
+              name="contactPerson"
+              value={formData.contactPerson.name}
+              onChange={handleInputChange}
+              options={users.map(user => ({ value: user.id, label: user.name }))}
+            />
+
+            <InputCustom
+              label="Requerimentos"
+              placeholder="Digite requerimentos necessários para a vaga"
+              type="text"
+              id="requirements"
+              name="requirements"
+              value={formData.requirements}
+              onChange={handleInputChange}
+            />
+
+            <InputCustom
+              label="Categorias"
+              placeholder="Digite categorias relacionadas a vaga"
+              type="text"
+              id="categories"
+              name="categories"
+              value={formData.categories}
+              onChange={handleInputChange}
+            />
+
+            <div className="campo">
+              <label htmlFor="salaryRangeMin">Faixa Salarial <span>*</span></label>
+              <div>
+                <input type="number" step="0.1" placeholder="Min (R$)"
+                  id="salaryRangeMin"
+                  name="salaryRangeMin"
+                  value={formData.salaryRange.salaryRangeMin}
+                  onChange={handleInputChange}
+                ></input>
+                <input type="number" step="0.1" placeholder="Max (R$)"
+                  id="salaryRangeMax"
+                  name="salaryRangeMax"
+                  value={formData.salaryRange.salaryRangeMax}
+                  onChange={handleInputChange}
+                ></input>
+              </div>
+            </div>
+
+            {/* <div className="campo">
+                              <label htmlFor="escolaridade">Escolaridade <span>*</span></label>
+                              <select id="escolaridade">
+                                  <option value="">Selecione a escolaridade necessária</option>
+                                  <option value="1 Ano">Ensino Médio</option>
+                                  <option value="2-3 Anos">Ensino Superior Incompleto</option>
+                                  <option value="2-3 Anos">Ensino Superior Completo</option>
+                              </select>
+                          </div> */}
+
+            {/* <div className="campo">
+                              <label htmlFor="regime">Regime de Contratação <span>*</span></label>
+                              <select id="regime" >
+                                  <option value="">Selecione o regime de contratação da vaga</option>
+                                  <option value="CLT">CLT</option>
+                                  <option value="PJ">PJ</option>
+                              </select>
+                          </div> */}
+
+            <TextareaCustom
+              label="Descrição da vaga"
+              id="jobDescription"
+              name="jobDescription"
+              rows={8}
+              placeholder="Digite uma descrição a respeito da vaga oferecida"
+              value={formData.jobDescription}
+              onChange={handleInputChange}
+            />
+
+            <TextareaCustom
+              label="Benefícios"
+              id="benefits"
+              name="benefits"
+              rows={8}
+              placeholder="Digite uma descrição a respeito dos benefícios relacionados com a vaga"
+              value={formData.benefits}
+              onChange={handleInputChange}
+            />
+
+            <InputCustom
+              label="Prazo de Candidatura"
+              type="date"
+              placeholder="Marque o prazo de candidatura"
+              id="applicationDeadline"
+              name="applicationDeadline"
+              value={formData.applicationDeadline}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="botoes">
+            <button className="back">VOLTAR</button>
+            <button type="submit" onClick={handleFormSubmit} className="save">CADASTRAR NOVA VAGA</button>
+          </div>
+        </form>
+      </main>
+
+      <ToastContainer />
+    </div>
+  );
 }
- 
+
 export default NewVacancy;

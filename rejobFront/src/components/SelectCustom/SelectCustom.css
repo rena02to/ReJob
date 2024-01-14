@@ -1,0 +1,20 @@
+:root {
+    --first-blue: #00A3FF;
+    --dark-black: #0F0F0F;
+    --first-gray: #EDEFF0;
+    --second-gray: #D2D4D4;
+    --third-gray: #7C7C8A;
+}
+
+select {
+    padding: 8px 16px;
+    border-radius: 4px;
+    appearance: none;
+    border: solid 2px var(--first-gray);
+    outline: none;
+    color: var(--third-gray);
+}
+
+select:focus {
+    border: 2px solid var(--first-blue);
+}

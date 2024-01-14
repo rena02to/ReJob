@@ -1,5 +1,6 @@
 .footer {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -18,11 +19,15 @@
     flex-direction: column;
   }
 }
-.footer .main .rejob, .footer .main .infos, .footer .main .links {
+.footer .main .rejob,
+.footer .main .infos,
+.footer .main .links {
   height: 200px;
 }
 @media (max-width: 1200px) {
-  .footer .main .rejob, .footer .main .infos, .footer .main .links {
+  .footer .main .rejob,
+  .footer .main .infos,
+  .footer .main .links {
     width: 300px;
   }
 }
@@ -43,13 +48,15 @@
   }
 }
 .footer .main .rejob span {
-  color: #00A3FF;
+  color: #00a3ff;
 }
-.footer .main .infos, .footer .main .links {
+.footer .main .infos,
+.footer .main .links {
   padding-left: 50px;
 }
 @media (max-width: 1200px) {
-  .footer .main .infos, .footer .main .links {
+  .footer .main .infos,
+  .footer .main .links {
     padding-left: 0;
   }
 }
@@ -62,7 +69,8 @@
     border-right: 0px solid transparent;
   }
 }
-.footer .main .infos .endereco, .footer .main .infos .contato {
+.footer .main .infos .endereco,
+.footer .main .infos .contato {
   font-weight: 600;
   font-size: 1.2rem;
   border-bottom: 2px solid white;
@@ -78,7 +86,8 @@
 .footer .main .infos .textEndereco {
   margin-bottom: 20px;
 }
-.footer .main .infos .textEndereco, .footer .main .infos .email {
+.footer .main .infos .textEndereco,
+.footer .main .infos .email {
   font-size: 0.9rem;
 }
 .footer .main .links {

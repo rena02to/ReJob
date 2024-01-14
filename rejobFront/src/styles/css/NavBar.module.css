@@ -9,7 +9,7 @@
   position: fixed;
   padding: 5px 20px;
   top: 0;
-  width: calc(100% - 40px);
+  width: 100%;
   height: 60px;
   background-color: white;
   z-index: 99999;
@@ -20,7 +20,7 @@
   display: flex;
 }
 .navbar .textIcon .job {
-  color: #00A3FF;
+  color: #00a3ff;
 }
 .navbar ul {
   display: flex;
@@ -35,14 +35,16 @@
   text-decoration: none;
 }
 .navbar ul .ativado {
-  color: #00A3FF;
+  color: #00a3ff;
 }
-.navbar .buttons .loginLink, .navbar .buttons .registerLink {
+.navbar .buttons .loginLink,
+.navbar .buttons .registerLink {
   margin-right: 20px;
 }
-.navbar .buttons .loginLink button, .navbar .buttons .registerLink button {
+.navbar .buttons .loginLink button,
+.navbar .buttons .registerLink button {
   color: white;
-  background-color: #00A3FF;
+  background-color: #00a3ff;
   border: 0px solid transparent;
   border-radius: 5px;
   font-size: 24px;
@@ -53,7 +55,7 @@
 }
 .navbar .entreCadastre {
   color: white;
-  background-color: #00A3FF;
+  background-color: #00a3ff;
   border: 0px solid transparent;
   border-radius: 5px;
   font-size: 24px;
@@ -66,7 +68,8 @@
 .navbar .profile {
   position: relative;
 }
-.navbar .profileIconOpen, .navbar .profileIconClose {
+.navbar .profileIconOpen,
+.navbar .profileIconClose {
   background-color: white;
   border-radius: 50%;
   height: 45px;
@@ -79,10 +82,11 @@
   cursor: pointer;
   transition: transform 0.8s ease;
 }
-.navbar .profileIconOpen svg, .navbar .profileIconClose svg {
+.navbar .profileIconOpen svg,
+.navbar .profileIconClose svg {
   height: 45px;
   width: 45px;
-  color: #00A3FF;
+  color: #00a3ff;
 }
 .navbar .profile p {
   font-size: 22px;
@@ -119,7 +123,7 @@
   justify-content: center;
   align-items: center;
   color: white;
-  background-color: #00A3FF;
+  background-color: #00a3ff;
   border: 0px solid transparent;
   border-radius: 5px;
   font-size: 24px;
@@ -152,13 +156,14 @@
 .navbar .profileMenu .links .interno svg {
   height: 30px;
   width: 30px;
-  color: #00A3FF;
+  color: #00a3ff;
   margin-right: 10px;
 }
 .navbar .containerMenu {
   position: relative;
 }
-.navbar .containerMenu .menuOpen, .navbar .containerMenu .menuClose {
+.navbar .containerMenu .menuOpen,
+.navbar .containerMenu .menuClose {
   border: 0px solid transparent;
   background-color: white;
   height: 45px;
@@ -166,7 +171,8 @@
   margin: 15px 0px;
   cursor: pointer;
 }
-.navbar .containerMenu .menuOpen svg, .navbar .containerMenu .menuClose svg {
+.navbar .containerMenu .menuOpen svg,
+.navbar .containerMenu .menuClose svg {
   height: 40px;
   width: 40px;
 }

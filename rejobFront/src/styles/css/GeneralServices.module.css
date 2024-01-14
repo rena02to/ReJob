@@ -1,0 +1,15 @@
+.NavBarServices {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  justify-content: space-between;
+  position: fixed;
+  padding: 7px 24px 8px 24px;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 99999;
+}
