@@ -1,5 +1,6 @@
 package com.efjpr.rejob.domain;
 
+import com.efjpr.rejob.domain.Enums.EducationLevel;
 import com.efjpr.rejob.domain.Enums.SentenceRegime;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ public class Employee {
 
     private String cpf;
     private String prisonCode;
-    private String educationLevel;
+    private EducationLevel educationLevel;
     private String dateOfBirth;
     private String residenceLocation;
 
