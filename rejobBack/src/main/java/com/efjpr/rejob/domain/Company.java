@@ -2,6 +2,7 @@ package com.efjpr.rejob.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.ReadOnlyProperty;
 
 import java.util.List;
 

@@ -21,9 +21,7 @@ const NewVacancy = () => {
     companyLocation: "",
     jobType: "",
     categories: "",
-    contactPerson: {
-      id: ""
-    },
+    contactPersonId: "",
     jobTitle: "",
     requirements: "",
     jobDescription: "",
@@ -34,10 +32,12 @@ const NewVacancy = () => {
       salaryRangeMin: "",
       salaryRangeMax: ""
     },
+    educationLevel: "",
+    employmentContractType: "",
     jobStatus: "ACTIVE"
   });
   const [users, setUsers] = useState([]);
-  const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNTI2ODE1NiwiZXhwIjoxNzA1MjcxMDM2fQ.4Wom1i-jvepzAQ8_7L4fsz9_xfSg5UKE-9kJzQNahWU';
+  const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNTMzMjMyNywiZXhwIjoxNzA1OTM3MTI3fQ.80YA_6kiyAlqvTXu4j0V-1OSwABkmItuDEVoWESDEQ0';
 
   // GET USERS
   useEffect(() => {
@@ -69,21 +69,8 @@ const NewVacancy = () => {
           [name]: parseFloat(value),
         },
       }));
-    } else if (name === "contactPerson") {
-      // Extrair o ID do valor selecionado
-      const selectedUserId = parseInt(event.target.value, 10);
-
-      // Encontrar o usuário correspondente no array 'users'
-      const selectedUser = users.find((user) => user.id === selectedUserId);
-
-      // Atualizar o estado 'contactPerson.id' com o ID do usuário selecionado
-      setFormData((formData) => ({
-        ...formData,
-        contactPerson: {
-          ...formData.contactPerson,
-          id: selectedUserId,
-        },
-      }));
+    } else if (name === "contactPersonId") {
+      setFormData({ ...formData, [name]: parseFloat(value) });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -94,10 +81,10 @@ const NewVacancy = () => {
     event.preventDefault();
 
     // Verificação de campos vazios
-    if (!formData.companyLocation || !formData.jobType || !formData.categories || !formData.contactPerson ||
+    if (!formData.companyLocation || !formData.jobType || !formData.categories || !formData.contactPersonId ||
       !formData.jobTitle || !formData.requirements || !formData.jobDescription ||
       !formData.benefits || !formData.employmentType || !formData.applicationDeadline ||
-      !formData.salaryRange.salaryRangeMin || !formData.salaryRange.salaryRangeMax) {
+      !formData.salaryRange.salaryRangeMin || !formData.salaryRange.salaryRangeMax || !formData.educationLevel || !formData.employmentContractType) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
         position: toast.POSITION.BOTTOM_RIGHT
       });
@@ -129,7 +116,6 @@ const NewVacancy = () => {
 
     } catch (error) {
       console.error('Erro ao fazer a solicitação POST:', error);
-      console.log(formData)
     }
   };
 
@@ -199,9 +185,9 @@ const NewVacancy = () => {
 
             <SelectCustom
               label="Responsável pela vaga"
-              id="contactPerson"
-              name="contactPerson"
-              value={formData.contactPerson.name}
+              id="contactPersonId"
+              name="contactPersonId"
+              value={formData.contactPersonId.name}
               onChange={handleInputChange}
               options={users.map(user => ({ value: user.id, label: user.name }))}
             />
@@ -226,6 +212,48 @@ const NewVacancy = () => {
               onChange={handleInputChange}
             />
 
+            <SelectCustom
+              label="Escolaridade"
+              id="educationLevel"
+              name="educationLevel"
+              value={formData.educationLevel}
+              onChange={handleInputChange}
+              options={[
+                { value: 'ENSINO_FUNDAMENTAL_INCOMPLETO', label: 'Ensino Fundamental Incompleto' },
+                { value: 'ENSINO_FUNDAMENTAL_COMPLETO', label: 'Ensino Fundamental Completo' },
+                { value: 'ENSINO_MEDIO_INCOMPLETO', label: 'Ensino Médio Incompleto' },
+                { value: 'ENSINO_MEDIO_COMPLETO', label: 'Ensino Médio Completo' },
+                { value: 'EDUCACAO_SUPERIOR_INCOMPLETA', label: 'Educação Superior Incompleta' },
+                { value: 'EDUCACAO_SUPERIOR_COMPLETA', label: 'Educação Superior Completa' },
+                { value: 'POS_GRADUACAO_INCOMPLETA', label: 'Pós Graduação Incompleta' },
+                { value: 'POS_GRADUACAO_COMPLETA', label: 'Pós Graduação Completa' },
+                { value: 'MESTRADO_INCOMPLETO', label: 'Mestrado Incompleto' },
+                { value: 'MESTRADO_COMPLETO', label: 'Mestrado Completo' },
+                { value: 'DOUTORADO_INCOMPLETO', label: 'Doutorado Incompleto' },
+                { value: 'DOUTORADO_COMPLETO', label: 'Doutorado Completo' },
+                { value: 'OUTRO', label: 'Outro' },
+              ]
+              }
+            />
+            
+            <SelectCustom
+              label="Tipo de Contrato"
+              id="employmentContractType"
+              name="employmentContractType"
+              value={formData.employmentContractType}
+              onChange={handleInputChange}
+              options={[
+                { value: 'CLT', label: 'CLT' },
+                { value: 'PJ', label: 'PJ' },
+                { value: 'TEMPORARIO', label: 'Temporário' },
+                { value: 'ESTAGIO', label: 'Estágio' },
+                { value: 'FREELANCER', label: 'Freelancer' },
+                { value: 'CONTRATO_POR_PROJETO', label: 'Contrato Por Projeto' },
+                { value: 'OUTRO', label: 'Outro' },
+              ]
+              }
+            />
+
             <div className="campo">
               <label htmlFor="salaryRangeMin">Faixa Salarial <span>*</span></label>
               <div>
@@ -244,24 +272,15 @@ const NewVacancy = () => {
               </div>
             </div>
 
-            {/* <div className="campo">
-                              <label htmlFor="escolaridade">Escolaridade <span>*</span></label>
-                              <select id="escolaridade">
-                                  <option value="">Selecione a escolaridade necessária</option>
-                                  <option value="1 Ano">Ensino Médio</option>
-                                  <option value="2-3 Anos">Ensino Superior Incompleto</option>
-                                  <option value="2-3 Anos">Ensino Superior Completo</option>
-                              </select>
-                          </div> */}
-
-            {/* <div className="campo">
-                              <label htmlFor="regime">Regime de Contratação <span>*</span></label>
-                              <select id="regime" >
-                                  <option value="">Selecione o regime de contratação da vaga</option>
-                                  <option value="CLT">CLT</option>
-                                  <option value="PJ">PJ</option>
-                              </select>
-                          </div> */}
+            <InputCustom
+              label="Prazo de Candidatura"
+              type="date"
+              placeholder="Marque o prazo de candidatura"
+              id="applicationDeadline"
+              name="applicationDeadline"
+              value={formData.applicationDeadline}
+              onChange={handleInputChange}
+            />
 
             <TextareaCustom
               label="Descrição da vaga"
@@ -280,16 +299,6 @@ const NewVacancy = () => {
               rows={8}
               placeholder="Digite uma descrição a respeito dos benefícios relacionados com a vaga"
               value={formData.benefits}
-              onChange={handleInputChange}
-            />
-
-            <InputCustom
-              label="Prazo de Candidatura"
-              type="date"
-              placeholder="Marque o prazo de candidatura"
-              id="applicationDeadline"
-              name="applicationDeadline"
-              value={formData.applicationDeadline}
               onChange={handleInputChange}
             />
           </div>

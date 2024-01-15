@@ -29,15 +29,12 @@ main {
 form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    }
+}
 
 form .campos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    justify-content: center;
 }
 
 .campo {
@@ -86,6 +83,13 @@ form .campos {
     font-weight: 600;
     background-color: var(--first-blue);
 
+}
+
+#salaryRangeMin {
+    width: 50%;
+}
+#salaryRangeMax {
+    width: 50%;
 }
 
 

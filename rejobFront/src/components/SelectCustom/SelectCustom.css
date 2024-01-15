@@ -18,3 +18,7 @@ select {
 select:focus {
     border: 2px solid var(--first-blue);
 }
+
+option {
+    font-size: 16px;
+}
