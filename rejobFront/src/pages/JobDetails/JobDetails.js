@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styles from "./../../styles/css/JobDetails.module.css";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-import api from "../../services/Api";
+import api from "../../services/api";
 
 const JobDetails = () => {
   const { index } = useParams();
