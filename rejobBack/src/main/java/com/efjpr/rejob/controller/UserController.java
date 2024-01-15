@@ -1,5 +1,7 @@
 package com.efjpr.rejob.controller;
 
+import com.efjpr.rejob.domain.Collaborator;
+import com.efjpr.rejob.domain.Employee;
 import com.efjpr.rejob.domain.User;
 import com.efjpr.rejob.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +10,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,9 +29,25 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
+    @GetMapping("me")
+    public User getUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication.getPrincipal() instanceof User) {
+            return (User) authentication.getPrincipal();
+        } else {
+            throw new IllegalStateException("Authenticated principal is not a User");
+        }
+    }
+
+    @GetMapping("/{userId}/employee")
+    public ResponseEntity<Employee> getEmployeeByUserId(@PathVariable Long userId) {
+        return new ResponseEntity<>(userService.getEmployee(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/{userId}/collaborator")
+    public ResponseEntity<Collaborator> getCollaboratorByUserId(@PathVariable Long userId) {
+        return new ResponseEntity<>(userService.getCollaborator(userId),HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

@@ -1,5 +1,7 @@
 package com.efjpr.rejob.service;
 
+import com.efjpr.rejob.domain.Collaborator;
+import com.efjpr.rejob.domain.Employee;
 import com.efjpr.rejob.domain.User;
 import com.efjpr.rejob.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,8 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final CollaboratorService collaboratorService;
+    private final EmployeeService employeeService;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -26,7 +30,20 @@ public class UserService {
 
     public List<User> getAllUsers() { return userRepository.findAll(); }
 
-    public User getUserById(Long id) { return userRepository.getReferenceById(id); }
+    public User getUserById(Long id) {
+      return userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + id + " not found"));
+    }
+
+    public Collaborator getCollaborator(Long id) {
+        User user = getUserById(id);
+        return this.collaboratorService.findByUser(user);
+    }
+
+    public Employee getEmployee(Long id) {
+        User user = getUserById(id);
+        return this.employeeService.findByUser(user);
+    }
 
     public User updateUser(Long id, User updatedUser) {
         User existingUser = userRepository.findById(id)
