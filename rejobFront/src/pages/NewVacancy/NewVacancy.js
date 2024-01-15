@@ -37,7 +37,7 @@ const NewVacancy = () => {
     jobStatus: "ACTIVE"
   });
   const [users, setUsers] = useState([]);
-  const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNTA4MjE5NCwiZXhwIjoxNzA1MDg1MDc0fQ.q-pHo6vH-i7kUTs_iQLStF-z9OrbnqXyZ_vwaqCqZFs';
+  const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNTI2ODE1NiwiZXhwIjoxNzA1MjcxMDM2fQ.4Wom1i-jvepzAQ8_7L4fsz9_xfSg5UKE-9kJzQNahWU';
 
   // GET USERS
   useEffect(() => {
