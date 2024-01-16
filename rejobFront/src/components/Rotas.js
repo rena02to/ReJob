@@ -11,6 +11,8 @@ import JobDetails from "../pages/JobDetails/JobDetails";
 import GeneralServices from "../pages/GeneralServices/GeneralServices";
 import JobList from "../pages/JobList/JobList";
 
+import NewVacancy from "../pages/NewVacancy/NewVacancy";
+
 function Rotas() {
   const { isLoged } = useSelector((rooteRedux) => rooteRedux.useReducer);
 
@@ -44,6 +46,8 @@ function Rotas() {
           element={isLoged ? <Navigate to="/login" /> : <RegisterRemand />}
         />
         <Route path="/*" element={<NotFound />} />
+
+        <Route path="/newVacancy" element={<NewVacancy/>} />
         <Route
           exact
           path="/vagas"

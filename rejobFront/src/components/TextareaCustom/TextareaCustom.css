@@ -1,0 +1,22 @@
+:root {
+    --first-blue: #00A3FF;
+    --dark-black: #0F0F0F;
+    --first-gray: #EDEFF0;
+    --second-gray: #D2D4D4;
+    --third-gray: #7C7C8A;
+}
+
+textarea {
+    padding: 12px 16px;
+    border: solid 2px var(--first-gray);
+}
+
+textarea::placeholder {
+    letter-spacing: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+textarea:focus {
+    border-color: var(--first-blue);
+    outline-color: var(--first-blue);
+}

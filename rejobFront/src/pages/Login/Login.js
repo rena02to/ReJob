@@ -6,17 +6,19 @@ import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import LoginService from './LoginService';
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Login(){
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { visibilityPassword } = useSelector(rootReducer => rootReducer.useReducer)
 
-    const initialValues: AuthRequest = {
+    const initialValues = {
         email: "",
         password: "",
     };
     
-    const Logar = async (values: AuthRequest) => {
+    const Logar = async (values) => {
         try {
             const AuthResponse = await LoginService.login(
             values.email,
@@ -24,6 +26,8 @@ function Login(){
             );
 
             console.log("Login successful:", AuthResponse);
+            
+            navigate('/');
         } catch (error) {
             console.error("Login failed:", error);
         }

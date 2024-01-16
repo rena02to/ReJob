@@ -1,4 +1,4 @@
-import Footer from './../../components/Footer';
+import Footer from '../../components/Footer';
 import NavBar from './../../components/NavBar';
 import BackgroundImage from './../../images/backgroundImageRegister.jpg';
 import style from './../../styles/css/Register.module.css';

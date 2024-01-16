@@ -13,6 +13,10 @@ class LoginService {
       });
 
       // Handle the response or return it as needed
+      const token = response.data;
+      
+      sessionStorage.setItem("token", token.token);
+
       return response.data;
     } catch (error) {
       // Handle error (e.g., show error message)
