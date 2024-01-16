@@ -1,0 +1,28 @@
+@use 'mixins'
+@use 'variables'
+
+@include mixins.forms
+.background
+    form
+        flex-direction: column
+        width: auto
+        align-items: center
+        justify-content: center
+        .selectBox
+            .inputCidade
+                margin-top: 5px
+                display: flex
+                flex-direction: row
+                justify-content: center
+                align-items: center
+                gap: 10px
+                position: relative
+                .select
+                    width: 350px
+                svg
+                    height: 20px
+                    width: 20px
+                    color: gray
+                .icon
+                    position: absolute
+                    left: 10px

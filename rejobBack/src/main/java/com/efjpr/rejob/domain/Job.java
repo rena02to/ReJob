@@ -1,5 +1,7 @@
 package com.efjpr.rejob.domain;
 
+import com.efjpr.rejob.domain.Enums.EducationLevel;
+import com.efjpr.rejob.domain.Enums.EmploymentContractType;
 import com.efjpr.rejob.domain.Enums.JobStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -35,6 +37,12 @@ public class Job {
     private String employmentType;
     private Date applicationDeadline;
     private SalaryRange salaryRange;
+
+    @Enumerated(EnumType.STRING)
+    private EducationLevel educationLevel;
+
+    @Enumerated(EnumType.STRING)
+    private EmploymentContractType employmentContractType;
 
     @Enumerated(EnumType.STRING)
     private JobStatus jobStatus;

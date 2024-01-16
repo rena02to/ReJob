@@ -29,16 +29,11 @@ function Login(){
         }
     };
 
-    const MostrarSenha = () => {
-        dispatch({
-            type: 'ChangeVisibilityPassword',
-        })
-    }
-
     return(
-        <section className={style.login}>
+        <section className={style.background}>
             <a href='/' className={style.back} >
-                <FaArrowLeftLong className={style.back} />
+                <FaArrowLeftLong />
+                <p>Voltar</p>
             </a>
 
             <Formik initialValues={initialValues} onSubmit={Logar}>
@@ -48,16 +43,20 @@ function Login(){
                     <p>Faça login e comece a usar!</p>
 
                     <div className={style.inputBox}>
-                        <label>Endereço de e-mail</label>
-                        <Field name="email" id="email" type="email" placeholder="Digite seu e-mail" required />
-                        <AiOutlineMail />
+                        <label htmlFor="email">Endereço de e-mail</label>
+                        <div className={style.input}>
+                            <Field name="email" id="email" type="email" placeholder="Digite seu e-mail" required />
+                            <AiOutlineMail />
+                        </div>
                     </div>
 
                     <div className={style.inputBox}>
-                        <label>Sua senha</label>
-                        <Field name="password" id="password" type={visibilityPassword ? "text" : "password"} placeholder="Digite sua senha" required />
-                        <AiOutlineLock />
-                        {visibilityPassword ? <FaEyeSlash onClick={MostrarSenha} className={style.eye} /> : <FaRegEye onClick={MostrarSenha} className={style.eye} />}
+                        <label htmlFor="password">Sua senha</label>
+                        <div className={style.input}>
+                            <Field name="password" id="password" type={visibilityPassword ? "text" : "password"} placeholder="Digite sua senha" required />
+                            <AiOutlineLock />
+                        </div>
+                        {visibilityPassword ? <FaEyeSlash className={style.eye} onClick={() => {dispatch({type: 'ChangeVisibilityPassword',})}} /> : <FaRegEye className={style.eye} onClick={() => {dispatch({type: 'ChangeVisibilityPassword',})}} />}
                     </div>
 
                     <div className={style.lembrarMe}>
@@ -68,7 +67,7 @@ function Login(){
                     <button type="submit" className={style.acessar}>Acessar a plataforma</button>
 
                     <a href='/recover' className={style.esqueceu}>Esqueceu sua senha?</a>
-                    <a href='/register' className={style.crie}>Não possui conta? Crie uma agora!</a>
+                    <p className={style.crie}>Não possui conta? <a href='/register'>Crie uma agora!</a></p>
                 </Form>
             </Formik>
         </section>

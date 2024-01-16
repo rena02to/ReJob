@@ -17,6 +17,214 @@
     cursor: pointer
     height: 45px
 
+@mixin forms
+    .background
+        background-color: variables.$gray-color
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        min-height: 100vh
+        position: relative
+        padding: 100px 0
+        .back
+            display: flex
+            flex-direction: row
+            justify-content: center
+            align-items: center
+            position: absolute
+            gap: 10px
+            top: 20px
+            left: 35px
+            text-decoration: none
+            color: black
+            svg
+                height: 40px
+                width: 40px
+            p
+                font-size: 20px
+        form
+            display: flex
+            background-color: white
+            padding: 50px
+            border-radius: 5px
+            @media (max-width: 500px)
+                padding: 50px 30px 50px 30px
+            .rejob
+                font-size: 32px
+                font-weight: 600
+                margin: 0
+                span
+                    color: variables.$main-color
+            p
+                font-size: 20px
+            .inputBox
+                display: flex
+                flex-direction: column
+                margin-top: 20px
+                position: relative
+                label
+                    font-weight: 600
+                    margin-bottom: 10px
+                    font-size: 20px
+                .input, .inputTel
+                    display: flex
+                    flex-direction: row
+                    align-items: center
+                    gap: 10px
+                    position: relative
+                    input
+                        font-weight: 600
+                        width: 310px
+                        height: 35px
+                        border: 1px solid variables.$gray-color
+                        border-radius: 5px
+                        outline: none
+                        font-size: 16px
+                        position: relative
+                        padding-left: 40px
+                        @media (max-width: 500px)
+                            width: 250px
+                        &:focus
+                            border: 3px solid variables.$main-color
+                        &[type="password"]
+                            width: 275px
+                            padding-right: 35px
+                    svg
+                        height: 20px
+                        width: 20px
+                        color: gray
+                        position: absolute
+                        left: 10px
+                .inputTextArea
+                    display: flex
+                    flex-direction: row
+                    gap: 10px
+                    textarea
+                        font-weight: 600
+                        width: 300px
+                        resize: none
+                        height: 270px
+                        font-family: "Mulish", sans-serif
+                        font-size: 15px
+                        outline: none
+                        border-radius: 5px
+                        border: 1px solid variables.$gray-color
+                        color: rgb(100, 100, 100)
+                        position: relative
+                        padding: 10px 10px 10px 40px
+                        &:focus
+                            border: 3px solid variables.$main-color
+                    svg
+                        height: 20px
+                        width: 20px
+                        color: gray
+                        margin-top: 10px
+                        position: absolute
+                        left: 10px
+                .inputTel
+                    margin-top: 5px
+                .eye
+                    position: absolute
+                    cursor: pointer
+                    bottom: 12px
+                    right: 15px
+            .selectBox
+                display: flex
+                flex-direction: column
+                margin-top: 20px
+                font-weight: 600
+                label
+                    font-weight: 600
+                    margin-bottom: 10px
+                    font-size: 20px
+                .input
+                    display: flex
+                    flex-direction: row
+                    justify-content: center
+                    align-items: center
+                    gap: 10px
+                    position: relative
+                    .select
+                        width: 350px
+                    svg
+                        height: 20px
+                        width: 20px
+                        color: gray
+                    .icon
+                        position: absolute
+                        left: 10px
+            .notify, .termos
+                display: flex
+                flex-direction: row
+                width: 100%
+                align-items: center
+                margin-top: 10px
+                gap: 10px
+                p
+                    font-size: 17px
+                    margin: 0
+                input
+                    width: 17px
+                    height: 17px
+            .login
+                font-size: 17px
+                color: gray
+                a
+                    color: gray
+            button
+                color: white
+                background-color: variables.$main-color
+                border: 0px solid transparent
+                border-radius: 5px
+                font-size: 24px
+                padding: 0px 24px
+                font-weight: 600
+                cursor: pointer
+                height: 45px
+                margin-top: 25px
+                margin-bottom: 10px
+                font-size: 20px
+                width: 100%
+            .regras, .coincidir
+                p
+                    font-size: 14px
+                    margin: 0
+                    color: rgb(100, 100, 100)
+            .regras
+                display: flex
+                flex-direction: column
+                gap: 10px
+                width: 100%
+                margin-top: 10px
+                .qCaracteres, .maiusculo, .minusculo, .number, .simbolo
+                    display: flex
+                    flex-direction: row
+                    align-items: center
+                    gap: 5px
+                    svg
+                        width: 20px
+                        height: 20px
+                    .check
+                        color: rgba(0, 150, 0, 0.7)
+                    .close
+                        color: rgba(255, 0, 0, 0.7)
+            .coincidir
+                display: flex
+                flex-direction: row
+                align-items: center
+                gap: 10px
+                width: 100%
+                margin-top: 5px
+                margin-bottom: 15px
+                svg
+                    width: 20px
+                    height: 20px
+                .check
+                    color: rgba(0, 150, 0, 0.7)
+                .close
+                    color: rgba(255, 0, 0, 0.7)
+
 @mixin responsivo-1200
     @media (max-width: 1200px)
         @content

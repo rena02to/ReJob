@@ -6,8 +6,8 @@
     @include mixins.flex-align(column)
     img
         width: 100%
-        height: 100%
         position: relative
+        min-height: 700px
     .conteudo
         position: absolute
         p
@@ -20,7 +20,7 @@
         .buttons
             @include mixins.flex-align(row)
             gap: 15px
-            @include mixins.responsivo-800
+            @include mixins.responsivo-500
                 flex-direction: column
             button
                 @include mixins.buttons

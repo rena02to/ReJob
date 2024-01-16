@@ -1,0 +1,215 @@
+.container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #edeff0;
+  top: 60px;
+  width: 100%;
+  height: 1716px;
+}
+
+.container .section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 250px;
+  color: white;
+  background-color: black;
+}
+
+.header_container h2 {
+  width: 760px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.header_container h2 > span {
+  color: #00a3ff;
+}
+
+.body_container {
+  display: flex;
+  width: 100%;
+  height: 1405px;
+  justify-content: space-evenly;
+  background-color: #ffffff;
+  padding-top: 1rem;
+}
+
+.job_list_container {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  height: inherit;
+}
+
+.job_list_container h2 {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 18px;
+}
+
+.vacancies_amount {
+  margin-right: 0.5rem;
+}
+
+.job_list_container span {
+  color: #00a3ff;
+}
+
+.job_list_container .job_list_view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.job_list_container .job_list_view > div {
+  margin-top: 1rem;
+  width: 98%;
+}
+
+.job_list_view .card_joblist {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  height: 467px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .job_list_container {
+    width: 95%;
+  }
+  .body_container {
+    flex-wrap: wrap-reverse;
+    height: auto;
+  }
+}
+
+.filters_container {
+  border-radius: 5px;
+  height: 623px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.filters_container h2 {
+  text-align: center;
+  font-weight: 800;
+  line-height: 18px;
+  font-size: 18px;
+  color: #00a3ff;
+}
+
+.filters_container .filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f0f0f;
+}
+
+.filters .type_of_vacancy {
+  display: flex;
+  justify-content: space-around;
+  color: #7c7c8a;
+}
+
+.salary_range {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.salary_range span {
+  color: #7c7c8a;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.filters_container button {
+  color: white;
+  background-color: #00a3ff;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  align-self: center;
+  font-size: 24px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 45px;
+  font-size: 20px;
+  width: 280px;
+}
+
+.filter_header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.filter_header button {
+  color: white;
+  background-color: #00a3ff;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  padding: 0px 5px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 25.18px;
+  font-size: 11.05px;
+  width: 50px;
+  box-sizing: content-box;
+}
+
+.job_description {
+  height: 222px;
+  text-align: justify;
+  overflow: auto;
+}
+
+.button_outline {
+  color: #00a3ff;
+  background-color: #ffff;
+  border: 2px solid #00a3ff;
+  border-radius: 5px;
+  align-self: center;
+  font-size: 24px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 40px;
+  font-size: 20px;
+  min-width: 240px;
+  width: auto;
+}
+
+.card_joblist_header div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 231px;
+}
+
+.card_joblist_header p {
+  font-size: 18px;
+  font-weight: 800;
+  color: #00a3ff;
+}

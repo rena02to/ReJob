@@ -1,5 +1,6 @@
 package com.efjpr.rejob.controller;
 
+import com.efjpr.rejob.domain.Dto.JobCreate;
 import com.efjpr.rejob.domain.Job;
 import com.efjpr.rejob.service.JobService;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class JobController {
     private JobService jobService;
 
     @PostMapping
-    public ResponseEntity<Job> createJob(@RequestBody Job job) {
+    public ResponseEntity<Job> createJob(@RequestBody JobCreate job) {
         return new ResponseEntity<>(jobService.createJob(job), HttpStatus.CREATED);
     }
 

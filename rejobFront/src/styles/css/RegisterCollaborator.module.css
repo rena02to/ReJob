@@ -1,0 +1,263 @@
+.background {
+  background-color: #D9D9D9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  padding: 100px 0;
+}
+.background .back {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  gap: 10px;
+  top: 20px;
+  left: 35px;
+  text-decoration: none;
+  color: black;
+}
+.background .back svg {
+  height: 40px;
+  width: 40px;
+}
+.background .back p {
+  font-size: 20px;
+}
+.background form {
+  display: flex;
+  background-color: white;
+  padding: 50px;
+  border-radius: 5px;
+}
+@media (max-width: 500px) {
+  .background form {
+    padding: 50px 30px 50px 30px;
+  }
+}
+.background form .rejob {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+}
+.background form .rejob span {
+  color: #00A3FF;
+}
+.background form p {
+  font-size: 20px;
+}
+.background form .inputBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  position: relative;
+}
+.background form .inputBox label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.background form .inputBox .input, .background form .inputBox .inputTel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.background form .inputBox .input input, .background form .inputBox .inputTel input {
+  font-weight: 600;
+  width: 310px;
+  height: 35px;
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+  position: relative;
+  padding-left: 40px;
+}
+@media (max-width: 500px) {
+  .background form .inputBox .input input, .background form .inputBox .inputTel input {
+    width: 250px;
+  }
+}
+.background form .inputBox .input input:focus, .background form .inputBox .inputTel input:focus {
+  border: 3px solid #00A3FF;
+}
+.background form .inputBox .input input[type=password], .background form .inputBox .inputTel input[type=password] {
+  width: 275px;
+  padding-right: 35px;
+}
+.background form .inputBox .input svg, .background form .inputBox .inputTel svg {
+  height: 20px;
+  width: 20px;
+  color: gray;
+  position: absolute;
+  left: 10px;
+}
+.background form .inputBox .inputTextArea {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.background form .inputBox .inputTextArea textarea {
+  font-weight: 600;
+  width: 300px;
+  resize: none;
+  height: 270px;
+  font-family: "Mulish", sans-serif;
+  font-size: 15px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #D9D9D9;
+  color: rgb(100, 100, 100);
+  position: relative;
+  padding: 10px 10px 10px 40px;
+}
+.background form .inputBox .inputTextArea textarea:focus {
+  border: 3px solid #00A3FF;
+}
+.background form .inputBox .inputTextArea svg {
+  height: 20px;
+  width: 20px;
+  color: gray;
+  margin-top: 10px;
+  position: absolute;
+  left: 10px;
+}
+.background form .inputBox .inputTel {
+  margin-top: 5px;
+}
+.background form .inputBox .eye {
+  position: absolute;
+  cursor: pointer;
+  bottom: 12px;
+  right: 15px;
+}
+.background form .selectBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  font-weight: 600;
+}
+.background form .selectBox label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.background form .selectBox .input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.background form .selectBox .input .select {
+  width: 350px;
+}
+.background form .selectBox .input svg {
+  height: 20px;
+  width: 20px;
+  color: gray;
+}
+.background form .selectBox .input .icon {
+  position: absolute;
+  left: 10px;
+}
+.background form .notify, .background form .termos {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+.background form .notify p, .background form .termos p {
+  font-size: 17px;
+  margin: 0;
+}
+.background form .notify input, .background form .termos input {
+  width: 17px;
+  height: 17px;
+}
+.background form .login {
+  font-size: 17px;
+  color: gray;
+}
+.background form .login a {
+  color: gray;
+}
+.background form button {
+  color: white;
+  background-color: #00A3FF;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 45px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  width: 100%;
+}
+.background form .regras p, .background form .coincidir p {
+  font-size: 14px;
+  margin: 0;
+  color: rgb(100, 100, 100);
+}
+.background form .regras {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+.background form .regras .qCaracteres, .background form .regras .maiusculo, .background form .regras .minusculo, .background form .regras .number, .background form .regras .simbolo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.background form .regras .qCaracteres svg, .background form .regras .maiusculo svg, .background form .regras .minusculo svg, .background form .regras .number svg, .background form .regras .simbolo svg {
+  width: 20px;
+  height: 20px;
+}
+.background form .regras .qCaracteres .check, .background form .regras .maiusculo .check, .background form .regras .minusculo .check, .background form .regras .number .check, .background form .regras .simbolo .check {
+  color: rgba(0, 150, 0, 0.7);
+}
+.background form .regras .qCaracteres .close, .background form .regras .maiusculo .close, .background form .regras .minusculo .close, .background form .regras .number .close, .background form .regras .simbolo .close {
+  color: rgba(255, 0, 0, 0.7);
+}
+.background form .coincidir {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+.background form .coincidir svg {
+  width: 20px;
+  height: 20px;
+}
+.background form .coincidir .check {
+  color: rgba(0, 150, 0, 0.7);
+}
+.background form .coincidir .close {
+  color: rgba(255, 0, 0, 0.7);
+}
+
+.background form {
+  flex-direction: column;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=RegisterCollaborator.module.css.map */

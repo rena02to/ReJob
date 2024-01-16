@@ -1,11 +1,11 @@
 package com.efjpr.rejob.service;
 
 import com.efjpr.rejob.domain.Collaborator;
+import com.efjpr.rejob.domain.Dto.JobCreate;
 import com.efjpr.rejob.domain.Job;
 import com.efjpr.rejob.repository.CollaboratorRepository;
 import com.efjpr.rejob.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -23,21 +23,19 @@ public class JobService {
         return jobRepository.findAll();
     }
 
-    public Job createJob(Job job) {
-        Collaborator contactPerson = collaboratorRepository.findById(job.getContactPerson().getId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Collaborator with ID " + job.getContactPerson().getId() + " not found"));
+    public Job createJob(JobCreate jobPayload) {
+        Collaborator contactPerson = collaboratorRepository.findById(jobPayload.getContactPersonId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Collaborator with ID " + jobPayload.getContactPersonId() + " not found"));
 
-
-        job.setContactPerson(contactPerson);
+        Job job = buildJobFromPayload(jobPayload, contactPerson);
 
         return jobRepository.save(job);
     }
 
     public Job getJobById(Long id) {
-        Job job = jobRepository.findById(id)
+        return jobRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Job with id " + id + " not found") {
                 });
-        return job;
     }
 
     public Job updateJob(Long id, Job updatedJob) {
@@ -68,4 +66,23 @@ public class JobService {
         existingJob.setJobStatus(updatedJob.getJobStatus());
 
     }
+    private Job buildJobFromPayload(JobCreate jobPayload, Collaborator contactPerson) {
+        return Job.builder()
+                .companyLocation(jobPayload.getCompanyLocation())
+                .jobType(jobPayload.getJobType())
+                .categories(jobPayload.getCategories())
+                .contactPerson(contactPerson)
+                .jobTitle(jobPayload.getJobTitle())
+                .requirements(jobPayload.getRequirements())
+                .jobDescription(jobPayload.getJobDescription())
+                .benefits(jobPayload.getBenefits())
+                .employmentType(jobPayload.getEmploymentType())
+                .applicationDeadline(jobPayload.getApplicationDeadline())
+                .salaryRange(jobPayload.getSalaryRange())
+                .educationLevel(jobPayload.getEducationLevel())
+                .employmentContractType(jobPayload.getEmploymentContractType())
+                .jobStatus(jobPayload.getJobStatus())
+                .build();
+    }
+
 }
