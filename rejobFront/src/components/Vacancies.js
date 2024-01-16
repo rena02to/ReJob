@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./../styles/css/Vacancies.module.css";
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+import Footer from "./Footer";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { Slider } from "primereact/slider";

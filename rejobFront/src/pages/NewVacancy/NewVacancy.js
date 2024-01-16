@@ -37,7 +37,7 @@ const NewVacancy = () => {
     jobStatus: "ACTIVE"
   });
   const [users, setUsers] = useState([]);
-  const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNTMzMjMyNywiZXhwIjoxNzA1OTM3MTI3fQ.80YA_6kiyAlqvTXu4j0V-1OSwABkmItuDEVoWESDEQ0';
+  const token = sessionStorage.getItem("token");
 
   // GET USERS
   useEffect(() => {
@@ -175,7 +175,7 @@ const NewVacancy = () => {
 
             <InputCustom
               label="Localidade"
-              placeholder="Digite a localização da empresa que oferta a vaga"
+              placeholder="Digite a localidade da vaga"
               type="text"
               id="companyLocation"
               name="companyLocation"

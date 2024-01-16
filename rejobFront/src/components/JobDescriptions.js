@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./../styles/css/JobDescriptions.module.css";
 import NavBar from "./NavBar";
-import Footer from "../components/Footer";
+import Footer from "./Footer";
 
 const JobDescriptions = () => {
   return (
