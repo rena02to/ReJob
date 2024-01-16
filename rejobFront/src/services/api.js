@@ -8,8 +8,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(async (config) => {
-  const JWT =
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcwNTI3MTQ2MCwiZXhwIjoxNzA1MjcyOTAwfQ.GusyAqqq-NwoRrWREh-6FMQYLYhm4bsdyoV9QaxijLQ";
+  const JWT = sessionStorage.getItem("token");
   if (JWT != null) {
     config.headers.Authorization = `Bearer ${JWT}`;
   }
