@@ -17,7 +17,6 @@ function Home(){
     const ultimosDepoimentos = depoimentos.length > 3 ? depoimentos.slice(-3) : depoimentos;
     const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
-
     useEffect(() => {
         const fetchData = () => {
             fetch('http://localhost:5000/vagas')

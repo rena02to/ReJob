@@ -13,6 +13,7 @@ import { MdWorkHistory } from "react-icons/md";
 import { useEffect, useRef } from "react";
 
 function NavBar() {
+  const rotaAtual = window.location.pathname;
   const menuRef = useRef(null);
   const profileRef = useRef(null);
   const dispatch = useDispatch();
@@ -28,9 +29,9 @@ function NavBar() {
 
   const itens = [
     { key: 1, value: "Home", link: "/" },
-    { key: 2, value: "Ver vagas", link: "/Vacancies" },
-    { key: 3, value: "Sou empresa", link: "/beneficiosempresa" },
-    { key: 4, value: "Sobre o projeto", link: "/sobreprojeto" },
+    { key: 2, value: "Ver vagas", link: "/vagas" },
+    { key: 3, value: "Sou empresa", link: "/beneficios-empresa" },
+    { key: 4, value: "Sobre o projeto", link: "/sobre-projeto" },
   ];
 
   useEffect(() => {
@@ -48,7 +49,6 @@ function NavBar() {
       });
       window.addEventListener("resize", updateWindowSize);
     }
-
     return () => {
       window.removeEventListener("resize", updateWindowSize);
     };
@@ -102,13 +102,16 @@ function NavBar() {
     };
   }, [menuOpen, profileOpen, dispatch]);
 
-  const changeActivatedItem = (value) => {
-    dispatch({
-      type: "ChangeMenuOpen",
-    });
+  useEffect(() => {
     dispatch({
       type: "ChangeActivatedItem",
-      payload: value,
+      payload: rotaAtual,
+    });
+  }, [dispatch, rotaAtual]);
+
+  const changeActivatedItem = () => {
+    dispatch({
+      type: "ChangeMenuOpen",
     });
   };
 
@@ -132,15 +135,12 @@ function NavBar() {
             <div className={style.menu} ref={menuRef}>
               <ul>
                 {itens.map((item) => (
-                  <a
-                    key={item.key}
-                    href={item.link}
-                    onClick={() => changeActivatedItem(item.link)}
-                  >
+                  <a key={item.key} href={item.link}>
                     <li
                       className={
                         item.link === activatedItem ? style.ativado : null
                       }
+                      onClick={changeActivatedItem}
                     >
                       {item.value}
                     </li>
@@ -153,11 +153,7 @@ function NavBar() {
       ) : (
         <ul>
           {itens.map((item) => (
-            <a
-              key={item.key}
-              href={item.link}
-              onClick={() => changeActivatedItem(item.link)}
-            >
+            <a key={item.key} href={item.link}>
               <li
                 className={item.link === activatedItem ? style.ativado : null}
               >
@@ -232,10 +228,10 @@ function NavBar() {
           {profileOpen ? (
             <div className={style.profileMenu} ref={profileRef}>
               <p>Entre ou cadastre-se</p>
-              <a>
+              <a href="/login">
                 <button>Entrar</button>
               </a>
-              <a>
+              <a href="/register">
                 <button>Cadastrar-se</button>
               </a>
             </div>
