@@ -32,6 +32,8 @@ const NewVacancy = () => {
       salaryRangeMin: "",
       salaryRangeMax: ""
     },
+    responsibilities: "",
+    requiredExperience: "",
     educationLevel: "",
     employmentContractType: "",
     jobStatus: "ACTIVE"
@@ -84,12 +86,39 @@ const NewVacancy = () => {
     if (!formData.companyLocation || !formData.jobType || !formData.categories || !formData.contactPersonId ||
       !formData.jobTitle || !formData.requirements || !formData.jobDescription ||
       !formData.benefits || !formData.employmentType || !formData.applicationDeadline ||
-      !formData.salaryRange.salaryRangeMin || !formData.salaryRange.salaryRangeMax || !formData.educationLevel || !formData.employmentContractType) {
+      !formData.salaryRange.salaryRangeMin || !formData.salaryRange.salaryRangeMax || !formData.educationLevel || !formData.employmentContractType ||
+      !formData.responsibilities || !formData.requiredExperience ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
         position: toast.POSITION.BOTTOM_RIGHT
       });
       return;
     }
+
+    // Limite de caracteres
+    // if (formData.jobDescription.length < 500 ) {
+    //   toast.warn("O limite de caracteres mínimo em DESCRIÇÃO é: 500", {
+    //     position: toast.POSITION.BOTTOM_RIGHT
+    //   });
+    //   return;
+    // }
+    // if (formData.benefits.length < 500 ) {
+    //   toast.warn("O limite de caracteres mínimo em BENEFÍCIOS é: 500", {
+    //     position: toast.POSITION.BOTTOM_RIGHT
+    //   });
+    //   return;
+    // }
+    // if (formData.responsibilities.length < 500 ) {
+    //   toast.warn("O limite de caracteres mínimo em RESPONSABILIDADES é: 500", {
+    //     position: toast.POSITION.BOTTOM_RIGHT
+    //   });
+    //   return;
+    // }
+    // if (formData.requiredExperience.length < 500 ) {
+    //   toast.warn("O limite de caracteres mínimo em EXPERIÊNCIA REQUERIDA é: 500", {
+    //     position: toast.POSITION.BOTTOM_RIGHT
+    //   });
+    //   return;
+    // }
 
     // Verificação de prazo da candidatura
     const dataInseridaObj = new Date(formData.applicationDeadline)
@@ -100,6 +129,8 @@ const NewVacancy = () => {
       });
       return;
     }
+
+    // console.log(formData);
 
     try {
       const response = await axios.post('http://localhost:8080/api/v1/jobs', formData, {
@@ -286,20 +317,51 @@ const NewVacancy = () => {
               label="Descrição da vaga"
               id="jobDescription"
               name="jobDescription"
-              rows={8}
+              rows={20}
               placeholder="Digite uma descrição a respeito da vaga oferecida"
               value={formData.jobDescription}
               onChange={handleInputChange}
+              charmax={1000}
+              countchar={formData.jobDescription.length}
             />
 
             <TextareaCustom
               label="Benefícios"
               id="benefits"
               name="benefits"
-              rows={8}
+                              rows={20}
+
               placeholder="Digite uma descrição a respeito dos benefícios relacionados com a vaga"
               value={formData.benefits}
               onChange={handleInputChange}
+              charmax={1000}
+              countchar={formData.benefits.length}
+              />
+
+            <TextareaCustom
+              label="Responsabilidades"
+              id="responsibilities"
+              name="responsibilities"
+                              rows={20}
+
+              placeholder="Digite quais serão as responsabilidades vinculadas a vaga"
+              value={formData.responsibilities}
+              onChange={handleInputChange}
+              charmax={1000}
+              countchar={formData.responsibilities.length}
+            />
+
+            <TextareaCustom
+              label="Experiência Requerida"
+              id="requiredExperience"
+              name="requiredExperience"
+                              rows={20}
+
+              placeholder="Digite quais experiências são necessárias para a vaga"
+              value={formData.requiredExperience}
+              onChange={handleInputChange}
+              charmax={1000}
+              countchar={formData.requiredExperience.length}
             />
           </div>
 
