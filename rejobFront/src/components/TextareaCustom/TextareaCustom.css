@@ -9,6 +9,7 @@
 textarea {
     padding: 12px 16px;
     border: solid 2px var(--first-gray);
+    width: 100%;
 }
 
 textarea::placeholder {
@@ -19,4 +20,13 @@ textarea::placeholder {
 textarea:focus {
     border-color: var(--first-blue);
     outline-color: var(--first-blue);
+}
+
+.countChar {
+    color: var(--second-gray);
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
 }
