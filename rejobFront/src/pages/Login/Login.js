@@ -7,6 +7,9 @@ import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import LoginService from './LoginService';
 import { Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Login(){
     const dispatch = useDispatch();
@@ -30,6 +33,18 @@ function Login(){
             navigate('/');
         } catch (error) {
             console.error("Login failed:", error);
+                
+            if (error.response && error.response.status == 403) {
+                console.log("entrou no if do 403");
+                toast.error("Email ou senha incorretos. Por favor, tente novamente.", {
+                    position: toast.POSITION.BOTTOM_RIGHT
+                  });
+            } else {
+                alert("Falha no login. Por favor, tente novamente mais tarde.");
+                toast.error("Falha no login. Por favor, tente novamente mais tarde.", {
+                    position: toast.POSITION.BOTTOM_RIGHT
+                });
+            }
         }
     };
 
@@ -74,6 +89,8 @@ function Login(){
                     <p className={style.crie}>Não possui conta? <a href='/register'>Crie uma agora!</a></p>
                 </Form>
             </Formik>
+
+            <ToastContainer />
         </section>
     );
 }

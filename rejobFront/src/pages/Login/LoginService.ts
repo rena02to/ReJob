@@ -20,7 +20,7 @@ class LoginService {
       return response.data;
     } catch (error) {
       // Handle error (e.g., show error message)
-      console.error('Login failed:', error);
+      console.error('Login faileda:', error);
       throw error;
     }
   }
