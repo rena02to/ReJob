@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Mulish Regular"), local("Mulish-Regular"),
+    url("C:\Users\layla\Downloads\Mulish (1).zip") format("woff2");
+}
+
+body {
+  font-family: "Mulish", sans-serif;
+  background-color: rgb(255, 255, 255) !important;
+}

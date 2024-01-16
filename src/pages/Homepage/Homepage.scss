@@ -1,0 +1,687 @@
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Mulish Regular"), local("Mulish-Regular"),
+    url("C:\Users\layla\Downloads\Mulish (1).zip") format("woff2");
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 0.1rem;
+  flex-direction: column;
+}
+
+.text-container {
+  color: var(--first-white, #fff);
+  font-family: "Mulish", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  position: absolute;
+  text-align: left;
+  align-items: center;
+  font-style: normal;
+  margin-top: 50px;
+  margin-right: 30rem;
+  margin-left: 50px;
+}
+
+.registration-section {
+  span p {
+    color: var(--first-white, #fff);
+    font-family: "Mulish", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-items: center;
+    text-align: left;
+    margin-left: 5px;
+    margin-right: 10x;
+    margin-top: 10px;
+  }
+}
+
+.job-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 5rem;
+}
+
+.text-overlay {
+  p {
+    color: var(--first-white, #ffffff);
+    font-family: "Mulish", sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 100;
+    line-height: normal;
+    margin-top: 60px;
+    margin-left: 3px;
+  }
+}
+
+.button-container {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.button-container {
+  .employee-section {
+    color: var(--first-white, #fff);
+    font-family: "Mulish", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: inline-flex;
+    padding: 10px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 5px;
+    border-radius: 5px;
+    background: var(--first-orange, #ffa100);
+    margin-top: 20px;
+  }
+
+  .company-section {
+    color: var(--first-white, #fff);
+    display: inline-flex;
+    padding: 10px 24px;
+    font-size: 24px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    gap: 10px;
+    border: 5px;
+    background: var(--first-orange, #ffa100);
+    margin-top: 20px;
+  }
+}
+
+.job-int {
+  color: var(--first-orange, #ffa100);
+  font-family: "Mulish", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  h1 {
+    color: var(--third-gray, #7c7c8a);
+    font-family: "Mulish", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+  }
+}
+
+.opportunities-card-list {
+  display: flex;
+  gap: 10px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+.opportunities-card-list {
+  .opportunity-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    width: 300px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 5px;
+    align-items: center;
+    border: 1px solid var(--second-gray, #d2d4d4);
+    background: var(--first-white, #fff);
+    h1 {
+      color: var(--third-gray, #7c7c8a);
+      text-align: center;
+      font-family: "Mulish", sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 100%;
+    }
+    .image-card {
+      display: flex;
+      height: 100px;
+      width: 100px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    .icon-box {
+      display: flex;
+      justify-content: center;
+      width: 300px;
+      height: 120px;
+      flex-shrink: 0;
+      border-radius: 5px 5px 0px 0px;
+      background: var(--second-gray, #d2d4d4);
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      align-self: flex-start;
+    }
+  }
+}
+
+.btns-icon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  button {
+    width: 30%;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: none;
+    background: var(--first-gray, #edeff0);
+    color: var(--third-gray, #7c7c8a);
+    text-align: center;
+    font-family: "Mulish", sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+  }
+}
+
+.subscribe-button {
+  margin-bottom: 4rem;
+  width: 150px;
+  height: 33px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: var(--dark-black, #0f0f0f);
+  color: var(--first-white, #fff);
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.info-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 10px;
+  .card-info {
+    display: flex;
+    align-items: center;
+    color: var(--third-gray, #7c7c8a);
+    text-align: center;
+    font-family: "Mulish";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    width: auto;
+    height: auto;
+    margin: 5px;
+    .icone {
+      width: 14px;
+      height: 14px;
+      margin: 20px;
+    }
+    img {
+      margin-right: 5px;
+    }
+  }
+}
+
+.benifits-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  width: 1024px;
+  flex-shrink: 0;
+  background-color: var(--first-orange, #ffa100);
+  padding: 13rem;
+  h1 {
+    color: var(--dark-black, #0f0f0f);
+    text-align: center;
+    font-family: "Mulish", sans-serif;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+  }
+  div {
+    color: var(--dark-black, #0f0f0f);
+    text-align: justify;
+    font-family: Mulish;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.company-title {
+  width: 1024px;
+  height: 220px;
+  flex-shrink: 0;
+  background: var(--dark-black, #0f0f0f);
+  align-items: center;
+  h1 {
+    color: var(--first-orange, #ffa100);
+    font-family: "Mulish", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    font-weight: 800;
+    line-height: 100%;
+    display: flex;
+  }
+  .company-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+      border-radius: 10px;
+      background: url(), lightgray 50% / cover no-repeat, #d9d9d9;
+    }
+  }
+}
+
+.future-vision-box {
+  display: flex;
+  justify-content: center;
+  width: 890px;
+  height: 201px;
+  display: flex;
+  background: #ffff;
+  .vision-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  h1 {
+    color: var(--dark-black, #0f0f0f);
+    display: flex;
+    justify-content: center;
+    font-family: "Mulish", sans-serif;
+    font-size: 32px;
+    margin: 70px;
+    font-style: normal;
+    margin-bottom: 10px;
+    font-weight: 800;
+    line-height: 100%;
+  }
+}
+
+.rejob-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  .re {
+    color: var(--dark-black, #0f0f0f);
+    font-family: "Mulish", sans-serif;
+    font-size: 36.3px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .job {
+    color: #ffa100;
+    font-family: "Mulish", sans-serif;
+    font-size: 36.338px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  img {
+    margin: 0 6px;
+
+    width: auto;
+  }
+}
+
+.cards-second {
+  display: flex;
+  margin: 40px;
+  width: 1024px;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.work-opportunity {
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  flex-direction: wrap;
+  justify-content: center;
+}
+
+.work-opportunity .opportunity-card2 {
+  display: flex;
+  gap: 25px;
+  width: 300px;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 5px;
+  align-items: center;
+  border: 1px solid var(--second-gray, #d2d4d4);
+  background: var(--first-white, #fff);
+}
+.opportunity-card2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.opportunity-card2 .image-card {
+  display: flex;
+  height: 100px;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+.opportunity-card2 .icon-box2 {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: 5px 5px 0px 0px;
+  background: var(--second-gray, #d2d4d4);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  align-self: flex-start;
+}
+.opportunity-card2 .card-title-profile {
+  color: var(--third-gray, #7c7c8a);
+  text-align: center;
+  font-family: "Mulish", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%;
+  margin: 0;
+}
+.card-info-profile {
+  width: 165px;
+  height: auto;
+  color: var(--third-gray, #7c7c8a);
+  text-align: justify;
+  font-family: "Mulish", sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+.card-info-end {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  color: var(--dark-black, #0f0f0f);
+  text-align: justify;
+  font-family: "Mulish", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+.card-info-end img {
+  margin: 0 10px;
+
+  width: auto;
+  height: auto;
+}
+.company-container {
+  color: var(--first-orange, #ffa100);
+  font-family: "Mulish", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  margin: 5px;
+}
+.benifits-section2 {
+  width: 1024px;
+  height: auto;
+  flex-shrink: 0;
+  background-color: rgba(237, 239, 240, 1);
+}
+
+.benifits-section2 h1 {
+  color: #ffa100;
+  text-align: center;
+  font-family: "Mulish", sans-serif;
+  font-size: 24px;
+  padding: 30px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.company-title2 {
+  width: 1024px;
+  height: 220px;
+  flex-shrink: 0;
+
+  background-color: #0f0f0f;
+  align-items: center;
+}
+.benifits-section2 .about {
+  color: var(--dark-black, #0f0f0f);
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: "Mulish", sans-serif;
+  font-size: 32px;
+  margin: 50px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 70px;
+}
+.about .company-container2 {
+  color: #ffa100;
+  font-family: "Mulish", sans-serif;
+  font-size: 36.3px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 5px;
+}
+
+.about2 {
+  color: var(--dark-black, #0f0f0f);
+  text-align: justify;
+  align-items: center;
+  font-family: "Mulish", sans-serif;
+  margin: 50px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.about2 .job {
+  color: var(--first-orange, #ffa100);
+}
+.about2 .rejob2 .re {
+  color: #ffa100;
+  font-family: "Mulish", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.about .rejob2 {
+  font-size: 24px;
+  color: #0f0f0f;
+}
+
+.about strong {
+  font-weight: bold;
+}
+.footer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  display: flex;
+  width: 1480px;
+  height: 285px;
+  background: var(--dark-black, #0f0f0f);
+}
+.footer .re-white {
+  color: var(--first-white, #fff);
+  font-family: "Mulish", sans-serif;
+  font-size: 57.59px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.footer .job-footer {
+  color: #ffa100;
+  align-items: center;
+  margin-top: 5px;
+  font-family: "Mulish", sans-serif;
+  font-size: 57.59px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.footer-rejob .rejob-container-footer {
+  align-items: center;
+  display: flex;
+  justify-content: left;
+  margin-left: 22rem;
+}
+.footer .rejob-container-footer {
+  display: flex;
+  align-items: center;
+}
+.rejob-container-footer img {
+  margin: 10px;
+}
+.footer .vertical-line {
+  border-left: 1px solid #ffffff;
+  height: 70%;
+  margin-left: 10rem;
+}
+.footer .vertical-line2 {
+  border-left: 1px solid #ffffff;
+  width: 1px;
+  height: 70%;
+  margin: 0;
+}
+.footer .contact {
+  color: var(--first-white, #fff);
+  font-family: "Mulish", sans-serif;
+  font-size: 18px;
+  margin: 5px;
+  margin-top: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 60px;
+}
+.vertical-line .address {
+  color: var(--first-white, #fff);
+  font-family: "Mulish", sans-serif;
+  margin: 5px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 60px;
+}
+.footer .horizontal-line {
+  border-top: 1px solid #ffffff;
+  display: flex;
+  align-items: center;
+  width: 278px;
+  height: 1px;
+  padding: 5px;
+  margin: 0 61px;
+}
+.vertical-line p {
+  color: var(--first-white, #fff);
+  font-family: "Mulish", sans-serif;
+  text-align: justify;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 60px;
+  align-self: stretch;
+}
+.footer-icon-topic {
+  color: var(--first-white, #fff);
+  font-family: "Mulish", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 24px;
+  height: 24px;
+}
+.footer-topics {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-icon-topic {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.footer-icon-topic img {
+  background-color: #0f0f0f;
+  margin-right: 10px;
+  object-fit: contain;
+  margin: 5rem;
+}
+.university-line p {
+  display: flex;
+  font-family: "Mulish", sans-serif;
+  width: 1440px;
+  padding: 10px 547px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  color: var(--Primary-dark, #2c3e50);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 5px;
+  background-color: #fff;
+}
