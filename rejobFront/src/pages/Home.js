@@ -1,6 +1,6 @@
 import style from './../styles/css/Home.module.css';
 import NavBar from './../components/NavBar';
-import Footer from '../components/Footer';
+import Footer from './../components/Footer';
 import backImageHome from './../images/backImageHome.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
