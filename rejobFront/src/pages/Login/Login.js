@@ -40,7 +40,6 @@ function Login(){
                     position: toast.POSITION.BOTTOM_RIGHT
                   });
             } else {
-                alert("Falha no login. Por favor, tente novamente mais tarde.");
                 toast.error("Falha no login. Por favor, tente novamente mais tarde.", {
                     position: toast.POSITION.BOTTOM_RIGHT
                 });
