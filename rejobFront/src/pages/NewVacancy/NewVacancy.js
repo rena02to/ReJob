@@ -16,6 +16,7 @@ import './NewVacancy.css'
 
 const NewVacancy = () => {
   // Variaveis
+  // eslint-disable-next-line
   const [empresa, setEmpresa] = useState("Starbucks")
   const [formData, setFormData] = useState({
     companyLocation: "",
@@ -57,7 +58,7 @@ const NewVacancy = () => {
     };
 
     fetchUsers();
-  }, []);
+  }, [token]);
 
   // Atualizar valores dos inputs, selects e textareas nas variáveis
   const handleInputChange = (event) => {
@@ -224,8 +225,8 @@ const NewVacancy = () => {
             />
 
             <InputCustom
-              label="Requerimentos"
-              placeholder="Digite requerimentos necessários para a vaga"
+              label="Requisitos"
+              placeholder="Digite os conhecimentos necessários para a vaga"
               type="text"
               id="requirements"
               name="requirements"

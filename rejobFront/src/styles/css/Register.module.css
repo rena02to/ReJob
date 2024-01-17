@@ -1,5 +1,5 @@
 .register {
-  margin-top: 70px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,6 +28,9 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
+}
+.register .conteudo .buttons a{
+  text-decoration: none;
 }
 @media (max-width: 500px) {
   .register .conteudo .buttons {
