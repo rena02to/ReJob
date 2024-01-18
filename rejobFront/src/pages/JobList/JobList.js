@@ -142,7 +142,7 @@ function JobList() {
                             : job.categories}
                         </button>
                       </div>
-                      <div className="self-center h-[40px] w-[309.18px]text-end">
+                      <div className="flex justify-end self-center h-auto w-2/5 text-end">
                         <div className="flex text-justify text-gray-500">
                           {job.companyName && (
                             <>
