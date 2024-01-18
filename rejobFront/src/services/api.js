@@ -13,8 +13,6 @@ api.interceptors.request.use(async (config) => {
     config.headers.Authorization = `Bearer ${JWT}`;
   }
 
-  console.log("jdasd", config);
-
   return config;
 });
 

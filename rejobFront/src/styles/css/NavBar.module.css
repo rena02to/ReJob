@@ -1,5 +1,6 @@
 .navbar {
   display: flex;
+  position: relative !important;
   flex-direction: row;
   justify-content: center;
   align-items: center;
