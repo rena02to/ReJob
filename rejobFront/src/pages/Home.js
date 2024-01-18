@@ -11,12 +11,11 @@ import { GoBook } from "react-icons/go";
 
 function Home(){
     const dispatch = useDispatch();
-    // eslint-disable-next-line
     const { vagas, empresas, depoimentos, ongs } = useSelector(rootrRedux => rootrRedux.useReducer);
     const ultimasVagas = vagas.length > 6 ? vagas.slice(-6).reverse() : vagas;
-    //const melhoresEmpresas = empresas.length > 6 ? empresas.slice(-6) : empresas;
+    const melhoresEmpresas = empresas.length > 6 ? empresas.slice(-6) : empresas;
     //const ultimosDepoimentos = depoimentos.length > 3 ? depoimentos.slice(-3) : depoimentos;
-    //const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
+    const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
     useEffect(() => {
         const carregarVagas = () => {
@@ -26,17 +25,18 @@ function Home(){
             .catch((err) => console.log(err));
         }
 
-        const carregarEmpresas = async () => {
+        const carregarDadosEstaticos = async () => {
             try {
                 const data = require('./componentsForHome.json');
-                dispatch({type: "setEmpresas", payload: data})
+                dispatch({type: "setEmpresas", payload: data.empresas})
+                //dispatch({type: "setOngs", payload: data.empresas})
             } catch (error) {
                 console.error('Erro ao carregar Estados:', error);
             }
         }
 
         carregarVagas();
-        carregarEmpresas();
+        carregarDadosEstaticos();
     }, [dispatch]);
 
     return(
@@ -135,13 +135,13 @@ function Home(){
                         <p className={style.beneficiosTexto}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br /><br />Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br /><br />Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                         <div className={style.melhoresEmpresasContainer}>
                             <h2>Algumas empresas que já contrataram com a ReJob</h2>
-                            {/*<div className={style.melhoresEmpresas}>
-                                {melhoresEmpresas.map((empresa) => (
-                                    <a href={empresa.link} key={empresa.key}>
+                            <div className={style.melhoresEmpresas}>
+                                {melhoresEmpresas.map((empresa, index) => (
+                                    <a href={`empresa/${empresa.id}`} key={index}>
                                         <img src={empresa.imagem} alt='Imagem da empresa' />
                                     </a>
                                 ))}
-                            </div>*/}
+                            </div>
                         </div>
                     </div>
                     <div className={style.futurosReconstruidos}>
@@ -166,7 +166,7 @@ function Home(){
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                        </div>*/}
                         <div className={style.ongs}>
                             <h2>Algumas ONG&apos;s que tem parceria com a ReJob</h2>
                             <div className={style.melhoresOngs}>
@@ -180,7 +180,7 @@ function Home(){
                         <div className={style.sobreRejob}>
                             <h2>Sobre a Re<span>Job</span></h2>
                             <p>A <span>Re<span>Job</span></span> se trata de um software desenvolvido na disciplina de Projeto de Desenvolvimento de Software na Universidade Federal de Alagoas.<br /><br />Consiste em um sistema desenvolvido com o objetivo de promover a reintegração de detentos e ex-detentos na sociedade por meio da conexão dos mesmos, com empresas interessadas na causa, conectando-os ao mercado de trabalho de forma mais simples e eficiente.<br /><br />Além disso, tende a ofertar cursos na área de interesse do indivíduo para assim profissionalizá-lo e prepará-lo para o mercado de trabalho.</p>
-                        </div>*/}
+                        </div>
                     </div>
                 </div>
             </section>
