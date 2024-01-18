@@ -12,10 +12,10 @@ function Register(){
                 <div className={style.conteudo}>
                     <p>Bem vindo!<br />Cadastre-se como <span>colaborador</span><br />ou <span>empresa</span></p>
                     <div className={style.buttons}>
-                        <a href='/register/collaborator/'>
+                        <a href='/registro/colaborador/'>
                             <button>Sou colaborador</button>
                         </a>
-                        <a href='/register/company/'>
+                        <a href='/registro/empresa/'>
                             <button>Sou empresa</button>
                         </a>
                     </div>

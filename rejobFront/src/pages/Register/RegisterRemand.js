@@ -3,7 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { useEffect } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaClipboardUser, FaRegCalendar, FaCheck, FaUserGraduate, FaPersonChalkboard, FaRegTrashCan, FaPencil } from 'react-icons/fa6';
+import { FaClipboardUser, FaRegCalendar, FaCheck, FaUserGraduate, FaPersonChalkboard } from 'react-icons/fa6';
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 import { HiIdentification } from "react-icons/hi2";
@@ -15,7 +15,7 @@ import { RiDoorLockLine } from "react-icons/ri";
 
 function RegisterRemand(){
     const dispatch = useDispatch();
-    const { visibilityPassword, visibilityRepeatPassword, coincidir, qCaracteres, maiusculo, minusculo, numero, simbolo, states, cityes, estado, cidade, statesAndCityes, experiencias, habilidades, modalOpen, nameHability, levelHability } = useSelector(rootReducer => rootReducer.useReducer)
+    const { visibilityPassword, visibilityRepeatPassword, coincidir, qCaracteres, maiusculo, minusculo, numero, simbolo, states, cityes, estado, cidade, statesAndCityes } = useSelector(rootReducer => rootReducer.useReducer)
 
     const initialValues = {
         name: '',
@@ -68,13 +68,13 @@ function RegisterRemand(){
         {key: 9, value: "Serviços Gerais", name: "sg"},
     ]
 
-    const levels = [
+    /*const levels = [
         {value: "Noções básicas", label: "Noções básicas"},
         {value: "Iniciante", label: "Iniciante"},
         {value: "Intermediário", label: "Intermediário"},
         {value: "Avançado", label: "Avançado"},
         {value: "Especialista", label: "Especialista"}
-    ]
+    ]*/
 
     const Teste = () => {
         const password = document.getElementById("password").value;
@@ -126,22 +126,22 @@ function RegisterRemand(){
     }
 
     useEffect(() => {
-        const fetchData = () => {
-            fetch('http://localhost:5000/estados')
-            .then((resp) => resp.json())
-            .then((data) => {
+        const fetchData = async () => {
+            try {
+                const data = require('../NewVacancy/states.json');
                 let options2 = [];
-                data.map((estado) => (
+                data.estados.map((estado) => (
                     options2.push({value: estado.nome, label: estado.nome})
                 ));
                 dispatch({type: "setStates", payload: options2});
-                dispatch({type: 'setStatesAndCityes', payload: data});
-            })
-            .catch((err) => console.log(err));
-        }
-
+                dispatch({type: 'setStatesAndCityes', payload: data.estados});
+            } catch (error) {
+                console.error('Erro ao carregar Estados:', error);
+            }
+        };
+    
         fetchData();
-    }, [dispatch])
+    }, [dispatch]);
 
     const alteraEstado = (opcao) => {
         dispatch({type: "setCidade", payload: null});
@@ -149,32 +149,12 @@ function RegisterRemand(){
         let cidades = statesAndCityes.find(estado => estado.nome === opcao.value);
         cidades = cidades.cidades;
         let opcoes = [];
+        //eslint-disable-next-line
         cidades.map((cidade) => {
             opcoes.push({value: cidade, label: cidade});
         })
         dispatch({type: "setCityes", payload: opcoes});
     }
-
-    //const openModal = (formik) => {
-    //    dispatch({type: "openModal"})
-    //    dispatch({type: "setLevelHability", payload: null});
-    //    formik.setFieldValue("nameHability", null);
-    //}
-
-    //const setHabilidade = (formikProps) => {
-    //    const name = document.getElementById("nameHability").value;
-    //    const level = levelHability.value;
-    //    if(levelHability !== null && name !== ''){
-    //        dispatch({type: "setHabilidades", payload: {name, level}});
-    //    }
-    //    openModal(formikProps);
-    //}
-
-    //const editHability = (index) => {
-    //    const name = document.getElementById("nameHability").value;
-
-    //    dispatch({type: "editHabilidade", payload: (index, {name, levelHability})})
-    //}
 
     return(
         <section className={style.background}>

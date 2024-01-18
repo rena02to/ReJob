@@ -27,41 +27,41 @@ function Rotas() {
         />
         <Route
           exact
-          path="/register"
+          path="/registro"
           element={isLoged ? <Navigate to="/" /> : <Register />}
         />
         <Route
           exact
-          path="/register/collaborator/"
+          path="/registro/colaborador/"
           element={isLoged ? <Navigate to="/" /> : <RegisterCollaborator />}
         />
         <Route
           exact
-          path="/register/company/"
+          path="/registro/empresa/"
           element={isLoged ? <Navigate to="/" /> : <RegisterCompany />}
         />
         <Route
           exact
-          path="/collaborator/registerremand/"
+          path="/colaborador/registro-ressocializado/"
           element={isLoged ? <Navigate to="/login" /> : <RegisterRemand />}
         />
         <Route path="/*" element={<NotFound />} />
 
-        <Route path="/newVacancy" element={<NewVacancy/>} />
+        <Route path="/nova-vaga" element={<NewVacancy/>} />
         <Route
           exact
-          path="/jobs/"
-          element={isLoged ? <Navigate to="/" /> : <JobList />}
+          path="/vagas/"
+          element={<JobList />}
         ></Route>
         <Route
           exact
-          path="/jobs/:index"
-          element={isLoged ? <Navigate to="/" /> : <JobDetails />}
+          path="/vagas/:index"
+          element={<JobDetails />}
         ></Route>
         <Route
           exact
           path="/serviços-gerais"
-          element={isLoged ? <Navigate to="/" /> : <GeneralServices />}
+          element={<GeneralServices />}
         ></Route>
       </Routes>
     </Router>

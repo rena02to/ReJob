@@ -20,22 +20,22 @@ function RegisterCompany(){
     const { visibilityPassword, visibilityRepeatPassword, coincidir, qCaracteres, maiusculo, minusculo, numero, simbolo, statesAndCityes, states, cityes, estado, cidade } = useSelector(rootReducer => rootReducer.useReducer)
 
     useEffect(() => {
-        const fetchData = () => {
-            fetch('http://localhost:5000/estados')
-            .then((resp) => resp.json())
-            .then((data) => {
+        const fetchData = async () => {
+            try {
+                const data = require('../NewVacancy/states.json');
                 let options2 = [];
-                data.map((estado) => (
+                data.estados.map((estado) => (
                     options2.push({value: estado.nome, label: estado.nome})
                 ));
                 dispatch({type: "setStates", payload: options2});
-                dispatch({type: 'setStatesAndCityes', payload: data});
-            })
-            .catch((err) => console.log(err));
-        }
-
+                dispatch({type: 'setStatesAndCityes', payload: data.estados});
+            } catch (error) {
+                console.error('Erro ao carregar Estados:', error);
+            }
+        };
+    
         fetchData();
-    }, [])
+    }, [dispatch]);
 
 
     const initialValues = {
@@ -120,8 +120,10 @@ function RegisterCompany(){
         let cidades = statesAndCityes.find(estado => estado.nome === opcao.value);
         cidades = cidades.cidades;
         let opcoes = [];
+        //eslint-disable-next-line
         cidades.map((cidade) => {
-            opcoes.push({value: cidade, label: cidade});
+
+            opcoes.push({value: cidade, label: cidade})
         })
         dispatch({type: "setCityes", payload: opcoes});
     }
@@ -184,7 +186,7 @@ function RegisterCompany(){
                     </div>
 
                     <div className={style.inputBox}>
-                        <label fhtmlForor="qFunc">Quantidade de funcionários</label>
+                        <label htmlFor="qFunc">Quantidade de funcionários</label>
                         <div className={style.input}>
                             <Field name="qFunc" id="qFunc" type="number" placeholder="1" required />
                             <FaUsers />

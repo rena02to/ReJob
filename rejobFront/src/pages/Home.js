@@ -19,15 +19,25 @@ function Home(){
     //const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
     useEffect(() => {
-        const fetchData = () => {
+        const carregarVagas = () => {
             fetch('http://localhost:8080/api/v1/jobs')
             .then((resp) => resp.json())
             .then((data) => dispatch({type: 'setVagas', payload: data}))
             .catch((err) => console.log(err));
         }
 
-        fetchData();
-    }, [dispatch])
+        const carregarEmpresas = async () => {
+            try {
+                const data = require('./componentsForHome.json');
+                dispatch({type: "setEmpresas", payload: data})
+            } catch (error) {
+                console.error('Erro ao carregar Estados:', error);
+            }
+        }
+
+        carregarVagas();
+        carregarEmpresas();
+    }, [dispatch]);
 
     return(
         <>
@@ -40,10 +50,10 @@ function Home(){
                             <p className={style.title}>OPORTUNIDADES DE <br />TRABALHO COM FOCO EM<br /><span>REINTEGRAÇÃO SOCIAL</span></p>
                             <p className={style.cadastre}>Cadastre-se e comece a construir um novo futuro!</p>
                             <div className={style.buttons}>
-                                <a href='/register/colaborador' className={style.colaborador}>
+                                <a href='/beneficios/colaborador' className={style.colaborador}>
                                     <button>Sou colaborador</button>
                                 </a>
-                                <a href='/register/empresa' className={style.colaboradorEmpresa}>
+                                <a href='/beneficios/empresa' className={style.colaboradorEmpresa}>
                                     <button>Sou empresa</button>
                                 </a>
                             </div>
@@ -54,7 +64,7 @@ function Home(){
                         <h2>Nossas últimas vagas</h2>
                         <div className={style.cards}>
                             {ultimasVagas.map((vaga) => (
-                                <div className={style.cardVaga} key={vaga.key}>
+                                <div className={style.cardVaga} key={vaga.id}>
                                     <div className={style.imagem}>
                                         <img src={RejobSimbol} alt='Empresa'/>
                                     </div>

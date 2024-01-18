@@ -99,7 +99,7 @@ function JobList() {
   };
 
   const goToDetailsPage = (index) => {
-    navigate(`/jobs/${index}`);
+    navigate(`/vagas/${index}`);
   };
 
   return (
