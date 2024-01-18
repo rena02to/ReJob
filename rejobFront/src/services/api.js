@@ -11,6 +11,7 @@ api.interceptors.request.use(async (config) => {
   const JWT = sessionStorage.getItem("token");
   if (JWT != null) {
     config.headers.Authorization = `Bearer ${JWT}`;
+    console.log(config.headers.Authorization);
   }
 
   return config;
