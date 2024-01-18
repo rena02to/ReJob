@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { Slider } from "primereact/slider";
-import api from "../../services/Api";
+import api from "../../services/api";
 
 function Vacancies() {
   const [state, setState] = useState(null);
