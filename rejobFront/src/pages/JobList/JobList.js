@@ -71,7 +71,6 @@ function JobList() {
     const fetchData = async () => {
       try {
         const response = await api.get("/jobs");
-        console.log(response);
         setJobs(response.data);
       } catch (error) {
         console.error("Erro na requisição:", error);
@@ -98,8 +97,8 @@ function JobList() {
     setSalaryRange([1000, 30000]);
   };
 
-  const goToDetailsPage = (index) => {
-    navigate(`/jobs/${index}`);
+  const goToDetailsPage = (jobId) => {
+    navigate(`/jobs/${jobId}`);
   };
 
   return (
@@ -122,9 +121,9 @@ function JobList() {
                 disponíveis
               </h2>
               <div className={styles.job_list_view}>
-                {jobs.map((job, index) => (
+                {jobs.map((job) => (
                   <div
-                    key={index}
+                    key={job.id}
                     className={styles.card_joblist}
                     onClick={() => goToDetailsPage(job.id)}
                   >
