@@ -71,7 +71,6 @@ function JobList() {
     const fetchData = async () => {
       try {
         const response = await api.get("/jobs");
-        console.log(response);
         setJobs(response.data);
       } catch (error) {
         console.error("Erro na requisição:", error);
@@ -122,11 +121,11 @@ function JobList() {
                 disponíveis
               </h2>
               <div className={styles.job_list_view}>
-                {jobs.map((job, index) => (
+                {jobs.map((job) => (
                   <div
-                    key={index}
+                    key={job.id}
                     className={styles.card_joblist}
-                    onClick={() => goToDetailsPage(index + 1)}
+                    onClick={() => goToDetailsPage(job.id)}
                   >
                     <div className="flex justify-between gap-3">
                       <div>
@@ -137,10 +136,12 @@ function JobList() {
                           {job.jobTitle}
                         </p>
                         <button className={styles.button_outline}>
-                          {job.categories}
+                          {job.categories.split("").length > 25
+                            ? job.categories.substring(0, 25) + "..."
+                            : job.categories}
                         </button>
                       </div>
-                      <div className="self-center h-[40px] w-[309.18px]text-end">
+                      <div className="flex justify-end self-center h-auto w-2/5 text-end">
                         <div className="flex text-justify text-gray-500">
                           {job.companyName && (
                             <>

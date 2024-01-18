@@ -27,8 +27,6 @@ function Login(){
             values.email,
             values.password
             );
-
-            console.log("Login successful:", AuthResponse);
             
             navigate('/');
         } catch (error) {
