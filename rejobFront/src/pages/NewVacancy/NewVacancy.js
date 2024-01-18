@@ -158,13 +158,9 @@ const NewVacancy = () => {
       return;
     }
 
-    console.log(formData);
 
     try {
       const response = await api.post('/jobs', formData);
-
-      console.log('Resposta da API:', response.data);
-
       toast.success("A nova vaga foi ofertada com sucesso.", {
         position: toast.POSITION.BOTTOM_RIGHT
       });

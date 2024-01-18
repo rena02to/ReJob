@@ -27,15 +27,12 @@ function Login(){
             values.email,
             values.password
             );
-
-            console.log("Login successful:", AuthResponse);
             
             navigate('/');
         } catch (error) {
             console.error("Login failed:", error);
                 
             if (error.response && error.response.status == 403) {
-                console.log("entrou no if do 403");
                 toast.error("Email ou senha incorretos. Por favor, tente novamente.", {
                     position: toast.POSITION.BOTTOM_RIGHT
                   });

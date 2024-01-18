@@ -9,13 +9,13 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
 
 const JobDetails = () => {
-  const { index } = useParams();
+  const { id } = useParams();
   const [job, setJob] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`/jobs/${index}`);
+        const response = await api.get(`/jobs/${id}`);
         setJob(response.data);
       } catch (error) {
         console.error("Erro na requisição:", error);
@@ -23,7 +23,7 @@ const JobDetails = () => {
     };
 
     fetchData();
-  }, [index]);
+  }, [id]);
 
   return (
     <>
