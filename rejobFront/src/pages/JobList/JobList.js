@@ -137,7 +137,9 @@ function JobList() {
                           {job.jobTitle}
                         </p>
                         <button className={styles.button_outline}>
-                          {job.categories}
+                          {job.categories.split("").length > 25
+                            ? job.categories.substring(0, 25) + "..."
+                            : job.categories}
                         </button>
                       </div>
                       <div className="self-center h-[40px] w-[309.18px]text-end">
