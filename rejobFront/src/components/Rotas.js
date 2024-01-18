@@ -5,7 +5,7 @@ import Homepage from "./../pages/Home";
 import NotFound from "./../pages/NotFound";
 import Register from "./../pages/Register/Register";
 import RegisterCollaborator from "./../pages/Register/RegisterCollaborator";
-import RegisterCompany from "./../pages/Register/RegisterCompany/RegisterCompany";
+import RegisterCompany from "./../pages/Register/RegisterCompany";
 import RegisterRemand from "./../pages/Register/RegisterRemand";
 import JobDetails from "../pages/JobDetails/JobDetails";
 import GeneralServices from "../pages/GeneralServices/GeneralServices";
