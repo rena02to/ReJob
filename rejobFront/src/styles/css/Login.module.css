@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100vh !important;
   position: relative;
   padding: 100px 0;
 }
@@ -32,6 +32,7 @@
   background-color: white;
   padding: 50px;
   border-radius: 5px;
+  margin-top: 75px;
 }
 @media (max-width: 500px) {
   .background form {
@@ -69,7 +70,7 @@
 }
 .background form .inputBox .input input, .background form .inputBox .inputTel input {
   font-weight: 600;
-  width: 310px;
+  width: 350px;
   height: 35px;
   border: 1px solid #D9D9D9;
   border-radius: 5px;
@@ -87,7 +88,7 @@
   border: 3px solid #00A3FF;
 }
 .background form .inputBox .input input[type=password], .background form .inputBox .inputTel input[type=password] {
-  width: 275px;
+  width: 350px;
   padding-right: 35px;
 }
 .background form .inputBox .input svg, .background form .inputBox .inputTel svg {

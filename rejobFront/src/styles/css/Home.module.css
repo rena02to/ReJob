@@ -181,11 +181,14 @@
   flex-wrap: wrap;
   overflow: hidden;
   width: 85%;
+  height: auto;
 }
 .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .empresa,
 .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .local,
 .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .nivel,
-.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .tipo {
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .tipo,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .faixaSalarial,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .escolaridade {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -194,8 +197,20 @@
 .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .empresa svg,
 .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .local svg,
 .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .nivel svg,
-.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .tipo svg {
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .tipo svg,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .faixaSalarial svg,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .escolaridade svg {
   margin-right: 2px;
+  width: 17px;
+  height: 17px;
+}
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .empresa p,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .local p,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .nivel p,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .tipo p,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .faixaSalarial p,
+.vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .escolaridade p {
+  display: flex;
 }
 .vagas .containerMain .ultimasVagas .cards .cardVaga .sobre .empresa a {
   text-decoration: none;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styles from "./../../styles/css/JobList.module.css";
 import NavBar from "../../components/NavBar";
@@ -80,6 +79,7 @@ function JobList() {
   }, []);
 
   const handleFilterClick = () => {
+    // eslint-disable-next-line
     const filters = {
       state,
       presencial,
@@ -96,7 +96,7 @@ function JobList() {
   };
 
   const goToDetailsPage = (index) => {
-    navigate(`/detalhes-vaga/${index}`);
+    navigate(`/jobs/${index}`);
   };
 
   return (

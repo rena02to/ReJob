@@ -50,12 +50,12 @@ function Rotas() {
         <Route path="/newVacancy" element={<NewVacancy/>} />
         <Route
           exact
-          path="/vagas"
+          path="/jobs/"
           element={isLoged ? <Navigate to="/" /> : <JobList />}
         ></Route>
         <Route
           exact
-          path="/detalhes-vaga/:index"
+          path="/jobs/:index"
           element={isLoged ? <Navigate to="/" /> : <JobDetails />}
         ></Route>
         <Route
