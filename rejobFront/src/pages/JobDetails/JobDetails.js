@@ -80,8 +80,8 @@ const JobDetails = () => {
       </div>
       <div className="flex justify-center w-full h-[1405px]">
         <div className={styles.body_container}>
-          <div className="flex flex-col justify-center items-center gap-8 w-[843px] md:w-[400px]">
-            <div className="w-full md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[800px] p-8 shadow-md bg-white">
+          <div className="flex flex-col justify-center items-center gap-8 w-[843px] md:w-5/6">
+            <div className="w-5/6 h-[467px] p-8 rounded shadow-md bg-white">
               <h1 className="text-lg md:text-xl font-semibold">
                 Empresa -{" "}
                 <span className="text-customColor">{job.companyName}</span>
@@ -99,7 +99,7 @@ const JobDetails = () => {
                 {job.benefits}
               </p>
             </div>
-            <div className="flex flex-col gap-4 w-full md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[800px] p-8 shadow-md bg-white">
+            <div className="flex flex-col gap-4 w-5/6 rounded h-[467px] p-8 shadow-md bg-white">
               <span className="text-lg text-customColor md:text-xl font-semibold">
                 Requisitos
               </span>
@@ -122,14 +122,16 @@ const JobDetails = () => {
                 {job.requiredExperience}
               </p>
             </div>
-            <div className="flex flex-col gap-4 w-full md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[800px] p-8 shadow-md bg-white">
-              <span className="text-lg text-customColor md:text-xl font-semibold">
-                Atividades
-              </span>
-              <p className=" text-gray-500 text-base md:text-lg">
-                {job.responsibilities}
-              </p>
-            </div>
+            {job.responsibilities && (
+              <div className="flex flex-col gap-4 w-5/6 rounded h-[467px] p-8 shadow-md bg-white">
+                <span className="text-lg text-customColor md:text-xl font-semibold">
+                  Atividades
+                </span>
+                <p className=" text-gray-500 text-base md:text-lg">
+                  {job.responsibilities}
+                </p>
+              </div>
+            )}
             <div className={styles.subscribeCard}>
               <h1>Ficou interessado na vaga?</h1>
               <h3> Demonstre o seu interesse e seja encontrado pela empresa</h3>
