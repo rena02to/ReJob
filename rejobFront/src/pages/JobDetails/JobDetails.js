@@ -43,12 +43,18 @@ const JobDetails = () => {
                   <span>{job.companyName}</span>
                 </div>
               )}
-              {/* {job.companyLocation && (
+              {job.companyLocation && (
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
                   <FaLocationDot />
-                  <span>{job.companyLocation}</span>
+                  <span>
+                    {job.companyLocation.city +
+                      "," +
+                      job.companyLocation.state +
+                      "," +
+                      job.companyLocation.address}
+                  </span>
                 </div>
-              )} */}
+              )}
               {job.educationLevel && (
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
                   <ImStatsBars />
@@ -86,9 +92,16 @@ const JobDetails = () => {
                 Empresa -{" "}
                 <span className="text-customColor">{job.companyName}</span>
               </h1>
-              <h2 className="text-gray-500 text-sm md:text-base">
-                {/* {job.companyLocation} */}
-              </h2>
+              {job.companyLocation &&
+              (
+                <h2 className="text-gray-500 text-sm md:text-base">
+                  {job.companyLocation.city +
+                    "," +
+                    job.companyLocation.state +
+                    "," +
+                    job.companyLocation.address}
+                </h2>
+              )}
               <p className=" text-base md:text-lg my-2">
                 <span className="ml-4 text-gray-500">{job.jobDescription}</span>
               </p>
