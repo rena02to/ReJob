@@ -1,0 +1,60 @@
+:root {
+  --first-blue: #00A3FF;
+  --dark-black: #0F0F0F;
+  --first-gray: #EDEFF0;
+  --second-gray: #D2D4D4;
+  --third-gray: #7C7C8A;
+}
+
+.background {
+  background-color: var(--first-gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.back-button {
+  position: absolute;
+  top: 56px;
+  left: 56px;
+}
+
+.container {
+  background-color: white;
+  min-width: 500px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.title-box {
+  text-align: center;
+  padding-top: 46px;
+}
+
+.title-box h1 {
+  color: black;
+}
+
+.title-box h1 span {
+  color: var(--first-blue);
+}
+
+.title-box p {
+  margin-top: 0;
+  color: var(--dark-black);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form .campos {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  padding: 12px;
+  width: 100%;
+}

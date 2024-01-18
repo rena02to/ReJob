@@ -14,11 +14,19 @@ import InputCustom from "../../components/InputCustom/InputCustom";
 // CSS
 import './NewVacancy.css'
 
+// Services
+import api from "../../services/api";
+
 const NewVacancy = () => {
   // Variaveis
+  const [states, setStates] = useState([]);
   const [empresa, setEmpresa] = useState("Starbucks")
   const [formData, setFormData] = useState({
-    companyLocation: "",
+    companyLocation: {
+      city: "",
+      state: "",
+      address: ""
+    },
     jobType: "",
     categories: "",
     contactPersonId: "",
@@ -40,16 +48,27 @@ const NewVacancy = () => {
   });
   const [users, setUsers] = useState([]);
   const token = sessionStorage.getItem("token");
+  
+  // GET STATES
+  useEffect(() => {
+    const carregarStates = async () => {
+        try {
+          // Importar diretamente o arquivo JSON
+          const data = require('./states.json');
+          setStates(data.estados);
+        } catch (error) {
+          console.error('Erro ao carregar Estados:', error);
+        }
+      };
+  
+      carregarStates();
+  }, []);
 
   // GET USERS
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/v1/users', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
+        const response = await api.get('/users');
         setUsers(response.data);
       } catch (error) {
         console.error('Erro ao obter usuários:', error);
@@ -71,6 +90,14 @@ const NewVacancy = () => {
           [name]: parseFloat(value),
         },
       }));
+    } else if (name === "state" || name === "city" || name === "address") {
+      setFormData((formData) => ({
+        ...formData,
+        companyLocation: {
+          ...formData.companyLocation,
+          [name]: value,
+        },
+      }));
     } else if (name === "contactPersonId") {
       setFormData({ ...formData, [name]: parseFloat(value) });
     } else {
@@ -87,7 +114,7 @@ const NewVacancy = () => {
       !formData.jobTitle || !formData.requirements || !formData.jobDescription ||
       !formData.benefits || !formData.employmentType || !formData.applicationDeadline ||
       !formData.salaryRange.salaryRangeMin || !formData.salaryRange.salaryRangeMax || !formData.educationLevel || !formData.employmentContractType ||
-      !formData.responsibilities || !formData.requiredExperience ) {
+      !formData.responsibilities || !formData.requiredExperience || !formData.companyLocation.state || !formData.companyLocation.city || !formData.companyLocation.address ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
         position: toast.POSITION.BOTTOM_RIGHT
       });
@@ -95,30 +122,30 @@ const NewVacancy = () => {
     }
 
     // Limite de caracteres
-    // if (formData.jobDescription.length < 500 ) {
-    //   toast.warn("O limite de caracteres mínimo em DESCRIÇÃO é: 500", {
-    //     position: toast.POSITION.BOTTOM_RIGHT
-    //   });
-    //   return;
-    // }
-    // if (formData.benefits.length < 500 ) {
-    //   toast.warn("O limite de caracteres mínimo em BENEFÍCIOS é: 500", {
-    //     position: toast.POSITION.BOTTOM_RIGHT
-    //   });
-    //   return;
-    // }
-    // if (formData.responsibilities.length < 500 ) {
-    //   toast.warn("O limite de caracteres mínimo em RESPONSABILIDADES é: 500", {
-    //     position: toast.POSITION.BOTTOM_RIGHT
-    //   });
-    //   return;
-    // }
-    // if (formData.requiredExperience.length < 500 ) {
-    //   toast.warn("O limite de caracteres mínimo em EXPERIÊNCIA REQUERIDA é: 500", {
-    //     position: toast.POSITION.BOTTOM_RIGHT
-    //   });
-    //   return;
-    // }
+    if (formData.jobDescription.length > 1000 ) {
+      toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+      return;
+    }
+    if (formData.benefits.length > 1000 ) {
+      toast.warn("O limite de caracteres máximo em BENEFÍCIOS é: 1000", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+      return;
+    }
+    if (formData.responsibilities.length > 1000 ) {
+      toast.warn("O limite de caracteres máximo em RESPONSABILIDADES é: 1000", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+      return;
+    }
+    if (formData.requiredExperience.length > 1000 ) {
+      toast.warn("O limite de caracteres máximo em EXPERIÊNCIA REQUERIDA é: 1000", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+      return;
+    }
 
     // Verificação de prazo da candidatura
     const dataInseridaObj = new Date(formData.applicationDeadline)
@@ -130,14 +157,10 @@ const NewVacancy = () => {
       return;
     }
 
-    // console.log(formData);
+    console.log(formData);
 
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/jobs', formData, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await api.post('/jobs', formData);
 
       console.log('Resposta da API:', response.data);
 
@@ -204,13 +227,36 @@ const NewVacancy = () => {
               disabled
             />
 
+            <SelectCustom
+              label="Estado"
+              id="state"
+              name="state"
+              value={formData.companyLocation.state}
+              onChange={handleInputChange}
+              options={states.map(state => ({ value: state.sigla, label: state.nome }))}
+            />
+
+            <SelectCustom
+              label="Cidade"
+              id="city"
+              name="city"
+              value={formData.companyLocation.city}
+              onChange={handleInputChange}
+              options={
+                states.find(state => state.sigla === formData.companyLocation.state)?.cidades.map(city => ({
+                  value: city,
+                  label: city
+                })) || []
+              }
+            />
+
             <InputCustom
-              label="Localidade"
-              placeholder="Digite a localidade da vaga"
+              label="Endereço"
+              placeholder="Digite a endereço da vaga"
               type="text"
-              id="companyLocation"
-              name="companyLocation"
-              value={formData.companyLocation}
+              id="address"
+              name="address"
+              value={formData.companyLocation.address}
               onChange={handleInputChange}
             />
 
@@ -303,6 +349,9 @@ const NewVacancy = () => {
               </div>
             </div>
 
+            <div></div>
+            <div></div>
+
             <InputCustom
               label="Prazo de Candidatura"
               type="date"
@@ -329,8 +378,7 @@ const NewVacancy = () => {
               label="Benefícios"
               id="benefits"
               name="benefits"
-                              rows={20}
-
+              rows={20}
               placeholder="Digite uma descrição a respeito dos benefícios relacionados com a vaga"
               value={formData.benefits}
               onChange={handleInputChange}
@@ -342,8 +390,7 @@ const NewVacancy = () => {
               label="Responsabilidades"
               id="responsibilities"
               name="responsibilities"
-                              rows={20}
-
+              rows={20}
               placeholder="Digite quais serão as responsabilidades vinculadas a vaga"
               value={formData.responsibilities}
               onChange={handleInputChange}
@@ -355,8 +402,7 @@ const NewVacancy = () => {
               label="Experiência Requerida"
               id="requiredExperience"
               name="requiredExperience"
-                              rows={20}
-
+              rows={20}
               placeholder="Digite quais experiências são necessárias para a vaga"
               value={formData.requiredExperience}
               onChange={handleInputChange}
