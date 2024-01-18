@@ -2,6 +2,9 @@
 @import "primereact/resources/themes/lara-light-cyan/theme.css";
 @import "primereact/resources/primereact.min.css";
 
+@tailwind components;
+@tailwind utilities;
+
 body,
 html {
   margin: 0;

@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import styles from "./../../styles/css/JobDetails.module.css";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
+import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
+import { ImStatsBars } from "react-icons/im";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
 
 const JobDetails = () => {
@@ -23,123 +26,120 @@ const JobDetails = () => {
   }, [index]);
 
   return (
-    <div>
+    <>
       <NavBar />
-      <div className={styles.container}>
-        <p className={styles.text}>Starbucks</p>
-        <h2 className={styles.title}>{job.jobTitle}</h2>
-        <p className={styles.textSub}>{job.categories}</p>
-        <span className={styles.textButton}>
-          Ficou com interesse na vaga? Demonstre o seu interesse e seja
-          encontrado pela empresa.
-        </span>
-        <button className={styles.button}>Inscrever-se</button>
-      </div>
-      <div className={styles.containerCompany}>
-        <div className={styles.benefits}>
-          <div className={styles.enterpriseCard}>
-            <h1>
-              Empresa - <span>Starbucks</span>
-            </h1>
-            <h2>{job.companyLocation}</h2>
-            <p className={styles.descriptions}>Máquina de fazer cafés</p>
-            <p>{job.jobDescription}</p>
-            <span className={styles.benefitsCard}>Benefícios</span>
-            <p>{job.benefits}</p>
+      <div className="flex flex-col">
+        <div className="flex flex-col items-center justify-evenly md:justify-center gap-12 h-[569px] w-full bg-black text-white">
+          <div className="flex flex-col items-center justify-between h-[225px]">
+            <div className="flex flex-col items-center gap-2 text-[18px] w-[501px] h-[52]">
+              <span>{job.companyName}</span>
+              <span className="w-max text-[52px]">{job.jobTitle}</span>
+              <span className="text-customColor">{job.categories}</span>
+            </div>
+            <div className="flex flex-wrap justify-center md:justify-between gap-2 text-[26.57px] text-gray-500 h-[40px] w-full">
+              {job.companyName && (
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
+                  <FaBuildingUser />
+                  <span>{job.companyName}</span>
+                </div>
+              )}
+              {job.companyLocation && (
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
+                  <FaLocationDot />
+                  <span>{job.companyLocation}</span>
+                </div>
+              )}
+              {job.educationLevel && (
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
+                  <ImStatsBars />
+                  <span>{job.educationLevel}</span>
+                </div>
+              )}
+              {job.salaryRange && (
+                <div className="flex items-center justify-center md:justify-start gap-2">
+                  <RiMoneyDollarCircleLine className="text-[25px]" />
+                  <span>
+                    {"R$" +
+                      " " +
+                      job.salaryRange.salaryRangeMin +
+                      "-" +
+                      job.salaryRange.salaryRangeMax}
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
-          <div className={styles.requirementCard}>
-            <span>Requisitos</span>
-            <h2>Habilidades Necessárias</h2>
-            {/* 
-            <button>Limpeza</button>
-            <button>Organização</button>
-            <button>Responsabilidade</button> */}
-            <button>
-              Conhecimentos básicos em produtos e técnicas de limpeza
-            </button>
-            <h2>Conhecimentos Necessários</h2>
-            <p>{job.requirements}</p>
-            <h2>Tempo de Experiência</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. Lorem Ipsum is
-              simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book.
-            </p>
-
-            <h2>Mais Detalhes</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. Lorem Ipsum is
-              simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book.
-            </p>
-          </div>
-          <div className={styles.activatiesCard}>
-            <span>Atividades</span>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-              <br /> Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's standard
-              dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book.
-              <br />
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. Lorem Ipsum is
-              simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book.
-              <br /> Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's standard
-              dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book.
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. <br />
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. Lorem Ipsum is
-              simply dummy text of the printing and typesetting industry. Lorem
-              Ipsum has been the industry's standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book.
-            </p>
-          </div>
-
-          <div className={styles.subscribeCard}>
-            <h1>Ficou interessado na vaga?</h1>
-            <h3> Demonstre o seu interesse e seja encontrado pela empresa</h3>
+          <div className="flex flex-col gap-4 items-center md:gap-2">
+            <span className="text-[18px] text-center md:text-left">
+              Ficou com interesse na vaga? Demonstre o seu interesse e seja
+              encontrado pela empresa.
+            </span>
             <button className={styles.button}>Inscrever-se</button>
           </div>
         </div>
-        <div className={styles.similarVacancies}>
-          <p>Vagas similares</p>
-          <div className={styles.vacancyCard}>
-            <h2>Consultor SAP (Remoto)</h2>
-            <a href="https://www.google.com" target="_blank">
-              Visualizar vaga
-            </a>
+      </div>
+      <div className="flex justify-center w-full h-[1405px]">
+        <div className={styles.body_container}>
+          <div className="flex flex-col justify-center items-center gap-8 w-[843px] md:w-[400px]">
+            <div className="w-full md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[800px] p-8 shadow-md bg-white">
+              <h1 className="text-lg md:text-xl font-semibold">
+                Empresa -{" "}
+                <span className="text-customColor">{job.companyName}</span>
+              </h1>
+              <h2 className="text-gray-500 text-sm md:text-base">
+                {job.companyLocation}
+              </h2>
+              <p className=" text-base md:text-lg my-2">
+                <span className="ml-4 text-gray-500">{job.jobDescription}</span>
+              </p>
+              <span className="inline-block w-24 text-customColor  font-semibold text-lg md:text-xl">
+                Benefícios
+              </span>
+              <p className=" text-gray-500 text-base md:text-lg">
+                {job.benefits}
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 w-full md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[800px] p-8 shadow-md bg-white">
+              <span className="text-lg text-customColor md:text-xl font-semibold">
+                Requisitos
+              </span>
+              <span className="text-lg  md:text-xl font-semibold">
+                Habilidades Necessárias
+              </span>
+              <button className="border border-customColor py-2 px-4 hover:bg-customColor hover:text-white transition duration-300 ease-in-out">
+                Conhecimentos básicos em produtos e técnicas de limpeza
+              </button>
+              <span className="text-lg md:text-xl font-semibold">
+                Conhecimentos Necessários
+              </span>
+              <p className=" text-gray-500 text-base md:text-lg">
+                {job.requirements}
+              </p>
+              <span className="text-lg md:text-xl font-semibold">
+                Tempo de Experiência
+              </span>
+              <p className=" text-gray-500 text-base md:text-lg">
+                {job.requiredExperience}
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 w-full md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[800px] p-8 shadow-md bg-white">
+              <span className="text-lg text-customColor md:text-xl font-semibold">
+                Atividades
+              </span>
+              <p className=" text-gray-500 text-base md:text-lg">
+                {job.responsibilities}
+              </p>
+            </div>
+            <div className={styles.subscribeCard}>
+              <h1>Ficou interessado na vaga?</h1>
+              <h3> Demonstre o seu interesse e seja encontrado pela empresa</h3>
+              <button className={styles.button}>Inscrever-se</button>
+            </div>
           </div>
         </div>
       </div>
       <Footer></Footer>;
-    </div>
+    </>
   );
 };
 

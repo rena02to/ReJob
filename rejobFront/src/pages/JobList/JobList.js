@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styles from "./../../styles/css/JobList.module.css";
 import NavBar from "../../components/NavBar";
@@ -7,6 +6,9 @@ import Footer from "../../components/Footer";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { Slider } from "primereact/slider";
+import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
+import { ImStatsBars } from "react-icons/im";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
 
 function JobList() {
@@ -104,15 +106,16 @@ function JobList() {
       <NavBar></NavBar>
       <div className={styles.container}>
         <div className={styles.section}>
-          <div className={styles.header_container}>
-            <h2>
-              As melhores vagas com foco em <span>REINTEGRAÇÃO SOCIAL</span>
+          <div className="flex items-center justify-center bg-black w-full h-[250px] text-white">
+            <h2 className="w-[760px] mx-auto text-center text-[32px] font-bold">
+              As melhores vagas com foco em{" "}
+              <span className="text-customColor">REINTEGRAÇÃO SOCIAL</span>
             </h2>
           </div>
           <div className={styles.body_container}>
             <div className={styles.job_list_container}>
               <h2>
-                <span className={styles.vacancies_amount}>
+                <span className="text-customColor mr-2">
                   {jobs.length > 0 ? jobs.length : "0"} vagas
                 </span>
                 disponíveis
@@ -124,13 +127,58 @@ function JobList() {
                     className={styles.card_joblist}
                     onClick={() => goToDetailsPage(index + 1)}
                   >
-                    <div className={styles.card_joblist_header}>
-                      <p>{job.jobTitle}</p>
-                      <button className={styles.button_outline}>
-                        {job.categories}
-                      </button>
+                    <div className="flex justify-between gap-3">
+                      <div>
+                        <p className="text-[18px] text-customColor font-extrabold">
+                          {job.companyName}
+                        </p>
+                        <p className="text-[24px] font-extrabold">
+                          {job.jobTitle}
+                        </p>
+                        <button className={styles.button_outline}>
+                          {job.categories}
+                        </button>
+                      </div>
+                      <div className="self-center h-[40px] w-[309.18px]text-end">
+                        <div className="flex text-justify text-gray-500">
+                          {job.companyName && (
+                            <>
+                              <FaBuildingUser className="ml-1" />
+                              <span className="text-xs ml-1">
+                                {job.companyName}
+                              </span>
+                            </>
+                          )}
+                          {job.companyLocation && (
+                            <>
+                              <FaLocationDot className="ml-1" />
+                              <span className="text-xs ml-1 text-gray-500">
+                                {job.companyLocation}
+                              </span>
+                            </>
+                          )}
+                        </div>
+                        <div className="flex text-justify text-gray-500">
+                          {job.educationLevel && (
+                            <>
+                              <ImStatsBars className="ml-1" />
+                              <span className="text-xs ml-1">
+                                {job.educationLevel}
+                              </span>
+                            </>
+                          )}
+                          <RiMoneyDollarCircleLine className="ml-1 text-[15px]" />
+                          <span className="text-xs ml-1">
+                            {"R$" +
+                              " " +
+                              job.salaryRange.salaryRangeMin +
+                              "-" +
+                              job.salaryRange.salaryRangeMax}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className={styles.job_description}>
+                    <div className="text-base md:text-lg my-2 text-gray-500">
                       {job.jobDescription}
                     </div>
                   </div>

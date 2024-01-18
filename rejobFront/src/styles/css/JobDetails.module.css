@@ -1,75 +1,14 @@
-.container {
+.body_container {
   display: flex;
-  color: aliceblue;
-  background-color: black;
-  width: 100%;
-  height: 35em;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.text {
-  display: flex;
-  color: var(--first-white, #fff);
-  text-align: justify;
-  font-family: Mulish, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%;
-}
-.title {
-  display: flex;
-  color: var(--first-white, #fff);
-  text-align: justify;
-  font-family: Mulish, sans-serif;
-  font-size: 52px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%;
-  margin-top: -2rem;
-}
-.textSub {
-  display: flex;
-  color: var(--first-blue, #00a3ff);
-  text-align: center;
-  font-family: Mulish, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%;
-  margin-top: -1rem;
-}
-
-.text,
-.title,
-.textSub {
-  margin-bottom: 3.8rem;
-}
-
-.containerCompany {
-  margin: 0 auto;
-  display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   background-color: #edeff0;
-  padding: 3rem;
-  width: 1440px;
-  height: 1820px;
+  width: 65%;
+  overflow: auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-.textButton {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-  color: var(--first-white, #fff);
-  text-align: justify;
-  font-family: Mulish;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 100%;
-}
 .button {
   width: 259.505px;
   height: 40px;
@@ -86,216 +25,9 @@
   line-height: 100%;
 }
 
-.company {
-  flex-shrink: 0;
-}
-
-.benefits {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 843px;
-}
-
-.enterpriseCard {
-  padding: 2rem;
-  width: 843px;
-  height: 370px;
-  background-color: #fff;
-  fill: var(--first-white, #fff);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.enterpriseCard span {
-  color: var(--first-blue, #00a3ff);
-}
-.enterpriseCard h2 {
-  display: inline;
-  color: var(--third-gray, #7c7c8a);
-  font-family: "Mulish", sans-serif;
-  font-size: 26.571px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-}
-.enterpriseCard .descriptions {
-  display: inline;
-  margin-left: 1.3rem;
-  color: var(--third-gray, #7c7c8a);
-  font-family: "Mulish", sans-serif;
-  font-size: 26.571px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-}
-.enterpriseCard p {
-  width: 783px;
-  height: 51px;
-  flex-shrink: 0;
-  color: var(--third-gray, #7c7c8a);
-  font-family: Mulish, sans-serif;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-}
-.enterpriseCard .benefitsCard {
-  width: 119px;
-  height: 24.289px;
-  flex-shrink: 0;
-  color: var(--first-blue, #00a3ff);
-  text-align: center;
-  font-family: "Mulish", sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%;
-}
-.subscribeCard h1 {
-  color: var(--dark-black, #0f0f0f);
-  text-align: center;
-  font-family: "Mulish", sans-serif;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 100%;
-}
-
-.requirementCard {
-  padding: 2rem;
-  height: 516px;
-  background-color: #fff;
-  fill: var(--first-white, #fff);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.activatiesCard {
-  padding: 2rem;
-  height: 516px;
-  background-color: #fff;
-  fill: var(--first-white, #fff);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.activatiesCard span {
-  width: 187px;
-  height: 36.434px;
-  flex-shrink: 0;
-  color: var(--first-blue, #00a3ff);
-  text-align: center;
-  font-family: Mulish, sans-serif;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 100%;
-}
-
-.activatiesCard p {
-  color: var(--third-gray, #7c7c8a);
-  font-family: Mulish;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  width: 783px;
-  height: 527px;
-  flex-shrink: 0;
-}
-
-.subscribeCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 843px;
-  height: 146.749px;
-  flex-shrink: 0;
-  border-radius: 5px;
-  background: rgba(0, 163, 255, 0.3);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.similarVacancies {
-  width: 417px;
-}
-.similarVacancies p {
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  color: var(--dark-black, #0f0f0f);
-  font-family: "Mulish", sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%;
-}
-.vacancyCard a {
-  color: var(--first-blue, #00a3ff);
-  font-family: Mulish, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%;
-  text-decoration-line: underline;
-}
-.vacancyCard {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
-  width: 417px;
-  height: 252px;
-  border-radius: 5px;
-  background: var(--first-white, #fff);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.vacancyCard h2 {
-  display: flex;
-  padding: 1rem;
-  justify-content: center;
-  margin: 0 auto;
-}
-
-.requirements {
-  width: 843px;
-  height: 516px;
-  flex-shrink: 0;
-}
-
-.requirementCard span {
-  width: 182px;
-  height: 36.434px;
-  flex-shrink: 0;
-  color: var(--first-blue, #00a3ff);
-  font-family: Mulish, sans-serif;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%;
-}
-
-.requirementCard h2 {
-  display: flex;
-  color: var(--dark-black, #0f0f0f);
-  font-family: Mulish, sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-}
-
-.requirementCard p {
-  width: 783px;
-  height: 51px;
-  flex-shrink: 0;
-  color: var(--third-gray, #7c7c8a);
-  font-family: Mulish, sans-serif;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
+.button:hover {
+  background: var(--second-blue, #007bb5);
+  cursor: pointer;
 }
 
 button {
@@ -313,4 +45,27 @@ button {
   border-radius: 10px;
   border: 1px solid var(--first-blue, #00a3ff);
   background: var(--first-white, #fff);
+}
+
+.subscribeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 843px;
+  height: 146.749px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: rgba(0, 163, 255, 0.3);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.subscribeCard h1 {
+  color: var(--dark-black, #0f0f0f);
+  text-align: center;
+  font-family: "Mulish", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%;
 }
