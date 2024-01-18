@@ -14,7 +14,7 @@ function Home(){
     const { vagas, empresas, depoimentos, ongs } = useSelector(rootrRedux => rootrRedux.useReducer);
     const ultimasVagas = vagas.length > 6 ? vagas.slice(-6).reverse() : vagas;
     const melhoresEmpresas = empresas.length > 6 ? empresas.slice(-6) : empresas;
-    //const ultimosDepoimentos = depoimentos.length > 3 ? depoimentos.slice(-3) : depoimentos;
+    const ultimosDepoimentos = depoimentos.length > 3 ? depoimentos.slice(-3) : depoimentos;
     const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
     useEffect(() => {
@@ -29,7 +29,8 @@ function Home(){
             try {
                 const data = require('./componentsForHome.json');
                 dispatch({type: "setEmpresas", payload: data.empresas})
-                //dispatch({type: "setOngs", payload: data.empresas})
+                dispatch({type: "setOngs", payload: data.ongs})
+                dispatch({type: "setDepoimentos", payload: data.depoimentos})
             } catch (error) {
                 console.error('Erro ao carregar Estados:', error);
             }
@@ -121,7 +122,7 @@ function Home(){
                                         ))}
                                     </div>*/}
                                     <button className={style.inscreva}>
-                                        <a href={`/jobs/${vaga.id}`}>Inscreva-se</a>
+                                        <a href={`/vagas/${vaga.id}`}>Inscreva-se</a>
                                         </button>
                                 </div>
                             ))}
@@ -152,9 +153,9 @@ function Home(){
                                 <h2>Re<span>Job</span></h2>
                             </div>
                         </div>
-                        {/*<div className={style.depoimentos}>
-                            {ultimosDepoimentos.map((depoimento) => (
-                                <div className={style.cardDepoimentos} key={depoimento.key}>
+                        <div className={style.depoimentos}>
+                            {ultimosDepoimentos.map((depoimento, index) => (
+                                <div className={style.cardDepoimentos} key={index}>
                                     <div className={style.imagem}>
                                         <img src={depoimento.foto} alt='Foto' />
                                     </div>
@@ -162,16 +163,16 @@ function Home(){
                                     <p className={style.depoimento}>{depoimento.depoimento}</p>
                                     <div className={style.infosContratacao}>
                                         <img src={depoimento.imgQmContratou} alt='Empresa' />
-                                        <p className={style.qmContratou}>Contratado(a) por <a href={depoimento.linkEmpresa}>{depoimento.qmContratou}</a></p>
+                                        <p className={style.qmContratou}>Contratado(a) por <a href={`empresa/${depoimento.idEmpresa}`}>{depoimento.qmContratou}</a></p>
                                     </div>
                                 </div>
                             ))}
-                        </div>*/}
+                        </div>
                         <div className={style.ongs}>
                             <h2>Algumas ONG&apos;s que tem parceria com a ReJob</h2>
                             <div className={style.melhoresOngs}>
-                                {melhoresOngs.map((ong) => (
-                                    <a href={ong.link} key={ong.key}>
+                                {melhoresOngs.map((ong, index) => (
+                                    <a href={`ong/${ong.id}`} key={index}>
                                         <img src={ong.foto} alt='Imagem da ONG' />
                                     </a>
                                 ))}

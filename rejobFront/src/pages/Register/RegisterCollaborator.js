@@ -89,7 +89,7 @@ function RegisterCollaboratory(){
 
     const formataData = () => {
         const nasc = document.getElementById('nasc');
-        let valor = nasc.value.replace(/\D/g, '');
+        let valor = nasc.value.replace(/rt\D/g, '');
         let valorFormatado = '';
 
         for(let i = 0; i < valor.length; i++){
@@ -108,7 +108,7 @@ function RegisterCollaboratory(){
 
     return(
         <section className={style.background}>
-            <a href='/register' className={style.back} >
+            <a href='/registro' className={style.back} >
                 <FaArrowLeftLong />
                 <p>Voltar</p>
             </a>

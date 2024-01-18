@@ -142,7 +142,7 @@ function RegisterCompany(){
 
     return(
         <section className={style.background}>
-            <a href='/register' className={style.back} >
+            <a href='/registro' className={style.back} >
                 <FaArrowLeftLong />
                 <p>Voltar</p>
             </a>
