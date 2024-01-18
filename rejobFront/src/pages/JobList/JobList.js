@@ -126,7 +126,7 @@ function JobList() {
                   <div
                     key={index}
                     className={styles.card_joblist}
-                    onClick={() => goToDetailsPage(index + 1)}
+                    onClick={() => goToDetailsPage(job.id)}
                   >
                     <div className="flex justify-between gap-3">
                       <div>
