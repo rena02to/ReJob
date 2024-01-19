@@ -155,7 +155,11 @@ function JobList() {
                             <>
                               <FaLocationDot className="ml-1" />
                               <span className="text-xs ml-1 text-gray-500">
-                                {/* {job.companyLocation} */}
+                                {job.companyLocation.city +
+                                  "," +
+                                  job.companyLocation.state +
+                                  "," +
+                                  job.companyLocation.address}
                               </span>
                             </>
                           )}
