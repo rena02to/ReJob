@@ -9,7 +9,7 @@
     <img alt="Postgresql" heigth="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
     <img alt="Spring" heigth="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-plain.svg" />
     <img alt="Saas" heigth="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" />
-  
+    <img alt="Docker" heigth="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original-wordmark.s     
   <hr/>
   <h2>Especificações do sistema</h2>
   
