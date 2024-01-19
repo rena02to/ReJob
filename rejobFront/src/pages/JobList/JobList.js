@@ -98,8 +98,8 @@ function JobList() {
     setSalaryRange([1000, 30000]);
   };
 
-  const goToDetailsPage = (index) => {
-    navigate(`/vagas/${index}`);
+  const goToDetailsPage = (jobId) => {
+    navigate(`/vagas/${jobId}`);
   };
 
   return (

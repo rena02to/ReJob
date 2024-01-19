@@ -18,14 +18,14 @@ function Home(){
     const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
     useEffect(() => {
-        const carregarVagas = () => {
+        const loadVacancies = () => {
             fetch('http://localhost:8080/api/v1/jobs')
             .then((resp) => resp.json())
             .then((data) => dispatch({type: 'setVagas', payload: data}))
             .catch((err) => console.log(err));
         }
 
-        const carregarDadosEstaticos = async () => {
+        const loadDataStates = async () => {
             try {
                 const data = require('./componentsForHome.json');
                 dispatch({type: "setEmpresas", payload: data.empresas})
@@ -36,8 +36,8 @@ function Home(){
             }
         }
 
-        carregarVagas();
-        carregarDadosEstaticos();
+        loadVacancies();
+        loadDataStates();
     }, [dispatch]);
 
     return(
