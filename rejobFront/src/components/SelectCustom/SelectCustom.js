@@ -1,5 +1,4 @@
 import './SelectCustom.css'
-import { FaAngleDown } from "react-icons/fa";
 
 const SelectCustom = ({ label, options, ...props }) => {
   return (

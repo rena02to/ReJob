@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,8 +18,8 @@ import api from "../../services/api";
 
 const NewVacancy = () => {
   // Variaveis
-  // eslint-disable-next-line
   const [states, setStates] = useState([]);
+  // eslint-disable-next-line
   const [empresa, setEmpresa] = useState("Starbucks")
   const [formData, setFormData] = useState({
     companyLocation: {
@@ -63,7 +62,9 @@ const NewVacancy = () => {
       };
   
       carregarStates();
-  }, []);
+  }, [setStates]);
+
+  
 
   // GET USERS
   useEffect(() => {

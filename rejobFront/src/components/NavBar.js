@@ -29,7 +29,7 @@ function NavBar() {
 
   const itens = [
     { key: 1, value: "Home", link: "/" },
-    { key: 2, value: "Ver vagas", link: "/jobs" },
+    { key: 2, value: "Ver vagas", link: "/vagas" },
     { key: 3, value: "Sou empresa", link: "/beneficios-empresa" },
     { key: 4, value: "Sobre o projeto", link: "/sobre-projeto" },
   ];
@@ -231,7 +231,7 @@ function NavBar() {
               <a href="/login">
                 <button>Entrar</button>
               </a>
-              <a href="/register">
+              <a href="/registro">
                 <button>Cadastrar-se</button>
               </a>
             </div>

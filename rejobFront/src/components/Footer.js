@@ -19,7 +19,7 @@ function Footer(){
                 <div className={style.links}>
                     <a href='##' onClick={(event) => {event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth'})}}><TbArrowBadgeRightFilled />Início</a>
                     <a href='/vagas'><TbArrowBadgeRightFilled />Vagas</a>
-                    <a href='/sobrenos'><TbArrowBadgeRightFilled />Sobre a empresa</a>
+                    <a href='/sobre-nos'><TbArrowBadgeRightFilled />Sobre a empresa</a>
                 </div>
             </div>
             <p className={style.university}>Universidade Federal de Alagoas © - 2024</p>
