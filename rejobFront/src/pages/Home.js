@@ -4,10 +4,12 @@ import Footer from './../components/Footer';
 import backImageHome from './../images/backImageHome.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { FaBook, FaAddressCard, FaMoneyBillWave, FaClock } from "react-icons/fa";
+import { FaAddressCard, FaClock } from "react-icons/fa";
 import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import RejobSimbol from './../images/newJob.png';
 import { GoBook } from "react-icons/go";
+import { MdOutlineCategory } from "react-icons/md";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 function Home(){
     const dispatch = useDispatch();
@@ -72,13 +74,13 @@ function Home(){
                                     <p className={style.titulo}>{vaga.jobTitle}</p>
                                     <div className={style.area}>
                                         <p>
-                                            <FaBook/>
+                                            <MdOutlineCategory/>
                                             {vaga.categories}
                                         </p>
                                     </div>
                                     <div className={style.sobre}>
                                         <div className={style.empresa}>
-                                            <a href={`/vacancy/id`}>
+                                            <a href={`/empresa/id`}>
                                                 <p>
                                                     <FaBuildingUser />
                                                     {vaga.companyName}
@@ -88,7 +90,7 @@ function Home(){
                                         <div className={style.local}>
                                             <p>
                                                 <FaLocationDot />
-                                                {/* {vaga.companyLocation} */}
+                                                {vaga.companyLocation}
                                             </p>
                                         </div>
                                         <div className={style.nivel}>
@@ -105,8 +107,8 @@ function Home(){
                                         </div>
                                         <div className={style.faixaSalarial}>
                                             <p>
-                                                <FaMoneyBillWave />
-                                                {vaga.salaryRange.salaryRangeMin} - {vaga.salaryRange.salaryRangeMax}
+                                                <RiMoneyDollarCircleLine />
+                                                R$ {vaga.salaryRange.salaryRangeMin} - R$ {vaga.salaryRange.salaryRangeMax}
                                             </p>
                                         </div>
                                         <div className={style.escolaridade}>
@@ -128,7 +130,7 @@ function Home(){
                             ))}
                         </div>
                         <button>
-                            <a href='/jobs'>Mais vagas</a>
+                            <a href='/vagas'>Mais vagas</a>
                         </button>
                     </div>
                     <div className={style.beneficios}>
