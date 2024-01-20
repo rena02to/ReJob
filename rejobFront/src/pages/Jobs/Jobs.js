@@ -66,7 +66,6 @@ function Vacancies() {
     const fetchData = async () => {
       try {
         const response = await api.get("/jobs");
-        console.log(response);
         setVacancies(response.data);
       } catch (error) {
         console.error("Erro na requisição:", error);
@@ -83,7 +82,6 @@ function Vacancies() {
       remoto,
       salaryRange,
     };
-    console.log(filters);
   };
 
   const clearFilters = () => {

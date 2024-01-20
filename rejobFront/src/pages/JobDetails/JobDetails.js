@@ -9,13 +9,13 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
 
 const JobDetails = () => {
-  const { index } = useParams();
+  const { id } = useParams();
   const [job, setJob] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`/jobs/${index}`);
+        const response = await api.get(`/jobs/${id}`);
         setJob(response.data);
       } catch (error) {
         console.error("Erro na requisição:", error);
@@ -23,7 +23,7 @@ const JobDetails = () => {
     };
 
     fetchData();
-  }, [index]);
+  }, [id]);
 
   return (
     <>
@@ -43,12 +43,18 @@ const JobDetails = () => {
                   <span>{job.companyName}</span>
                 </div>
               )}
-              {/* {job.companyLocation && (
+              {job.companyLocation && (
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
                   <FaLocationDot />
-                  <span>{job.companyLocation}</span>
+                  <span>
+                    {job.companyLocation.city +
+                      "," +
+                      job.companyLocation.state +
+                      "," +
+                      job.companyLocation.address}
+                  </span>
                 </div>
-              )} */}
+              )}
               {job.educationLevel && (
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
                   <ImStatsBars />
@@ -80,15 +86,22 @@ const JobDetails = () => {
       </div>
       <div className="flex justify-center w-full h-[1405px]">
         <div className={styles.body_container}>
-          <div className="flex flex-col justify-center items-center gap-8 w-[843px] md:w-[400px]">
-            <div className="w-full md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[800px] p-8 shadow-md bg-white">
+          <div className="flex flex-col justify-center items-center gap-8 w-[843px] md:w-5/6">
+            <div className="w-5/6 h-[467px] p-8 rounded shadow-md bg-white">
               <h1 className="text-lg md:text-xl font-semibold">
                 Empresa -{" "}
                 <span className="text-customColor">{job.companyName}</span>
               </h1>
-              <h2 className="text-gray-500 text-sm md:text-base">
-                {/* {job.companyLocation} */}
-              </h2>
+              {job.companyLocation &&
+              (
+                <h2 className="text-gray-500 text-sm md:text-base">
+                  {job.companyLocation.city +
+                    "," +
+                    job.companyLocation.state +
+                    "," +
+                    job.companyLocation.address}
+                </h2>
+              )}
               <p className=" text-base md:text-lg my-2">
                 <span className="ml-4 text-gray-500">{job.jobDescription}</span>
               </p>
@@ -99,7 +112,7 @@ const JobDetails = () => {
                 {job.benefits}
               </p>
             </div>
-            <div className="flex flex-col gap-4 w-full md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[800px] p-8 shadow-md bg-white">
+            <div className="flex flex-col gap-4 w-5/6 rounded h-[467px] p-8 shadow-md bg-white">
               <span className="text-lg text-customColor md:text-xl font-semibold">
                 Requisitos
               </span>
@@ -122,14 +135,16 @@ const JobDetails = () => {
                 {job.requiredExperience}
               </p>
             </div>
-            <div className="flex flex-col gap-4 w-full md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[800px] p-8 shadow-md bg-white">
-              <span className="text-lg text-customColor md:text-xl font-semibold">
-                Atividades
-              </span>
-              <p className=" text-gray-500 text-base md:text-lg">
-                {job.responsibilities}
-              </p>
-            </div>
+            {job.responsibilities && (
+              <div className="flex flex-col gap-4 w-5/6 rounded h-[467px] p-8 shadow-md bg-white">
+                <span className="text-lg text-customColor md:text-xl font-semibold">
+                  Atividades
+                </span>
+                <p className=" text-gray-500 text-base md:text-lg">
+                  {job.responsibilities}
+                </p>
+              </div>
+            )}
             <div className={styles.subscribeCard}>
               <h1>Ficou interessado na vaga?</h1>
               <h3> Demonstre o seu interesse e seja encontrado pela empresa</h3>

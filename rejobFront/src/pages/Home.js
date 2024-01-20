@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { FaAddressCard, FaClock } from "react-icons/fa";
 import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
-import RejobSimbol from './../images/newJob.png';
+import RejobSimbol from "./../images/newJob.png";
 import { GoBook } from "react-icons/go";
 import { MdOutlineCategory } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
