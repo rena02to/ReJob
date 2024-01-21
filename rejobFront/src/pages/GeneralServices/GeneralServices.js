@@ -1,28 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./../../styles/css/GeneralServices.module.css";
-import Icone from "./../../images/newJob.png";
-import image from "./../../images/Ellipse 3.png";
+import { ProgressBar } from "primereact/progressbar";
+import NavBar from "../../components/NavBar";
+import ExpandingSection from "../../components/ExpenseSection/ExpenseSection";
 
 const GeneralServices = () => {
+  const [progressBar, setProgressBar] = useState(50);
+
   return (
     <div>
-      <nav className={style.NavBarServices}>
-        <div className={style.textIcon}>
-          <img src={Icone} alt="Ícone" width={43} height={43} />
-          <span className={style.re}>Re</span>
-          <span className={style.job}>Job</span>
-        </div>
-        <span>Ver Vagas</span>
-        <p>Dashboard</p>
-        <img src={image} alt="Ícone" width={60} height={60} />
-      </nav>
-      <div className={style.GeneralServices}>
+      <NavBar />
+      <div className={style.body_container}>
         <div>
-          <h1>Serviços Gerais</h1>
-          <h4>
+          <h1 className="text-customColor">SERVIÇOS GERAIS</h1>
+          <p className="font-normal">
             Acompanhe abaixo o andamento de cada etapa do seu processo seletivo.
-            Caso queira consultar a descrição da vaga,<span>clique aqui.</span>
-          </h4>
+            Caso queira consultar a descrição da vaga,
+            <a className="text-sky-500" href="">
+              clique aqui
+            </a>
+            .
+          </p>
+        </div>
+        <div className="flex flex-col self-center w-full gap-4 p-4">
+          <div className="w-full flex justify-between">
+            <span className="font-normal">Seu progresso</span>
+            {progressBar + "/100"}
+          </div>
+          <ProgressBar
+            value={progressBar}
+            showValue={false}
+            pt={{
+              value: {
+                style: {
+                  background: "#00A3FF",
+                },
+              },
+            }}
+          ></ProgressBar>
+          <div className="flex flex-col">
+            <ExpandingSection
+              title="Currículo"
+              content="Conteúdo para Currículo"
+            />
+            <ExpandingSection
+              title="Em Análise"
+              content="Conteúdo para Em Análise"
+            />
+            <ExpandingSection
+              title="Entrevista RH"
+              content="Conteúdo para Entrevista RH"
+            />
+            <ExpandingSection title="Final" content="Conteúdo para Final" />
+          </div>
         </div>
       </div>
     </div>
