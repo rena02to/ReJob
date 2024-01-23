@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styles from "./../../styles/css/JobDetails.module.css";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-import { FaBuildingUser } from "react-icons/fa6";
+import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import { ImStatsBars } from "react-icons/im";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";

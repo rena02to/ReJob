@@ -12,6 +12,7 @@ import GeneralServices from "../pages/GeneralServices/GeneralServices";
 import JobList from "../pages/JobList/JobList";
 
 import NewVacancy from "../pages/NewVacancy/NewVacancy";
+import Profile from "../pages/Profile/Profile";
 
 function Rotas() {
   const { isLoged } = useSelector((rooteRedux) => rooteRedux.useReducer);
@@ -48,6 +49,7 @@ function Rotas() {
         <Route path="/*" element={<NotFound />} />
 
         <Route path="/nova-vaga" element={<NewVacancy/>} />
+        <Route path="/perfil" element={<Profile/>} />
         <Route
           exact
           path="/vagas/"
