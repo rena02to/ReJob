@@ -6,6 +6,18 @@
     --third-gray: #7C7C8A;
 }
 
+/* Remove as setas do input type number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
 main {
     max-width: 1440px;
     margin: 0 auto;

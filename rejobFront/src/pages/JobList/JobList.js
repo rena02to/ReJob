@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./../../styles/css/JobList.module.css";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
-import { Dropdown } from "primereact/dropdown";
+import SelectCustom from "../../components/SelectCustom/SelectCustom";
 import { Checkbox } from "primereact/checkbox";
 import { Slider } from "primereact/slider";
 import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
@@ -81,7 +81,6 @@ function JobList() {
   }, []);
 
   const handleFilterClick = () => {
-    // eslint-disable-next-line
     const filters = {
       state,
       presencial,
@@ -197,19 +196,19 @@ function JobList() {
                 <button onClick={clearFilters}>Limpar</button>
               </div>
               <div className={styles.filters}>
-                <p>Categoria da Vaga</p>
-                <Dropdown
-                  value={state}
-                  options={brazilianStates}
-                  onChange={(e) => setState(e.value)}
-                  placeholder="Selecione a categoria"
+                <SelectCustom
+                  label="Categoria da vaga"
+                  options={[
+                    { value: "Meio Período", label: "Meio Período" },
+                    { value: "Período Integral", label: "Período Integral" },
+                  ]}
                 />
-                <p>Habilidades</p>
-                <Dropdown
-                  value={state}
-                  options={brazilianStates}
-                  onChange={(e) => setState(e.value)}
-                  placeholder="Selecione uma opção"
+                <SelectCustom
+                  label="Habilidades"
+                  options={[
+                    { value: "Meio Período", label: "Meio Período" },
+                    { value: "Período Integral", label: "Período Integral" },
+                  ]}
                 />
                 <p>Tipo de Vaga</p>
                 <div className={styles.type_of_vacancy}>
@@ -232,13 +231,7 @@ function JobList() {
                     <label htmlFor="presencialCheckbox"> Presencial</label>
                   </div>
                 </div>
-                <p>Localização</p>
-                <Dropdown
-                  value={state}
-                  options={brazilianStates}
-                  onChange={(e) => setState(e.value)}
-                  placeholder="Selecione uma opção"
-                />
+                <SelectCustom label="Localização" options={brazilianStates} />
                 <p>Faixa Salarial (Mensal)</p>
                 <div className={styles.salary_range}>
                   <span>
