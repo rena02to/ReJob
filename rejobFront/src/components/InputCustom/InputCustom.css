@@ -14,6 +14,10 @@ input {
     outline: none;
 }
 
+.campo label {
+    margin-bottom: 0;
+}
+
 input::placeholder {
     color: var(--third-gray);
 }
