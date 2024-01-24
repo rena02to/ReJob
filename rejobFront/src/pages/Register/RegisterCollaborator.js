@@ -21,7 +21,7 @@ function RegisterCollaboratory(){
         office: '',
         email: '',
         tel: '',
-        passsword: '',
+        password: '',
         RepeatPassword: '',
         terms: false,
         notify: false,
@@ -189,9 +189,9 @@ function RegisterCollaboratory(){
                         label="Senha"
                         placeholder="Digite uma senha"
                         type={visibilityPassword ? "text" : "password"}
-                        id="passsword"
-                        name="passsword"
-                        value={initialValues.passsword}
+                        id="password"
+                        name="password"
+                        value={initialValues.password}
                         onChange={handleInputChange}
                     />
                     <button type='button' className={style.eyeButton} onClick={() => {dispatch({type: "ChangeVisibilityPassword"})}}>

@@ -49,6 +49,24 @@
 .background form p {
   font-size: 20px;
 }
+.background form .textArea{
+  display: flex;
+  flex-direction: column;
+}
+.background form .textArea .labelTextArea{
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.background form .textArea .labelTextArea span{
+  color: #00A3FF;
+  margin-left: 5px;
+}
+.background form .textArea textarea{
+  width: 300px;
+  border-radius: 5px;
+  resize: none;
+  height: 200px;
+}
 .background form label{
   margin-top: 20px;
   margin-bottom: -5px;
