@@ -6,7 +6,7 @@
   align-items: center;
   min-height: 100vh;
   position: relative;
-  padding: 100px 0;
+  padding: 120px 0 100px 0;
 }
 .background .back {
   display: flex;
@@ -49,123 +49,39 @@
 .background form p {
   font-size: 20px;
 }
-.background form .inputBox {
-  display: flex;
-  flex-direction: column;
+.background form label{
   margin-top: 20px;
-  position: relative;
+  margin-bottom: -5px;
 }
-.background form .inputBox label {
-  font-weight: 600;
-  margin-bottom: 10px;
-  font-size: 20px;
+.background form input, .background form select, .background form .regras, .background form .coincidir{
+  width: 300px !important;
 }
-.background form .inputBox .input, .background form .inputBox .inputTel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  position: relative;
-}
-.background form .inputBox .input input, .background form .inputBox .inputTel input {
-  font-weight: 600;
-  width: 350px;
+.background form input, .background form select{
   height: 35px;
-  border: 1px solid #D9D9D9;
-  border-radius: 5px;
-  outline: none;
-  font-size: 16px;
-  position: relative;
-  padding-left: 40px;
 }
-@media (max-width: 500px) {
-  .background form .inputBox .input input, .background form .inputBox .inputTel input {
-    width: 250px;
-  }
-}
-.background form .inputBox .input input:focus, .background form .inputBox .inputTel input:focus {
-  border: 3px solid #00A3FF;
-}
-.background form .inputBox .input input[type=password], .background form .inputBox .inputTel input[type=password] {
-  width: 350px;
-  padding-right: 35px;
-}
-.background form .inputBox .input svg, .background form .inputBox .inputTel svg {
-  height: 20px;
-  width: 20px;
-  color: gray;
-  position: absolute;
-  left: 10px;
-}
-.background form .inputBox .inputTextArea {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-.background form .inputBox .inputTextArea textarea {
-  font-weight: 600;
-  width: 350px;
-  resize: none;
-  height: 270px;
-  font-family: "Mulish", sans-serif;
-  font-size: 15px;
-  outline: none;
-  border-radius: 5px;
-  border: 1px solid #D9D9D9;
-  color: rgb(100, 100, 100);
-  position: relative;
-  padding: 10px 10px 10px 40px;
-}
-.background form .inputBox .inputTextArea textarea:focus {
-  border: 3px solid #00A3FF;
-}
-.background form .inputBox .inputTextArea svg {
-  height: 20px;
-  width: 20px;
-  color: gray;
-  margin-top: 10px;
-  position: absolute;
-  left: 10px;
-}
-.background form .inputBox .inputTel {
-  margin-top: 5px;
-}
-.background form .inputBox .eye {
-  position: absolute;
-  cursor: pointer;
-  bottom: 12px;
-  right: 15px;
-}
-.background form .selectBox {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  font-weight: 600;
-}
-.background form .selectBox label {
-  font-weight: 600;
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-.background form .selectBox .input {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+.background form .password{
   position: relative;
 }
-.background form .selectBox .input .select {
-  width: 350px;
-}
-.background form .selectBox .input svg {
-  height: 20px;
-  width: 20px;
-  color: gray;
-}
-.background form .selectBox .input .icon {
+.background form .password .eyeButton{
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 0px 5px 5px 0px;
   position: absolute;
-  left: 10px;
+  background-color: transparent;
+  width: 35px;
+  padding: 0;
+  height: 35px;
+  bottom: 0;
+  right: -6px;
+}
+.background form .password .eye{
+  color: black;
+}
+.background form input[type="password"]{
+  padding-right: 40px;
+}
+.background form input[type="checkbox"]{
+  width: auto !important;
+  height: auto !important;
 }
 .background form .notify, .background form .termos {
   display: flex;
@@ -190,7 +106,7 @@
 .background form .login a {
   color: gray;
 }
-.background form button {
+.background form .submit {
   color: white;
   background-color: #00A3FF;
   border: 0px solid transparent;
