@@ -12,37 +12,95 @@ import SelectCustom from "../../components/SelectCustom/SelectCustom";
 
 // Assets
 import './Profile.css'
-import profileImg from '../../images/profile.jpg'
+import profileImg from '../../images/profile1.jpg'
+import defaultImg from '../../images/default.png'
 import { FaEdit } from "react-icons/fa";
 
+// Services
+import api from "../../services/api";
+
 const Profile = () => {
+    const [userData, setUserData] = useState();
+    const token = sessionStorage.getItem("token");
+
     const [formData, setFormData] = useState({
-        name: "Maria Silva de Lima",
-        email: "msl@example.com",
-        cpf: "123.456.789-00",
-        dateOfBirth: "2000-01-21",
-        placeOfResidence: "Cityville, State",
-        chainCode: "ABC123",
-        sentenceServingRegime: "Probation",
-        education: "Bachelor's Degree in Computer Science",
-        areasOfInterest: ["Software Development", "Artificial Intelligence"],
-        profissionalExperience: "Software Engineer at TechCorp",
-        skillsAndQualifications: "Java, Python, Machine Learning",
-        educationalHistory: "University of Tech, Graduated in 2012"
+        name: "",
+        email: "",
+        cpf: "",
+        dateOfBirth: "",
+        residenceLocation: "",
+        prisonCode: "",
+        sentenceRegime: "",
+        education: "",
+        areasOfInterest: "",
+        profissionalExperience: "",
+        skillsAndQualifications: "",
+        educationalHistory: ""
     });
+
     const [isEditing, setIsEditing] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
     const fileInputRef = useRef(null);
     const [profileImage, setProfileImage] = useState(profileImg);
 
+    const fillFormDataFromUser = (userData) => {
+        setFormData({
+            name: userData.user.name || "",
+            email: userData.user.email || "",
+            cpf: userData.cpf || "",
+            dateOfBirth: userData.dateOfBirth || "",
+            residenceLocation: userData.residenceLocation || "",
+            prisonCode: userData.prisonCode || "",
+            sentenceRegime: userData.sentenceRegime || "",
+            educationLevel: userData.educationLevel || "",
+            areasOfInterest: userData.areasOfInterest || "",
+            profissionalExperience: userData.professionalExperience || "",
+            skillsAndQualifications: userData.skillsAndQualifications || "",
+            educationalHistory: userData.educationalHistory || ""
+        });
+    };
+
+    // GET USERS
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await api.get('/users/3/employee');
+                setUserData(response.data);
+
+                // Verifica se o usuário existe antes de chamar a função fillFormDataFromUser
+                if (response.data && response.data.user && response.data.user.name && response.data.user.email &&
+                    response.data.cpf && response.data.prisonCode && response.data.educationLevel &&
+                    response.data.dateOfBirth && response.data.residenceLocation && response.data.sentenceRegime &&
+                    response.data.professionalExperience && response.data.areasOfInterest && response.data.skillsAndQualifications
+                    && response.data.educationalHistory) {
+                    fillFormDataFromUser(response.data);
+                    // setProfileImage(response.data.user.profilePic)
+                }
+            } catch (error) {
+                console.error('Erro ao obter usuário:', error);
+            }
+        };
+
+        fetchUsers();
+    }, [token]);
+
+    // Atualizar valores dos inputs, selects e textareas nas variáveis
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
+        console.log(formData);
+    };
+
     const handleEnableEditing = (event) => {
         event.preventDefault();
+        console.log(userData);
         setIsEditing(true);
     };
 
     const handleDisableEditing = (event) => {
         event.preventDefault();
         setIsEditing(false);
+        fillFormDataFromUser(userData);
     };
 
     const handleSaveChanges = () => {
@@ -78,7 +136,7 @@ const Profile = () => {
                 />
 
                 <div className="image-box">
-                    <img src={profileImage} />
+                        <img src={profileImg} />
                     {
                         isEditing ? (
                             <button className="edit-button" onClick={() => fileInputRef.current.click()}> <FaEdit /> </button>
@@ -109,6 +167,7 @@ const Profile = () => {
                             value={formData.name}
                             type="text"
                             disabled={!isEditing}
+                            onChange={handleInputChange}
                         />
 
                         <InputCustom
@@ -118,7 +177,7 @@ const Profile = () => {
                             value={formData.email}
                             type="text"
                             disabled={!isEditing}
-
+                            onChange={handleInputChange}
                         />
 
                         <InputCustom
@@ -128,7 +187,7 @@ const Profile = () => {
                             value={formData.cpf}
                             type="text"
                             disabled={!isEditing}
-
+                            onChange={handleInputChange}
                         />
 
                         <InputCustom
@@ -138,50 +197,73 @@ const Profile = () => {
                             name="dateOfBirth"
                             value={formData.dateOfBirth}
                             disabled={!isEditing}
-
+                            onChange={handleInputChange}
                         />
 
                         <InputCustom
                             label="Local de Residência"
-                            id="placeOfResidence"
-                            name="placeOfResidence"
-                            value={formData.placeOfResidence}
+                            id="residenceLocation"
+                            name="residenceLocation"
+                            value={formData.residenceLocation}
                             type="text"
                             disabled={!isEditing}
-
+                            onChange={handleInputChange}
                         />
 
                         <InputCustom
                             label="Código de Cadeia"
-                            id="chainCode"
-                            name="chainCode"
-                            value={formData.chainCode}
+                            id="prisonCode"
+                            name="prisonCode"
+                            value={formData.prisonCode}
                             type="text"
                             disabled={!isEditing}
-
+                            onChange={handleInputChange}
                         />
 
-                        <InputCustom
+                        <SelectCustom
                             label="Regime de Cumprimento de Pena"
-                            id="sentenceServingRegime"
-                            name="sentenceServingRegime"
-                            value={formData.sentenceServingRegime}
-                            type="text"
+                            id="sentenceRegime"
+                            name="sentenceRegime"
                             disabled={!isEditing}
-
+                            value={formData.sentenceRegime}
+                            // onChange={handleInputChange}
+                            options={[
+                                { value: 'FECHADO', label: 'Fechado' },
+                                { value: 'SEMIABERTO', label: 'Semi Aberto' },
+                                { value: 'ABERTO', label: 'Aberto' },
+                                { value: 'LIBERADO', label: 'Liberado' }
+                            ]
+                            }
+                            onChange={handleInputChange}
                         />
 
-                        <InputCustom
+                        <SelectCustom
                             label="Escolaridade"
-                            id="education"
-                            name="education"
-                            value={formData.education}
-                            type="text"
+                            id="educationLevel"
+                            name="educationLevel"
                             disabled={!isEditing}
-
+                            value={formData.educationLevel}
+                            // onChange={handleInputChange}
+                            options={[
+                                { value: 'ENSINO_FUNDAMENTAL_INCOMPLETO', label: 'Ensino Fundamental Incompleto' },
+                                { value: 'ENSINO_FUNDAMENTAL_COMPLETO', label: 'Ensino Fundamental Completo' },
+                                { value: 'ENSINO_MEDIO_INCOMPLETO', label: 'Ensino Médio Incompleto' },
+                                { value: 'ENSINO_MEDIO_COMPLETO', label: 'Ensino Médio Completo' },
+                                { value: 'EDUCACAO_SUPERIOR_INCOMPLETA', label: 'Educação Superior Incompleta' },
+                                { value: 'EDUCACAO_SUPERIOR_COMPLETA', label: 'Educação Superior Completa' },
+                                { value: 'POS_GRADUACAO_INCOMPLETA', label: 'Pós Graduação Incompleta' },
+                                { value: 'POS_GRADUACAO_COMPLETA', label: 'Pós Graduação Completa' },
+                                { value: 'MESTRADO_INCOMPLETO', label: 'Mestrado Incompleto' },
+                                { value: 'MESTRADO_COMPLETO', label: 'Mestrado Completo' },
+                                { value: 'DOUTORADO_INCOMPLETO', label: 'Doutorado Incompleto' },
+                                { value: 'DOUTORADO_COMPLETO', label: 'Doutorado Completo' },
+                                { value: 'OUTRO', label: 'Outro' },
+                            ]
+                            }
+                            onChange={handleInputChange}
                         />
 
-
+                        {/* 
                         <div className="interests-container">
                             <h2>Áreas de Interesse/Ocupações</h2>
                             <div className="interest-checkboxes">
@@ -214,7 +296,7 @@ const Profile = () => {
                                 </label>
 
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="textarea-box">
                             <TextareaCustom
@@ -225,7 +307,7 @@ const Profile = () => {
                                 value={formData.profissionalExperience}
                                 rows={10}
                                 disabled={!isEditing}
-
+                                onChange={handleInputChange}
                             />
 
                             <TextareaCustom
@@ -236,7 +318,7 @@ const Profile = () => {
                                 value={formData.skillsAndQualifications}
                                 rows={10}
                                 disabled={!isEditing}
-
+                                onChange={handleInputChange}
                             />
 
                             <TextareaCustom
@@ -247,7 +329,7 @@ const Profile = () => {
                                 value={formData.educationalHistory}
                                 rows={10}
                                 disabled={!isEditing}
-
+                                onChange={handleInputChange}
                             />
                         </div>
                     </div>
@@ -257,7 +339,7 @@ const Profile = () => {
                             isEditing ? (
                                 <div>
                                     <button onClick={handleDisableEditing} className="back">CANCELAR</button>
-                                    <button type="submit" className="save">SOLICITAR EDIÇÃO PARA O COLABORADOR</button>
+                                    <button type="submit" className="save">SALVAR INFORMAÇÕES</button>
                                 </div>
                             ) : (
                                 <button onClick={handleEnableEditing} className="save">HABILITAR EDIÇÃO</button>

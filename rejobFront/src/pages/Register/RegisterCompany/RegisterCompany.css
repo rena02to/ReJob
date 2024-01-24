@@ -1,0 +1,51 @@
+:root {
+    --first-blue: #00A3FF;
+    --dark-black: #0F0F0F;
+    --first-gray: #EDEFF0;
+    --second-gray: #D2D4D4;
+    --third-gray: #7C7C8A;
+}
+
+.bg-gray {
+    background-color: #ccc;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.white-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    margin-top: 16px;
+}
+
+.cabecalho p {
+    margin: 0;
+}
+
+.cabecalho img {
+    width: 120px;
+}
+
+.span-blue {
+    color: var(--first-blue);
+}
+
+.form-registro-empresa {
+    margin-top: 42px;
+}
