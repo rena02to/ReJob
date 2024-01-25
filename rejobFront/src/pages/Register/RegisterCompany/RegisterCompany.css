@@ -1,0 +1,132 @@
+:root {
+    --first-blue: #00A3FF;
+    --dark-black: #0F0F0F;
+    --first-gray: #EDEFF0;
+    --second-gray: #D2D4D4;
+    --third-gray: #7C7C8A;
+}
+
+.bg-gray {
+    background-color: var(--first-blue);
+    padding: 72px 0;
+    /* height: 100vh; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.white-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+}
+
+.link-voltar-topo {
+    position: absolute;
+    top: 72px;
+    left: 72px;
+    transition: transform 0.3s ease;
+}
+
+.link-voltar-topo:hover {
+    transform: scale(1.1);
+}
+
+.link-voltar-topo a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s ease; /* Adiciona uma transição suave de 0.3 segundos */
+}
+
+.link-voltar-topo a:hover {
+    opacity: 0.77;
+    transform:scale(2);
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    margin-top: 16px;
+}
+
+.cabecalho p {
+    margin: 0;
+}
+
+.cabecalho img {
+    width: 120px;
+}
+
+.span-blue {
+    color: var(--first-blue);
+}
+
+.form-registro-empresa {
+    margin-top: 42px;
+}
+
+.form-registro-empresa .campos-registro-empresa {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+}
+
+.campos-registro-empresa {
+    display: grid;
+    place-items: center;
+    /* Centraliza horizontal e verticalmente */
+}
+
+.box-botao-registrar-empresa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.form-registro-empresa .save {
+    cursor: pointer;
+    padding: 12px;
+    margin: 0;
+    width: 400px;
+    background-color: var(--first-blue);
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.form-registro-empresa .save:hover {
+    opacity: 0.77;
+    transform: scale(1.1);
+}
+
+.links-registro-empresa {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.links-registro-empresa a {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--third-gray);
+    transition: transform 0.3s ease;
+}
+
+.links-registro-empresa a:hover {
+    opacity: 0.77;
+    transform: scale(1.1);
+}

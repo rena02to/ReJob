@@ -88,6 +88,12 @@ function Home(){
                                                 </p>
                                             </a>
                                         </div>
+                                        <div className={style.local}>
+                                            <p>
+                                                <FaLocationDot />
+                                                {/* {vaga.companyLocation} */}
+                                            </p>
+                                        </div>
                                         <div className={style.nivel}>
                                             <p>
                                                 <FaClock />
