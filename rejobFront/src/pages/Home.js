@@ -10,6 +10,7 @@ import RejobSimbol from "./../images/newJob.png";
 import { GoBook } from "react-icons/go";
 import { MdOutlineCategory } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { educationLevelMapper } from '../utils/educationLevelMapper';
 
 function Home(){
     const dispatch = useDispatch();
@@ -87,12 +88,6 @@ function Home(){
                                                 </p>
                                             </a>
                                         </div>
-                                        <div className={style.local}>
-                                            <p>
-                                                <FaLocationDot />
-                                                {vaga.companyLocation}
-                                            </p>
-                                        </div>
                                         <div className={style.nivel}>
                                             <p>
                                                 <FaClock />
@@ -114,7 +109,7 @@ function Home(){
                                         <div className={style.escolaridade}>
                                             <p>
                                                 <GoBook />
-                                                {vaga.educationLevel}
+                                                {educationLevelMapper(vaga.educationLevel)}
                                             </p>
                                         </div>
                                     </div>

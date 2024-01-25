@@ -7,6 +7,7 @@ import { ImStatsBars } from "react-icons/im";
 import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
+import { educationLevelMapper } from "../../utils/educationLevelMapper";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -58,7 +59,7 @@ const JobDetails = () => {
               {job.educationLevel && (
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
                   <ImStatsBars />
-                  <span>{job.educationLevel}</span>
+                  <span>{educationLevelMapper(job.educationLevel)}</span>
                 </div>
               )}
               {job.salaryRange && (

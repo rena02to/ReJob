@@ -55,7 +55,7 @@ function Rotas() {
         ></Route>
         <Route
           exact
-          path="/jobs/:id"
+          path="/vagas/:id"
           element={isLoged ? <Navigate to="/" /> : <JobDetails />}
         ></Route>
         <Route
