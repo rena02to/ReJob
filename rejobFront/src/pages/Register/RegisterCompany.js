@@ -39,6 +39,7 @@ function RegisterCompany(){
         qFunc: '',
         estado: '',
         cidade: '',
+        adress: '',
         email: '',
         tel: '',
         desc: '',
@@ -204,6 +205,16 @@ function RegisterCompany(){
                 />
 
                 <InputCustom
+                    label="Linha digitável do endereço"
+                    placeholder="Digite a linha digitável do endereço"
+                    type="text"
+                    id="adress"
+                    name="adress"
+                    value={initialValues.adress}
+                    onChange={handleInputChange}
+                />
+
+                <InputCustom
                     label="E-mail da empresa"
                     placeholder="Digite o e-mail da empresa"
                     type="email"
@@ -229,6 +240,7 @@ function RegisterCompany(){
                         placeholder='Digite uma descrição institucional'
                         id="desc"
                         name="desc"
+                        value={initialValues.desc}
                         onChange={handleInputChange}
                     />
                 </div>
