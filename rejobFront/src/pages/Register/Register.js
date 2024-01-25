@@ -12,11 +12,14 @@ function Register(){
                 <div className={style.conteudo}>
                     <p>Bem vindo!<br />Cadastre-se como <span>colaborador</span><br />ou <span>empresa</span></p>
                     <div className={style.buttons}>
-                        <a href='/registro/colaborador/'>
+                        <a href='/cadastro/colaborador/'>
                             <button>Sou colaborador</button>
                         </a>
-                        <a href='/registro/empresa/'>
+                        <a href='/cadastro/empresa/'>
                             <button>Sou empresa</button>
+                        </a>
+                        <a href='/cadastro/egresso/'>
+                            <button>Sou egresso</button>
                         </a>
                     </div>
                 </div>
