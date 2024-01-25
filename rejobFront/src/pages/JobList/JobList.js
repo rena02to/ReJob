@@ -10,6 +10,7 @@ import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import { ImStatsBars } from "react-icons/im";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
+import { educationLevelMapper } from "../../utils/educationLevelMapper";
 
 function JobList() {
   const navigate = useNavigate();
@@ -168,7 +169,7 @@ function JobList() {
                             <>
                               <ImStatsBars className="ml-1" />
                               <span className="text-xs ml-1">
-                                {job.educationLevel}
+                                {educationLevelMapper( job.educationLevel)}
                               </span>
                             </>
                           )}
