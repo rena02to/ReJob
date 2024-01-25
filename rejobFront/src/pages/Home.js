@@ -90,7 +90,7 @@ function Home(){
                                         <div className={style.local}>
                                             <p>
                                                 <FaLocationDot />
-                                                {vaga.companyLocation}
+                                                {/* {vaga.companyLocation} */}
                                             </p>
                                         </div>
                                         <div className={style.nivel}>
