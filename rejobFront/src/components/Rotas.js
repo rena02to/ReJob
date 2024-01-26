@@ -44,7 +44,7 @@ function Rotas() {
         />
         <Route
           exact
-          path="/colaborador/registro-ressocializado/"
+          path="/registro/egresso/"
           element={isLoged ? <Navigate to="/login" /> : <RegisterRemand />}
         />
         <Route path="/*" element={<NotFound />} />

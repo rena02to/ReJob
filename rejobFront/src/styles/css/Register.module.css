@@ -32,7 +32,7 @@
 .register .conteudo .buttons a{
   text-decoration: none;
 }
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .register .conteudo .buttons {
     flex-direction: column;
   }
