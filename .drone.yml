@@ -11,7 +11,7 @@ steps:
     registry: 716814888065.dkr.ecr.us-east-2.amazonaws.com
     region: us-east-2
     context: rejobFront
-    dockerfile: rejobFront/Dockerfile
+    dockerfile: rejobFront/Dockerfile.production
     tags:
       - frontend-latest
       - ${DRONE_BUILD_NUMBER}
