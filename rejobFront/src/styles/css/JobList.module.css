@@ -47,6 +47,7 @@
 .job_list_container .job_list_view > div {
   margin-top: 1rem;
   width: 98%;
+  height: auto;
 }
 
 .job_list_view .card_joblist {
@@ -96,6 +97,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #0f0f0f;
+  gap: 0.5rem;
 }
 
 .filters .type_of_vacancy {
