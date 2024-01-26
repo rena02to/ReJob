@@ -127,7 +127,7 @@ function JobList() {
                     className={styles.card_joblist}
                     onClick={() => goToDetailsPage(job.id)}
                   >
-                    <div className="flex justify-between gap-3">
+                    <div className="flex flex-col justify-between gap-3">
                       <div>
                         <p className="text-[18px] text-customColor font-extrabold">
                           {job.companyName}
@@ -141,7 +141,7 @@ function JobList() {
                             : job.categories}
                         </button>
                       </div>
-                      <div className="flex justify-end self-center h-auto w-2/5 text-end">
+                      <div className="flex flex-wrap h-auto w-full mt-8 text-end">
                         <div className="flex text-justify text-gray-500">
                           {job.companyName && (
                             <>
@@ -169,7 +169,7 @@ function JobList() {
                             <>
                               <ImStatsBars className="ml-1" />
                               <span className="text-xs ml-1">
-                                {educationLevelMapper( job.educationLevel)}
+                                {educationLevelMapper(job.educationLevel)}
                               </span>
                             </>
                           )}
