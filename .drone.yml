@@ -1,0 +1,29 @@
+kind: pipeline
+type: kubernetes
+
+name: default-pipeline
+
+steps:
+- name: build-image
+  image: plugins/ecr
+  settings:
+    repo: rejob
+    registry: 716814888065.dkr.ecr.us-east-2.amazonaws.com
+    region: us-east-2
+    context: rejobFront
+    dockerfile: rejobFront/Dockerfile
+    tags:
+      - frontend-latest
+      - ${DRONE_BUILD_NUMBER}
+
+tolerations:
+- dedicated: jenkinsAgents
+  operator: Exists
+  effect: NoSchedule
+
+trigger:
+  event:
+  - push
+  branch:
+  - release/1.0.0
+
