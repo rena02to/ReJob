@@ -1,12 +1,12 @@
 .background {
-  background-color: #D9D9D9;
+  background-color: #00A3FF;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   position: relative;
-  padding: 120px 0 100px 0;
+  padding: 72px 0 72px 0;
 }
 .background .back {
   display: flex;
