@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import InputCustom from '../../components/InputCustom/InputCustom';
 import SelectCustom from '../../components/SelectCustom/SelectCustom';
+import BackLink from '../../components/BackLink/BackLink';
 
 function RegisterCollaboratory(){
     const dispatch = useDispatch();
@@ -95,10 +96,7 @@ function RegisterCollaboratory(){
 
     return(
         <section className={style.background}>
-            <a href='/registro' className={style.back} >
-                <FaArrowLeftLong />
-                <p>Voltar</p>
-            </a>
+            <BackLink />
 
             <form>
                 <img src={ReJob} alt='ReJob' />

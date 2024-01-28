@@ -231,7 +231,7 @@ function NavBar() {
               <a href="/login">
                 <button>Entrar</button>
               </a>
-              <a href="/registro">
+              <a href="/cadastro">
                 <button>Cadastrar-se</button>
               </a>
             </div>
