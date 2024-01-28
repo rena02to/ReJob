@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import SelectCustom from '../../components/SelectCustom/SelectCustom';
 import InputCustom from '../../components/InputCustom/InputCustom';
+import BackLink from '../../components/BackLink/BackLink';
 
 function RegisterRemand(){
     const dispatch = useDispatch();
@@ -147,10 +148,7 @@ function RegisterRemand(){
 
     return(
         <section className={style.background}>
-            <a href='/registro' className={style.back} >
-                <FaArrowLeftLong />
-                <p>Voltar</p>
-            </a>
+            <BackLink />
 
             <form>
                 <img src={ReJob} alt='ReJob' />

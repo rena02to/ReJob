@@ -20,31 +20,6 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 500px;
-}
-
-.link-voltar-topo {
-    position: absolute;
-    top: 72px;
-    left: 72px;
-    transition: transform 0.3s ease;
-}
-
-.link-voltar-topo:hover {
-    transform: scale(1.1);
-}
-
-.link-voltar-topo a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    transition: transform 0.3s ease; /* Adiciona uma transição suave de 0.3 segundos */
-}
-
-.link-voltar-topo a:hover {
-    opacity: 0.77;
-    transform:scale(2);
 }
 
 .cabecalho {
