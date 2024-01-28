@@ -1,0 +1,41 @@
+
+.link-voltar-topo {
+    position: absolute;
+    top: 72px;
+    left: 72px;
+    transition: transform 0.3s ease;
+}
+
+.link-voltar-topo:hover {
+    transform: scale(1.1);
+}
+
+.link-voltar-topo a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s ease; /* Adiciona uma transição suave de 0.3 segundos */
+}
+
+.link-voltar-topo a:hover {
+    opacity: 0.77;
+    transform:scale(2);
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    /* Estilos para telas entre 768 pixels e 991 pixels de largura */
+    .link-voltar-topo {
+        top: 24px;
+        left: calc(50% - 70px);
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    /* Estilos para telas menores ou iguais a 767 pixels de largura */
+    .link-voltar-topo {
+        top: 24px;
+        left: calc(50% - 70px);
+    }
+}
+

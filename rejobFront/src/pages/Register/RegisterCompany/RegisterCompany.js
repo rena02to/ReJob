@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import InputCustom from "../../../components/InputCustom/InputCustom";
 import SelectCustom from "../../../components/SelectCustom/SelectCustom";
 import TextareaCustom from "../../../components/TextareaCustom/TextareaCustom";
+import BackLink from "../../../components/BackLink/BackLink";
 
 // Assets
 import "./RegisterCompany.css"
@@ -156,9 +157,7 @@ const RegisterCompany = () => {
 
     return (
         <div className="bg-gray">
-            <div className="link-voltar-topo">
-                <Link to="/">Voltar para o Início</Link>
-            </div>
+            <BackLink />
             <main className="white-container">
                 <div className="cabecalho">
                     <img src={logo} />
