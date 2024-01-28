@@ -11,6 +11,7 @@ import { GoBook } from "react-icons/go";
 import { MdOutlineCategory } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { educationLevelMapper } from '../utils/educationLevelMapper';
+import api from '../services/api';
 
 function Home(){
     const dispatch = useDispatch();
@@ -21,11 +22,14 @@ function Home(){
     const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
     useEffect(() => {
-        const loadVacancies = () => {
-            fetch('http://localhost:8080/api/v1/jobs')
-            .then((resp) => resp.json())
-            .then((data) => dispatch({type: 'setVagas', payload: data}))
-            .catch((err) => console.log(err));
+        const loadVacancies = async () => {
+            try {
+                const response = await api.get("/jobs")
+                dispatch({type: 'setVagas', payload: response.data})
+            } catch (error) {
+                console.error("Erro na requisição:", error);
+            }
+
         }
 
         const loadDataStates = async () => {
