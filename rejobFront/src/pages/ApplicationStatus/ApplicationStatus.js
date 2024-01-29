@@ -4,7 +4,7 @@ import { ProgressBar } from "primereact/progressbar";
 import NavBar from "../../components/NavBar";
 import ExpandingSection from "../../components/ExpenseSection/ExpenseSection";
 
-const GeneralServices = () => {
+const ApplicationStatus = () => {
   const [progressBar, setProgressBar] = useState(50);
 
   return (
@@ -12,7 +12,7 @@ const GeneralServices = () => {
       <NavBar />
       <div className={style.body_container}>
         <div>
-          <h1 className="text-customColor">SERVIÇOS GERAIS</h1>
+          <h1 className="text-customColor">ACOMPANHAR PROGRESSO</h1>
           <p className="font-normal">
             Acompanhe abaixo o andamento de cada etapa do seu processo seletivo.
             Caso queira consultar a descrição da vaga,
@@ -58,4 +58,4 @@ const GeneralServices = () => {
     </div>
   );
 };
-export default GeneralServices;
+export default ApplicationStatus;
