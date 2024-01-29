@@ -54,9 +54,17 @@ function Rotas() {
 
         <Route path="/*" element={<NotFound />} />
 
-        <Route path="/nova-vaga" element={<NewVacancy />} />
+        <Route
+          exact
+          path="/nova-vaga"
+          element={<NewVacancy />}
+        />
 
-        <Route path="/perfil" element={<Profile />} />
+        <Route
+          exact
+          path="/perfil"
+          element={<Profile />}
+        />
 
 
         <Route
