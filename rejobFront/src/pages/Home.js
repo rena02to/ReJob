@@ -11,6 +11,7 @@ import { GoBook } from "react-icons/go";
 import { MdOutlineCategory } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { educationLevelMapper } from '../utils/educationLevelMapper';
+import api from '../services/api';
 
 function Home(){
     const dispatch = useDispatch();
@@ -21,11 +22,14 @@ function Home(){
     const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
     useEffect(() => {
-        const loadVacancies = () => {
-            fetch('http://localhost:8080/api/v1/jobs')
-            .then((resp) => resp.json())
-            .then((data) => dispatch({type: 'setVagas', payload: data}))
-            .catch((err) => console.log(err));
+        const loadVacancies = async () => {
+            try {
+                const response = await api.get("/jobs")
+                dispatch({type: 'setVagas', payload: response.data})
+            } catch (error) {
+                console.error("Erro na requisição:", error);
+            }
+
         }
 
         const loadDataStates = async () => {
@@ -141,7 +145,7 @@ function Home(){
                     </div>
                     <div className={style.beneficios}>
                         <h2 className={style.quaisbeneficios}>Quais benefícios minha empresa receberá ao recrutar trabalhadores na ReJob?</h2>
-                        <p className={style.beneficiosTexto}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br /><br />Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br /><br />Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p className={style.beneficiosTexto}>Sua empresa receberá incentivos fiscais fornecidos pelo governo, além do Certificado de Empregador Socialmente Responsável emitido por nós, comprovando o compromisso da sua empresa com a inclusão social. Além disso, você irá encontrar talentos qualificados e com as habilidades necessárias para preencher as vagas de sua empresa.</p>
                         <div className={style.melhoresEmpresasContainer}>
                             <h2>Algumas empresas que já contrataram com a ReJob</h2>
                             <div className={style.melhoresEmpresas}>

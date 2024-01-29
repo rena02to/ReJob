@@ -51,13 +51,18 @@
 .vagas .containerMain .perfilHome .conteudo .interno .buttons a {
   text-decoration: none;
 }
-.vagas .containerMain .perfilHome .conteudo .interno{
+.vagas .containerMain .perfilHome .conteudo .interno {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   padding-right: 20px;
 }
+
+.interno i {
+  align-self: flex-start;
+}
+
 @media (max-width: 1000px) {
   .vagas .containerMain .perfilHome .conteudo .interno .buttons {
     display: flex;
@@ -65,7 +70,7 @@
     margin-top: 20px;
     gap: 10px;
   }
-  .vagas .containerMain .perfilHome .conteudo .interno{
+  .vagas .containerMain .perfilHome .conteudo .interno {
     display: flex;
     flex-direction: row;
   }
