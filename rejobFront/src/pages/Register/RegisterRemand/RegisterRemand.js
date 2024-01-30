@@ -17,7 +17,6 @@ import logo from "../../../images/newJob.png"
 import api from "../../../services/api";
 
 const RegisterRemand = () => {
-    const [states, setStates] = useState([]);
     const [confirmationPassword, setConfirmationPassword] = useState("");
     const [formData, setFormData] = useState({
         name: "",
@@ -67,8 +66,20 @@ const RegisterRemand = () => {
         setFormData({ ...formData, phoneNumber: formattedPhoneNumber, displayPhoneNumber });
     };
 
+    const validatePassword = (password) => {
+        const uppercaseRegex = /[A-Z]/;
+
+        const lengthRequirement = password.length >= 8;
+
+        const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
+
+        return uppercaseRegex.test(password) && lengthRequirement && specialCharRegex.test(password);
+    }
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
+        console.log(name);
+        console.log(value);
 
         // Restante do código
         if (name === "cpf") {
@@ -76,7 +87,9 @@ const RegisterRemand = () => {
         } else if (name === "phoneNumber") {
             formatPhoneNumber(value);
         } else if (name === "confirmationPassword") {
+            console.log('entrou')
             setConfirmationPassword(value);
+            console.log(confirmationPassword);
         } else {
             setFormData({ ...formData, [name]: value });
         }
@@ -85,11 +98,15 @@ const RegisterRemand = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
+        console.log(formData)
+
         // Verificação de campos vazios
-        if (!formData.name || !formData.phoneNumber || !formData.email || !formData.password || !formData.confirmationPassword ||
-            !formData.cpf || !formData.prisonCode || !formData.educationLevel || !formData.dateOfBirth || !formData.residenceLocation ||
-            !formData.sentenceRegime || !formData.professionalExperience || !formData.areasOfInterest || !formData.skillsAndQualifications
-            || !formData.educationalHistory) {
+        if (
+            !formData.name || !formData.phoneNumber || !formData.email ||
+            !formData.password || !formData.cpf || !formData.prisonCode || !formData.educationLevel || !formData.dateOfBirth ||
+            !formData.residenceLocation || !formData.sentenceRegime || !formData.professionalExperience ||
+            !formData.areasOfInterest || !formData.skillsAndQualifications || !formData.educationalHistory
+        ) {
             toast.warn("Por favor, preencha todos os campos obrigatórios.", {
                 position: toast.POSITION.BOTTOM_RIGHT
             });
@@ -99,6 +116,14 @@ const RegisterRemand = () => {
         // Verificacao email
         if (!isValidEmail(formData.email)) {
             toast.warn("Por favor, verifique o seu e-mail e tente novamente!", {
+                position: toast.POSITION.BOTTOM_RIGHT
+            });
+            return;
+        }
+
+        // Verificacao senha
+        if (!validatePassword(formData.password)) {
+            toast.warn("A senha deve ter pelo menos uma letra maiúscula, no mínimo 8 caracteres e um símbolo especial. Por favor, tente novamente!", {
                 position: toast.POSITION.BOTTOM_RIGHT
             });
             return;
@@ -133,8 +158,6 @@ const RegisterRemand = () => {
             return;
         }
 
-        console.log(formData)
-
         try {
             const response = await api.post('/auth/register-employee', formData);
             toast.success(`${formData.name}, sua conta foi criada na ReJob com sucesso.`, {
@@ -143,6 +166,13 @@ const RegisterRemand = () => {
 
         } catch (error) {
             console.error('Erro ao fazer a solicitação POST:', error);
+
+            if (error.response && error.response.status === 409) {
+                console.log("entrou no if do 409");
+                toast.error("Já existe uma conta cadastrada neste email. Por favor, insira outro e-mail ou logue na conta.", {
+                    position: toast.POSITION.BOTTOM_RIGHT
+                  });
+            } 
         }
     };
 
@@ -183,9 +213,10 @@ const RegisterRemand = () => {
                             placeholder="Digite o E-mail"
                             id="email"
                             name="email"
-                            type="text"
+                            type="email"
                             value={formData.email}
                             onChange={handleInputChange}
+                            autoComplete="username"
                         />
 
                         <InputCustom
@@ -193,9 +224,10 @@ const RegisterRemand = () => {
                             placeholder="*******"
                             id="password"
                             name="password"
-                            value={formData.password || ""}
+                            value={formData.password}
                             onChange={handleInputChange}
                             type="password"
+                            autoComplete="new-password"
                         />
 
                         <InputCustom
@@ -203,9 +235,10 @@ const RegisterRemand = () => {
                             placeholder="*******"
                             id="confirmationPassword"
                             name="confirmationPassword"
-                            value={confirmationPassword || ""}
+                            value={confirmationPassword}
                             onChange={handleInputChange}
                             type="password"
+                            autoComplete="new-password"
                         />
 
                         <InputCustom
