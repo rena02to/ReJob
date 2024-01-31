@@ -17,6 +17,7 @@ import logo from "../../../images/newJob.png"
 import api from "../../../services/api";
 
 const RegisterRemand = () => {
+    const [states, setStates] = useState([]);
     const [confirmationPassword, setConfirmationPassword] = useState("");
     const [formData, setFormData] = useState({
         name: "",
@@ -27,13 +28,32 @@ const RegisterRemand = () => {
         prisonCode: "",
         educationLevel: "",
         dateOfBirth: "",
-        residenceLocation: "",
+        residenceLocation: {
+            state: "",
+            city: "",
+            address: "",
+        },
         sentenceRegime: "",
         professionalExperience: "",
         areasOfInterest: "",
         skillsAndQualifications: "",
         educationalHistory: ""
     });
+
+    // GET STATES
+    useEffect(() => {
+        const carregarStates = async () => {
+            try {
+                // Importar diretamente o arquivo JSON
+                const data = require('./states.json');
+                setStates(data.estados);
+            } catch (error) {
+                console.error('Erro ao carregar Estados:', error);
+            }
+        };
+
+        carregarStates();
+    }, [setStates]);
 
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -90,6 +110,14 @@ const RegisterRemand = () => {
             console.log('entrou')
             setConfirmationPassword(value);
             console.log(confirmationPassword);
+        } else if (name === "state" || name === "city" || name === "address") {
+            setFormData((formData) => ({
+                ...formData,
+                residenceLocation: {
+                    ...formData.residenceLocation,
+                    [name]: value,
+                },
+            }));
         } else {
             setFormData({ ...formData, [name]: value });
         }
@@ -104,7 +132,8 @@ const RegisterRemand = () => {
         if (
             !formData.name || !formData.phoneNumber || !formData.email ||
             !formData.password || !formData.cpf || !formData.prisonCode || !formData.educationLevel || !formData.dateOfBirth ||
-            !formData.residenceLocation || !formData.sentenceRegime || !formData.professionalExperience ||
+            !formData.residenceLocation.state || !formData.residenceLocation.city || !formData.residenceLocation.address ||
+            !formData.sentenceRegime || !formData.professionalExperience ||
             !formData.areasOfInterest || !formData.skillsAndQualifications || !formData.educationalHistory
         ) {
             toast.warn("Por favor, preencha todos os campos obrigatórios.", {
@@ -295,7 +324,40 @@ const RegisterRemand = () => {
                             type="date"
                         />
 
+                        <SelectCustom
+                            label="Estado"
+                            id="state"
+                            name="state"
+                            value={formData.residenceLocation.state}
+                            onChange={handleInputChange}
+                            options={states.map(state => ({ value: state.sigla, label: state.nome }))}
+                        />
+
+                        <SelectCustom
+                            label="Cidade"
+                            id="city"
+                            name="city"
+                            value={formData.residenceLocation.city}
+                            onChange={handleInputChange}
+                            options={
+                                states.find(state => state.sigla === formData.residenceLocation.state)?.cidades.map(city => ({
+                                    value: city,
+                                    label: city
+                                })) || []
+                            }
+                        />
+
                         <InputCustom
+                            label="Endereço"
+                            placeholder="Digite a endereço da empresa"
+                            type="text"
+                            id="address"
+                            name="address"
+                            value={formData.residenceLocation.address}
+                            onChange={handleInputChange}
+                        />
+
+                        {/* <InputCustom
                             label="Local de Residência"
                             id="residenceLocation"
                             name="residenceLocation"
@@ -303,7 +365,7 @@ const RegisterRemand = () => {
                             onChange={handleInputChange}
                             placeholder="Digite o Local de Residência"
                             type="text"
-                        />
+                        /> */}
 
                         <SelectCustom
                             label="Regime de Cumprimento de Pena"
