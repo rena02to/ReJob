@@ -18,10 +18,11 @@ import api from "../../../services/api";
 
 const RegisterCompany = () => {
     const [states, setStates] = useState([]);
+    const [confirmationPassword, setConfirmationPassword] = useState("");
     const [formData, setFormData] = useState({
         cnpj: "",
         name: "",
-        email: "",
+        companyType: "",
         businessActivity: "",
         numberOfEmployees: "",
         headquarters: {
@@ -30,7 +31,9 @@ const RegisterCompany = () => {
             address: ""
         },
         phone: "",
-        institutionalDescription: ""
+        institutionalDescription: "",
+        email: "",
+        password: "",
     });
 
 
@@ -48,6 +51,16 @@ const RegisterCompany = () => {
 
         carregarStates();
     }, [setStates]);
+
+    const validatePassword = (password) => {
+        const uppercaseRegex = /[A-Z]/;
+
+        const lengthRequirement = password.length >= 8;
+
+        const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
+
+        return uppercaseRegex.test(password) && lengthRequirement && specialCharRegex.test(password);
+    }
 
     const formatCnpj = (cnpj) => {
         // Remove caracteres não numéricos
@@ -98,6 +111,8 @@ const RegisterCompany = () => {
             formatCnpj(value);
         } else if (name === "phone") {
             formatPhone(value);
+        } else if (name === "confirmationPassword") {
+            setConfirmationPassword(value);
         } else if (name === "state" || name === "city" || name === "address") {
             setFormData((formData) => ({
                 ...formData,
@@ -107,7 +122,11 @@ const RegisterCompany = () => {
                 },
             }));
         } else if (name === "numberOfEmployees") {
-            setFormData({ ...formData, [name]: Number(value) });
+            if (isNaN(value)) {
+                setFormData({ ...formData, [name]: "" });
+            } else {
+                setFormData({ ...formData, [name]: Number(value) });
+            }
         } else {
             setFormData({ ...formData, [name]: value });
         }
@@ -120,7 +139,7 @@ const RegisterCompany = () => {
 
         // Verificação de campos vazios
         if (!formData.cnpj || !formData.name || !formData.email || !formData.businessActivity ||
-            !formData.headquarters.state || !formData.headquarters.city || !formData.headquarters.address ||
+            !formData.headquarters.state || !formData.headquarters.city || !formData.companyType || !formData.headquarters.address ||
             !formData.institutionalDescription || !formData.numberOfEmployees || !formData.phone) {
             toast.warn("Por favor, preencha todos os campos obrigatórios.", {
                 position: toast.POSITION.BOTTOM_RIGHT
@@ -136,6 +155,22 @@ const RegisterCompany = () => {
             return;
         }
 
+
+        // Verificacao senha
+        if (!validatePassword(formData.password)) {
+            toast.warn("A senha deve ter pelo menos uma letra maiúscula, no mínimo 8 caracteres e um símbolo especial. Por favor, tente novamente!", {
+                position: toast.POSITION.BOTTOM_RIGHT
+            });
+            return;
+        }
+
+        if (formData.password !== confirmationPassword) {
+            toast.warn("As senhas inseridas não coincidem. Por favor, tente novamente!", {
+                position: toast.POSITION.BOTTOM_RIGHT
+            });
+            return;
+        }
+
         // Limite de caracteres
         if (formData.institutionalDescription.length > 1000) {
             toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
@@ -145,8 +180,8 @@ const RegisterCompany = () => {
         }
 
         try {
-            const response = await api.post('/companies', formData);
-            toast.success(`A empresa: ${formData.name}, foi criada na ReJob com sucesso.`, {
+            const response = await api.post('/auth/register-Company', formData);
+            toast.success(`A empresa: ${formData.name}, foi registrada na ReJob com sucesso.`, {
                 position: toast.POSITION.BOTTOM_RIGHT
             });
 
@@ -166,14 +201,18 @@ const RegisterCompany = () => {
                 </div>
                 <form className="form-registro-empresa">
                     <div className="campos-registro-empresa">
-                        {/* <SelectCustom
-                            label="Categoria"
+                        <SelectCustom
+                            label="Tipo de Empresa"
+                            id="companyType"
+                            name="companyType"
+                            value={formData.companyType}
+                            onChange={handleInputChange}
                             options={[
                                 { value: 'EMPRESA_COMERCIAL', label: 'Empresa Comercial' },
                                 { value: 'ONG', label: 'ONG' },
                             ]
                             }
-                        /> */}
+                        />
 
                         <InputCustom
                             label="CNPJ"
@@ -258,16 +297,6 @@ const RegisterCompany = () => {
                             type="text"
                         />
 
-                        <InputCustom
-                            label="Endereço de E-mail Corporativo"
-                            placeholder="Digite o e-mail"
-                            id="email"
-                            name="email"
-                            type="text"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                        />
-
                         <TextareaCustom
                             label="Descrição Institucional da Empresa"
                             id="institutionalDescription"
@@ -278,6 +307,38 @@ const RegisterCompany = () => {
                             onChange={handleInputChange}
                             charmax={1000}
                             countchar={formData.institutionalDescription.length}
+                        />
+
+                        <InputCustom
+                            label="Endereço de E-mail Corporativo"
+                            placeholder="Digite o e-mail"
+                            id="email"
+                            name="email"
+                            type="text"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                        />
+
+                        <InputCustom
+                            label="Senha"
+                            placeholder="*******"
+                            id="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleInputChange}
+                            type="password"
+                            autoComplete="new-password"
+                        />
+
+                        <InputCustom
+                            label="Confirme a Senha"
+                            placeholder="*******"
+                            id="confirmationPassword"
+                            name="confirmationPassword"
+                            value={confirmationPassword}
+                            onChange={handleInputChange}
+                            type="password"
+                            autoComplete="new-password"
                         />
 
                         <div className="box-botao-registrar-empresa">

@@ -98,8 +98,6 @@ const RegisterRemand = () => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(name);
-        console.log(value);
 
         // Restante do código
         if (name === "cpf") {
@@ -107,7 +105,6 @@ const RegisterRemand = () => {
         } else if (name === "phoneNumber") {
             formatPhoneNumber(value);
         } else if (name === "confirmationPassword") {
-            console.log('entrou')
             setConfirmationPassword(value);
             console.log(confirmationPassword);
         } else if (name === "state" || name === "city" || name === "address") {
