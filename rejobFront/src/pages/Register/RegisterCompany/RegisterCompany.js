@@ -135,8 +135,6 @@ const RegisterCompany = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(formData)
-
         // Verificação de campos vazios
         if (!formData.cnpj || !formData.name || !formData.email || !formData.businessActivity ||
             !formData.headquarters.state || !formData.headquarters.city || !formData.companyType || !formData.headquarters.address ||

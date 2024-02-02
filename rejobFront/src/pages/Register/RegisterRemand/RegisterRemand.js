@@ -106,7 +106,6 @@ const RegisterRemand = () => {
             formatPhoneNumber(value);
         } else if (name === "confirmationPassword") {
             setConfirmationPassword(value);
-            console.log(confirmationPassword);
         } else if (name === "state" || name === "city" || name === "address") {
             setFormData((formData) => ({
                 ...formData,
@@ -122,8 +121,6 @@ const RegisterRemand = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
-        console.log(formData)
 
         // Verificação de campos vazios
         if (
