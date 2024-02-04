@@ -11,7 +11,7 @@ import NotFound from "./../pages/NotFound";
 import Register from "./../pages/Register/Register";
 import RegisterCollaborator from "./../pages/Register/RegisterCollaborator";
 import RegisterCompany from "./../pages/Register/RegisterCompany/RegisterCompany";
-import RegisterRemand from "./../pages/Register/RegisterRemand";
+import RegisterRemand from "./../pages/Register/RegisterRemand/RegisterRemand";
 import JobDetails from "../pages/JobDetails/JobDetails";
 import JobList from "../pages/JobList/JobList";
 
@@ -59,11 +59,23 @@ function Rotas() {
 
         <Route path="/*" element={<NotFound />} />
 
-        <Route path="/nova-vaga" element={<NewVacancy />} />
+        <Route
+          exact
+          path="/nova-vaga"
+          element={isLoged ? <Navigate to="/login" /> : <NewVacancy />}
+        />
 
-        <Route path="/perfil" element={<Profile />} />
+        <Route
+          exact
+          path="/perfil"
+          element={isLoged ? <Navigate to="/login" /> : <Profile />}
+        />
 
-        <Route exact path="/vagas/" element={<JobList />}></Route>
+        <Route
+          exact
+          path="/vagas/"
+          element={<JobList />}>
+        </Route>
 
         <Route
           exact
