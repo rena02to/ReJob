@@ -1,17 +1,25 @@
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 
 // COMPONENTS
 import NavBar from "../../../components/NavBar";
 import Title from "../../../components/Title/Title";
 import InputCustom from "../../../components/InputCustom/InputCustom";
-import VacancyCompany from "../../../components/VacancyCompany/VacancyCompany";
+import VacancyCompany from "../../../components/VacancyInProgress/VacancyInProgress";
 
 // ASSETS
 import backIcon from '../../../images/backIcon.png'
 import rightIcon from '../../../images/rightIcon.png'
 import SelectCustom from "../../../components/SelectCustom/SelectCustom";
+import VacancysCompany from '../../../components/VacancysCompany/VacancysCompany';
 
 const DashboardCompany = () => {
+    const [toggle, setToggle] = useState(1);
+
+    function updateToggle(id) {
+        setToggle(id)
+    }
+
     return (
         <div>
             <NavBar />
@@ -23,7 +31,7 @@ const DashboardCompany = () => {
                     </Title>
 
                     <Link to="/nova-vaga" className="no-underline">
-                        <button to="/nova-vaga" className="p-[12px] w-[227px] bg-[#00A3FF] text-[#FFF] rounded hover:opacity-85 cursor-pointer">
+                        <button to="/finalizadas" className="p-[12px] w-[227px] bg-[#00A3FF] text-[#FFF] rounded hover:opacity-85 cursor-pointer">
                             OFERTAR NOVA VAGA
                         </ button>
                     </Link>
@@ -35,51 +43,22 @@ const DashboardCompany = () => {
                 <div className="w-full flex pt-[24px]">
                     <div className="w-9/12">
                         <div className="flex gap-[12px] text-[18px]">
-                            <div className="text-[#00A3FF]" >Em andamento</div>
-                            <div className="text-[#7C7C8A]">Finalizadas</div>
+                            <div onClick={() => updateToggle(1)} className={toggle === 1 ? "cursor-pointer text-[#00A3FF] hover:opacity-70" : "cursor-pointer text-[#7C7C8A] hover:opacity-70"}>Em andamento</div>
+                            <div onClick={() => updateToggle(2)} className={toggle === 1 ? "cursor-pointer text-[#7C7C8A] hover:opacity-70" : "cursor-pointer text-[#00A3FF] hover:opacity-70"}>Finalizadas</div>
                         </div>
-                        <div className="mt-[6px] w-full rounded bg-[#D2D4D4]">
-                            <div className="w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
-                        </div>
-                        <div className="grid grid-cols-3 gap-[12px] pt-[12px] px-[12px]">
-                            <VacancyCompany
-                                tituloDaVaga="Serviços Gerais"
-                                empresa="Starbuck"
-                                localizacao="São Paulo, São Paulo, Brasil"
-                                nivel="Ensino Médio"
-                                contrato="CLT"
-                            />
-                            <VacancyCompany
-                                tituloDaVaga="Serviços Gerais"
-                                empresa="Serviços Gerais"
-                                localizacao="Serviços Gerais"
-                                contrato="Serviços Gerais"
-                            />
-                            <VacancyCompany
-                                tituloDaVaga="Serviços Gerais"
-                                empresa="Serviços Gerais"
-                                localizacao="Serviços Gerais"
-                                contrato="Serviços Gerais"
-                            />
-                            <VacancyCompany
-                                tituloDaVaga="Serviços Gerais"
-                                empresa="Serviços Gerais"
-                                localizacao="Serviços Gerais"
-                                contrato="Serviços Gerais"
-                            />
-                            <VacancyCompany
-                                tituloDaVaga="Serviços Gerais"
-                                empresa="Serviços Gerais"
-                                localizacao="Serviços Gerais"
-                                contrato="Serviços Gerais"
-                            />
-                            <VacancyCompany
-                                tituloDaVaga="Serviços Gerais"
-                                empresa="Serviços Gerais"
-                                localizacao="Serviços Gerais"
-                                contrato="Serviços Gerais"
-                            />
-                        </div>
+                        {
+                            toggle === 1 ?
+                                <div className="mt-[6px] w-full rounded bg-[#D2D4D4]">
+                                    <div className="relative z-10 w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
+                                </div>
+                                :
+                                <div className="z-0 mt-[6px] w-full rounded bg-[#D2D4D4]">
+                                    <div className="relative z-10 left-[132px] w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
+                                </div>
+                        }
+                        <VacancysCompany 
+                            toggle={toggle}
+                        />
                         <div className="flex py-[24px]">
                             <div className="flex justify-center items-center w-[40px] rounded h-[40px] hover:opacity-75 cursor-pointer">
                                 <img src={backIcon} />
@@ -99,28 +78,28 @@ const DashboardCompany = () => {
                         </div>
                     </div>
                     <div className="flex flex-col rounded w-[411px] h-full mt-[51px] p-[12px] shadow-xl">
-                            <h3 className="font-bold text-[#00A3FF] text-[24px]">Filtrar</h3>
-                            <div className="flex flex-col gap-[12px]">
-                                <SelectCustom
-                                    label="Estado"
-                                    id="State"
-                                    name="State"
-                                    options={[
-                                        { value: 'Meio Período', label: 'Meio Período' },
-                                        { value: 'Período Integral', label: 'Período Integral' }
-                                    ]
-                                    }
-                                />
-                                <SelectCustom
-                                    label="Cidade"
-                                    id="City"
-                                    name="City"
-                                    options={[
-                                        { value: 'Meio Período', label: 'Meio Período' },
-                                        { value: 'Período Integral', label: 'Período Integral' }
-                                    ]
-                                    }
-                                />
+                        <h3 className="font-bold text-[#00A3FF] text-[24px]">Filtrar</h3>
+                        <div className="flex flex-col gap-[12px]">
+                            <SelectCustom
+                                label="Estado"
+                                id="State"
+                                name="State"
+                                options={[
+                                    { value: 'Meio Período', label: 'Meio Período' },
+                                    { value: 'Período Integral', label: 'Período Integral' }
+                                ]
+                                }
+                            />
+                            <SelectCustom
+                                label="Cidade"
+                                id="City"
+                                name="City"
+                                options={[
+                                    { value: 'Meio Período', label: 'Meio Período' },
+                                    { value: 'Período Integral', label: 'Período Integral' }
+                                ]
+                                }
+                            />
                         </div>
                     </div>
                 </div>

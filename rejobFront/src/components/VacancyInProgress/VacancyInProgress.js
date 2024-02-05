@@ -4,7 +4,7 @@ import locationIcon from '../../images/locationIcon.jpg'
 import contractIcon from '../../images/contractIcon.jpg'
 import nivelIcon from '../../images/nivelIcon.jpg'
 
-const VacancyCompany = (props) => {
+const VacancyInProgress = (props) => {
     return (
         <div className="flex w-[250px] h-[250px] py-[24px] flex-col justify-between items-center border-2 
         rounded border-solid border-[#D2D4D4]
@@ -38,4 +38,4 @@ const VacancyCompany = (props) => {
     );
 }
 
-export default VacancyCompany;
+export default VacancyInProgress;
