@@ -20,14 +20,59 @@ import api from '../../../services/api'
 const DashboardCompany = () => {
     const [toggle, setToggle] = useState(1);
     const [paginaAtual, setPaginaAtual] = useState(1);
+    const [states, setStates] = useState([]);
+    const [formData, setFormData] = useState({
+        companyLocation: {
+          city: "",
+          state: "",
+          address: ""
+        }
+      });
+
+    // GET STATES
+    useEffect(() => {
+        const carregarStates = async () => {
+            try {
+                // Importar diretamente o arquivo JSON
+                const data = require('./states.json');
+                setStates(data.estados);
+            } catch (error) {
+                console.error('Erro ao carregar Estados:', error);
+            }
+        };
+
+        carregarStates();
+    }, [setStates]);
 
     const updateToggle = (id) => {
         setToggle(id)
     }
 
-    const handleChangePagina = (novaPagina) => {
-        setPaginaAtual(novaPagina);
-    }
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        if (name.startsWith("salaryRange")) {
+          // Se o campo pertencer a salaryRange, atualize apenas esse campo
+          setFormData((formData) => ({
+            ...formData,
+            salaryRange: {
+              ...formData.salaryRange,
+              [name]: parseFloat(value),
+            },
+          }));
+        } else if (name === "state" || name === "city" || name === "address") {
+          setFormData((formData) => ({
+            ...formData,
+            companyLocation: {
+              ...formData.companyLocation,
+              [name]: value,
+            },
+          }));
+        } else if (name === "contactPersonId") {
+          setFormData({ ...formData, [name]: parseFloat(value) });
+        } else {
+          setFormData({ ...formData, [name]: value });
+        }
+      };
 
     return (
         <div>
@@ -68,45 +113,30 @@ const DashboardCompany = () => {
                         <VacancysCompany
                             toggle={toggle}
                         />
-                        {/* <div className="flex py-[24px]">
-                            <div className="flex justify-center items-center w-[40px] rounded h-[40px] hover:opacity-75 cursor-pointer">
-                                <img src={backIcon} />
-                            </div>
-                            <div className="flex justify-center font-bold items-center w-[40px] rounded h-[40px] bg-[#00A3FF] text-[#FFF] hover:opacity-75 cursor-pointer">
-                                1
-                            </div>
-                            <div className="flex justify-center font-bold items-center w-[40px] rounded h-[40px] text-[#00A3FF] hover:opacity-75 cursor-pointer">
-                                2
-                            </div>
-                            <div className="flex justify-center font-bold items-center w-[40px] rounded h-[40px] text-[#00A3FF] hover:opacity-75 cursor-pointer">
-                                3
-                            </div>
-                            <div className="flex justify-center items-center w-[40px] rounded h-[40px] hover:opacity-75 cursor-pointer">
-                                <img src={rightIcon} />
-                            </div>
-                        </div> */}
                     </div>
                     <div className="flex flex-col rounded w-[411px] h-full mt-[51px] p-[12px] shadow-xl">
                         <h3 className="font-bold text-[#00A3FF] text-[24px]">Filtrar</h3>
                         <div className="flex flex-col gap-[12px]">
                             <SelectCustom
                                 label="Estado"
-                                id="State"
-                                name="State"
-                                options={[
-                                    { value: 'Meio Período', label: 'Meio Período' },
-                                    { value: 'Período Integral', label: 'Período Integral' }
-                                ]
-                                }
+                                id="state"
+                                name="state"
+                                value={formData.companyLocation.state}
+                                onChange={handleInputChange}
+                                options={states.map(state => ({ value: state.sigla, label: state.nome }))}
                             />
+
                             <SelectCustom
                                 label="Cidade"
-                                id="City"
-                                name="City"
-                                options={[
-                                    { value: 'Meio Período', label: 'Meio Período' },
-                                    { value: 'Período Integral', label: 'Período Integral' }
-                                ]
+                                id="city"
+                                name="city"
+                                value={formData.companyLocation.city}
+                                onChange={handleInputChange}
+                                options={
+                                    states.find(state => state.sigla === formData.companyLocation.state)?.cidades.map(city => ({
+                                        value: city,
+                                        label: city
+                                    })) || []
                                 }
                             />
                         </div>

@@ -9,7 +9,7 @@ const VacancyInProgress = (props) => {
         <div className="flex w-[300px] h-[250px] py-[24px] flex-col justify-between items-center border-2 
         rounded border-solid border-[#D2D4D4]
         ">
-            <h3 className="text-[#00A3FF] text-center font-bold">{props.tituloDaVaga}</h3>
+            <h3 className="text-[#00A3FF] px-[12px] text-center font-bold">{props.tituloDaVaga}</h3>
             <div className="w-full flex flex-col list-none px-[12px] gap-[6px] items-center justify-center text-[#7C7C8A] text-[12px]">
                 <div className="flex gap-[6px] items-center">
                     <img src={companyIcon} />
@@ -28,7 +28,7 @@ const VacancyInProgress = (props) => {
                     {props.contrato}
                 </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex pt-[12px] items-center">
                 <button className="px-[12px] w-[124px] bg-[#00A3FF] text-[#FFF] rounded hover:opacity-85 cursor-pointer">
                     Mais detalhes
                 </button>

@@ -64,8 +64,6 @@ const NewVacancy = () => {
       carregarStates();
   }, [setStates]);
 
-  
-
   // GET USERS
   useEffect(() => {
     const fetchUsers = async () => {
