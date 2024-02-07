@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 
 // COMPONENTS
@@ -12,12 +12,21 @@ import backIcon from '../../../images/backIcon.png'
 import rightIcon from '../../../images/rightIcon.png'
 import SelectCustom from "../../../components/SelectCustom/SelectCustom";
 import VacancysCompany from '../../../components/VacancysCompany/VacancysCompany';
+import PaginationRounded from '../../PaginationRounded/PaginationRounded';
+
+// API
+import api from '../../../services/api'
 
 const DashboardCompany = () => {
     const [toggle, setToggle] = useState(1);
+    const [paginaAtual, setPaginaAtual] = useState(1);
 
-    function updateToggle(id) {
+    const updateToggle = (id) => {
         setToggle(id)
+    }
+
+    const handleChangePagina = (novaPagina) => {
+        setPaginaAtual(novaPagina);
     }
 
     return (
@@ -56,10 +65,10 @@ const DashboardCompany = () => {
                                     <div className="relative z-10 left-[132px] w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
                                 </div>
                         }
-                        <VacancysCompany 
+                        <VacancysCompany
                             toggle={toggle}
                         />
-                        <div className="flex py-[24px]">
+                        {/* <div className="flex py-[24px]">
                             <div className="flex justify-center items-center w-[40px] rounded h-[40px] hover:opacity-75 cursor-pointer">
                                 <img src={backIcon} />
                             </div>
@@ -75,7 +84,7 @@ const DashboardCompany = () => {
                             <div className="flex justify-center items-center w-[40px] rounded h-[40px] hover:opacity-75 cursor-pointer">
                                 <img src={rightIcon} />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="flex flex-col rounded w-[411px] h-full mt-[51px] p-[12px] shadow-xl">
                         <h3 className="font-bold text-[#00A3FF] text-[24px]">Filtrar</h3>
