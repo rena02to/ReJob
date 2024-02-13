@@ -1,5 +1,5 @@
 .background {
-  background-color: #00A3FF;
+  background-color: #00a3ff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,43 +44,48 @@
   margin: 0;
 }
 .background form .rejob span {
-  color: #00A3FF;
+  color: #00a3ff;
 }
 .background form p {
   font-size: 20px;
 }
-.background form .textArea{
+.background form .textArea {
   display: flex;
   flex-direction: column;
 }
-.background form .textArea .labelTextArea{
+.background form .textArea .labelTextArea {
   margin-bottom: 5px;
   font-weight: 600;
 }
-.background form .textArea .labelTextArea span{
-  color: #00A3FF;
+.background form .textArea .labelTextArea span {
+  color: #00a3ff;
   margin-left: 5px;
 }
-.background form .textArea textarea{
+.background form .textArea textarea {
   width: 300px;
   border-radius: 5px;
   resize: none;
   height: 200px;
 }
-.background form label{
+.background form label {
   margin-top: 20px;
   margin-bottom: -5px;
 }
-.background form input, .background form select, .background form .regras, .background form .coincidir{
+.background form input,
+.background form select,
+.background form .regras,
+.background form .coincidir {
   width: 300px !important;
 }
-.background form input, .background form select{
+.background form input,
+.background form select {
   height: 35px;
 }
-.background form .password{
+.background form .password {
   position: relative;
+  width: 100%;
 }
-.background form .password .eyeButton{
+.background form .password .eyeButton {
   border: 1px solid rgb(200, 200, 200);
   border-radius: 0px 5px 5px 0px;
   position: absolute;
@@ -91,17 +96,19 @@
   bottom: 0;
   right: -6px;
 }
-.background form .password .eye{
+
+.background form .password .eye {
   color: black;
 }
-.background form input[type="password"]{
+.background form input[type="password"] {
   padding-right: 40px;
 }
-.background form input[type="checkbox"]{
+.background form input[type="checkbox"] {
   width: auto !important;
   height: auto !important;
 }
-.background form .notify, .background form .termos {
+.background form .notify,
+.background form .termos {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -109,11 +116,13 @@
   margin-top: 10px;
   gap: 10px;
 }
-.background form .notify p, .background form .termos p {
+.background form .notify p,
+.background form .termos p {
   font-size: 17px;
   margin: 0;
 }
-.background form .notify input, .background form .termos input {
+.background form .notify input,
+.background form .termos input {
   width: 17px;
   height: 17px;
 }
@@ -126,7 +135,7 @@
 }
 .background form .submit {
   color: white;
-  background-color: #00A3FF;
+  background-color: #00a3ff;
   border: 0px solid transparent;
   border-radius: 5px;
   font-size: 24px;
@@ -139,7 +148,8 @@
   font-size: 20px;
   width: 100%;
 }
-.background form .regras p, .background form .coincidir p {
+.background form .regras p,
+.background form .coincidir p {
   font-size: 14px;
   margin: 0;
   color: rgb(100, 100, 100);
@@ -151,20 +161,36 @@
   width: 100%;
   margin-top: 10px;
 }
-.background form .regras .qCaracteres, .background form .regras .maiusculo, .background form .regras .minusculo, .background form .regras .number, .background form .regras .simbolo {
+.background form .regras .qCaracteres,
+.background form .regras .maiusculo,
+.background form .regras .minusculo,
+.background form .regras .number,
+.background form .regras .simbolo {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 5px;
 }
-.background form .regras .qCaracteres svg, .background form .regras .maiusculo svg, .background form .regras .minusculo svg, .background form .regras .number svg, .background form .regras .simbolo svg {
+.background form .regras .qCaracteres svg,
+.background form .regras .maiusculo svg,
+.background form .regras .minusculo svg,
+.background form .regras .number svg,
+.background form .regras .simbolo svg {
   width: 20px;
   height: 20px;
 }
-.background form .regras .qCaracteres .check, .background form .regras .maiusculo .check, .background form .regras .minusculo .check, .background form .regras .number .check, .background form .regras .simbolo .check {
+.background form .regras .qCaracteres .check,
+.background form .regras .maiusculo .check,
+.background form .regras .minusculo .check,
+.background form .regras .number .check,
+.background form .regras .simbolo .check {
   color: rgba(0, 150, 0, 0.7);
 }
-.background form .regras .qCaracteres .close, .background form .regras .maiusculo .close, .background form .regras .minusculo .close, .background form .regras .number .close, .background form .regras .simbolo .close {
+.background form .regras .qCaracteres .close,
+.background form .regras .maiusculo .close,
+.background form .regras .minusculo .close,
+.background form .regras .number .close,
+.background form .regras .simbolo .close {
   color: rgba(255, 0, 0, 0.7);
 }
 .background form .coincidir {

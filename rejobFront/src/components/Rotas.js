@@ -9,7 +9,7 @@ import Login from "./../pages/Login/Login";
 import Homepage from "./../pages/Home";
 import NotFound from "./../pages/NotFound";
 import Register from "./../pages/Register/Register";
-import RegisterCollaborator from "./../pages/Register/RegisterCollaborator";
+import RegisterCollaborator from "./../pages/Register/RegisterCollaborator/RegisterCollaborator";
 import RegisterCompany from "./../pages/Register/RegisterCompany/RegisterCompany";
 import RegisterRemand from "./../pages/Register/RegisterRemand/RegisterRemand";
 import JobDetails from "../pages/JobDetails/JobDetails";
@@ -71,11 +71,7 @@ function Rotas() {
           element={isLoged ? <Navigate to="/login" /> : <Profile />}
         />
 
-        <Route
-          exact
-          path="/vagas/"
-          element={<JobList />}>
-        </Route>
+        <Route exact path="/vagas/" element={<JobList />}></Route>
 
         <Route
           exact
