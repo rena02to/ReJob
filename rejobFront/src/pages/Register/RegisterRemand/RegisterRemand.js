@@ -89,14 +89,12 @@ const RegisterRemand = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    // Restante do código
     if (name === "cpf") {
       formatCpf(value);
     } else if (name === "phoneNumber") {
       formatPhoneNumber(value);
     } else if (name === "confirmationPassword") {
       setConfirmationPassword(value);
-      console.log(confirmationPassword);
     } else if (name === "state" || name === "city" || name === "address") {
       setFormData((formData) => ({
         ...formData,
@@ -212,7 +210,7 @@ const RegisterRemand = () => {
       <BackLink />
       <main className="white-container">
         <div className="cabecalho">
-          <img src={logo} />
+          <img src={logo} alt="logo" />
           <h1>
             Re<span className="span-blue">Job</span>
           </h1>

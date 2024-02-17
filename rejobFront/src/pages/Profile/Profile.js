@@ -94,16 +94,13 @@ const Profile = () => {
     fetchUsers();
   }, [token]);
 
-  // Atualizar valores dos inputs, selects e textareas nas variáveis
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
   };
 
   const handleEnableEditing = (event) => {
     event.preventDefault();
-    console.log(userData);
     setIsEditing(true);
   };
 

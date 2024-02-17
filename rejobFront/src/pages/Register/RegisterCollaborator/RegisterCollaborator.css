@@ -86,8 +86,7 @@
   width: 100%;
 }
 .background form .password .eyeButton {
-  border: 1px solid rgb(200, 200, 200);
-  border-radius: 0px 5px 5px 0px;
+  border: none;
   position: absolute;
   background-color: transparent;
   width: 35px;
@@ -148,6 +147,7 @@
   font-size: 20px;
   width: 100%;
 }
+
 .background form .regras p,
 .background form .coincidir p {
   font-size: 14px;

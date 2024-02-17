@@ -82,7 +82,6 @@ function Vacancies() {
       remoto,
       salaryRange,
     };
-    console.log(filters);
   };
 
   const clearFilters = () => {

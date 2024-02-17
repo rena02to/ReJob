@@ -12,8 +12,10 @@ import { ToastContainer, toast } from "react-toastify";
 import { isValidEmail, validatePassword } from "../../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../../services/Api";
+import { useNavigate } from "react-router-dom";
 
 function RegisterCollaboratory() {
+  const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
   const dispatch = useDispatch();
   const {
@@ -128,8 +130,7 @@ function RegisterCollaboratory() {
       !formData.companyId ||
       !formData.phoneNumber ||
       !formData.password ||
-      !formData.repeatPassword ||
-      !formData.terms
+      !formData.repeatPassword
     ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
         position: toast.POSITION.TOP_RIGHT,
@@ -154,15 +155,20 @@ function RegisterCollaboratory() {
       return;
     }
 
+    if (!formData.terms) {
+      toast.warn("Para continuar, é necessário aceitar os termos de uso.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+
     try {
       await api.post("/auth/register-collaborator", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
         phoneNumber: formData.phoneNumber,
-        fullName: formData.name,
         jobTitle: formData.jobTitle,
-        departmentOrArea: formData.jobTitle,
         collaboratorType: formData.collaboratorType,
         companyId: Number(formData.companyId),
       });
@@ -172,6 +178,7 @@ function RegisterCollaboratory() {
           position: toast.POSITION.TOP_RIGHT,
         }
       );
+      navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 409) {
         toast.error(
@@ -273,6 +280,7 @@ function RegisterCollaboratory() {
             type={visibilityPassword ? "text" : "password"}
             id="password"
             name="password"
+            autoComplete="password"
             value={formData.password}
             onChange={handleInputChange}
           />
@@ -349,6 +357,7 @@ function RegisterCollaboratory() {
             type={visibilityRepeatPassword ? "text" : "password"}
             id="repeatPassword"
             name="repeatPassword"
+            autoComplete="repeatPassword"
             value={formData.repeatPassword}
             onChange={handleInputChange}
           />
@@ -381,6 +390,7 @@ function RegisterCollaboratory() {
             name="terms"
             id="terms"
             type="checkbox"
+            value={formData.terms}
             onChange={handleInputChange}
             required
           />
