@@ -10,8 +10,8 @@ import RejobSimbol from "./../images/newJob.png";
 import { GoBook } from "react-icons/go";
 import { MdOutlineCategory } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import { educationLevelMapper } from "../utils/educationLevelMapper";
-import api from "../services/api";
+import { educationLevelMapper } from "../utils/utils";
+import api from "../services/Api";
 
 function Home() {
   const dispatch = useDispatch();

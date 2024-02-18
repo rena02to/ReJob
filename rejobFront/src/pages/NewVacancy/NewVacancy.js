@@ -1,31 +1,31 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Components
-import NavBar from '../../components/NavBar';
-import Title from '../../components/Title/Title';
+import NavBar from "../../components/NavBar";
+import Title from "../../components/Title/Title";
 import TextareaCustom from "../../components/TextareaCustom/TextareaCustom";
 import SelectCustom from "../../components/SelectCustom/SelectCustom";
 import InputCustom from "../../components/InputCustom/InputCustom";
 
 // CSS
-import './NewVacancy.css'
+import "./NewVacancy.css";
 
 // Services
-import api from "../../services/api";
+import api from "../../services/Api";
 
 const NewVacancy = () => {
   // Variaveis
   const [states, setStates] = useState([]);
   // eslint-disable-next-line
-  const [empresa, setEmpresa] = useState("Starbucks")
+  const [empresa, setEmpresa] = useState("Starbucks");
   const [formData, setFormData] = useState({
     companyLocation: {
       city: "",
       state: "",
-      address: ""
+      address: "",
     },
     jobType: "",
     categories: "",
@@ -38,42 +38,40 @@ const NewVacancy = () => {
     applicationDeadline: "",
     salaryRange: {
       salaryRangeMin: "",
-      salaryRangeMax: ""
+      salaryRangeMax: "",
     },
     responsibilities: "",
     requiredExperience: "",
     educationLevel: "",
     employmentContractType: "",
-    jobStatus: "ACTIVE"
+    jobStatus: "ACTIVE",
   });
   const [users, setUsers] = useState([]);
   const token = sessionStorage.getItem("token");
-  
+
   // GET STATES
   useEffect(() => {
     const carregarStates = async () => {
-        try {
-          // Importar diretamente o arquivo JSON
-          const data = require('./states.json');
-          setStates(data.estados);
-        } catch (error) {
-          console.error('Erro ao carregar Estados:', error);
-        }
-      };
-  
-      carregarStates();
-  }, [setStates]);
+      try {
+        // Importar diretamente o arquivo JSON
+        const data = require("./states.json");
+        setStates(data.estados);
+      } catch (error) {
+        console.error("Erro ao carregar Estados:", error);
+      }
+    };
 
-  
+    carregarStates();
+  }, [setStates]);
 
   // GET USERS
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await api.get('/users');
+        const response = await api.get("/users");
         setUsers(response.data);
       } catch (error) {
-        console.error('Erro ao obter usuários:', error);
+        console.error("Erro ao obter usuários:", error);
       }
     };
 
@@ -112,62 +110,79 @@ const NewVacancy = () => {
     event.preventDefault();
 
     // Verificação de campos vazios
-    if (!formData.companyLocation || !formData.jobType || !formData.categories || !formData.contactPersonId ||
-      !formData.jobTitle || !formData.requirements || !formData.jobDescription ||
-      !formData.benefits || !formData.employmentType || !formData.applicationDeadline ||
-      !formData.salaryRange.salaryRangeMin || !formData.salaryRange.salaryRangeMax || !formData.educationLevel || !formData.employmentContractType ||
-      !formData.responsibilities || !formData.requiredExperience || !formData.companyLocation.state || !formData.companyLocation.city || !formData.companyLocation.address ) {
+    if (
+      !formData.companyLocation ||
+      !formData.jobType ||
+      !formData.categories ||
+      !formData.contactPersonId ||
+      !formData.jobTitle ||
+      !formData.requirements ||
+      !formData.jobDescription ||
+      !formData.benefits ||
+      !formData.employmentType ||
+      !formData.applicationDeadline ||
+      !formData.salaryRange.salaryRangeMin ||
+      !formData.salaryRange.salaryRangeMax ||
+      !formData.educationLevel ||
+      !formData.employmentContractType ||
+      !formData.responsibilities ||
+      !formData.requiredExperience ||
+      !formData.companyLocation.state ||
+      !formData.companyLocation.city ||
+      !formData.companyLocation.address
+    ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
-        position: toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.TOP_RIGHT,
       });
       return;
     }
 
     // Limite de caracteres
-    if (formData.jobDescription.length > 1000 ) {
+    if (formData.jobDescription.length > 1000) {
       toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
-        position: toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.TOP_RIGHT,
       });
       return;
     }
-    if (formData.benefits.length > 1000 ) {
+    if (formData.benefits.length > 1000) {
       toast.warn("O limite de caracteres máximo em BENEFÍCIOS é: 1000", {
-        position: toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.TOP_RIGHT,
       });
       return;
     }
-    if (formData.responsibilities.length > 1000 ) {
+    if (formData.responsibilities.length > 1000) {
       toast.warn("O limite de caracteres máximo em RESPONSABILIDADES é: 1000", {
-        position: toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.TOP_RIGHT,
       });
       return;
     }
-    if (formData.requiredExperience.length > 1000 ) {
-      toast.warn("O limite de caracteres máximo em EXPERIÊNCIA REQUERIDA é: 1000", {
-        position: toast.POSITION.BOTTOM_RIGHT
-      });
+    if (formData.requiredExperience.length > 1000) {
+      toast.warn(
+        "O limite de caracteres máximo em EXPERIÊNCIA REQUERIDA é: 1000",
+        {
+          position: toast.POSITION.TOP_RIGHT,
+        }
+      );
       return;
     }
 
     // Verificação de prazo da candidatura
-    const dataInseridaObj = new Date(formData.applicationDeadline)
-    const dataAtual = new Date()
+    const dataInseridaObj = new Date(formData.applicationDeadline);
+    const dataAtual = new Date();
     if (dataInseridaObj <= dataAtual) {
       toast.warn("A data inserida deve ser posterior à data atual.", {
-        position: toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.TOP_RIGHT,
       });
       return;
     }
 
-
     try {
-      const response = await api.post('/jobs', formData);
+      await api.post("/jobs", formData);
       toast.success("A nova vaga foi ofertada com sucesso.", {
-        position: toast.POSITION.BOTTOM_RIGHT
+        position: toast.POSITION.TOP_RIGHT,
       });
-
     } catch (error) {
-      console.error('Erro ao fazer a solicitação POST:', error);
+      console.error("Erro ao fazer a solicitação POST:", error);
     }
   };
 
@@ -178,8 +193,8 @@ const NewVacancy = () => {
       <main>
         <Title
           titulo="OFERTAR VAGA DE EMPREGO"
-          subtitulo="Registre uma nova vaga de emprego passando todas as informações necessárias abaixo.">
-        </Title>
+          subtitulo="Registre uma nova vaga de emprego passando todas as informações necessárias abaixo."
+        ></Title>
 
         <form>
           <div className="campos">
@@ -210,10 +225,9 @@ const NewVacancy = () => {
               value={formData.employmentType}
               onChange={handleInputChange}
               options={[
-                { value: 'Meio Período', label: 'Meio Período' },
-                { value: 'Período Integral', label: 'Período Integral' }
-              ]
-              }
+                { value: "Meio Período", label: "Meio Período" },
+                { value: "Período Integral", label: "Período Integral" },
+              ]}
             />
 
             <InputCustom
@@ -231,7 +245,10 @@ const NewVacancy = () => {
               name="state"
               value={formData.companyLocation.state}
               onChange={handleInputChange}
-              options={states.map(state => ({ value: state.sigla, label: state.nome }))}
+              options={states.map((state) => ({
+                value: state.sigla,
+                label: state.nome,
+              }))}
             />
 
             <SelectCustom
@@ -241,10 +258,14 @@ const NewVacancy = () => {
               value={formData.companyLocation.city}
               onChange={handleInputChange}
               options={
-                states.find(state => state.sigla === formData.companyLocation.state)?.cidades.map(city => ({
-                  value: city,
-                  label: city
-                })) || []
+                states
+                  .find(
+                    (state) => state.sigla === formData.companyLocation.state
+                  )
+                  ?.cidades.map((city) => ({
+                    value: city,
+                    label: city,
+                  })) || []
               }
             />
 
@@ -264,7 +285,10 @@ const NewVacancy = () => {
               name="contactPersonId"
               value={formData.contactPersonId.name}
               onChange={handleInputChange}
-              options={users.map(user => ({ value: user.id, label: user.name }))}
+              options={users.map((user) => ({
+                value: user.id,
+                label: user.name,
+              }))}
             />
 
             <InputCustom
@@ -294,23 +318,49 @@ const NewVacancy = () => {
               value={formData.educationLevel}
               onChange={handleInputChange}
               options={[
-                { value: 'ENSINO_FUNDAMENTAL_INCOMPLETO', label: 'Ensino Fundamental Incompleto' },
-                { value: 'ENSINO_FUNDAMENTAL_COMPLETO', label: 'Ensino Fundamental Completo' },
-                { value: 'ENSINO_MEDIO_INCOMPLETO', label: 'Ensino Médio Incompleto' },
-                { value: 'ENSINO_MEDIO_COMPLETO', label: 'Ensino Médio Completo' },
-                { value: 'EDUCACAO_SUPERIOR_INCOMPLETA', label: 'Educação Superior Incompleta' },
-                { value: 'EDUCACAO_SUPERIOR_COMPLETA', label: 'Educação Superior Completa' },
-                { value: 'POS_GRADUACAO_INCOMPLETA', label: 'Pós Graduação Incompleta' },
-                { value: 'POS_GRADUACAO_COMPLETA', label: 'Pós Graduação Completa' },
-                { value: 'MESTRADO_INCOMPLETO', label: 'Mestrado Incompleto' },
-                { value: 'MESTRADO_COMPLETO', label: 'Mestrado Completo' },
-                { value: 'DOUTORADO_INCOMPLETO', label: 'Doutorado Incompleto' },
-                { value: 'DOUTORADO_COMPLETO', label: 'Doutorado Completo' },
-                { value: 'OUTRO', label: 'Outro' },
-              ]
-              }
+                {
+                  value: "ENSINO_FUNDAMENTAL_INCOMPLETO",
+                  label: "Ensino Fundamental Incompleto",
+                },
+                {
+                  value: "ENSINO_FUNDAMENTAL_COMPLETO",
+                  label: "Ensino Fundamental Completo",
+                },
+                {
+                  value: "ENSINO_MEDIO_INCOMPLETO",
+                  label: "Ensino Médio Incompleto",
+                },
+                {
+                  value: "ENSINO_MEDIO_COMPLETO",
+                  label: "Ensino Médio Completo",
+                },
+                {
+                  value: "EDUCACAO_SUPERIOR_INCOMPLETA",
+                  label: "Educação Superior Incompleta",
+                },
+                {
+                  value: "EDUCACAO_SUPERIOR_COMPLETA",
+                  label: "Educação Superior Completa",
+                },
+                {
+                  value: "POS_GRADUACAO_INCOMPLETA",
+                  label: "Pós Graduação Incompleta",
+                },
+                {
+                  value: "POS_GRADUACAO_COMPLETA",
+                  label: "Pós Graduação Completa",
+                },
+                { value: "MESTRADO_INCOMPLETO", label: "Mestrado Incompleto" },
+                { value: "MESTRADO_COMPLETO", label: "Mestrado Completo" },
+                {
+                  value: "DOUTORADO_INCOMPLETO",
+                  label: "Doutorado Incompleto",
+                },
+                { value: "DOUTORADO_COMPLETO", label: "Doutorado Completo" },
+                { value: "OUTRO", label: "Outro" },
+              ]}
             />
-            
+
             <SelectCustom
               label="Tipo de Contrato"
               id="employmentContractType"
@@ -318,27 +368,37 @@ const NewVacancy = () => {
               value={formData.employmentContractType}
               onChange={handleInputChange}
               options={[
-                { value: 'CLT', label: 'CLT' },
-                { value: 'PJ', label: 'PJ' },
-                { value: 'TEMPORARIO', label: 'Temporário' },
-                { value: 'ESTAGIO', label: 'Estágio' },
-                { value: 'FREELANCER', label: 'Freelancer' },
-                { value: 'CONTRATO_POR_PROJETO', label: 'Contrato Por Projeto' },
-                { value: 'OUTRO', label: 'Outro' },
-              ]
-              }
+                { value: "CLT", label: "CLT" },
+                { value: "PJ", label: "PJ" },
+                { value: "TEMPORARIO", label: "Temporário" },
+                { value: "ESTAGIO", label: "Estágio" },
+                { value: "FREELANCER", label: "Freelancer" },
+                {
+                  value: "CONTRATO_POR_PROJETO",
+                  label: "Contrato Por Projeto",
+                },
+                { value: "OUTRO", label: "Outro" },
+              ]}
             />
 
             <div className="campo">
-              <label htmlFor="salaryRangeMin">Faixa Salarial <span>*</span></label>
+              <label htmlFor="salaryRangeMin">
+                Faixa Salarial <span>*</span>
+              </label>
               <div>
-                <input type="number" step="0.1" placeholder="Min (R$)"
+                <input
+                  type="number"
+                  step="0.1"
+                  placeholder="Min (R$)"
                   id="salaryRangeMin"
                   name="salaryRangeMin"
                   value={formData.salaryRange.salaryRangeMin}
                   onChange={handleInputChange}
                 ></input>
-                <input type="number" step="0.1" placeholder="Max (R$)"
+                <input
+                  type="number"
+                  step="0.1"
+                  placeholder="Max (R$)"
                   id="salaryRangeMax"
                   name="salaryRangeMax"
                   value={formData.salaryRange.salaryRangeMax}
@@ -382,7 +442,7 @@ const NewVacancy = () => {
               onChange={handleInputChange}
               charmax={1000}
               countchar={formData.benefits.length}
-              />
+            />
 
             <TextareaCustom
               label="Responsabilidades"
@@ -411,7 +471,9 @@ const NewVacancy = () => {
 
           <div className="botoes">
             <button className="back">VOLTAR</button>
-            <button type="submit" onClick={handleFormSubmit} className="save">CADASTRAR NOVA VAGA</button>
+            <button type="submit" onClick={handleFormSubmit} className="save">
+              CADASTRAR NOVA VAGA
+            </button>
           </div>
         </form>
       </main>
@@ -419,6 +481,6 @@ const NewVacancy = () => {
       <ToastContainer />
     </div>
   );
-}
+};
 
 export default NewVacancy;
