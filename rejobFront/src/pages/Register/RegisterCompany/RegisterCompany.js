@@ -15,7 +15,7 @@ import "./RegisterCompany.css";
 import logo from "../../../images/newJob.png";
 
 // Services
-import api from "../../../services/Api";
+import api from "../../../services/api";
 
 const RegisterCompany = () => {
   const [states, setStates] = useState([]);

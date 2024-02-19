@@ -16,7 +16,7 @@ import profileImg from "../../images/profile1.jpg";
 import { FaEdit } from "react-icons/fa";
 
 // Services
-import api from "../../services/Api";
+import api from "../../services/api";
 
 const Profile = () => {
   const [userData, setUserData] = useState();

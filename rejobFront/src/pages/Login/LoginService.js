@@ -1,4 +1,4 @@
-import api from "../../services/Api";
+import api from "../../services/api";
 
 class LoginService {
   async login(email, password) {
