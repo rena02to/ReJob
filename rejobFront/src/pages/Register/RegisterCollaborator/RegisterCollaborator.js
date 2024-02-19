@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { isValidEmail, validatePassword } from "../../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
-import api from "../../../services/Api";
+import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 
 function RegisterCollaboratory() {

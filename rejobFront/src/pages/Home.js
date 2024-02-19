@@ -11,7 +11,7 @@ import { GoBook } from "react-icons/go";
 import { MdOutlineCategory } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { educationLevelMapper } from "../utils/utils";
-import api from "../services/Api";
+import api from "../services/api";
 
 function Home() {
   const dispatch = useDispatch();

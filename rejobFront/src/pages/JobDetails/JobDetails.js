@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 import { ImStatsBars } from "react-icons/im";
 import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import api from "../../services/Api";
+import api from "../../services/api";
 import { educationLevelMapper } from "../../utils/utils";
 
 const JobDetails = () => {
