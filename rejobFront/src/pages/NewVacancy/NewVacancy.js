@@ -14,7 +14,7 @@ import InputCustom from "../../components/InputCustom/InputCustom";
 import "./NewVacancy.css";
 
 // Services
-import api from "../../services/Api";
+import api from "../../services/api";
 
 const NewVacancy = () => {
   // Variaveis
