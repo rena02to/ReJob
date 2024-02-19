@@ -6,8 +6,8 @@ import Footer from "../../components/Footer";
 import { ImStatsBars } from "react-icons/im";
 import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import api from "../../services/api";
-import { educationLevelMapper } from "../../utils/educationLevelMapper";
+import api from "../../services/Api";
+import { educationLevelMapper } from "../../utils/utils";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -37,7 +37,7 @@ const JobDetails = () => {
               <span className="w-max text-[52px]">{job.jobTitle}</span>
               <span className="text-customColor">{job.categories}</span>
             </div>
-            <div className="flex flex-wrap justify-center md:justify-between gap-2 text-[26.57px] text-gray-500 h-[40px] w-full">
+            <div className="flex flex-wrap justify-center gap-2 text-[26.57px] text-gray-500 h-[40px] w-full">
               {job.companyName && (
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
                   <FaBuildingUser />

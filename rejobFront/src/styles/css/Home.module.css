@@ -110,8 +110,8 @@
   width: 90%;
 }
 .vagas .containerMain .ultimasVagas .cards .cardVaga {
-  width: 320px;
-  height: 610px;
+  width: 380px;
+  height: 520px;
   background-color: white;
   border-radius: 10px;
   border: 3px solid #d9d9d9;
@@ -363,8 +363,8 @@
   text-align: center;
 }
 .vagas .containerMain .futurosReconstruidos .depoimentos .cardDepoimentos {
-  width: 320px;
-  height: 600px;
+  width: 380px;
+  height: 520px;
   background-color: white;
   border-radius: 10px;
   border: 3px solid #d9d9d9;
@@ -425,7 +425,7 @@
   width: 85%;
   overflow: hidden;
   flex-wrap: wrap;
-  height: 200px;
+  height: 215px;
   font-size: 17px;
 }
 .vagas
