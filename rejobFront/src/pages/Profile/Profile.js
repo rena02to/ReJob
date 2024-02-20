@@ -135,167 +135,170 @@ const Profile = () => {
       <NavBar />
 
       <main>
-        <Title
-          titulo="PERFIL"
-          subtitulo="Detalhes pessoais e profissionais do usuário."
-        />
+        <section className="p-5">
+          <Title
+            titulo="PERFIL"
+            subtitulo="Detalhes pessoais e profissionais do usuário."
+          />
 
-        <div className="image-box">
-          <img src={profileImg} />
-          {isEditing ? (
-            <button
-              className="edit-button"
-              onClick={() => fileInputRef.current.click()}
-            >
-              {" "}
-              <FaEdit />{" "}
-            </button>
-          ) : null}
-        </div>
-
-        {isEditing ? (
-          <div className="selecionarImagem">
-            <input
-              type="file"
-              accept="image/*" // Limita a seleção apenas a arquivos de imagem
-              onChange={handleFileChange}
-              style={{ display: "none" }} // Torna o input invisível
-              ref={fileInputRef} // Referência para o input
-            />
+          <div className="image-box">
+            <img src={profileImg} alt="imagem de perfil" />
+            {isEditing ? (
+              <button
+                className="edit-button"
+                onClick={() => fileInputRef.current.click()}
+              >
+                {" "}
+                <FaEdit />{" "}
+              </button>
+            ) : null}
           </div>
-        ) : null}
 
-        <form>
-          <div className="campos">
-            <InputCustom
-              label="Nome Completo"
-              id="name"
-              name="name"
-              value={formData.name}
-              type="text"
-              disabled={!isEditing}
-              onChange={handleInputChange}
-            />
+          {isEditing ? (
+            <div className="selecionarImagem">
+              <input
+                type="file"
+                accept="image/*" // Limita a seleção apenas a arquivos de imagem
+                onChange={handleFileChange}
+                style={{ display: "none" }} // Torna o input invisível
+                ref={fileInputRef} // Referência para o input
+              />
+            </div>
+          ) : null}
 
-            <InputCustom
-              label="Endereço de E-mail"
-              id="email"
-              name="email"
-              value={formData.email}
-              type="text"
-              disabled={!isEditing}
-              onChange={handleInputChange}
-            />
+          <form>
+            <div className="campos">
+              <InputCustom
+                label="Nome Completo"
+                id="name"
+                name="name"
+                value={formData.name}
+                type="text"
+                disabled={!isEditing}
+                onChange={handleInputChange}
+              />
 
-            <InputCustom
-              label="CPF"
-              id="cpf"
-              name="cpf"
-              value={formData.cpf}
-              type="text"
-              disabled={!isEditing}
-              onChange={handleInputChange}
-            />
+              <InputCustom
+                label="Endereço de E-mail"
+                id="email"
+                name="email"
+                value={formData.email}
+                type="text"
+                disabled={!isEditing}
+                onChange={handleInputChange}
+              />
 
-            <InputCustom
-              label="Data de Nascimento"
-              type="date"
-              id="dateOfBirth"
-              name="dateOfBirth"
-              value={formData.dateOfBirth}
-              disabled={!isEditing}
-              onChange={handleInputChange}
-            />
+              <InputCustom
+                label="CPF"
+                id="cpf"
+                name="cpf"
+                value={formData.cpf}
+                type="text"
+                disabled={!isEditing}
+                onChange={handleInputChange}
+              />
 
-            <InputCustom
-              label="Local de Residência"
-              id="residenceLocation"
-              name="residenceLocation"
-              value={formData.residenceLocation}
-              type="text"
-              disabled={!isEditing}
-              onChange={handleInputChange}
-            />
+              <InputCustom
+                label="Data de Nascimento"
+                type="date"
+                id="dateOfBirth"
+                name="dateOfBirth"
+                value={formData.dateOfBirth}
+                disabled={!isEditing}
+                onChange={handleInputChange}
+              />
 
-            <InputCustom
-              label="Código de Cadeia"
-              id="prisonCode"
-              name="prisonCode"
-              value={formData.prisonCode}
-              type="text"
-              disabled={!isEditing}
-              onChange={handleInputChange}
-            />
+              <InputCustom
+                label="Local de Residência"
+                id="residenceLocation"
+                name="residenceLocation"
+                value={formData.residenceLocation}
+                type="text"
+                disabled={!isEditing}
+                onChange={handleInputChange}
+              />
 
-            <SelectCustom
-              label="Regime de Cumprimento de Pena"
-              id="sentenceRegime"
-              name="sentenceRegime"
-              disabled={!isEditing}
-              value={formData.sentenceRegime}
-              // onChange={handleInputChange}
-              options={[
-                { value: "FECHADO", label: "Fechado" },
-                { value: "SEMIABERTO", label: "Semi Aberto" },
-                { value: "ABERTO", label: "Aberto" },
-                { value: "LIBERADO", label: "Liberado" },
-              ]}
-              onChange={handleInputChange}
-            />
+              <InputCustom
+                label="Código de Cadeia"
+                id="prisonCode"
+                name="prisonCode"
+                value={formData.prisonCode}
+                type="text"
+                disabled={!isEditing}
+                onChange={handleInputChange}
+              />
 
-            <SelectCustom
-              label="Escolaridade"
-              id="educationLevel"
-              name="educationLevel"
-              disabled={!isEditing}
-              value={formData.educationLevel}
-              // onChange={handleInputChange}
-              options={[
-                {
-                  value: "ENSINO_FUNDAMENTAL_INCOMPLETO",
-                  label: "Ensino Fundamental Incompleto",
-                },
-                {
-                  value: "ENSINO_FUNDAMENTAL_COMPLETO",
-                  label: "Ensino Fundamental Completo",
-                },
-                {
-                  value: "ENSINO_MEDIO_INCOMPLETO",
-                  label: "Ensino Médio Incompleto",
-                },
-                {
-                  value: "ENSINO_MEDIO_COMPLETO",
-                  label: "Ensino Médio Completo",
-                },
-                {
-                  value: "EDUCACAO_SUPERIOR_INCOMPLETA",
-                  label: "Educação Superior Incompleta",
-                },
-                {
-                  value: "EDUCACAO_SUPERIOR_COMPLETA",
-                  label: "Educação Superior Completa",
-                },
-                {
-                  value: "POS_GRADUACAO_INCOMPLETA",
-                  label: "Pós Graduação Incompleta",
-                },
-                {
-                  value: "POS_GRADUACAO_COMPLETA",
-                  label: "Pós Graduação Completa",
-                },
-                { value: "MESTRADO_INCOMPLETO", label: "Mestrado Incompleto" },
-                { value: "MESTRADO_COMPLETO", label: "Mestrado Completo" },
-                {
-                  value: "DOUTORADO_INCOMPLETO",
-                  label: "Doutorado Incompleto",
-                },
-                { value: "DOUTORADO_COMPLETO", label: "Doutorado Completo" },
-                { value: "OUTRO", label: "Outro" },
-              ]}
-              onChange={handleInputChange}
-            />
+              <SelectCustom
+                label="Regime de Cumprimento de Pena"
+                id="sentenceRegime"
+                name="sentenceRegime"
+                disabled={!isEditing}
+                value={formData.sentenceRegime}
+                // onChange={handleInputChange}
+                options={[
+                  { value: "FECHADO", label: "Fechado" },
+                  { value: "SEMIABERTO", label: "Semi Aberto" },
+                  { value: "ABERTO", label: "Aberto" },
+                  { value: "LIBERADO", label: "Liberado" },
+                ]}
+                onChange={handleInputChange}
+              />
 
-            {/* 
+              <SelectCustom
+                label="Escolaridade"
+                id="educationLevel"
+                name="educationLevel"
+                disabled={!isEditing}
+                value={formData.educationLevel}
+                options={[
+                  {
+                    value: "ENSINO_FUNDAMENTAL_INCOMPLETO",
+                    label: "Ensino Fundamental Incompleto",
+                  },
+                  {
+                    value: "ENSINO_FUNDAMENTAL_COMPLETO",
+                    label: "Ensino Fundamental Completo",
+                  },
+                  {
+                    value: "ENSINO_MEDIO_INCOMPLETO",
+                    label: "Ensino Médio Incompleto",
+                  },
+                  {
+                    value: "ENSINO_MEDIO_COMPLETO",
+                    label: "Ensino Médio Completo",
+                  },
+                  {
+                    value: "EDUCACAO_SUPERIOR_INCOMPLETA",
+                    label: "Educação Superior Incompleta",
+                  },
+                  {
+                    value: "EDUCACAO_SUPERIOR_COMPLETA",
+                    label: "Educação Superior Completa",
+                  },
+                  {
+                    value: "POS_GRADUACAO_INCOMPLETA",
+                    label: "Pós Graduação Incompleta",
+                  },
+                  {
+                    value: "POS_GRADUACAO_COMPLETA",
+                    label: "Pós Graduação Completa",
+                  },
+                  {
+                    value: "MESTRADO_INCOMPLETO",
+                    label: "Mestrado Incompleto",
+                  },
+                  { value: "MESTRADO_COMPLETO", label: "Mestrado Completo" },
+                  {
+                    value: "DOUTORADO_INCOMPLETO",
+                    label: "Doutorado Incompleto",
+                  },
+                  { value: "DOUTORADO_COMPLETO", label: "Doutorado Completo" },
+                  { value: "OUTRO", label: "Outro" },
+                ]}
+                onChange={handleInputChange}
+              />
+
+              {/* 
                         <div className="interests-container">
                             <h2>Áreas de Interesse/Ocupações</h2>
                             <div className="interest-checkboxes">
@@ -330,59 +333,60 @@ const Profile = () => {
                             </div>
                         </div> */}
 
-            <div className="textarea-box">
-              <TextareaCustom
-                label="Experiência Profisisonal"
-                className="textarea-item"
-                id="profissionalExperience"
-                name="profissionalExperience"
-                value={formData.profissionalExperience}
-                rows={10}
-                disabled={!isEditing}
-                onChange={handleInputChange}
-              />
+              <div className="textarea-box">
+                <TextareaCustom
+                  label="Experiência Profisisonal"
+                  className="textarea-item"
+                  id="profissionalExperience"
+                  name="profissionalExperience"
+                  value={formData.profissionalExperience}
+                  rows={10}
+                  disabled={!isEditing}
+                  onChange={handleInputChange}
+                />
 
-              <TextareaCustom
-                label="Habilidades e Qualificações"
-                className="textarea-item"
-                id="skillsAndQualifications"
-                name="skillsAndQualifications"
-                value={formData.skillsAndQualifications}
-                rows={10}
-                disabled={!isEditing}
-                onChange={handleInputChange}
-              />
+                <TextareaCustom
+                  label="Habilidades e Qualificações"
+                  className="textarea-item"
+                  id="skillsAndQualifications"
+                  name="skillsAndQualifications"
+                  value={formData.skillsAndQualifications}
+                  rows={10}
+                  disabled={!isEditing}
+                  onChange={handleInputChange}
+                />
 
-              <TextareaCustom
-                label="Histórico Educacional"
-                className="textarea-item"
-                id="educationalHistory"
-                name="educationalHistory"
-                value={formData.educationalHistory}
-                rows={10}
-                disabled={!isEditing}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-
-          <div className="botoes">
-            {isEditing ? (
-              <div>
-                <button onClick={handleDisableEditing} className="back">
-                  CANCELAR
-                </button>
-                <button type="submit" className="save">
-                  SALVAR INFORMAÇÕES
-                </button>
+                <TextareaCustom
+                  label="Histórico Educacional"
+                  className="textarea-item"
+                  id="educationalHistory"
+                  name="educationalHistory"
+                  value={formData.educationalHistory}
+                  rows={10}
+                  disabled={!isEditing}
+                  onChange={handleInputChange}
+                />
               </div>
-            ) : (
-              <button onClick={handleEnableEditing} className="save">
-                HABILITAR EDIÇÃO
-              </button>
-            )}
-          </div>
-        </form>
+            </div>
+
+            <div className="botoes">
+              {isEditing ? (
+                <div>
+                  <button onClick={handleDisableEditing} className="back">
+                    CANCELAR
+                  </button>
+                  <button type="submit" className="save">
+                    SALVAR INFORMAÇÕES
+                  </button>
+                </div>
+              ) : (
+                <button onClick={handleEnableEditing} className="save">
+                  HABILITAR EDIÇÃO
+                </button>
+              )}
+            </div>
+          </form>
+        </section>
       </main>
     </div>
   );

@@ -190,7 +190,7 @@ const RegisterCompany = () => {
       <BackLink />
       <main className="white-container">
         <div className="cabecalho">
-          <img src={logo} />
+          <img src={logo} alt="logo Rejob" />
           <h1>
             Re<span className="span-blue">Job</span>
           </h1>

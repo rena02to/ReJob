@@ -178,7 +178,7 @@ function RegisterCollaboratory() {
           position: toast.POSITION.TOP_RIGHT,
         }
       );
-      navigate("/");
+      navigate("/painel-colaborador");
     } catch (error) {
       if (error.response && error.response.status === 409) {
         toast.error(

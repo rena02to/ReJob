@@ -1,0 +1,22 @@
+.tab-buttons {
+  display: flex;
+}
+
+.tab-buttons button {
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  font-size: 20px;
+  color: var(--first-blue) !important;
+}
+
+.tab-buttons button.active {
+  border-bottom: 2px solid var(--first-blue);
+}
+
+.tab-content {
+  margin-top: 20px;
+  max-width: 80%;
+  height: 730px;
+}
