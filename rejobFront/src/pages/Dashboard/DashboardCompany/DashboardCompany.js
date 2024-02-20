@@ -16,6 +16,9 @@ import PaginationRounded from '../../PaginationRounded/PaginationRounded';
 
 // API
 import api from '../../../services/api'
+import UserService from '../../../services/UserService';
+import ProfileCompany from '../../../components/ProfileCompany/ProfileCompany';
+import CompanyEmployees from '../../../components/Tables/CompanyEmployees/CompanyEmployees';
 
 const DashboardCompany = () => {
     const [toggle, setToggle] = useState(1);
@@ -23,11 +26,11 @@ const DashboardCompany = () => {
     const [states, setStates] = useState([]);
     const [formData, setFormData] = useState({
         companyLocation: {
-          city: "",
-          state: "",
-          address: ""
+            city: "",
+            state: "",
+            address: ""
         }
-      });
+    });
 
     // GET STATES
     useEffect(() => {
@@ -51,44 +54,45 @@ const DashboardCompany = () => {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         if (name.startsWith("salaryRange")) {
-          // Se o campo pertencer a salaryRange, atualize apenas esse campo
-          setFormData((formData) => ({
-            ...formData,
-            salaryRange: {
-              ...formData.salaryRange,
-              [name]: parseFloat(value),
-            },
-          }));
+            // Se o campo pertencer a salaryRange, atualize apenas esse campo
+            setFormData((formData) => ({
+                ...formData,
+                salaryRange: {
+                    ...formData.salaryRange,
+                    [name]: parseFloat(value),
+                },
+            }));
         } else if (name === "state" || name === "city" || name === "address") {
-          setFormData((formData) => ({
-            ...formData,
-            companyLocation: {
-              ...formData.companyLocation,
-              [name]: value,
-            },
-          }));
+            setFormData((formData) => ({
+                ...formData,
+                companyLocation: {
+                    ...formData.companyLocation,
+                    [name]: value,
+                },
+            }));
         } else if (name === "contactPersonId") {
-          setFormData({ ...formData, [name]: parseFloat(value) });
+            setFormData({ ...formData, [name]: parseFloat(value) });
         } else {
-          setFormData({ ...formData, [name]: value });
+            setFormData({ ...formData, [name]: value });
         }
-      };
+    };
 
     return (
         <div>
             <NavBar />
+
+            {/* PROFILE */}
+            <div className='max-w-[1440px] m-auto px-[42px]'>
+                <ProfileCompany />
+            </div>
+
+            {/* VAGAS DA EMPRESA */}
             <div className="max-w-[1440px] m-auto px-[42px] flex flex-col">
                 <div className="flex justify-between items-center">
                     <Title
                         titulo="POSTAGEM DE VAGAS"
                         subtitulo="Acompanhe abaixo o andamento de todas as vagas que sua empresa ofertou.">
                     </Title>
-
-                    <Link to="/nova-vaga" className="no-underline">
-                        <button to="/finalizadas" className="p-[12px] w-[227px] bg-[#00A3FF] text-[#FFF] rounded hover:opacity-85 cursor-pointer">
-                            OFERTAR NOVA VAGA
-                        </ button>
-                    </Link>
                 </div>
 
                 <input className="w-full py-[12px] px-[16px]" placeholder="Pesquise uma vaga específica aqui...">
@@ -144,6 +148,25 @@ const DashboardCompany = () => {
                 </div>
 
             </div>
+
+            {/* COLABORADORES DA EMPRESA  */}
+            <div className="max-w-[1440px] m-auto px-[42px] flex flex-col mb-[175px]">
+                <div className="flex justify-between items-center">
+                    <Title
+                        titulo="COLABORADORES DA EMPRESA"
+                        subtitulo="Acompanhe abaixo a lista de colaboradores vinculados a empresa.">
+                    </Title>
+
+                    <Link to="/nova-vaga" className="no-underline">
+                        <button className="p-[12px] w-[227px] bg-[#00A3FF] text-[#FFF] rounded hover:opacity-85 cursor-pointer">
+                            CADASTRAR COLABORADOR
+                        </ button>
+                    </Link>
+
+                </div>
+                <CompanyEmployees />
+            </div>
+
         </div>
     );
 }

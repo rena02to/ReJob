@@ -22,6 +22,7 @@ import api from "../../services/api";
 const Profile = () => {
     const [userData, setUserData] = useState();
     const token = sessionStorage.getItem("token");
+    
 
     const [formData, setFormData] = useState({
         name: "",

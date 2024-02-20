@@ -15,7 +15,7 @@ const VacancysCompany = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await api.get("/jobs");
+                const response = await api.get("/jobs/job-list/1");
                 setVacancies(response.data);
             } catch (error) {
                 console.error("Erro na requisição:", error);
