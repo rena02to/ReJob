@@ -18,6 +18,7 @@ import JobList from "../pages/JobList/JobList";
 import NewVacancy from "../pages/NewVacancy/NewVacancy";
 import Profile from "../pages/Profile/Profile";
 import ApplicationStatus from "../pages/ApplicationStatus/ApplicationStatus";
+import CollaboratorDashboard from "../pages/CollaboratorDashboard/CollaboratorDashboard";
 
 function Rotas() {
   const { isLoged } = useSelector((rooteRedux) => rooteRedux.useReducer);
@@ -83,6 +84,12 @@ function Rotas() {
           exact
           path="/minha-candidatura"
           element={<ApplicationStatus />}
+        ></Route>
+
+        <Route
+          exact
+          path="/painel-colaborador"
+          element={<CollaboratorDashboard />}
         ></Route>
       </Routes>
     </Router>
