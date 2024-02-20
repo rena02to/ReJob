@@ -9,6 +9,7 @@ import SelectCustom from "../../components/SelectCustom/SelectCustom";
 import Tabs from "../../components/Tabs/Tabs";
 import Tab from "../../components/Tabs/Tab";
 import api from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -29,6 +30,8 @@ const CollaboratorDashboard = () => {
   const [profileImage, setProfileImage] = useState(profileImg);
   const [states, setStates] = useState([]);
   const [companies, setCompanies] = useState([]);
+  const [currentUser, setcurrentUser] = useState({});
+  const navigate = useNavigate();
 
   const options = [
     { value: "PRIVATE_ENTERPRISE", label: "Empresa" },
@@ -63,10 +66,16 @@ const CollaboratorDashboard = () => {
     }
   };
 
+  const createNewJob = () => {
+    navigate("/nova-vaga");
+  };
+
   useEffect(() => {
     const getCompanies = async () => {
       try {
         const response = await api.get("/companies");
+        const user = await api.get("/users/me");
+        console.log(user);
         setCompanies(response.data);
       } catch (error) {
         console.error("Erro na requisição:", error);
@@ -202,7 +211,9 @@ const CollaboratorDashboard = () => {
               />
             </div>
             <div className="botoes w-full md:w-1/2">
-              <button className="save">OFERTAR NOVA VAGA</button>
+              <button className="save" onClick={() => createNewJob()}>
+                OFERTAR NOVA VAGA
+              </button>
             </div>
           </div>
           <InputCustom
