@@ -1,7 +1,6 @@
-import api from '../../services/api';
+import api from "../../services/api";
 
 class LoginService {
-
   async login(email, password) {
     try {
       const response = await api.post(`/auth/authenticate`, {
@@ -10,12 +9,12 @@ class LoginService {
       });
 
       const token = response.data;
-      
+
       sessionStorage.setItem("token", token.token);
 
       return response.data;
     } catch (error) {
-      console.error('Login faileda:', error);
+      console.error("Login faileda:", error);
       throw error;
     }
   }
@@ -30,7 +29,7 @@ class LoginService {
 
       return response.data;
     } catch (error) {
-      console.error('Registration failed:', error);
+      console.error("Registration failed:", error);
       throw error;
     }
   }

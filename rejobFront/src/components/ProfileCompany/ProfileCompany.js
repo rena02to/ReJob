@@ -24,7 +24,6 @@ const ProfileCompany = () => {
     const [profileImage, setProfileImage] = useState(profileImg);
     const [isEditing, setIsEditing] = useState(false);
     const userData = UserService();
-    const [companyData, setCompanyData] = useState();
     const [formData, setFormData] = useState({
         cnpj: "",
         name: "",
@@ -38,13 +37,27 @@ const ProfileCompany = () => {
         phone: "",
         institutionalDescription: "",
         email: "",
+        password: "",
         companyType: ""
     });
+
+    useEffect(() => {
+        const carregarDadosDoUsuario = async () => {
+            try {
+                setFormData({
+                    ...userData // Atualize o estado do formulário com os dados do usuário
+                });
+            } catch (error) {
+                console.error("Erro ao salvar dados do usuário no form:", error);
+            }
+        };
+
+        carregarDadosDoUsuario(); // Chame a função para carregar os dados do usuário
+    }, []);
 
     if (!userData) {
         return <div>Carregando...</div>
     }
-    console.log(userData)
 
     const handleEnableEditing = (event) => {
         event.preventDefault();
@@ -55,6 +68,28 @@ const ProfileCompany = () => {
         event.preventDefault();
         setIsEditing(false);
     };
+
+    // Atualizar valores dos inputs, selects e textareas nas variáveis
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        console.log('entrou');
+        if (name === "state" || name === "city" || name === "address") {
+            setFormData((formData) => ({
+                ...formData,
+                headquarters: {
+                    ...formData.headquarters,
+                    [name]: value,
+                },
+            }));
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(formData);
+    }
 
     return (
         <div>
@@ -85,78 +120,87 @@ const ProfileCompany = () => {
                         label="Nome da Empresa"
                         id="name"
                         name="name"
-                        value={userData.name}
                         type="text"
+                        value={formData.name}
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
                         label="CNPJ"
                         id="cnpj"
                         name="cnpj"
-                        value={userData.cnpj}
+                        value={formData.cnpj}
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
                         label="Tipo de Empresa"
                         id="companyType"
                         name="companyType"
-                        value={userData.companyType}
+                        value={formData.companyType}
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
                         label="Número de Funcionários"
                         id="numberOfEmployees"
                         name="numberOfEmployees"
-                        value={userData.numberOfEmployees}
+                        value={formData.numberOfEmployees}
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
                         label="Ramo de Atividade"
                         id="businessActivity"
                         name="businessActivity"
-                        value={userData.businessActivity}
+                        value={formData.businessActivity}
                         type="text"
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
                         label="Telefone"
                         id="phone"
                         name="phone"
-                        value={userData.phone}
+                        value={formData.phone}
                         type="text"
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
                         label="Estado"
                         id="email"
                         name="email"
-                        value={userData.headquarters.state}
+                        // value={formData.headquarters.state}
                         type="text"
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
                         label="Cidade"
                         id="email"
                         name="email"
-                        value={userData.headquarters.city}
+                        // value={formData.headquarters.city}
                         type="text"
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
                         label="Endereço"
                         id="email"
                         name="email"
-                        value={userData.headquarters.address}
+                        // value={formData.headquarters.address}
                         type="text"
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <TextareaCustom
@@ -164,18 +208,20 @@ const ProfileCompany = () => {
                         className="textarea-item"
                         id="profissionalExperience"
                         name="profissionalExperience"
-                        value={userData.institutionalDescription}
+                        value={formData.institutionalDescription}
                         rows={10}
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
                         label="E-mail"
                         id="email"
                         name="email"
-                        value={userData.user.email}
+                        value={formData.user.email}
                         type="text"
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                     <InputCustom
@@ -185,6 +231,7 @@ const ProfileCompany = () => {
                         type="password"
                         value="**********"
                         disabled={!isEditing}
+                        onChange={handleInputChange}
                     />
 
                 </div>
@@ -194,7 +241,7 @@ const ProfileCompany = () => {
                         isEditing ? (
                             <div>
                                 <button onClick={handleDisableEditing} className="back">CANCELAR</button>
-                                <button type="submit" className="save">SALVAR INFORMAÇÕES</button>
+                                <button onClick={handleSubmit} type="submit" className="save">SALVAR INFORMAÇÕES</button>
                             </div>
                         ) : (
                             <button onClick={handleEnableEditing} className="save">HABILITAR EDIÇÃO</button>

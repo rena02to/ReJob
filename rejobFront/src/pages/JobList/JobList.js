@@ -10,7 +10,7 @@ import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import { ImStatsBars } from "react-icons/im";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
-import { educationLevelMapper } from "../../utils/educationLevelMapper";
+import { educationLevelMapper } from "../../utils/utils";
 
 function JobList() {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ function JobList() {
   const [remoto, setRemoto] = useState(false);
   const [salaryRange, setSalaryRange] = useState([1000, 30000]);
   const [jobs, setJobs] = useState([]);
+  const [states, setStates] = useState([]);
 
   const handlePresencialChange = () => {
     setPresencial(!presencial);
@@ -38,40 +39,12 @@ function JobList() {
     setSalaryRange(e.value);
   };
 
-  const brazilianStates = [
-    { label: "Acre", value: "AC" },
-    { label: "Alagoas", value: "AL" },
-    { label: "Amapá", value: "AP" },
-    { label: "Amazonas", value: "AM" },
-    { label: "Bahia", value: "BA" },
-    { label: "Ceará", value: "CE" },
-    { label: "Distrito Federal", value: "DF" },
-    { label: "Espírito Santo", value: "ES" },
-    { label: "Goiás", value: "GO" },
-    { label: "Maranhão", value: "MA" },
-    { label: "Mato Grosso", value: "MT" },
-    { label: "Mato Grosso do Sul", value: "MS" },
-    { label: "Minas Gerais", value: "MG" },
-    { label: "Pará", value: "PA" },
-    { label: "Paraíba", value: "PB" },
-    { label: "Paraná", value: "PR" },
-    { label: "Pernambuco", value: "PE" },
-    { label: "Piauí", value: "PI" },
-    { label: "Rio de Janeiro", value: "RJ" },
-    { label: "Rio Grande do Norte", value: "RN" },
-    { label: "Rio Grande do Sul", value: "RS" },
-    { label: "Rondônia", value: "RO" },
-    { label: "Roraima", value: "RR" },
-    { label: "Santa Catarina", value: "SC" },
-    { label: "São Paulo", value: "SP" },
-    { label: "Sergipe", value: "SE" },
-    { label: "Tocantins", value: "TO" },
-  ];
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await api.get("/jobs");
+        const data = require("../../states.json");
+        setStates(data.estados);
         setJobs(response.data);
       } catch (error) {
         console.error("Erro na requisição:", error);
@@ -232,7 +205,13 @@ function JobList() {
                     <label htmlFor="presencialCheckbox"> Presencial</label>
                   </div>
                 </div>
-                <SelectCustom label="Localização" options={brazilianStates} />
+                <SelectCustom
+                  label="Estado"
+                  options={states.map((state) => ({
+                    value: state.sigla,
+                    label: state.nome,
+                  }))}
+                />
                 <p>Faixa Salarial (Mensal)</p>
                 <div className={styles.salary_range}>
                   <span>

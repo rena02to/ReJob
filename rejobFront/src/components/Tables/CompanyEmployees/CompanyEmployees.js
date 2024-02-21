@@ -129,9 +129,6 @@ export default function CustomPaginationActionsTable() {
     createData('NOME', 'EMAIL', 'TELEFONE'),
   );
 
-  console.log("colaboradores:")
-  console.log(collaborators)
-
   collaborators.forEach((collaborator, index) => {
     rows.push(createData(collaborator.user.name, collaborator.user.email, collaborator.user.phoneNumber))
   })
