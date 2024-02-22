@@ -101,7 +101,7 @@ const DashboardCompany = () => {
                 <div className="w-full flex pt-[24px]">
                     <div className="w-9/12">
                         <div className="flex gap-[12px] text-[18px]">
-                            <div onClick={() => updateToggle(1)} className={toggle === 1 ? "cursor-pointer text-[#00A3FF] hover:opacity-70" : "cursor-pointer text-[#7C7C8A] hover:opacity-70"}>Em andamento</div>
+                            <div onClick={() => updateToggle(1)} className={toggle === 1 ? "cursor-pointer text-[#00A3FF] hover:opacity-70" : "cursor-pointer text-[#7C7C8A] hover:opacity-70"}>Abertas</div>
                             <div onClick={() => updateToggle(2)} className={toggle === 1 ? "cursor-pointer text-[#7C7C8A] hover:opacity-70" : "cursor-pointer text-[#00A3FF] hover:opacity-70"}>Finalizadas</div>
                         </div>
                         {

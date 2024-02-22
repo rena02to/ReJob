@@ -151,14 +151,6 @@ export default function CustomPaginationActionsTable() {
               <TableCell style={{ width: 160 }} align="right">
                 {row.fat}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {index !== 0 && (
-                  <img
-                    src={iconPlus}
-                    alt="ícone de mais informações"
-                  />
-                )}
-              </TableCell>
             </TableRow>
           ))}
           {emptyRows > 0 && (
