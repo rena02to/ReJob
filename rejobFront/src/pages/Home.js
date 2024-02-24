@@ -20,8 +20,7 @@ function Home() {
   );
   const ultimasVagas = vagas.length > 6 ? vagas.slice(-6).reverse() : vagas;
   const melhoresEmpresas = empresas.length > 6 ? empresas.slice(-6) : empresas;
-  const ultimosDepoimentos =
-    depoimentos.length > 3 ? depoimentos.slice(-3) : depoimentos;
+  const ultimosDepoimentos = depoimentos.length > 3 ? depoimentos.slice(-3) : depoimentos;
   const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
   useEffect(() => {
