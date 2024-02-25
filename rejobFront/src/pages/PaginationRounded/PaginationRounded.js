@@ -3,7 +3,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 export default function PaginationRounded({ totalVagas, paginaAtual, onChangePagina}) {
-    const vagasPorPagina = 6
+    const vagasPorPagina = 8
     const numeroTotalPaginas = Math.ceil(totalVagas / vagasPorPagina)
     
     return (
