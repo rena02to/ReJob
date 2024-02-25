@@ -2,7 +2,7 @@ import { useState } from "react";
 import NavBar from "../../../components/NavBar";
 import Title from "../../../components/Title/Title";
 import VacancysCompany from "../../../components/VacancysCompany/VacancysCompany";
-import ProfileCompany from "../../../components/ProfileCompany/ProfileCompany";
+import ProfileCollaborator from "../../../components/ProfileCollaborator/ProfileCollaborator";
 
 const DashboardCollaborator = () => {
   const [toggle, setToggle] = useState(1);
@@ -18,11 +18,11 @@ const DashboardCollaborator = () => {
 
       {/* PROFILE */}
       <div className="max-w-[1440px] m-auto px-[42px]">
-        <ProfileCompany />
+        <ProfileCollaborator />
       </div>
 
       {/* VAGAS DA EMPRESA */}
-      <div className="max-w-[1440px] m-auto px-[42px] flex flex-col">
+      <div className="max-w-[1440px] h-screen m-auto px-[42px] flex flex-col">
         <div className="flex justify-between items-center">
           <Title
             titulo="POSTAGEM DE VAGAS"
