@@ -19,7 +19,7 @@ import NewVacancy from "../pages/NewVacancy/NewVacancy";
 import Profile from "../pages/Profile/Profile";
 import ApplicationStatus from "../pages/ApplicationStatus/ApplicationStatus";
 import DashboardCompany from "../pages/Dashboard/DashboardCompany/DashboardCompany";
-import CollaboratorDashboard from "../pages/CollaboratorDashboard/CollaboratorDashboard";
+import DashboardCollaborator from "../pages/Dashboard/DashboardCollaborator/DashboardCollaborator";
 
 function Rotas() {
   const { isLoged } = useSelector((rooteRedux) => rooteRedux.useReducer);
@@ -42,12 +42,8 @@ function Rotas() {
           path="/cadastro"
           element={isLoged ? <Navigate to="/" /> : <Register />}
         />
-        
-        <Route
-          exact
-          path="/vagas/"
-          element={<JobList />}>
-        </Route>
+
+        <Route exact path="/vagas/" element={<JobList />}></Route>
 
         <Route
           exact
@@ -86,9 +82,11 @@ function Rotas() {
 
         <Route
           exact
-          path="/dashboard/empresa"
-          element={ <DashboardCompany />}
-        />
+          path="/dashboard/colaborador"
+          element={<DashboardCollaborator />}
+        ></Route>
+
+        <Route exact path="/dashboard/empresa" element={<DashboardCompany />} />
 
         {/* Rotas do Colaborador */}
 
@@ -103,12 +101,6 @@ function Rotas() {
           exact
           path="/minha-candidatura"
           element={<ApplicationStatus />}
-        ></Route>
-
-        <Route
-          exact
-          path="/painel-colaborador"
-          element={<CollaboratorDashboard />}
         ></Route>
       </Routes>
     </Router>
