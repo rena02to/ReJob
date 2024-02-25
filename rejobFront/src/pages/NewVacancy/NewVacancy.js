@@ -71,7 +71,9 @@ const NewVacancy = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await api.get(`/companies/collaborator-list/${userData.id}`);
+        const response = await api.get(
+          `/companies/collaborator-list/${userData.id}`
+        );
         setUsers(response.data);
       } catch (error) {
         console.error("Erro ao obter usuários:", error);
@@ -111,7 +113,7 @@ const NewVacancy = () => {
   // POST JOB
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    
+
     console.log(formData);
 
     // Verificação de campos vazios
@@ -234,15 +236,6 @@ const NewVacancy = () => {
                 { value: "Período Integral", label: "Período Integral" },
               ]}
             />
-
-            {/* <InputCustom
-              label="ID da Empresa"
-              type="text"
-              id="company"
-              name="company"
-              value={userData.id}
-              disabled
-            /> */}
 
             <SelectCustom
               label="Estado"
