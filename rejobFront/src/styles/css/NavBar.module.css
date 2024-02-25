@@ -118,6 +118,18 @@
   border-color: red;
   color: red;
 }
+.navbar .profileMenu a .login, .navbar .profileMenu a .register{
+  color: white;
+  background-color: #00a3ff;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 0px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 40px;
+  width: 200px;
+}
 .navbar .buttons{
   display: flex;
   flex-direction: row;
