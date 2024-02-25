@@ -99,7 +99,6 @@ function NavBar() {
     const loadLoged = async () => {
       try{
         const data = await api.get("users/me");
-        console.log(data)
         dispatch({
           type: "ChangeLoged",
           payload: true,
