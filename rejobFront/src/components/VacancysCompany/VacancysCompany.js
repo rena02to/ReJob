@@ -4,37 +4,108 @@ import VacancyFinished from "../VacancyFinished/VacancyFinished";
 import VacancyInProgress from "../VacancyInProgress/VacancyInProgress";
 
 import api from '../../services/api'
+import UserService from '../../services/UserService'
+
 import PaginationRounded from '../../pages/PaginationRounded/PaginationRounded';
 
 const VacancysCompany = (props) => {
     const [paginaAtual, setPaginaAtual] = useState(1);
-    const [vagasExibidas, setVagasExibidas] = useState([]);
+    const [vagasAbertasExibidas, setVagasAbertasExibidas] = useState([]);
+    const [vagasFechadasExibidas, setVagasFechadasExibidas] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [vacancies, setVacancies] = useState([]);
+    const [vacanciesOpen, setVacanciesOpen] = useState([]);
+    const [vacanciesClosed, setVacanciesClosed] = useState([]);
+    const userData = UserService();
+    const [states, setStates] = useState([]);
+    const companyId = userData ? userData.id : null;
+    const [finalizated, setFinalizated] = useState(false);
 
-    // GET JOBS
     useEffect(() => {
-        const fetchData = async () => {
+        if (companyId) {
+            const fetchData = async () => {
+                try {
+                    const response = await api.get(`/jobs/job-list/${companyId}`);
+                    const allVacancies = response.data;
+
+                    const activeVacancies = allVacancies.filter(vacancy => vacancy.jobStatus === "ACTIVE");
+
+                    const closedVacancies = allVacancies.filter(vacancy => vacancy.jobStatus === "CLOSED");
+
+                    setVacancies(allVacancies);
+                    setVacanciesOpen(activeVacancies);
+                    setVacanciesClosed(closedVacancies);
+
+                } catch (error) {
+                    console.error("Erro na requisição:", error);
+                }
+            };
+
+            fetchData();
+        }
+    }, [companyId]);
+
+    // GET STATES
+    useEffect(() => {
+        const carregarStates = async () => {
             try {
-                const response = await api.get("/jobs/job-list/1");
-                setVacancies(response.data);
+                // Importar diretamente o arquivo JSON
+                const data = require('./states.json');
+                setStates(data.estados);
             } catch (error) {
-                console.error("Erro na requisição:", error);
+                console.error('Erro ao carregar Estados:', error);
             }
         };
 
-        fetchData();
-    }, []);
+        carregarStates();
+    }, [setStates]);
 
-    const handleChangePagina = (novaPagina) => {
-        setPaginaAtual(novaPagina);
-    }
+    useEffect(() => {
+        setVagasAbertasExibidas(calcularVagasAbertasExibidas());
+    }, [paginaAtual, vacanciesOpen]);
 
-    const calcularVagasExibidas = () => {
+    useEffect(() => {
+        setVagasAbertasExibidas(calcularVagasAbertasExibidas());
+    }, [searchTerm]);
+
+    useEffect(() => {
+        if (props.toggle === 2) {
+            setPaginaAtual(1);
+        }
+    }, [props.toggle]);
+
+    useEffect(() => {
+        setVagasFechadasExibidas(calcularVagasFechadasExibidas());
+    }, [paginaAtual, vacanciesClosed]);
+
+    useEffect(() => {
+        setVagasFechadasExibidas(calcularVagasFechadasExibidas());
+    }, [searchTerm]);
+
+    const calcularVagasAbertasExibidas = () => {
+        const vagasFiltradas = vacanciesOpen.filter(vaga => {
+            const searchString = `${vaga.jobTitle} ${vaga.companyName} ${vaga.companyLocation.city} ${vaga.companyLocation.state} ${formatedEducationLevel(vaga.educationLevel)} ${vaga.employmentContractType}`;
+            return searchString.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+
         const vagasPorPagina = 6;
         const indiceInicial = (paginaAtual - 1) * vagasPorPagina;
         const indiceFinal = indiceInicial + vagasPorPagina;
 
-        return vacancies.slice(indiceInicial, indiceFinal);
+        return vagasFiltradas.slice(indiceInicial, indiceFinal);
+    }
+
+    const calcularVagasFechadasExibidas = () => {
+        const vagasFiltradas = vacanciesClosed.filter(vaga => {
+            const searchString = `${vaga.jobTitle} ${vaga.companyName} ${vaga.companyLocation.city} ${vaga.companyLocation.state} ${formatedEducationLevel(vaga.educationLevel)} ${vaga.employmentContractType}`;
+            return searchString.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+
+        const vagasPorPagina = 6;
+        const indiceInicial = (paginaAtual - 1) * vagasPorPagina;
+        const indiceFinal = indiceInicial + vagasPorPagina;
+
+        return vagasFiltradas.slice(indiceInicial, indiceFinal);
     }
 
     const formatedEducationLevel = (educationLevel) => {
@@ -68,46 +139,99 @@ const VacancysCompany = (props) => {
         }
     }
 
-    useEffect(() => {
-        setVagasExibidas(calcularVagasExibidas());
-    }, [paginaAtual, vacancies]);
+    // FUNÇÃO PARA ATUALIZAR AS VAGAS QUANDO ALGUMA VAGA FOR FINALIZADA
+    const fetchData = async () => {
+        try {
+            const response = await api.get(`/jobs/job-list/${companyId}`);
+            const allVacancies = response.data;
+
+            const activeVacancies = allVacancies.filter(vacancy => vacancy.jobStatus === "ACTIVE");
+            const closedVacancies = allVacancies.filter(vacancy => vacancy.jobStatus === "CLOSED");
+
+            setVacancies(allVacancies);
+            setVacanciesOpen(activeVacancies);
+            setVacanciesClosed(closedVacancies);
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+        }
+    };
+
+    const handleFinalizeVacancy = async () => {
+        fetchData();
+    };
+
+    const handleChangePagina = (novaPagina) => {
+        setPaginaAtual(novaPagina);
+    }
 
     return (
-        <div className="grid grid-cols-3 gap-[12px] pt-[12px] px-[12px]">
-            {vagasExibidas.map((vacancy, index) => {
-                if (props.toggle === 1 && (vacancy.jobStatus === "ACTIVE" || vacancy.jobStatus === "IN_PROGRESS")) {
-                    return (
-                        <VacancyInProgress
-                            key={index}
-                            tituloDaVaga={vacancy.jobTitle}
-                            empresa={vacancy.companyName}
-                            localizacao={`${vacancy.companyLocation.city}, ${vacancy.companyLocation.city}, ${vacancy.companyLocation.state}`}
-                            nivel={formatedEducationLevel(vacancy.educationLevel)}
-                            contrato={vacancy.employmentContractType}
-                        />
-                    );
-                } else if (props.toggle === 2 && (vacancy.jobStatus === "CLOSED" || vacancy.jobStatus === "COMPLETED")) {
-                    return (
-                        <VacancyFinished
-                            key={index}
-                            tituloDaVaga={vacancy.jobTitle}
-                            empresa={vacancy.companyName}
-                            localizacao={`${vacancy.companyLocation.city}, ${vacancy.companyLocation.city}, ${vacancy.companyLocation.state}`}
-                            nivel={vacancy.educationLevel}
-                            contrato={vacancy.employmentContractType}
-                        />
-                    );
+        <div className="relative">
+            <input className='absolute top-[-92px] h-[42px] w-full'
+                type="text"
+                placeholder="Pesquisar vagas..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-[12px] pt-[12px] px-[12px]'>
+
+                {
+                    vagasAbertasExibidas.map((vacancy, index) => {
+                        if (props.toggle === 1 && (vacancy.jobStatus === "ACTIVE" || vacancy.jobStatus === "IN_PROGRESS")) {
+                            return (
+                                <VacancyInProgress
+                                    key={index}
+                                    tituloDaVaga={vacancy.jobTitle}
+                                    empresa={vacancy.companyName}
+                                    localizacao={`${vacancy.companyLocation.city}, ${vacancy.companyLocation.city}, ${vacancy.companyLocation.state}`}
+                                    nivel={formatedEducationLevel(vacancy.educationLevel)}
+                                    contrato={vacancy.employmentContractType}
+                                    vaga={vacancy}
+                                    finalizeVacancy={handleFinalizeVacancy}
+                                />
+                            );
+                        }
+                    })
                 }
-            })
+
+                {
+                    vagasFechadasExibidas.map((vacancy, index) => {
+                        if (props.toggle === 2 && (vacancy.jobStatus === "CLOSED" || vacancy.jobStatus === "COMPLETED")) {
+                            return (
+                                <VacancyFinished
+                                    key={index}
+                                    tituloDaVaga={vacancy.jobTitle}
+                                    empresa={vacancy.companyName}
+                                    localizacao={`${vacancy.companyLocation.city}, ${vacancy.companyLocation.city}, ${vacancy.companyLocation.state}`}
+                                    nivel={formatedEducationLevel(vacancy.educationLevel)}
+                                    contrato={vacancy.employmentContractType}
+                                />
+                            );
+                        }
+                    })
+                }
+
+            </div>
+
+            {
+                props.toggle === 1 ? (
+                    <PaginationRounded
+                        totalVagas={vacanciesOpen.length}
+                        paginaAtual={paginaAtual}
+                        onChangePagina={handleChangePagina}
+                    />
+
+                ) : (
+                    <PaginationRounded
+                        totalVagas={vacanciesClosed.length}
+                        paginaAtual={paginaAtual}
+                        onChangePagina={handleChangePagina}
+                    />
+                )
             }
 
-            <PaginationRounded
-                totalVagas={vacancies.length}
-                paginaAtual={paginaAtual}
-                onChangePagina={handleChangePagina}
-            />
         </div>
     );
+
 }
 
 export default VacancysCompany;

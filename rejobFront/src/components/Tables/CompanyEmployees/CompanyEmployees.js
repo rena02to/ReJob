@@ -18,6 +18,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import { useEffect, useState } from 'react';
 
 import api from '../../../services/api';
+import UserService from '../../../services/UserService';
 
 import iconPlus from './iconPlus.png';
 
@@ -104,20 +105,23 @@ export default function CustomPaginationActionsTable() {
   };
 
   const [collaborators, setCollaborators] = useState([]);
+  const userData = UserService();
+  const companyId = userData ? userData.id : null;
+  console.log(companyId)
 
   // GET COLLABORATORS OF COMPANY
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await api.get('/companies/collaborator-list/1');
-        setCollaborators(response.data);
+        const response = await api.get(`/companies/${companyId}`);
+        setCollaborators(response.data.collaborators);
       } catch (error) {
         console.error('Erro ao obter usuários:', error);
       }
     };
 
     fetchUsers();
-  }, []);
+  }, [companyId]);
 
   collaborators.map((collaborator, index) => {
     createData(collaborator.user.name);
