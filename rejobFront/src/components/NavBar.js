@@ -225,10 +225,10 @@ function NavBar() {
             <div className={style.profileMenu} ref={profileRef}>
               <p>Entre ou cadastre-se</p>
               <a href="/login">
-                <button>Entrar</button>
+                <button className={style.login}>Entrar</button>
               </a>
               <a href="/cadastro">
-                <button>Cadastrar-se</button>
+                <button className={style.register}>Cadastrar-se</button>
               </a>
             </div>
           ) : null}
