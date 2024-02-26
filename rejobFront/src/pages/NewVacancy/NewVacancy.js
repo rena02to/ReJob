@@ -15,6 +15,7 @@ import "./NewVacancy.css";
 
 // Services
 import api from "../../services/api";
+import UserService from "../../services/UserService";
 
 const NewVacancy = () => {
   // Variaveis
@@ -47,6 +48,8 @@ const NewVacancy = () => {
     jobStatus: "ACTIVE",
   });
   const [users, setUsers] = useState([]);
+  const userData = UserService();
+  console.log(userData);
   const token = sessionStorage.getItem("token");
 
   // GET STATES
@@ -54,7 +57,7 @@ const NewVacancy = () => {
     const carregarStates = async () => {
       try {
         // Importar diretamente o arquivo JSON
-        const data = require("./states.json");
+        const data = require("../../states.json");
         setStates(data.estados);
       } catch (error) {
         console.error("Erro ao carregar Estados:", error);
@@ -68,7 +71,7 @@ const NewVacancy = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await api.get("/users");
+        const response = await api.get(`/companies/collaborator-list/${userData.id}`);
         setUsers(response.data);
       } catch (error) {
         console.error("Erro ao obter usuários:", error);
@@ -108,6 +111,8 @@ const NewVacancy = () => {
   // POST JOB
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    
+    console.log(formData);
 
     // Verificação de campos vazios
     if (
@@ -230,14 +235,14 @@ const NewVacancy = () => {
               ]}
             />
 
-            <InputCustom
-              label="Nome da Empresa"
+            {/* <InputCustom
+              label="ID da Empresa"
               type="text"
               id="company"
               name="company"
-              value={empresa}
+              value={userData.id}
               disabled
-            />
+            /> */}
 
             <SelectCustom
               label="Estado"
@@ -287,7 +292,7 @@ const NewVacancy = () => {
               onChange={handleInputChange}
               options={users.map((user) => ({
                 value: user.id,
-                label: user.name,
+                label: user.user.name,
               }))}
             />
 
@@ -406,9 +411,6 @@ const NewVacancy = () => {
                 ></input>
               </div>
             </div>
-
-            <div></div>
-            <div></div>
 
             <InputCustom
               label="Prazo de Candidatura"

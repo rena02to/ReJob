@@ -5,12 +5,6 @@
     --second-gray: #D2D4D4;
     --third-gray: #7C7C8A;
 }
-
-.title {
-    padding-top: 130px;
-    padding-bottom: 28px;
-}
-
 .title h1 {
     color: var(--first-blue);
     padding: 0;
