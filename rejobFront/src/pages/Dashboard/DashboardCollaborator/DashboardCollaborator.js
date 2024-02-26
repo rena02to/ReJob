@@ -22,18 +22,13 @@ const DashboardCollaborator = () => {
       </div>
 
       {/* VAGAS DA EMPRESA */}
-      <div className="max-w-[1440px] h-screen m-auto px-[42px] flex flex-col">
+      <div className="max-w-[1440px] m-auto px-[42px] flex flex-col">
         <div className="flex justify-between items-center">
           <Title
             titulo="POSTAGEM DE VAGAS"
             subtitulo="Acompanhe abaixo o andamento de todas as vagas que sua empresa ofertou."
           ></Title>
         </div>
-
-        <input
-          className="w-full py-[12px] px-[16px]"
-          placeholder="Pesquise uma vaga específica aqui..."
-        ></input>
 
         <div className="w-full flex pt-[24px]">
           <div className="w-full">
@@ -48,6 +43,7 @@ const DashboardCollaborator = () => {
               >
                 Abertas
               </div>
+              <div className="text-[#7C7C8A]">|</div>
               <div
                 onClick={() => updateToggle(2)}
                 className={
@@ -61,11 +57,11 @@ const DashboardCollaborator = () => {
             </div>
             {toggle === 1 ? (
               <div className="mt-[6px] w-full rounded bg-[#D2D4D4]">
-                <div className="relative z-10 w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
+                <div className="relative z-10 w-[78px] border-3 rounded border-[#00A3FF] border-solid "></div>
               </div>
             ) : (
               <div className="z-0 mt-[6px] w-full rounded bg-[#D2D4D4]">
-                <div className="relative z-10 left-[132px] w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
+                <div className="relative z-10 left-[86px] w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
               </div>
             )}
             <VacancysCompany toggle={toggle} />

@@ -1,20 +1,16 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // Components
-import NavBar from "../../components/NavBar";
 import Title from "../../components/Title/Title";
 import InputCustom from "../../components/InputCustom/InputCustom";
-import TextareaCustom from "../../components/TextareaCustom/TextareaCustom";
 import SelectCustom from "../../components/SelectCustom/SelectCustom";
 
 // Assets
 import "./Profile.css";
 import profileImg from "../../images/profile1.jpg";
-import defaultImg from "../../images/default.png";
-import { FaEdit } from "react-icons/fa";
 
 // Services
 import api from "../../services/api";
@@ -60,13 +56,13 @@ const ProfileCollaborator = () => {
   useEffect(() => {
     if (userData) {
       setFormData({
-        name: userData.name,
-        email: userData.email,
-        cpf: userData.cpf,
+        name: userData.user.name,
+        email: userData.user.email,
+        cpf: userData.user.cpf,
         collaboratorType: userData.collaboratorType,
-        companyId: userData.companyId,
+        companyId: userData.user.companyId,
         jobTitle: userData.jobTitle,
-        password: userData.password,
+        password: userData.user.password,
       });
     }
   }, [userData]);
@@ -90,10 +86,6 @@ const ProfileCollaborator = () => {
     const { name, value } = event.target;
     if (name === "phone") {
       formatPhone(value);
-    } else if (name === "state" || name === "city" || name === "address") {
-      setFormData((formData) => ({
-        ...formData,
-      }));
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -149,8 +141,8 @@ const ProfileCollaborator = () => {
     }
 
     try {
-      await api.put(`/companies/${userData.id}`, formData);
-      toast.success("Os dados da empresa foram editados com sucesso.", {
+      await api.put(`/users/${userData.id}/collaborator`, formData);
+      toast.success("Os dados do colaborador foram atualizados com sucesso.", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     } catch (error) {

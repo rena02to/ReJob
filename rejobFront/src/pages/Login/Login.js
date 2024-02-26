@@ -25,7 +25,6 @@ function Login() {
   const Logar = async (values) => {
     try {
       await LoginService.login(values.email, values.password);
-
       navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 403) {

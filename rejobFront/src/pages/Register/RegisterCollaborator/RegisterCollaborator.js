@@ -163,7 +163,7 @@ function RegisterCollaboratory() {
     }
 
     try {
-      await api.post("/auth/register-collaborator", {
+      const response = await api.post("/auth/register-collaborator", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -172,13 +172,18 @@ function RegisterCollaboratory() {
         collaboratorType: formData.collaboratorType,
         companyId: Number(formData.companyId),
       });
+
+      const token = response.data;
+
+      sessionStorage.setItem("token", token.token);
+
       toast.success(
         `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
         {
           position: toast.POSITION.TOP_RIGHT,
         }
       );
-      navigate("/painel-colaborador");
+      navigate("/dashboard/colaborador");
     } catch (error) {
       if (error.response && error.response.status === 409) {
         toast.error(
