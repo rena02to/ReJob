@@ -94,7 +94,7 @@ function createData(name, calories, fat) {
   return { name, calories, fat };
 }
 
-export default function CustomPaginationActionsTable() {
+export default function CustomPaginationActionsTable(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -111,14 +111,14 @@ export default function CustomPaginationActionsTable() {
   };
 
   const [collaborators, setCollaborators] = useState([]);
-  const userData = UserService();
-  const companyId = userData ? userData.id : null;
+  const companyId = props.id ?? null;
 
   // GET COLLABORATORS OF COMPANY
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await api.get(`/companies/${companyId}`);
+
         setCollaborators(response.data.collaborators);
       } catch (error) {
         console.error("Erro ao obter usuários:", error);
