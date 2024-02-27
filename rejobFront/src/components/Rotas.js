@@ -19,6 +19,7 @@ import NewVacancy from "../pages/NewVacancy/NewVacancy";
 import Profile from "../pages/Profile/Profile";
 import ApplicationStatus from "../pages/ApplicationStatus/ApplicationStatus";
 import DashboardCompany from "../pages/Dashboard/DashboardCompany/DashboardCompany";
+import DashboardRemand from "../pages/Dashboard/DashboardRemand/DashboardRemand"
 import DashboardCollaborator from "../pages/Dashboard/DashboardCollaborator/DashboardCollaborator";
 
 function Rotas() {
@@ -42,7 +43,11 @@ function Rotas() {
           element={isLoged ? <Navigate to="/" /> : <Register />}
         />
 
-        <Route exact path="/vagas/" element={<JobList />}></Route>
+        <Route
+          exact
+          path="/vagas/"
+          element={<JobList />}>
+        </Route>
 
         <Route
           exact
@@ -94,6 +99,12 @@ function Rotas() {
           exact
           path="/perfil"
           element={isLoged ? <Navigate to="/login" /> : <Profile />}
+        />
+
+        <Route
+          exact
+          path="/painel-egresso"
+          element={<DashboardRemand />}
         />
 
         <Route
