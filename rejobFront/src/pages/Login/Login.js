@@ -34,9 +34,9 @@ function Login() {
     try {
       await LoginService.login(values.email, values.password);
       const response = await api.get("users/me");
-      if (response.data.role == Roles.COLLABORATOR) {
+      if (response.data?.user?.role === Roles.COLLABORATOR) {
         navigate("/dashboard/colaborador");
-      } else if (response.data.role == Roles.COMPANY) {
+      } else if (response.data?.user?.role === Roles.COMPANY) {
         navigate("/dashboard/empresa");
       } else {
         navigate("/");
