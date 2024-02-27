@@ -13,6 +13,10 @@ const DashboardCompany = () => {
   const [toggle, setToggle] = useState(1);
   const userData = UserService();
 
+  if (!userData) {
+    return null;
+  } 
+
   const updateToggle = (id) => {
     setToggle(id);
   };
@@ -96,7 +100,9 @@ const DashboardCompany = () => {
             </button>
           </Link>
         </div>
-        <CompanyEmployees />
+        <CompanyEmployees
+          id={userData?.id}
+        />
       </div>
     </div>
   );

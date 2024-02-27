@@ -17,7 +17,7 @@ const UserService = () => {
     fetchUserData();
   }, []);
 
-  return userData;
+    return userData
 };
 
 export default UserService;
