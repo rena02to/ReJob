@@ -23,7 +23,6 @@ import DashboardCollaborator from "../pages/Dashboard/DashboardCollaborator/Dash
 
 function Rotas() {
   const { isLoged } = useSelector((rooteRedux) => rooteRedux.useReducer);
-
   return (
     <Router>
       <Routes>

@@ -64,19 +64,20 @@ const NewVacancy = () => {
 
   // GET USERS
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await api.get(
-          `/companies/collaborator-list/${userData.id}`
-        );
-        setUsers(response.data);
-      } catch (error) {
-        console.error("Erro ao obter usuários:", error);
-      }
-    };
-
-    fetchUsers();
-  }, [token]);
+    if (userData) {
+      const fetchUsers = async () => {
+        try {
+          const response = await api.get(
+            `/companies/collaborator-list/${userData?.user?.id}`
+          );
+          setUsers(response.data);
+        } catch (error) {
+          console.error("Erro ao obter usuários:", error);
+        }
+      };
+      fetchUsers();
+    }
+  }, [userData]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -106,8 +107,6 @@ const NewVacancy = () => {
   // POST JOB
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(formData);
 
     if (
       !formData.companyLocation ||

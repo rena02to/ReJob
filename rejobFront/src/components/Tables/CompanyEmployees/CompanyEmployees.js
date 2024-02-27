@@ -1,26 +1,25 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import { useEffect, useState } from 'react';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { useEffect, useState } from "react";
 
-import api from '../../../services/api';
-import UserService from '../../../services/UserService';
+import api from "../../../services/api";
+import UserService from "../../../services/UserService";
 
-import iconPlus from './iconPlus.png';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -49,28 +48,36 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -91,7 +98,6 @@ export default function CustomPaginationActionsTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -107,7 +113,6 @@ export default function CustomPaginationActionsTable() {
   const [collaborators, setCollaborators] = useState([]);
   const userData = UserService();
   const companyId = userData ? userData.id : null;
-  console.log(companyId)
 
   // GET COLLABORATORS OF COMPANY
   useEffect(() => {
@@ -116,7 +121,7 @@ export default function CustomPaginationActionsTable() {
         const response = await api.get(`/companies/${companyId}`);
         setCollaborators(response.data.collaborators);
       } catch (error) {
-        console.error('Erro ao obter usuários:', error);
+        console.error("Erro ao obter usuários:", error);
       }
     };
 
@@ -125,17 +130,21 @@ export default function CustomPaginationActionsTable() {
 
   collaborators.map((collaborator, index) => {
     createData(collaborator.user.name);
-  })
+  });
 
   const rows = [];
 
-  rows.push(
-    createData('NOME', 'EMAIL', 'TELEFONE'),
-  );
+  rows.push(createData("NOME", "EMAIL", "TELEFONE"));
 
   collaborators.forEach((collaborator, index) => {
-    rows.push(createData(collaborator.user.name, collaborator.user.email, collaborator.user.phoneNumber))
-  })
+    rows.push(
+      createData(
+        collaborator.user.name,
+        collaborator.user.email,
+        collaborator.user.phoneNumber
+      )
+    );
+  });
 
   return (
     <TableContainer component={Paper}>
@@ -166,7 +175,7 @@ export default function CustomPaginationActionsTable() {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'Todos', value: -1 }]}
+              rowsPerPageOptions={[5, 10, 25, { label: "Todos", value: -1 }]}
               colSpan={3}
               count={rows.length}
               rowsPerPage={rowsPerPage}
