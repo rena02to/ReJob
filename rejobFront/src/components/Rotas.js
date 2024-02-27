@@ -19,6 +19,7 @@ import NewVacancy from "../pages/NewVacancy/NewVacancy";
 import Profile from "../pages/Profile/Profile";
 import ApplicationStatus from "../pages/ApplicationStatus/ApplicationStatus";
 import DashboardCompany from "../pages/Dashboard/DashboardCompany/DashboardCompany";
+import DashboardRemand from "../pages/Dashboard/DashboardRemand/DashboardRemand"
 import CollaboratorDashboard from "../pages/CollaboratorDashboard/CollaboratorDashboard";
 
 function Rotas() {
@@ -42,7 +43,7 @@ function Rotas() {
           path="/cadastro"
           element={isLoged ? <Navigate to="/" /> : <Register />}
         />
-        
+
         <Route
           exact
           path="/vagas/"
@@ -86,8 +87,8 @@ function Rotas() {
 
         <Route
           exact
-          path="/dashboard/empresa"
-          element={ <DashboardCompany />}
+          path="/painel-empresa"
+          element={<DashboardCompany />}
         />
 
         {/* Rotas do Colaborador */}
@@ -97,6 +98,12 @@ function Rotas() {
           exact
           path="/perfil"
           element={isLoged ? <Navigate to="/login" /> : <Profile />}
+        />
+
+        <Route
+          exact
+          path="/painel-egresso"
+          element={<DashboardRemand />}
         />
 
         <Route

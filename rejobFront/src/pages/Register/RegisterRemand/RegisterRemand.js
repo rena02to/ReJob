@@ -391,16 +391,6 @@ const RegisterRemand = () => {
               onChange={handleInputChange}
             />
 
-            {/* <InputCustom
-                            label="Local de Residência"
-                            id="residenceLocation"
-                            name="residenceLocation"
-                            value={formData.residenceLocation}
-                            onChange={handleInputChange}
-                            placeholder="Digite o Local de Residência"
-                            type="text"
-                        /> */}
-
             <SelectCustom
               label="Regime de Cumprimento de Pena"
               id="sentenceRegime"
