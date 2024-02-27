@@ -38,22 +38,6 @@
 .navbar ul .ativado {
   color: #00a3ff;
 }
-.navbar .buttons .loginLink,
-.navbar .buttons .registerLink {
-  margin-right: 20px;
-}
-.navbar .buttons .loginLink button,
-.navbar .buttons .registerLink button {
-  color: white;
-  background-color: #00a3ff;
-  border: 0px solid transparent;
-  border-radius: 5px;
-  font-size: 24px;
-  padding: 0px 24px;
-  font-weight: 600;
-  cursor: pointer;
-  height: 45px;
-}
 .navbar .entreCadastre {
   color: white;
   background-color: #00a3ff;
@@ -112,53 +96,50 @@
   align-items: center;
   gap: 15px;
 }
-.navbar .profileMenu p {
-  margin-bottom: 0;
+.navbar .profileMenu p{
+  font-weight: 600;
+  font-size: 20px;
 }
-.navbar .profileMenu a {
+.navbar .profileMenu .go, .navbar .profileMenu .out{
+  font-size: 1rem;
+  width: 200px;
+  cursor: pointer;
+}
+.navbar .profileMenu .out a{
   text-decoration: none;
 }
-.navbar .profileMenu a button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.navbar .profileMenu a{
+  text-decoration: none;
+}
+.navbar .profileMenu .go a{
+  color: #00a3ff;
+}
+.navbar .profileMenu .out{
+  border-color: red;
+  color: red;
+}
+.navbar .profileMenu a .login, .navbar .profileMenu a .register{
   color: white;
   background-color: #00a3ff;
   border: 0px solid transparent;
   border-radius: 5px;
-  font-size: 24px;
+  font-size: 20px;
   padding: 0px 24px;
   font-weight: 600;
   cursor: pointer;
-  height: 45px;
-  font-size: 18px;
-  width: 180px;
+  height: 40px;
+  width: 200px;
 }
-.navbar .profileMenu .links {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  padding-top: 25px;
-}
-.navbar .profileMenu .links .interno {
+.navbar .buttons{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
-.navbar .profileMenu .links .interno a {
-  color: black;
-  font-size: 20px;
-  font-weight: 600;
-}
-.navbar .profileMenu .links .interno svg {
-  height: 30px;
-  width: 30px;
-  color: #00a3ff;
-  margin-right: 10px;
+.navbar .dash{
+  font-size: 1rem;
+  cursor: pointer;
 }
 .navbar .containerMenu {
   position: relative;

@@ -1,0 +1,25 @@
+:root {
+  --first-blue: #00a3ff;
+  --dark-black: #0f0f0f;
+  --first-gray: #edeff0;
+  --second-gray: #d2d4d4;
+  --third-gray: #7c7c8a;
+}
+
+.submit {
+  color: white;
+  padding: 12px;
+  border-radius: 4px;
+  border: solid 2px var(--first-gray);
+}
+
+.submit:hover {
+  opacity: 0.92;
+  cursor: pointer;
+}
+
+.submit {
+  min-width: 209px;
+  font-weight: 600;
+  background-color: var(--first-blue);
+}

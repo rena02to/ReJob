@@ -31,6 +31,8 @@ const initialState = {
     modalOpen: false,
     nameHability: '',
     levelHability: null,
+    typeUser: null,
+    nameUser: null,
 }
 
 const useReducer = ( state = initialState, action ) => {
@@ -98,6 +100,10 @@ const useReducer = ( state = initialState, action ) => {
             return{ ...state, nameHability: action.payload };
         case 'setLevelHability':
             return{ ...state, levelHability: action.payload };
+        case 'setNameUser':
+            return{ ...state, nameUser: action.payload };
+        case 'setTypeUser':
+            return{ ...state, typeUser: action.payload };
         default:
             return state;
     }

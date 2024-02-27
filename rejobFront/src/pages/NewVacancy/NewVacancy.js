@@ -18,10 +18,7 @@ import api from "../../services/api";
 import UserService from "../../services/UserService";
 
 const NewVacancy = () => {
-  // Variaveis
   const [states, setStates] = useState([]);
-  // eslint-disable-next-line
-  const [empresa, setEmpresa] = useState("Starbucks");
   const [formData, setFormData] = useState({
     companyLocation: {
       city: "",
@@ -49,9 +46,7 @@ const NewVacancy = () => {
   });
   const [users, setUsers] = useState([]);
   const userData = UserService();
-  console.log(userData);
   const token = sessionStorage.getItem("token");
-
   // GET STATES
   useEffect(() => {
     const carregarStates = async () => {
@@ -69,23 +64,24 @@ const NewVacancy = () => {
 
   // GET USERS
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await api.get(`/companies/collaborator-list/${userData.id}`);
-        setUsers(response.data);
-      } catch (error) {
-        console.error("Erro ao obter usuários:", error);
-      }
-    };
+    if (userData) {
+      const fetchUsers = async () => {
+        try {
+          const response = await api.get(
+            `/companies/collaborator-list/${userData?.user?.id}`
+          );
+          setUsers(response.data);
+        } catch (error) {
+          console.error("Erro ao obter usuários:", error);
+        }
+      };
+      fetchUsers();
+    }
+  }, [userData]);
 
-    fetchUsers();
-  }, [token]);
-
-  // Atualizar valores dos inputs, selects e textareas nas variáveis
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name.startsWith("salaryRange")) {
-      // Se o campo pertencer a salaryRange, atualize apenas esse campo
       setFormData((formData) => ({
         ...formData,
         salaryRange: {
@@ -111,10 +107,7 @@ const NewVacancy = () => {
   // POST JOB
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    
-    console.log(formData);
 
-    // Verificação de campos vazios
     if (
       !formData.companyLocation ||
       !formData.jobType ||
@@ -234,15 +227,6 @@ const NewVacancy = () => {
                 { value: "Período Integral", label: "Período Integral" },
               ]}
             />
-
-            {/* <InputCustom
-              label="ID da Empresa"
-              type="text"
-              id="company"
-              name="company"
-              value={userData.id}
-              disabled
-            /> */}
 
             <SelectCustom
               label="Estado"

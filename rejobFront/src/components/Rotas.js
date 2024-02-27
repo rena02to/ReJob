@@ -20,11 +20,10 @@ import Profile from "../pages/Profile/Profile";
 import ApplicationStatus from "../pages/ApplicationStatus/ApplicationStatus";
 import DashboardCompany from "../pages/Dashboard/DashboardCompany/DashboardCompany";
 import DashboardRemand from "../pages/Dashboard/DashboardRemand/DashboardRemand"
-import CollaboratorDashboard from "../pages/CollaboratorDashboard/CollaboratorDashboard";
+import DashboardCollaborator from "../pages/Dashboard/DashboardCollaborator/DashboardCollaborator";
 
 function Rotas() {
   const { isLoged } = useSelector((rooteRedux) => rooteRedux.useReducer);
-
   return (
     <Router>
       <Routes>
@@ -87,9 +86,11 @@ function Rotas() {
 
         <Route
           exact
-          path="/painel-empresa"
-          element={<DashboardCompany />}
-        />
+          path="/dashboard/colaborador"
+          element={<DashboardCollaborator />}
+        ></Route>
+
+        <Route exact path="/dashboard/empresa" element={<DashboardCompany />} />
 
         {/* Rotas do Colaborador */}
 
@@ -110,12 +111,6 @@ function Rotas() {
           exact
           path="/minha-candidatura"
           element={<ApplicationStatus />}
-        ></Route>
-
-        <Route
-          exact
-          path="/painel-colaborador"
-          element={<CollaboratorDashboard />}
         ></Route>
       </Routes>
     </Router>

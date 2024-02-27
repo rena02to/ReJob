@@ -2,17 +2,12 @@ import style from "./../styles/css/NavBar.module.css";
 import Icone from "./../images/newJob.png";
 import { useDispatch, useSelector } from "react-redux";
 import { CgMenuCheese, CgClose } from "react-icons/cg";
-import {
-  FaCircleUser,
-  FaUserTie,
-  FaClipboardUser,
-  FaUsersViewfinder,
-} from "react-icons/fa6";
-import { FaUserEdit } from "react-icons/fa";
-import { MdWorkHistory } from "react-icons/md";
 import { useEffect, useRef } from "react";
+import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate = useNavigate();
   const rotaAtual = window.location.pathname;
   const menuRef = useRef(null);
   const profileRef = useRef(null);
@@ -24,7 +19,7 @@ function NavBar() {
     menuOpen,
     profileOpen,
     typeUser,
-    nomeUser,
+    nameUser,
   } = useSelector((rootReducer) => rootReducer.useReducer);
 
   const itens = [
@@ -96,22 +91,55 @@ function NavBar() {
       }
     };
 
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [menuOpen, profileOpen, dispatch]);
-
-  useEffect(() => {
     dispatch({
       type: "ChangeActivatedItem",
       payload: rotaAtual,
     });
-  }, [dispatch, rotaAtual]);
+
+    const loadLoged = async () => {
+      try {
+        const data = await api.get("users/me");
+        dispatch({
+          type: "ChangeLoged",
+          payload: true,
+        });
+        dispatch({
+          type: "setTypeUser",
+          payload: data.data.user?.role,
+        });
+        dispatch({
+          type: "setNameUser",
+          payload: data.data.user?.name,
+        });
+      } catch (error) {
+        dispatch({
+          type: "ChangeLoged",
+          payload: false,
+        });
+        console.log("Erro ao carregar os dados do login: ", error);
+      }
+    };
+
+    loadLoged();
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [menuOpen, profileOpen, dispatch, rotaAtual]);
 
   const changeActivatedItem = () => {
     dispatch({
       type: "ChangeMenuOpen",
+    });
+  };
+
+  const Out = () => {
+    sessionStorage.removeItem("token");
+    navigate("/");
+    dispatch({
+      type: "ChangeLoged",
+      payload: false,
     });
   };
 
@@ -166,52 +194,33 @@ function NavBar() {
       {isLoged ? (
         <>
           <button
-            className={
-              profileOpen ? style.profileIconOpen : style.profileIconClose
-            }
+            className={style.dash}
+            title={`Dashboard de ${nameUser}`}
             onClick={(event) =>
               openMenu(event, "ChangeProfileOpen", !profileOpen)
             }
           >
-            <FaCircleUser />
+            Dashboard
           </button>
           {profileOpen ? (
             <div className={style.profileMenu} ref={profileRef}>
-              <p>Olá, seja bem vindo(a) {nomeUser}!</p>
-              {typeUser === "candidato" ? (
-                <div className={style.links}>
-                  <div className={style.interno}>
-                    <FaUserEdit />
-                    <a href="##">Meu perfil</a>
-                  </div>
-                  <div className={style.interno}>
-                    <MdWorkHistory />
-                    <a href="##">Vagas que me candidatei</a>
-                  </div>
-                </div>
-              ) : typeUser === "empresa" ? (
-                <div className={style.links}>
-                  <div className={style.interno}>
-                    <FaUserTie />
-                    <a href="##">Minha empresa</a>
-                  </div>
-                  <div className={style.interno}>
-                    <MdWorkHistory />
-                    <a href="##">Minhas vagas</a>
-                  </div>
-                </div>
-              ) : (
-                <div className={style.links}>
-                  <div className={style.interno}>
-                    <FaClipboardUser />
-                    <a href="##">Meu perfil</a>
-                  </div>
-                  <div className={style.interno}>
-                    <FaUsersViewfinder />
-                    <a href="##">Candidatos que supervisiono</a>
-                  </div>
-                </div>
-              )}
+              <p>{nameUser}</p>
+              <a
+                href={
+                  typeUser === "COMPANY"
+                    ? "/dashboard/empresa"
+                    : typeUser === "COLLABORATOR"
+                    ? "/dashboard/colaborador"
+                    : typeUser === "USER"
+                    ? "/painel-egresso"
+                    : "##"
+                }
+              >
+                <button className={style.go}>Ir para o dashboard</button>
+              </a>
+              <button className={style.out} onClick={Out}>
+                Sair
+              </button>
             </div>
           ) : null}
         </>
@@ -229,10 +238,10 @@ function NavBar() {
             <div className={style.profileMenu} ref={profileRef}>
               <p>Entre ou cadastre-se</p>
               <a href="/login">
-                <button>Entrar</button>
+                <button className={style.login}>Entrar</button>
               </a>
               <a href="/cadastro">
-                <button>Cadastrar-se</button>
+                <button className={style.register}>Cadastrar-se</button>
               </a>
             </div>
           ) : null}
