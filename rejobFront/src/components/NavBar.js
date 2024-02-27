@@ -208,9 +208,9 @@ function NavBar() {
               <a
                 href={
                   typeUser === "COMPANY"
-                    ? "/painel-empresa"
+                    ? "/dashboard/empresa"
                     : typeUser === "COLLABORATOR"
-                    ? "/painel-colaborador"
+                    ? "/dashboard/colaborador"
                     : typeUser === "USER"
                     ? "/painel-egresso"
                     : "##"

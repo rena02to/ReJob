@@ -7,10 +7,11 @@ import Title from "../../../components/Title/Title";
 import VacancysCompany from "../../../components/VacancysCompany/VacancysCompany";
 import ProfileCompany from "../../../components/ProfileCompany/ProfileCompany";
 import CompanyEmployees from "../../../components/Tables/CompanyEmployees/CompanyEmployees";
+import UserService from "../../../services/UserService";
 
 const DashboardCompany = () => {
   const [toggle, setToggle] = useState(1);
-  const [paginaAtual, setPaginaAtual] = useState(1);
+  const userData = UserService();
 
   const updateToggle = (id) => {
     setToggle(id);
@@ -68,7 +69,11 @@ const DashboardCompany = () => {
                 <div className="relative z-10 left-[86px] w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
               </div>
             )}
-            <VacancysCompany toggle={toggle} />
+            <VacancysCompany
+              toggle={toggle}
+              url={"jobs/job-list"}
+              id={userData.companyId}
+            />
           </div>
         </div>
       </div>

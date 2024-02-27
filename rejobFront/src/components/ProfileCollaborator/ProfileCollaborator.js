@@ -56,13 +56,13 @@ const ProfileCollaborator = () => {
   useEffect(() => {
     if (userData) {
       setFormData({
-        name: userData.user.name,
-        email: userData.user.email,
-        cpf: userData.user.cpf,
-        collaboratorType: userData.collaboratorType,
-        companyId: userData.user.companyId,
+        name: userData.user?.name,
+        email: userData.user?.email,
+        cpf: userData.user?.cpf,
+        collaboratorType: userData?.collaboratorType,
+        companyId: userData?.companyId,
         jobTitle: userData.jobTitle,
-        password: userData.user.password,
+        password: userData.user?.password,
       });
     }
   }, [userData]);

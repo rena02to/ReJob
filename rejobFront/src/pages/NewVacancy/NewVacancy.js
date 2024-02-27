@@ -18,10 +18,7 @@ import api from "../../services/api";
 import UserService from "../../services/UserService";
 
 const NewVacancy = () => {
-  // Variaveis
   const [states, setStates] = useState([]);
-  // eslint-disable-next-line
-  const [empresa, setEmpresa] = useState("Starbucks");
   const [formData, setFormData] = useState({
     companyLocation: {
       city: "",
@@ -49,9 +46,7 @@ const NewVacancy = () => {
   });
   const [users, setUsers] = useState([]);
   const userData = UserService();
-  console.log(userData);
   const token = sessionStorage.getItem("token");
-
   // GET STATES
   useEffect(() => {
     const carregarStates = async () => {
@@ -83,11 +78,9 @@ const NewVacancy = () => {
     fetchUsers();
   }, [token]);
 
-  // Atualizar valores dos inputs, selects e textareas nas variáveis
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name.startsWith("salaryRange")) {
-      // Se o campo pertencer a salaryRange, atualize apenas esse campo
       setFormData((formData) => ({
         ...formData,
         salaryRange: {
@@ -116,7 +109,6 @@ const NewVacancy = () => {
 
     console.log(formData);
 
-    // Verificação de campos vazios
     if (
       !formData.companyLocation ||
       !formData.jobType ||

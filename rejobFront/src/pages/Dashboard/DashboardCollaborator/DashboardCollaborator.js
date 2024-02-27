@@ -1,15 +1,23 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
 import Title from "../../../components/Title/Title";
 import VacancysCompany from "../../../components/VacancysCompany/VacancysCompany";
 import ProfileCollaborator from "../../../components/ProfileCollaborator/ProfileCollaborator";
+import UserService from "../../../services/UserService";
+import "./DashboardCollaborator.css";
 
 const DashboardCollaborator = () => {
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(1);
-  const [paginaAtual, setPaginaAtual] = useState(1);
+  const userData = UserService();
 
   const updateToggle = (id) => {
     setToggle(id);
+  };
+
+  const createNewJob = (jobId) => {
+    navigate(`/nova-vaga`);
   };
 
   return (
@@ -28,6 +36,10 @@ const DashboardCollaborator = () => {
             titulo="POSTAGEM DE VAGAS"
             subtitulo="Acompanhe abaixo o andamento de todas as vagas que sua empresa ofertou."
           ></Title>
+
+          <button className="save" onClick={() => createNewJob()}>
+            OFERTAR NOVA VAGA
+          </button>
         </div>
 
         <div className="w-full flex pt-[24px]">
@@ -64,7 +76,11 @@ const DashboardCollaborator = () => {
                 <div className="relative z-10 left-[86px] w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
               </div>
             )}
-            <VacancysCompany toggle={toggle} />
+            <VacancysCompany
+              id={userData?.collaboratorId}
+              toggle={toggle}
+              url={"jobs/job-by-collaborator"}
+            />
           </div>
         </div>
       </div>
