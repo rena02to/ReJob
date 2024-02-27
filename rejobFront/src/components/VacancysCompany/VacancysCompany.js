@@ -6,6 +6,7 @@ import VacancyInProgress from "../VacancyInProgress/VacancyInProgress";
 import api from "../../services/api";
 
 import PaginationRounded from "../../pages/PaginationRounded/PaginationRounded";
+import SearchIcon from '@mui/icons-material/Search';
 
 const VacancysCompany = (props) => {
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -74,6 +75,12 @@ const VacancysCompany = (props) => {
   }, [props.toggle]);
 
   useEffect(() => {
+    if (searchTerm === undefined) {
+      setSearchTerm("");
+    }
+  }, [searchTerm]);
+
+  useEffect(() => {
     setVagasFechadasExibidas(calcularVagasFechadasExibidas());
   }, [paginaAtual, vacanciesClosed]);
 
@@ -83,11 +90,10 @@ const VacancysCompany = (props) => {
 
   const calcularVagasAbertasExibidas = () => {
     const vagasFiltradas = vacanciesOpen.filter((vaga) => {
-      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${
-        vaga.companyLocation.city
-      } ${vaga.companyLocation.state} ${formatedEducationLevel(
-        vaga.educationLevel
-      )} ${vaga.employmentContractType}`;
+      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${vaga.companyLocation.city
+        } ${vaga.companyLocation.state} ${formatedEducationLevel(
+          vaga.educationLevel
+        )} ${vaga.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -100,11 +106,10 @@ const VacancysCompany = (props) => {
 
   const calcularVagasFechadasExibidas = () => {
     const vagasFiltradas = vacanciesClosed.filter((vaga) => {
-      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${
-        vaga.companyLocation.city
-      } ${vaga.companyLocation.state} ${formatedEducationLevel(
-        vaga.educationLevel
-      )} ${vaga.employmentContractType}`;
+      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${vaga.companyLocation.city
+        } ${vaga.companyLocation.state} ${formatedEducationLevel(
+          vaga.educationLevel
+        )} ${vaga.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -176,14 +181,19 @@ const VacancysCompany = (props) => {
   };
 
   return (
-    <div className="relative">
-      <input
-        className="absolute top-[-92px] h-[42px] w-full"
-        type="text"
-        placeholder="Pesquisar vagas..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+    <div>
+      <div className="relative">
+        <input
+          className="absolute top-[-92px] h-[42px] w-full"
+          type="text"
+          placeholder="Pesquise qualquer informação de vaga aqui"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+        <SearchIcon onClick={(e) => setSearchTerm(e.target.value)} style={{color: "#00a3ff"}} className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-82px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full" />
+
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-[12px] pt-[12px] px-[12px]">
         {vagasAbertasExibidas.map((vacancy, index) => {
           if (
