@@ -9,6 +9,7 @@ import LoginService from "./LoginService";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import api from "../../services/api";
 
 function Login() {
   const dispatch = useDispatch();
@@ -22,11 +23,24 @@ function Login() {
     password: "",
   };
 
+  const Roles = {
+    USER: "USER",
+    ADMIN: "ADMIN",
+    COLLABORATOR: "COLLABORATOR",
+    COMPANY: "COMPANY",
+  };
+
   const Logar = async (values) => {
     try {
       await LoginService.login(values.email, values.password);
-
-      navigate("/");
+      const response = await api.get("users/me");
+      if (response.data.role == Roles.COLLABORATOR) {
+        navigate("/dashboard/colaborador");
+      } else if (response.data.role == Roles.COMPANY) {
+        navigate("/dashboard/empresa");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       if (error.response && error.response.status === 403) {
         toast.error("Email ou senha incorretos. Por favor, tente novamente.", {

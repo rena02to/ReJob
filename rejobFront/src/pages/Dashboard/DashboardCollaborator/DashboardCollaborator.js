@@ -1,20 +1,23 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
-// COMPONENTS
+import { useNavigate } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
 import Title from "../../../components/Title/Title";
 import VacancysCompany from "../../../components/VacancysCompany/VacancysCompany";
-import ProfileCompany from "../../../components/ProfileCompany/ProfileCompany";
-import CompanyEmployees from "../../../components/Tables/CompanyEmployees/CompanyEmployees";
+import ProfileCollaborator from "../../../components/ProfileCollaborator/ProfileCollaborator";
 import UserService from "../../../services/UserService";
+import "./DashboardCollaborator.css";
 
-const DashboardCompany = () => {
+const DashboardCollaborator = () => {
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(1);
   const userData = UserService();
 
   const updateToggle = (id) => {
     setToggle(id);
+  };
+
+  const createNewJob = (jobId) => {
+    navigate(`/nova-vaga`);
   };
 
   return (
@@ -23,7 +26,7 @@ const DashboardCompany = () => {
 
       {/* PROFILE */}
       <div className="max-w-[1440px] m-auto px-[42px]">
-        <ProfileCompany />
+        <ProfileCollaborator />
       </div>
 
       {/* VAGAS DA EMPRESA */}
@@ -33,6 +36,10 @@ const DashboardCompany = () => {
             titulo="POSTAGEM DE VAGAS"
             subtitulo="Acompanhe abaixo o andamento de todas as vagas que sua empresa ofertou."
           ></Title>
+
+          <button className="save" onClick={() => createNewJob()}>
+            OFERTAR NOVA VAGA
+          </button>
         </div>
 
         <div className="w-full flex pt-[24px]">
@@ -70,36 +77,15 @@ const DashboardCompany = () => {
               </div>
             )}
             <VacancysCompany
+              id={userData?.collaboratorId}
               toggle={toggle}
-              url={"jobs/job-list"}
-              id={userData.companyId}
+              url={"jobs/job-by-collaborator"}
             />
           </div>
         </div>
-      </div>
-
-      {/* COLABORADORES DA EMPRESA  */}
-      <div className="max-w-[1440px] m-auto px-[42px] flex flex-col mb-[175px]">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <Title
-            titulo="COLABORADORES DA EMPRESA"
-            subtitulo="Acompanhe abaixo a lista de colaboradores vinculados a empresa."
-          ></Title>
-
-          <Link
-            to="/cadastro/colaborador"
-            target="_blank"
-            className="no-underline"
-          >
-            <button className="p-[12px] mb-[24px] w-[227px] bg-[#00A3FF] text-[#FFF] rounded hover:opacity-85 cursor-pointer">
-              CADASTRAR COLABORADOR
-            </button>
-          </Link>
-        </div>
-        <CompanyEmployees />
       </div>
     </div>
   );
 };
 
-export default DashboardCompany;
+export default DashboardCollaborator;

@@ -97,29 +97,28 @@ function NavBar() {
     });
 
     const loadLoged = async () => {
-      try{
+      try {
         const data = await api.get("users/me");
-        console.log(data)
         dispatch({
           type: "ChangeLoged",
           payload: true,
-        })
+        });
         dispatch({
           type: "setTypeUser",
-          payload: data.data.user.role,
-        })
+          payload: data.data.user?.role,
+        });
         dispatch({
           type: "setNameUser",
-          payload: data.data.user.name,
-        })
-      }catch(error){
+          payload: data.data.user?.name,
+        });
+      } catch (error) {
         dispatch({
           type: "ChangeLoged",
           payload: false,
-        })
+        });
         console.log("Erro ao carregar os dados do login: ", error);
       }
-    }
+    };
 
     loadLoged();
 
@@ -136,13 +135,13 @@ function NavBar() {
   };
 
   const Out = () => {
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem("token");
     navigate("/");
     dispatch({
       type: "ChangeLoged",
       payload: false,
-    })
-  }
+    });
+  };
 
   return (
     <nav className={style.navbar}>
@@ -194,16 +193,30 @@ function NavBar() {
       )}
       {isLoged ? (
         <>
-          <button className={style.dash} title={`Dashboard de ${nameUser}`} onClick={(event) =>openMenu(event, "ChangeProfileOpen", !profileOpen)}>
+          <button
+            className={style.dash}
+            title={`Dashboard de ${nameUser}`}
+            onClick={(event) =>
+              openMenu(event, "ChangeProfileOpen", !profileOpen)
+            }
+          >
             Dashboard
           </button>
           {profileOpen ? (
             <div className={style.profileMenu} ref={profileRef}>
               <p>{nameUser}</p>
-              <a href={typeUser === "COMPANY" ? "/painel-empresa" : typeUser === "COLLABORATOR" ? "/painel-colaborador" : typeUser === "USER" ? "/painel-egresso" : "##"}>
-                <button className={style.go}>
-                  Ir para o dashboard
-                </button>
+              <a
+                href={
+                  typeUser === "COMPANY"
+                    ? "/dashboard/empresa"
+                    : typeUser === "COLLABORATOR"
+                    ? "/dashboard/colaborador"
+                    : typeUser === "USER"
+                    ? "/painel-egresso"
+                    : "##"
+                }
+              >
+                <button className={style.go}>Ir para o dashboard</button>
               </a>
               <button className={style.out} onClick={Out}>
                 Sair
