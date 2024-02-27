@@ -16,8 +16,8 @@ const DashboardCollaborator = () => {
     setToggle(id);
   };
 
-  const createNewJob = (jobId) => {
-    navigate(`/nova-vaga`);
+  const createNewJob = () => {
+    navigate("/nova-vaga");
   };
 
   return (
@@ -37,7 +37,7 @@ const DashboardCollaborator = () => {
             subtitulo="Acompanhe abaixo o andamento de todas as vagas que sua empresa ofertou."
           ></Title>
 
-          <button className="save" onClick={() => createNewJob()}>
+          <button className="submit" onClick={() => createNewJob()}>
             OFERTAR NOVA VAGA
           </button>
         </div>

@@ -72,7 +72,7 @@ const DashboardCompany = () => {
             <VacancysCompany
               toggle={toggle}
               url={"jobs/job-list"}
-              id={userData.companyId}
+              id={userData?.companyId}
             />
           </div>
         </div>
