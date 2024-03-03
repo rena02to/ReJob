@@ -24,7 +24,6 @@ const ProfileRemand = () => {
     const [states, setStates] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const userData = UserService();
-    console.log(userData)
     const [formData, setFormData] = useState({
         name: "",
         phoneNumber: "",
@@ -216,7 +215,6 @@ const ProfileRemand = () => {
             return;
         }
 
-        console.log(formData)
 
         // try {
         //     await api.put(`/companies/${userData.id}`, formData);
