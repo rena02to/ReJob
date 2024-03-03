@@ -24,8 +24,8 @@ function NavBar() {
 
   const itens = [
     { key: 1, value: "Ver vagas", link: "/vagas" },
-    { key: 2, value: "Sou empresa", link: "/beneficios-empresa" },
-    { key: 3, value: "Sobre o projeto", link: "/sobre-projeto" },
+    { key: 2, value: "Sou empresa", link: "/#sou-empresa" },
+    { key: 3, value: "Sobre o projeto", link: "/#sobre-rejob" },
   ];
 
   useEffect(() => {
@@ -162,7 +162,7 @@ function NavBar() {
             <div className={style.menu} ref={menuRef}>
               <ul>
                 {itens.map((item) => (
-                  <a key={item.key} href={item.link}>
+                  <Link key={item.key} href={item.link}>
                     <li
                       className={
                         item.link === activatedItem ? style.ativado : null
@@ -171,7 +171,7 @@ function NavBar() {
                     >
                       {item.value}
                     </li>
-                  </a>
+                  </Link>
                 ))}
               </ul>
             </div>
