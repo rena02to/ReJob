@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./../../styles/css/JobDetails.module.css";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
@@ -8,10 +8,14 @@ import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
 import { educationLevelMapper } from "../../utils/utils";
+import UserService from "../../services/UserService";
+import { ToastContainer, toast } from "react-toastify";
 
 const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState({});
+  const userData = UserService();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +28,38 @@ const JobDetails = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, userData]);
+
+  const applayingVacancy = async () => {
+
+    if (!userData) {
+      navigate('/login')
+      return
+    }
+
+    const applicationData = {
+      applicantId: userData.id,
+      jobId: job.id,
+      status: "IN_PROGRESS",
+      feedback: ""
+    }
+
+    if (userData.user.role === "USER") {
+      try {
+        await api.post(`/jobApplications`, applicationData);
+
+        toast.success(`Sua aplicação na vaga, foi feita com sucesso.`, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      } catch (error) {
+        console.error("Erro ao fazer a solicitação PUT:", error);
+      }
+    } else {
+      toast.error(`Você não é EGRESSO para poder aplicar nesta vaga.`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  }
 
   return (
     <>
@@ -81,7 +116,7 @@ const JobDetails = () => {
               Ficou com interesse na vaga? Demonstre o seu interesse e seja
               encontrado pela empresa.
             </span>
-            <button className={styles.button}>Inscrever-se</button>
+            <button onClick={applayingVacancy} className={styles.button}>Inscrever-se</button>
           </div>
         </div>
       </div>
@@ -148,11 +183,12 @@ const JobDetails = () => {
             <div className={styles.subscribeCard}>
               <h1>Ficou interessado na vaga?</h1>
               <h3> Demonstre o seu interesse e seja encontrado pela empresa</h3>
-              <button className={styles.button}>Inscrever-se</button>
+              <button onClick={applayingVacancy} className={styles.button}>Inscrever-se</button>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
       <Footer></Footer>;
     </>
   );
