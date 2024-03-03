@@ -201,7 +201,7 @@ const RegisterCompany = () => {
 
       const token = response.data;
 
-      sessionStorage.setItem("token", token.token);
+      localStorage.setItem("token", token.token);
 
       toast.success(
         `A empresa: ${formData.name}, foi registrada na ReJob com sucesso.`,

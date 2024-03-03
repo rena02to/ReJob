@@ -81,7 +81,7 @@ function Rotas() {
         <Route
           exact
           path="/nova-vaga"
-          element={isLoged ? <Navigate to="/login" /> : <NewVacancy />}
+          element={<NewVacancy />}
         />
 
         <Route

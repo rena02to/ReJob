@@ -135,7 +135,7 @@ function NavBar() {
   };
 
   const Out = () => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     navigate("/");
     dispatch({
       type: "ChangeLoged",

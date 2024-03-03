@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import api from "./api";
 
 const UserService = () => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState("");
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -17,7 +17,7 @@ const UserService = () => {
     fetchUserData();
   }, []);
 
-    return userData
+  return userData;
 };
 
 export default UserService;
