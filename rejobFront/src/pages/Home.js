@@ -63,7 +63,7 @@ function Home() {
   return (
     <>
       <NavBar />
-      <section className={`mt-[60px] ${style.vagas}`}>
+      <section className={`${style.vagas}`}>
         <div className={style.containerMain}>
           <div className={style.perfilHome}>
             <img alt="Imagem de fundo da página de vagas" src={backImageHome} />

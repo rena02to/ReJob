@@ -120,7 +120,7 @@ const JobDetails = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center w-full h-[1405px]">
+      <div className="flex justify-center w-full">
         <div className={styles.body_container}>
           <div className="flex flex-col justify-center items-center gap-8 w-[843px] md:w-5/6">
             <div className="w-5/6 h-[467px] p-8 rounded shadow-md bg-white">
