@@ -18,6 +18,8 @@
 .navbar .textIcon {
   font-weight: 600;
   font-size: 36px;
+  text-decoration: none;
+  color: #0F0F0F;
   display: flex;
 }
 .navbar .textIcon .job {

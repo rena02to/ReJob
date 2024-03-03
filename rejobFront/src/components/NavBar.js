@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CgMenuCheese, CgClose } from "react-icons/cg";
 import { useEffect, useRef } from "react";
 import api from "../services/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -23,10 +23,9 @@ function NavBar() {
   } = useSelector((rootReducer) => rootReducer.useReducer);
 
   const itens = [
-    { key: 1, value: "Home", link: "/" },
-    { key: 2, value: "Ver vagas", link: "/vagas" },
-    { key: 3, value: "Sou empresa", link: "/beneficios-empresa" },
-    { key: 4, value: "Sobre o projeto", link: "/sobre-projeto" },
+    { key: 1, value: "Ver vagas", link: "/vagas" },
+    { key: 2, value: "Sou empresa", link: "/beneficios-empresa" },
+    { key: 3, value: "Sobre o projeto", link: "/sobre-projeto" },
   ];
 
   useEffect(() => {
@@ -145,11 +144,11 @@ function NavBar() {
 
   return (
     <nav className={style.navbar}>
-      <div className={style.textIcon}>
+      <Link to="/" className={style.textIcon}>
         <img src={Icone} alt="Ícone" width={43} height={43} />
         <span className={style.re}>Re</span>
         <span className={style.job}>Job</span>
-      </div>
+      </Link>
 
       {windowWidth <= 1100 ? (
         <div className={style.containerMenu}>
