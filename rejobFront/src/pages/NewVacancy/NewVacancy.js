@@ -46,7 +46,7 @@ const NewVacancy = () => {
   });
   const [users, setUsers] = useState([]);
   const userData = UserService();
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   // GET STATES
   useEffect(() => {
     const carregarStates = async () => {

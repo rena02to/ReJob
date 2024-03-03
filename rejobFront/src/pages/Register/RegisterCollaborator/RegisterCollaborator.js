@@ -12,11 +12,13 @@ import { ToastContainer, toast } from "react-toastify";
 import { isValidEmail, validatePassword } from "../../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../../services/api";
+import UserService from "../../../services/UserService";
 import { useNavigate } from "react-router-dom";
 
 function RegisterCollaboratory() {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
+  const userData = UserService();
   const dispatch = useDispatch();
   const {
     visibilityPassword,
@@ -106,6 +108,15 @@ function RegisterCollaboratory() {
     }
   };
 
+  // se tiver um usuario logado
+  if (userData.companyType && !formData.collaboratorType) {
+    setFormData({ ...formData, collaboratorType: userData.companyType });
+  }
+
+  if (userData.id && !formData.companyId) {
+    setFormData({ ...formData, companyId: userData.id });
+  }
+
   useEffect(() => {
     const getCompanies = async () => {
       try {
@@ -175,7 +186,7 @@ function RegisterCollaboratory() {
 
       const token = response.data;
 
-      sessionStorage.setItem("token", token.token);
+      localStorage.setItem("token", token.token);
 
       toast.success(
         `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
@@ -234,6 +245,7 @@ function RegisterCollaboratory() {
           value={formData.collaboratorType}
           onChange={handleInputChange}
           options={options}
+          disabled={userData}
         />
 
         <SelectCustom
@@ -246,6 +258,7 @@ function RegisterCollaboratory() {
           options={companies.map((company) => {
             return { value: company.id, label: company.name };
           })}
+          disabled={userData}
         />
 
         <InputCustom
