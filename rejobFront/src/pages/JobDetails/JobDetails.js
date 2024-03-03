@@ -49,14 +49,14 @@ const JobDetails = () => {
         await api.post(`/jobApplications`, applicationData);
 
         toast.success(`Sua aplicação na vaga, foi feita com sucesso.`, {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         });
       } catch (error) {
         console.error("Erro ao fazer a solicitação PUT:", error);
       }
     } else {
       toast.error(`Você não é EGRESSO para poder aplicar nesta vaga.`, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
   }

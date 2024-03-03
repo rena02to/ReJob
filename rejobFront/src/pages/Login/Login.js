@@ -44,11 +44,11 @@ function Login() {
     } catch (error) {
       if (error.response && error.response.status === 403) {
         toast.error("Email ou senha incorretos. Por favor, tente novamente.", {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         });
       } else {
         toast.error("Falha no login. Por favor, tente novamente mais tarde.", {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         });
       }
     }
@@ -130,7 +130,7 @@ function Login() {
         </Form>
       </Formik>
 
-      <ToastContainer />
+      <ToastContainer position="bottom-right" />
     </section>
   );
 }
