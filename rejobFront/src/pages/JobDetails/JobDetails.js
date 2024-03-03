@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import styles from "./../../styles/css/JobDetails.module.css";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
@@ -30,6 +30,13 @@ const JobDetails = () => {
   }, [id, userData]);
 
   const applayingVacancy = async () => {
+
+    if (!userData) {
+      toast.error(`Você precisa estar logado como EGRESSO para aplicar em vagas.`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
 
     const applicationData = {
       applicantId: userData.id,
