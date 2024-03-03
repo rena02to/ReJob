@@ -10,11 +10,13 @@ import './CustomModal.css'
 import { ToastContainer, toast } from 'react-toastify'
 import api from '../../services/api'
 import UserService from '../../services/UserService'
+import { useNavigate } from 'react-router-dom';
 
 const VacancyInProgress = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [finalizeVacancy, setFinalizeVacancy] = useState(false);
     const user = UserService();
+    const navigate = useNavigate();
 
     const openModal = () => {
         setModalOpen(true);
@@ -38,6 +40,10 @@ const VacancyInProgress = (props) => {
             closeModal();
         }
     };
+
+    const recommendedVacancy = () => {
+        navigate(`/vagas/${props.vaga.id}`);
+    }
 
     const handleFinalizeVacancy = async (event) => {
         const vacancyId = props.vaga.id
@@ -79,7 +85,7 @@ const VacancyInProgress = (props) => {
                 </div>
             </div>
             <div className="flex pt-[12px] items-center">
-                <button onClick={openModal} className="px-[12px] w-[124px] bg-[#00A3FF] text-[#FFF] rounded hover:opacity-85 cursor-pointer">
+                <button onClick={props.recommended ? recommendedVacancy : openModal} className="px-[12px] w-[124px] bg-[#00A3FF] text-[#FFF] rounded hover:opacity-85 cursor-pointer">
                     Mais detalhes
                 </button>
                 {modalOpen && (

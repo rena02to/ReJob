@@ -44,8 +44,6 @@ const VacancysRemand = (props) => {
       fetchData();
     }
   }, [id]);
-  console.log("vacancies:");
-  console.log(vacancies);
 
   // GET STATES
   useEffect(() => {

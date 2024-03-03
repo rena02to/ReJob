@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./../../styles/css/JobDetails.module.css";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
@@ -15,6 +15,7 @@ const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState({});
   const userData = UserService();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,10 +33,8 @@ const JobDetails = () => {
   const applayingVacancy = async () => {
 
     if (!userData) {
-      toast.error(`Você precisa estar logado como EGRESSO para aplicar em vagas.`, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      return;
+      navigate('/login')
+      return
     }
 
     const applicationData = {
