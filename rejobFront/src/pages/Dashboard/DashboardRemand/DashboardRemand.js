@@ -3,16 +3,21 @@ import { useState, useEffect } from 'react';
 // COMPONENTS
 import NavBar from "../../../components/NavBar";
 import Title from "../../../components/Title/Title";
-
-// ASSETS
+import VacancysRemand from '../../../components/VacancysRemand/VacancysRemand';
 import VacancysCompany from '../../../components/VacancysCompany/VacancysCompany';
 
 // API
 import ProfileRemand from '../../../components/ProfileRemand/ProfileRemand';
+import UserService from '../../../services/UserService';
 
 const DashboardRemand = () => {
     const [toggle, setToggle] = useState(1);
+    const userData = UserService();
     const [paginaAtual, setPaginaAtual] = useState(1);
+
+    if (!userData) {
+        return null;
+    }
 
     const updateToggle = (id) => {
         setToggle(id)
@@ -53,8 +58,10 @@ const DashboardRemand = () => {
                                     <div className="relative z-10 left-[86px] w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
                                 </div>
                         }
-                        <VacancysCompany
+                        <VacancysRemand
+                            id={userData?.id}
                             toggle={toggle}
+                            url={`jobApplications/my-applications`}
                         />
 
                     </div>

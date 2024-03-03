@@ -87,41 +87,42 @@ const VacancyInProgress = (props) => {
                         <div className="modal relative">
                             <button className="close-button absolute right-[24px] cursor-pointer hover:bg-[#00A3FF] hover:text-white" onClick={closeModal}>X</button>
                             <div className=''>
-                                <h2 className='text-[#00A3FF]'>{props.vaga.jobTitle}</h2>
-                                <button>{props.vaga.categories}</button>
-                                <p>{props.vaga.jobType} - {props.vaga.requirements} - R$ {props.vaga.salaryRange.salaryRangeMin}~{props.vaga.salaryRange.salaryRangeMax}</p>
+                                <h2 className='text-[#00A3FF]'>{props.vaga.job.jobTitle}</h2>
+                                <button>{props.vaga.job.categories}</button>
+                                <p>{props.vaga.job.jobType} - {props.vaga.job.requirements} - R$ {props.vaga.job.salaryRange.salaryRangeMin}~{props.vaga.job.salaryRange.salaryRangeMax}</p>
 
                                 <div className=''>
                                     <h3 className='text-[#00A3FF]'>Descrição da Vaga</h3>
-                                    <p className='text-justify'>{props.vaga.jobDescription}</p>
+                                    <p className='text-justify'>{props.vaga.job.jobDescription}</p>
                                 </div>
 
                                 <h3 className='text-[#00A3FF]'>Experiência</h3>
-                                <p className='text-justify'>{props.vaga.requiredExperience}</p>
+                                <p className='text-justify'>{props.vaga.job.requiredExperience}</p>
 
                                 <h3 className='text-[#00A3FF]'>Responsabilidades</h3>
-                                <p className='text-justify'>{props.vaga.responsibilities}</p>
+                                <p className='text-justify'>{props.vaga.job.responsibilities}</p>
 
                                 <h3 className='text-[#00A3FF]'>Localização</h3>
-                                <p className='text-justify'>{props.vaga.companyLocation.city}, {props.vaga.companyLocation.state}, {props.vaga.companyLocation.address}</p>
+                                <p className='text-justify'>{props.vaga.job.companyLocation.city}, {props.vaga.job.companyLocation.state}, {props.vaga.job.companyLocation.address}</p>
                             </div>
                             <hr></hr>
-                            <div className='flex justify-end pt-[12px]'>
-                                <button onClick={openFinalize} className='text-[18px] cursor-pointer border-none hover:bg-opacity-85 bg-red-600 text-white'>Finalizar Vaga</button>
-                                {modalOpen && finalizeVacancy && (
-                                    <div className="modal-background" onClick={handleBackgroundClick}>
-                                        <div className="modal relative">
-                                            <p className='font-bold text-red-600'>Tem certeza que deseja finalizar esta vaga?</p>
-                                            <div className='flex justify-end pt-[12px]'>
-                                                <button onClick={closeFinalize} className='text-[18px] hover:bg-opacity-85 border-none cursor-pointer bg-gray-400 text-white'>Voltar</button>
-                                                <button onClick={handleFinalizeVacancy} className='text-[18px] hover:bg-opacity-85 border-none cursor-pointer bg-red-600 text-white'>Finalizar</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                )}
+                            <div className='flex justify-between pt-[12px]'>
+                                <div className='max-w-[400px]'>
+                                    <b>Feedback</b>: {props.vaga.feedback ? props.vaga.feedback : "Nenhum feedback foi dado pela empresa até o momento."}
+                                </div>
+                                <div>
+                                    <b>Status</b>:
+                                    {
+                                        props.vaga.status === "IN_PROGRESS" ? (
+                                            <span className="text-yellow-500"> Em Progresso</span>
+                                        ) : props.vaga.status === "ACCEPTED" ? (
+                                            <span className="text-green-500"> Aceito</span>
+                                        ) : props.vaga.status === "REJECTED" ? (
+                                            <span className="text-red-500"> Rejeitado</span>
+                                        ) : ""
+                                    }
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 )}
