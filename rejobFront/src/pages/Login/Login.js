@@ -6,6 +6,7 @@ import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import LoginService from "./LoginService";
+import BackLink from "../../components/BackLink/BackLink";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -56,10 +57,7 @@ function Login() {
 
   return (
     <section className={style.background}>
-      <a href="/" className={style.back}>
-        <FaArrowLeftLong />
-        <p>Voltar</p>
-      </a>
+      <BackLink />
 
       <Formik initialValues={initialValues} onSubmit={Logar}>
         <Form>

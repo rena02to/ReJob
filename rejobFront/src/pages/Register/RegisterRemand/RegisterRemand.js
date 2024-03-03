@@ -46,7 +46,7 @@ const RegisterRemand = () => {
     const carregarStates = async () => {
       try {
         // Importar diretamente o arquivo JSON
-        const data = require("./states.json");
+        const data = require("../../../utils/states.json");
         setStates(data.estados);
       } catch (error) {
         console.error("Erro ao carregar Estados:", error);

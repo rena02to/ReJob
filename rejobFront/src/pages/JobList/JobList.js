@@ -43,7 +43,7 @@ function JobList() {
     const fetchData = async () => {
       try {
         const response = await api.get("/jobs");
-        const data = require("../../states.json");
+        const data = require("../../utils/states.json");
         setStates(data.estados);
         setJobs(response.data);
       } catch (error) {
