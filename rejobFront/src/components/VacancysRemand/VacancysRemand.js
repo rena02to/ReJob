@@ -24,7 +24,7 @@ const VacancysRemand = (props) => {
     if (id) {
       const fetchData = async () => {
         try {
-          const response = await api.get(`${props.url}/1`);
+          const response = await api.get(`${props.url}/${id}`);
           const allVacancies = response.data;
           const activeVacancies = allVacancies.filter(
             (vacancy) => vacancy.status === "IN_PROGRESS"
