@@ -49,14 +49,14 @@ const JobDetails = () => {
         await api.post(`/jobApplications`, applicationData);
 
         toast.success(`Sua aplicação na vaga, foi feita com sucesso.`, {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         });
       } catch (error) {
         console.error("Erro ao fazer a solicitação PUT:", error);
       }
     } else {
       toast.error(`Você não é EGRESSO para poder aplicar nesta vaga.`, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
   }
@@ -120,7 +120,7 @@ const JobDetails = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center w-full h-[1405px]">
+      <div className="flex justify-center w-full">
         <div className={styles.body_container}>
           <div className="flex flex-col justify-center items-center gap-8 w-[843px] md:w-5/6">
             <div className="w-5/6 h-[467px] p-8 rounded shadow-md bg-white">

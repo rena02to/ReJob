@@ -56,7 +56,7 @@ const VacancyInProgress = (props) => {
             await api.put(`/jobs/${vacancyId}`, jobData);
 
             toast.success(`A vaga '${props.vaga.jobTitle}' foi FINALIZADA.`, {
-                position: toast.POSITION.TOP_RIGHT,
+                position: toast.POSITION.BOTTOM_RIGHT,
             });
         } catch (error) {
             console.error("Erro ao fazer a solicitação PUT:", error);

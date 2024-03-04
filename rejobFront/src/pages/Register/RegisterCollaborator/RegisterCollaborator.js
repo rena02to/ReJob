@@ -144,14 +144,14 @@ function RegisterCollaboratory() {
       !formData.repeatPassword
     ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
 
     if (!isValidEmail(formData.email)) {
       toast.warn("Por favor, verifique o seu e-mail e tente novamente!", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -160,7 +160,7 @@ function RegisterCollaboratory() {
       toast.warn(
         "A senha deve ter pelo menos uma letra maiúscula, no mínimo 8 caracteres e um símbolo especial. Por favor, tente novamente!",
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       return;
@@ -168,7 +168,7 @@ function RegisterCollaboratory() {
 
     if (!formData.terms) {
       toast.warn("Para continuar, é necessário aceitar os termos de uso.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -191,7 +191,7 @@ function RegisterCollaboratory() {
       toast.success(
         `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       navigate("/dashboard/colaborador");
@@ -200,7 +200,7 @@ function RegisterCollaboratory() {
         toast.error(
           "Já existe uma conta cadastrada neste email. Por favor, insira outro e-mail ou logue na conta.",
           {
-            position: toast.POSITION.TOP_RIGHT,
+            position: toast.POSITION.BOTTOM_RIGHT,
           }
         );
       }
