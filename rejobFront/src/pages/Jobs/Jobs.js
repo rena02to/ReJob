@@ -97,7 +97,7 @@ function Vacancies() {
         <div className={styles.section}>
           <div className={styles.header_container}>
             <h2>
-              As melhores vagas com foco em <span>REINTEGRAÇÃO SOCIAL</span>
+            As melhores vagas com foco em <span>REINTEGRAÇÃO SOCIAL</span>
             </h2>
           </div>
           <div className={styles.body_container}>

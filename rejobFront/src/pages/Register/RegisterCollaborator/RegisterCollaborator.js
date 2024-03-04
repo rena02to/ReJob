@@ -12,11 +12,13 @@ import { ToastContainer, toast } from "react-toastify";
 import { isValidEmail, validatePassword } from "../../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../../services/api";
+import UserService from "../../../services/UserService";
 import { useNavigate } from "react-router-dom";
 
 function RegisterCollaboratory() {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
+  const userData = UserService();
   const dispatch = useDispatch();
   const {
     visibilityPassword,
@@ -106,6 +108,15 @@ function RegisterCollaboratory() {
     }
   };
 
+  // se tiver um usuario logado
+  if (userData.companyType && !formData.collaboratorType) {
+    setFormData({ ...formData, collaboratorType: userData.companyType });
+  }
+
+  if (userData.id && !formData.companyId) {
+    setFormData({ ...formData, companyId: userData.id });
+  }
+
   useEffect(() => {
     const getCompanies = async () => {
       try {
@@ -133,14 +144,14 @@ function RegisterCollaboratory() {
       !formData.repeatPassword
     ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
 
     if (!isValidEmail(formData.email)) {
       toast.warn("Por favor, verifique o seu e-mail e tente novamente!", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -149,7 +160,7 @@ function RegisterCollaboratory() {
       toast.warn(
         "A senha deve ter pelo menos uma letra maiúscula, no mínimo 8 caracteres e um símbolo especial. Por favor, tente novamente!",
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       return;
@@ -157,7 +168,7 @@ function RegisterCollaboratory() {
 
     if (!formData.terms) {
       toast.warn("Para continuar, é necessário aceitar os termos de uso.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -175,12 +186,12 @@ function RegisterCollaboratory() {
 
       const token = response.data;
 
-      sessionStorage.setItem("token", token.token);
+      localStorage.setItem("token", token.token);
 
       toast.success(
         `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       navigate("/dashboard/colaborador");
@@ -189,7 +200,7 @@ function RegisterCollaboratory() {
         toast.error(
           "Já existe uma conta cadastrada neste email. Por favor, insira outro e-mail ou logue na conta.",
           {
-            position: toast.POSITION.TOP_RIGHT,
+            position: toast.POSITION.BOTTOM_RIGHT,
           }
         );
       }
@@ -234,6 +245,7 @@ function RegisterCollaboratory() {
           value={formData.collaboratorType}
           onChange={handleInputChange}
           options={options}
+          disabled={userData}
         />
 
         <SelectCustom
@@ -246,6 +258,7 @@ function RegisterCollaboratory() {
           options={companies.map((company) => {
             return { value: company.id, label: company.name };
           })}
+          disabled={userData}
         />
 
         <InputCustom

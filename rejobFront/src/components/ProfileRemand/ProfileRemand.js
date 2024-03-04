@@ -24,7 +24,6 @@ const ProfileRemand = () => {
     const [states, setStates] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const userData = UserService();
-    console.log(userData)
     const [formData, setFormData] = useState({
         name: "",
         phoneNumber: "",
@@ -51,7 +50,7 @@ const ProfileRemand = () => {
         const carregarStates = async () => {
             try {
                 // Importar diretamente o arquivo JSON
-                const data = require('./states.json');
+                const data = require('../../utils/states.json');
                 setStates(data.estados);
             } catch (error) {
                 console.error('Erro ao carregar Estados:', error);
@@ -216,7 +215,6 @@ const ProfileRemand = () => {
             return;
         }
 
-        console.log(formData)
 
         // try {
         //     await api.put(`/companies/${userData.id}`, formData);
