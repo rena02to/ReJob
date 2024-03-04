@@ -125,7 +125,7 @@ function Login() {
             Esqueceu sua senha?
           </a>
           <p className={style.crie}>
-            Não possui conta? <a href="/register">Crie uma agora!</a>
+            Não possui conta? <a href="/cadastro">Crie uma agora!</a>
           </p>
         </Form>
       </Formik>

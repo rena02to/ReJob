@@ -11,8 +11,10 @@ import { ImStatsBars } from "react-icons/im";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
 import { educationLevelMapper } from "../../utils/utils";
+import { useSelector } from "react-redux";
 
 function JobList() {
+  const { typeUser } = useSelector((rootReducer) => rootReducer.useReducer);
   const navigate = useNavigate();
   const [state, setState] = useState(null);
   const [presencial, setPresencial] = useState(false);
@@ -79,11 +81,20 @@ function JobList() {
       <NavBar></NavBar>
       <div className={styles.container}>
         <div className={styles.section}>
-          <div className="flex items-center justify-center bg-black w-full h-[250px] text-white">
+          <div className="flex flex-col h-auto py-20 items-center justify-center bg-black w-full text-white">
             <h2 className="w-[760px] mx-auto text-center text-[32px] font-bold">
               As melhores vagas com foco em{" "}
               <span className="text-customColor">REINTEGRAÇÃO SOCIAL</span>
             </h2>
+            {typeUser === "COLLABORATOR" ? 
+              <a href="/nova-vaga">
+                <a href="/nova-vaga" className={styles.new}>
+                  <button>Cadastrar nova vaga</button>
+                </a>
+              </a>
+              :
+              null
+            }
           </div>
           <div className={styles.body_container}>
             <div className={styles.job_list_container}>
