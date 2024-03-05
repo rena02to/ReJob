@@ -23,7 +23,7 @@ import DashboardRemand from "../pages/Dashboard/DashboardRemand/DashboardRemand"
 import DashboardCollaborator from "../pages/Dashboard/DashboardCollaborator/DashboardCollaborator";
 
 function Rotas() {
-  const { isLoged } = useSelector((rooteRedux) => rooteRedux.useReducer);
+  const { isLoged, typeUser } = useSelector((rooteRedux) => rooteRedux.useReducer);
   return (
     <Router>
       <Routes>
@@ -81,16 +81,16 @@ function Rotas() {
         <Route
           exact
           path="/nova-vaga"
-          element={isLoged ? <NewVacancy /> : <Navigate to="/login" />}
+          element={typeUser === "COLLABORATOR" ? <NewVacancy /> : <Navigate to="/login" />}
         />
 
         <Route
           exact
           path="/dashboard/colaborador"
-          element={<DashboardCollaborator />}
+          element={typeUser === "COLLABORATOR" ? <DashboardCollaborator /> : <Navigate to="/login" />}
         ></Route>
 
-        <Route exact path="/dashboard/empresa" element={<DashboardCompany />} />
+        <Route exact path="/dashboard/empresa" element={typeUser === "COMPANY" ? <DashboardCompany /> : <Navigate to="/login" />} />
 
         {/* Rotas do Colaborador */}
 
@@ -104,13 +104,13 @@ function Rotas() {
         <Route
           exact
           path="/painel-egresso"
-          element={<DashboardRemand />}
+          element={typeUser === "USER" ? <DashboardRemand /> : <Navigate to ="/login" />}
         />
 
         <Route
           exact
           path="/minha-candidatura"
-          element={<ApplicationStatus />}
+          element={typeUser === "USER" ? <ApplicationStatus /> : <Navigate to="/login" />}
         ></Route>
       </Routes>
     </Router>

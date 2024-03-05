@@ -3,8 +3,7 @@ import Icone from "./../images/newJob.png";
 import { useDispatch, useSelector } from "react-redux";
 import { CgMenuCheese, CgClose } from "react-icons/cg";
 import { useEffect, useRef } from "react";
-import api from "../services/api";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -94,33 +93,6 @@ function NavBar() {
       type: "ChangeActivatedItem",
       payload: rotaAtual,
     });
-
-    const loadLoged = async () => {
-      try {
-        const data = await api.get("users/me");
-        dispatch({
-          type: "ChangeLoged",
-          payload: true,
-        });
-        dispatch({
-          type: "setTypeUser",
-          payload: data.data.user.role,
-        });
-        dispatch({
-          type: "setNameUser",
-          payload: data.data.user.name,
-        });
-      } catch (error) {
-        dispatch({
-          type: "ChangeLoged",
-          payload: false,
-        });
-        console.log("Erro ao carregar os dados do login: ", error);
-      }
-    };
-
-    loadLoged();
-
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);

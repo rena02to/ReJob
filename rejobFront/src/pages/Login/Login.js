@@ -35,6 +35,10 @@ function Login() {
     try {
       await LoginService.login(values.email, values.password);
       const response = await api.get("users/me");
+      dispatch({ type: "ChangeLoged", payload: true, });
+      dispatch({ type: "setTypeUser", payload: response.data?.user?.role });
+      dispatch({ type: "setNameUser", payload: response.data.user?.name });
+
       if (response.data?.user?.role === Roles.COLLABORATOR) {
         navigate("/dashboard/colaborador");
       } else if (response.data?.user?.role === Roles.COMPANY) {

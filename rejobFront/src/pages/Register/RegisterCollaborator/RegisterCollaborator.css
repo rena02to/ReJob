@@ -179,18 +179,18 @@
   width: 20px;
   height: 20px;
 }
-.background form .regras .qCaracteres .check,
-.background form .regras .maiusculo .check,
-.background form .regras .minusculo .check,
-.background form .regras .number .check,
-.background form .regras .simbolo .check {
+.background form .regras .qCaracteres .v,
+.background form .regras .maiusculo .v,
+.background form .regras .minusculo .v,
+.background form .regras .number .v,
+.background form .regras .simbolo .v {
   color: rgba(0, 150, 0, 0.7);
 }
-.background form .regras .qCaracteres .close,
-.background form .regras .maiusculo .close,
-.background form .regras .minusculo .close,
-.background form .regras .number .close,
-.background form .regras .simbolo .close {
+.background form .regras .qCaracteres .x,
+.background form .regras .maiusculo .x,
+.background form .regras .minusculo .x,
+.background form .regras .number .x,
+.background form .regras .simbolo .x {
   color: rgba(255, 0, 0, 0.7);
 }
 .background form .coincidir {
@@ -206,10 +206,10 @@
   width: 20px;
   height: 20px;
 }
-.background form .coincidir .check {
+.background form .coincidir .v {
   color: rgba(0, 150, 0, 0.7);
 }
-.background form .coincidir .close {
+.background form .coincidir .x {
   color: rgba(255, 0, 0, 0.7);
 }
 
