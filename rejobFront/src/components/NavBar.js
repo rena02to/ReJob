@@ -104,11 +104,11 @@ function NavBar() {
         });
         dispatch({
           type: "setTypeUser",
-          payload: data.data.user?.role,
+          payload: data.data.user.role,
         });
         dispatch({
           type: "setNameUser",
-          payload: data.data.user?.name,
+          payload: data.data.user.name,
         });
       } catch (error) {
         dispatch({

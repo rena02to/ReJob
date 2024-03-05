@@ -71,7 +71,6 @@ function Vacancies() {
         console.error("Erro na requisição:", error);
       }
     };
-
     fetchData();
   }, []);
 
