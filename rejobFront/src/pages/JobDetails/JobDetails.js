@@ -151,21 +151,6 @@ const JobDetails = () => {
               <span className="text-lg text-customColor md:text-xl font-semibold">
                 Requisitos
               </span>
-              <span className="text-lg  md:text-xl font-semibold">
-                Habilidades Necessárias
-              </span>
-              <button className="border border-customColor py-2 px-4 hover:bg-customColor hover:text-white transition duration-300 ease-in-out">
-                Conhecimentos básicos em produtos e técnicas de limpeza
-              </button>
-              <span className="text-lg md:text-xl font-semibold">
-                Conhecimentos Necessários
-              </span>
-              <p className=" text-gray-500 text-base md:text-lg">
-                {job.requirements}
-              </p>
-              <span className="text-lg md:text-xl font-semibold">
-                Tempo de Experiência
-              </span>
               <p className=" text-gray-500 text-base md:text-lg">
                 {job.requiredExperience}
               </p>
