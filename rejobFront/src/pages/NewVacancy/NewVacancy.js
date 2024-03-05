@@ -46,13 +46,12 @@ const NewVacancy = () => {
   });
   const [users, setUsers] = useState([]);
   const userData = UserService();
-  const token = sessionStorage.getItem("token");
   // GET STATES
   useEffect(() => {
     const carregarStates = async () => {
       try {
         // Importar diretamente o arquivo JSON
-        const data = require("../../states.json");
+        const data = require("../../utils/states.json");
         setStates(data.estados);
       } catch (error) {
         console.error("Erro ao carregar Estados:", error);
@@ -130,7 +129,7 @@ const NewVacancy = () => {
       !formData.companyLocation.address
     ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -138,19 +137,19 @@ const NewVacancy = () => {
     // Limite de caracteres
     if (formData.jobDescription.length > 1000) {
       toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
     if (formData.benefits.length > 1000) {
       toast.warn("O limite de caracteres máximo em BENEFÍCIOS é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
     if (formData.responsibilities.length > 1000) {
       toast.warn("O limite de caracteres máximo em RESPONSABILIDADES é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -158,7 +157,7 @@ const NewVacancy = () => {
       toast.warn(
         "O limite de caracteres máximo em EXPERIÊNCIA REQUERIDA é: 1000",
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       return;
@@ -169,7 +168,7 @@ const NewVacancy = () => {
     const dataAtual = new Date();
     if (dataInseridaObj <= dataAtual) {
       toast.warn("A data inserida deve ser posterior à data atual.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -177,7 +176,7 @@ const NewVacancy = () => {
     try {
       await api.post("/jobs", formData);
       toast.success("A nova vaga foi ofertada com sucesso.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);

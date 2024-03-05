@@ -3,7 +3,7 @@ import NavBar from "./../components/NavBar";
 import Footer from "./../components/Footer";
 import backImageHome from "./../images/backImageHome.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { FaAddressCard, FaClock } from "react-icons/fa";
 import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import RejobSimbol from "./../images/newJob.png";
@@ -23,6 +23,18 @@ function Home() {
   const ultimosDepoimentos = depoimentos.length > 3 ? depoimentos.slice(-3) : depoimentos;
   const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#sou-empresa') {
+      const souEmpresaElement = document.getElementById('sou-empresa');
+      if (souEmpresaElement) {
+        souEmpresaElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+        // Você pode ajustar o valor de 'top' abaixo para definir o deslocamento
+        window.scrollBy(0, -600); // Rola 100 pixels para cima (valor negativo para rolar para baixo)
+      }
+    }
+  }, []);
+  
   useEffect(() => {
     const loadVacancies = async () => {
       try {
@@ -51,7 +63,7 @@ function Home() {
   return (
     <>
       <NavBar />
-      <section className={style.vagas}>
+      <section className={`${style.vagas}`}>
         <div className={style.containerMain}>
           <div className={style.perfilHome}>
             <img alt="Imagem de fundo da página de vagas" src={backImageHome} />
@@ -165,7 +177,7 @@ function Home() {
               <a href="/vagas">Mais vagas</a>
             </button>
           </div>
-          <div className={style.beneficios}>
+          <div id="sou-empresa" className={style.beneficios}>
             <h2 className={style.quaisbeneficios}>
               Quais benefícios minha empresa receberá ao recrutar trabalhadores
               na ReJob?
@@ -232,7 +244,7 @@ function Home() {
                 ))}
               </div>
             </div>
-            <div className={style.sobreRejob}>
+            <div id="sobre-rejob" className={style.sobreRejob}>
               <h2>
                 Sobre a Re<span>Job</span>
               </h2>

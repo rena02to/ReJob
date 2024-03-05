@@ -293,6 +293,7 @@
 }
 .vagas .containerMain .beneficios p {
   font-size: 18px;
+  text-align: justify;
 }
 .vagas .containerMain .beneficios .melhoresEmpresasContainer {
   background-color: black;
@@ -519,6 +520,7 @@
 .vagas .containerMain .sobreRejob p {
   font-size: 18px;
   width: 80%;
+  text-align: justify;
   flex-wrap: wrap;
 }
 .vagas .containerMain .sobreRejob p span {

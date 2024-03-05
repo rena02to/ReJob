@@ -42,7 +42,7 @@ const RegisterCompany = () => {
     const carregarStates = async () => {
       try {
         // Importar diretamente o arquivo JSON
-        const data = require("./states.json");
+        const data = require("../../../utils/states.json");
         setStates(data.estados);
       } catch (error) {
         console.error("Erro ao carregar Estados:", error);
@@ -154,7 +154,7 @@ const RegisterCompany = () => {
       !formData.phone
     ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -162,7 +162,7 @@ const RegisterCompany = () => {
     // Verificacao email
     if (!isValidEmail(formData.email)) {
       toast.warn("Por favor, verifique o seu e-mail e tente novamente!", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -172,7 +172,7 @@ const RegisterCompany = () => {
       toast.warn(
         "A senha deve ter pelo menos uma letra maiúscula, no mínimo 8 caracteres e um símbolo especial. Por favor, tente novamente!",
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       return;
@@ -182,7 +182,7 @@ const RegisterCompany = () => {
       toast.warn(
         "As senhas inseridas não coincidem. Por favor, tente novamente!",
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       return;
@@ -191,7 +191,7 @@ const RegisterCompany = () => {
     // Limite de caracteres
     if (formData.institutionalDescription.length > 1000) {
       toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -201,12 +201,12 @@ const RegisterCompany = () => {
 
       const token = response.data;
 
-      sessionStorage.setItem("token", token.token);
+      localStorage.setItem("token", token.token);
 
       toast.success(
         `A empresa: ${formData.name}, foi registrada na ReJob com sucesso.`,
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       navigate("/dashboard/empresa");

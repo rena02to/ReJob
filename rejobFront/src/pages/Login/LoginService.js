@@ -10,7 +10,7 @@ class LoginService {
 
       const token = response.data;
 
-      sessionStorage.setItem("token", token.token);
+      localStorage.setItem("token", token.token);
 
       return response.data;
     } catch (error) {

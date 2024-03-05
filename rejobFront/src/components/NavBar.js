@@ -22,10 +22,9 @@ function NavBar() {
   } = useSelector((rootReducer) => rootReducer.useReducer);
 
   const itens = [
-    { key: 1, value: "Home", link: "/" },
-    { key: 2, value: "Ver vagas", link: "/vagas" },
-    { key: 3, value: "Sou empresa", link: "/beneficios-empresa" },
-    { key: 4, value: "Sobre o projeto", link: "/sobre-projeto" },
+    { key: 1, value: "Ver vagas", link: "/vagas" },
+    { key: 2, value: "Sou empresa", link: "/#sou-empresa" },
+    { key: 3, value: "Sobre o projeto", link: "/#sobre-rejob" },
   ];
 
   useEffect(() => {
@@ -94,7 +93,6 @@ function NavBar() {
       type: "ChangeActivatedItem",
       payload: rotaAtual,
     });
-
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
@@ -108,7 +106,7 @@ function NavBar() {
   };
 
   const Out = () => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     navigate("/");
     dispatch({
       type: "ChangeLoged",
@@ -118,11 +116,11 @@ function NavBar() {
 
   return (
     <nav className={style.navbar}>
-      <div className={style.textIcon}>
+      <Link to="/" className={style.textIcon}>
         <img src={Icone} alt="Ícone" width={43} height={43} />
         <span className={style.re}>Re</span>
         <span className={style.job}>Job</span>
-      </div>
+      </Link>
 
       {windowWidth <= 1100 ? (
         <div className={style.containerMenu}>
@@ -136,7 +134,7 @@ function NavBar() {
             <div className={style.menu} ref={menuRef}>
               <ul>
                 {itens.map((item) => (
-                  <a key={item.key} href={item.link}>
+                  <Link key={item.key} href={item.link}>
                     <li
                       className={
                         item.link === activatedItem ? style.ativado : null
@@ -145,7 +143,7 @@ function NavBar() {
                     >
                       {item.value}
                     </li>
-                  </a>
+                  </Link>
                 ))}
               </ul>
             </div>

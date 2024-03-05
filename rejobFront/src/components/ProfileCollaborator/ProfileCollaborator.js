@@ -41,7 +41,7 @@ const ProfileCollaborator = () => {
   useEffect(() => {
     const carregarStates = async () => {
       try {
-        const data = require("./states.json");
+        const data = require("../../utils/states.json");
         const response = await api.get("/companies");
         setCompanies(response.data);
         setStates(data.estados);
