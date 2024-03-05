@@ -311,45 +311,45 @@ function RegisterCollaboratory() {
 
           <div className="qCaracteres">
             {qCaracteres ? (
-              <FaCheck className="check" />
+              <FaCheck className="v" />
             ) : (
-              <IoClose className="close" />
+              <IoClose className="x" />
             )}
             <p>Possuir pelo menos 8 caracteres</p>
           </div>
 
           <div className="maiusculo">
             {maiusculo ? (
-              <FaCheck className="check" />
+              <FaCheck className="v" />
             ) : (
-              <IoClose className="close" />
+              <IoClose className="x" />
             )}
             <p>Possuir pelo menos 1 caractere maiúsculo</p>
           </div>
 
           <div className="minusculo">
             {minusculo ? (
-              <FaCheck className="check" />
+              <FaCheck className="v" />
             ) : (
-              <IoClose className="close" />
+              <IoClose className="x" />
             )}
             <p>Possuir pelo menos 1 caractere minúsculo</p>
           </div>
 
           <div className="number">
             {numero ? (
-              <FaCheck className="check" />
+              <FaCheck className="v" />
             ) : (
-              <IoClose className="close" />
+              <IoClose className="x" />
             )}
             <p>Possuir pelo menos 1 número</p>
           </div>
 
           <div className="simbolo">
             {simbolo ? (
-              <FaCheck className="check" />
+              <FaCheck className="v" />
             ) : (
-              <IoClose className="close" />
+              <IoClose className="x" />
             )}
             <p>Possuir pelo menos 1 caractere especial</p>
           </div>
@@ -383,9 +383,9 @@ function RegisterCollaboratory() {
 
         <div className="coincidir">
           {coincidir ? (
-            <FaCheck className="check" />
+            <FaCheck className="v" />
           ) : (
-            <IoClose className="close" />
+            <IoClose className="x" />
           )}
           <p>As senhas devem coincidir</p>
         </div>
