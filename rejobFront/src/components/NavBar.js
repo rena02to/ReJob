@@ -106,13 +106,23 @@ function NavBar() {
     });
   };
 
-  const Out = () => {
+  const Logoff = () => {
     localStorage.removeItem("token");
     navigate("/");
     dispatch({
       type: "ChangeLoged",
       payload: false,
     });
+  };
+
+  const Dashboard = () => {
+    if(typeUser === "USER"){
+      navigate("/painel-egresso");
+    }else if(typeUser === "COLLABORATOR"){
+      navigate("/dashboard/colaborador");
+    }else if(typeUser === "COMPANY"){
+      navigate("/dashboard/empresa");
+    }
   };
 
   return (
@@ -177,20 +187,8 @@ function NavBar() {
           {profileOpen ? (
             <div className={style.profileMenu} ref={profileRef}>
               <p>{nameUser}</p>
-              <a
-                href={
-                  typeUser === "COMPANY"
-                    ? "/dashboard/empresa"
-                    : typeUser === "COLLABORATOR"
-                    ? "/dashboard/colaborador"
-                    : typeUser === "USER"
-                    ? "/painel-egresso"
-                    : "##"
-                }
-              >
-                <button className={style.go}>Ir para o dashboard</button>
-              </a>
-              <button className={style.out} onClick={Out}>
+              <button className={style.go} onClick={Dashboard}>Ir para o dashboard</button>
+              <button className={style.out} onClick={Logoff}>
                 Sair
               </button>
             </div>
