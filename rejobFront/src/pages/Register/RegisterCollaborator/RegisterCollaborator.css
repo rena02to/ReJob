@@ -93,11 +93,14 @@
   padding: 0;
   height: 35px;
   bottom: 0;
-  right: 30px;
+  right: 0px;
+  cursor: pointer;
 }
 
 .background form .password .eye {
   color: black;
+  width: 20px;
+  height: 20px;
 }
 .background form input[type="password"] {
   padding-right: 40px;
@@ -126,8 +129,13 @@
   height: 17px;
 }
 .background form .login {
-  font-size: 17px;
+  font-size: 16px;
   color: gray;
+  transition: transform 0.3s ease !important;
+}
+.background form .login:hover {
+  opacity: 0.77;
+  transform: scale(1.1);
 }
 .background form .login a {
   color: gray;
@@ -138,7 +146,6 @@
   border: 0px solid transparent;
   border-radius: 5px;
   font-size: 24px;
-  padding: 0px 24px;
   font-weight: 600;
   cursor: pointer;
   height: 45px;
@@ -146,8 +153,12 @@
   margin-bottom: 10px;
   font-size: 20px;
   width: 100%;
+  transition: transform 0.3s ease !important;
 }
-
+.background form .submit:hover {
+  opacity: 0.77;
+  transform: scale(1.1);
+}
 .background form .regras p,
 .background form .coincidir p {
   font-size: 14px;
@@ -218,4 +229,7 @@
   width: auto;
   align-items: center;
   justify-content: center;
+}
+.back{
+  transition: transform 0.3s ease;
 }

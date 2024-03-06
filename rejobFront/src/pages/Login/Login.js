@@ -101,14 +101,14 @@ function Login() {
               <FaEyeSlash
                 className={style.eye}
                 onClick={() => {
-                  dispatch({ type: "ChangeVisibilityPassword" });
+                  dispatch({ type: "ChangeVisibilityPassword", payload: !visibilityPassword });
                 }}
               />
             ) : (
               <FaRegEye
                 className={style.eye}
                 onClick={() => {
-                  dispatch({ type: "ChangeVisibilityPassword" });
+                  dispatch({ type: "ChangeVisibilityPassword", payload: !visibilityPassword });
                 }}
               />
             )}

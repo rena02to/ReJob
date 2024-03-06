@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { FaCheck } from "react-icons/fa6";
+import { FaRegEye, FaEyeSlash } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 
 // Components
@@ -15,8 +18,11 @@ import logo from "../../../images/newJob.png";
 
 // Services
 import api from "../../../services/api";
+import { useDispatch, useSelector } from "react-redux";
 
 const RegisterCompany = () => {
+  const { visibilityPassword, visibilityRepeatPassword, coincidir, qCaracteres, maiusculo, minusculo, numero, simbolo } = useSelector((rootReducer) => rootReducer.useReducer);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [states, setStates] = useState([]);
   const [confirmationPassword, setConfirmationPassword] = useState("");
@@ -67,37 +73,37 @@ const RegisterCompany = () => {
   };
 
   const formatCnpj = (cnpj) => {
-    // Remove caracteres não numéricos
-    const onlyNumbers = cnpj.replace(/[^\d]/g, "");
+    let valor = cnpj.replace(/\D/g, "").slice(0, 14);
+    let valorFormatado = "";
 
-    // Limita o tamanho máximo do CNPJ
-    const formattedCnpj = onlyNumbers.slice(0, 14);
-
-    // Adiciona pontos, barra e traço conforme o formato do CNPJ
-    const displayCnpj = formattedCnpj.replace(
-      /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
-      "$1.$2.$3/$4-$5"
-    );
-
-    // Atualiza o estado com o CNPJ formatado
-    setFormData({ ...formData, cnpj: formattedCnpj, displayCnpj });
+    for (let i = 0; i < valor.length; i++) {
+      if (i === 2 || i === 5) {
+        valorFormatado += ".";
+      } else if (i === 8) {
+        valorFormatado += "/";
+      }else if(i === 12){
+        valorFormatado += "-";
+      }
+      valorFormatado += valor.charAt(i);
+    }
+    setFormData({ ...formData, cnpj: valorFormatado });
   };
 
   const formatPhone = (phone) => {
-    // Remove caracteres não numéricos
-    const onlyNumbers = phone.replace(/[^\d]/g, "");
+    let valor = phone.replace(/\D/g, "").slice(0, 11);
+    let valorFormatado = "";
 
-    // Limita o tamanho máximo do número de telefone
-    const formattedPhone = onlyNumbers.slice(0, 11);
-
-    // Adiciona parênteses, espaço e traço conforme o formato do telefone
-    const displayPhone = formattedPhone.replace(
-      /^(\d{2})(\d{4,5})(\d{4})$/,
-      "($1) $2-$3"
-    );
-
-    // Atualiza o estado com o telefone formatado
-    setFormData({ ...formData, phone: formattedPhone, displayPhone });
+    for (let i = 0; i < valor.length; i++) {
+      if (i === 0) {
+        valorFormatado += "(";
+      } else if (i === 2) {
+        valorFormatado += ") ";
+      } else if (i === 7) {
+        valorFormatado += "-";
+      }
+      valorFormatado += valor.charAt(i);
+    }
+    setFormData({ ...formData, phone: valorFormatado });
   };
 
   function isValidEmail(email) {
@@ -130,6 +136,26 @@ const RegisterCompany = () => {
         setFormData({ ...formData, [name]: "" });
       } else {
         setFormData({ ...formData, [name]: Number(value) });
+      }
+    }else if (name === "password" || name === "repeatPassword") {
+      setFormData({ ...formData, [name]: value });
+      if (name === "password") {
+        const TemMaisDeOito = value.length >= 8;
+        const TemNumeros = /\d/.test(value);
+        const TemMaiusculos = /[A-Z]/.test(value);
+        const TemMinusculos = /[a-z]/.test(value);
+        const TemSimbolos = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+
+        dispatch({ type: "TesteQuantCaracteres", payload: TemMaisDeOito });
+        dispatch({ type: "setNumeros", payload: TemNumeros });
+        dispatch({ type: "setMaiusculo", payload: TemMaiusculos });
+        dispatch({ type: "setMinusculo", payload: TemMinusculos });
+        dispatch({ type: "setSimbolos", payload: TemSimbolos });
+      } else {
+        dispatch({
+          type: "TesteCoincidencia",
+          payload: formData.password === value && formData.password !== "",
+        });
       }
     } else {
       setFormData({ ...formData, [name]: value });
@@ -244,9 +270,9 @@ const RegisterCompany = () => {
               label="CNPJ"
               id="cnpj"
               name="cnpj"
-              value={formData.displayCnpj || ""}
+              value={formData.cnpj || ""}
               onChange={handleInputChange}
-              placeholder="XX.XXX.XXX/YYYY-ZZ"
+              placeholder="Digite o CNPJ da empresa"
               type="text"
             />
 
@@ -322,9 +348,9 @@ const RegisterCompany = () => {
               label="Telefone"
               id="phone"
               name="phone"
-              value={formData.displayPhone || ""}
+              value={formData.phone}
               onChange={handleInputChange}
-              placeholder="(XX) XXXX-XXXX"
+              placeholder="Digite o telefone da empresa"
               type="text"
             />
 
@@ -332,6 +358,7 @@ const RegisterCompany = () => {
               label="Descrição Institucional da Empresa"
               id="institutionalDescription"
               name="institutionalDescription"
+              institutionalDescription
               rows={20}
               placeholder="Digite uma Descrição Institucional da Empresa"
               value={formData.institutionalDescription}
@@ -350,27 +377,117 @@ const RegisterCompany = () => {
               onChange={handleInputChange}
             />
 
-            <InputCustom
-              label="Senha"
-              placeholder="*******"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              type="password"
-              autoComplete="new-password"
-            />
+            <div className="password">
+              <InputCustom
+                label="Senha"
+                placeholder="Digite uma senha"
+                type={visibilityPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                autoComplete="password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
+              <button
+                type="button"
+                className="eyeButton"
+                onClick={() => {
+                  dispatch({ type: "ChangeVisibilityPassword", payload: !visibilityPassword });
+                }}
+              >
+                {visibilityPassword ? (
+                  <FaRegEye className="eye" />
+                ) : (
+                  <FaEyeSlash className="eye" />
+                )}
+              </button>
+            </div>
 
-            <InputCustom
-              label="Confirme a Senha"
-              placeholder="*******"
-              id="confirmationPassword"
-              name="confirmationPassword"
-              value={confirmationPassword}
-              onChange={handleInputChange}
-              type="password"
-              autoComplete="new-password"
-            />
+            <div className="regras">
+              <p>
+                <strong>A senha deve:</strong>
+              </p>
+
+              <div className="qCaracteres">
+                {qCaracteres ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 8 caracteres</p>
+              </div>
+
+              <div className="maiusculo">
+                {maiusculo ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 1 caractere maiúsculo</p>
+              </div>
+
+              <div className="minusculo">
+                {minusculo ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 1 caractere minúsculo</p>
+              </div>
+
+              <div className="number">
+                {numero ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 1 número</p>
+              </div>
+
+              <div className="simbolo">
+                {simbolo ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 1 caractere especial</p>
+              </div>
+            </div>
+
+            <div className="password">
+              <InputCustom
+                label="Repita sua senha"
+                placeholder="Repita sua senha"
+                type={visibilityRepeatPassword ? "text" : "password"}
+                id="repeatPassword"
+                name="repeatPassword"
+                autoComplete="repeatPassword"
+                value={formData.repeatPassword}
+                onChange={handleInputChange}
+              />
+              <button
+                type="button"
+                className="eyeButton"
+                onClick={() => {
+                  dispatch({ type: "ChangeVisibilityRepeatPassword", payload: !visibilityRepeatPassword });
+                }}
+              >
+                {visibilityRepeatPassword ? (
+                  <FaRegEye className="eye" />
+                ) : (
+                  <FaEyeSlash className="eye" />
+                )}
+              </button>
+            </div>
+
+            <div className="coincidir">
+              {coincidir ? (
+                <FaCheck className="v" />
+              ) : (
+                <IoClose className="x" />
+              )}
+              <p>As senhas devem coincidir</p>
+            </div>
 
             <div className="box-botao-registrar-empresa">
               <button type="submit" onClick={handleFormSubmit} className="save">
@@ -379,7 +496,7 @@ const RegisterCompany = () => {
 
               <div className="links-registro-empresa">
                 <Link to="/">Voltar</Link>
-                <Link to="/Login">Já tem uma empresa?Login</Link>
+                <Link to="/Login">Já tem uma empresa? Faça login</Link>
               </div>
             </div>
           </div>
