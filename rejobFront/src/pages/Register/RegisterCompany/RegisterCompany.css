@@ -17,7 +17,7 @@
 
 .white-container {
     background-color: white;
-    padding: 20px 42px;
+    padding: 75px !important;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -52,9 +52,9 @@
 
 .form-registro-empresa .campos-registro-empresa {
     display: grid;
-    width: 100%;
     grid-template-columns: repeat(1, 1fr);
     gap: 24px;
+    width: 300px !important;
 }
 
 .campos-registro-empresa {
@@ -75,7 +75,7 @@
     cursor: pointer;
     padding: 12px;
     margin: 0;
-    width: 400px;
+    width: 300px !important;
     background-color: var(--first-blue);
     border-radius: 4px;
     color: white;
@@ -104,4 +104,101 @@
 .links-registro-empresa a:hover {
     opacity: 0.77;
     transform: scale(1.1);
+}
+textarea{
+    resize: none;
+    border-radius: 5px;
+}
+form .password {
+    position: relative;
+    width: 100%;
+}
+form .regras p{
+    font-size: 14px;
+    margin: 0;
+    color: rgb(100, 100, 100);
+}
+form .password .eyeButton {
+    border: none;
+    position: absolute;
+    background-color: transparent;
+    width: 35px;
+    padding: 0;
+    height: 35px;
+    bottom: 0;
+    right: 00px;
+    cursor: pointer;
+  }
+  
+form .password .eye {
+    color: black;
+    width: 20px;
+    height: 20px;
+}
+form input[type="password"] {
+    padding-right: 40px;
+}
+form .regras p,
+form .coincidir p {
+  font-size: 14px;
+  margin: 0;
+  color: rgb(100, 100, 100);
+}
+form .regras {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: -20px;
+}
+form .regras .qCaracteres,
+form .regras .maiusculo,
+form .regras .minusculo,
+form .regras .number,
+form .regras .simbolo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+form .regras .qCaracteres svg,
+form .regras .maiusculo svg,
+form .regras .minusculo svg,
+form .regras .number svg,
+form .regras .simbolo svg {
+  width: 20px;
+  height: 20px;
+}
+form .regras .qCaracteres .v,
+form .regras .maiusculo .v,
+form .regras .minusculo .v,
+form .regras .number .v,
+form .regras .simbolo .v {
+  color: rgba(0, 150, 0, 0.7);
+}
+form .regras .qCaracteres .x,
+form .regras .maiusculo .x,
+form .regras .minusculo .x,
+form .regras .number .x,
+form .regras .simbolo .x {
+  color: rgba(255, 0, 0, 0.7);
+}
+form .coincidir {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: -20px;
+  margin-bottom: 15px;
+}
+form .coincidir svg {
+  width: 20px;
+  height: 20px;
+}
+form .coincidir .v {
+  color: rgba(0, 150, 0, 0.7);
+}
+form .coincidir .x {
+  color: rgba(255, 0, 0, 0.7);
 }

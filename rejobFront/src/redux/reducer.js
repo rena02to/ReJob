@@ -56,9 +56,9 @@ const useReducer = ( state = initialState, action ) => {
         case 'ChangeProfileOpen':
             return { ...state, profileOpen: action.payload };
         case 'ChangeVisibilityPassword':
-            return { ...state, visibilityPassword: !state.visibilityPassword };
+            return { ...state, visibilityPassword: action.payload };
         case 'ChangeVisibilityRepeatPassword':
-            return { ...state, visibilityRepeatPassword: !state.visibilityRepeatPassword };
+            return { ...state, visibilityRepeatPassword: action.payload };
         case 'TesteCoincidencia':
             return { ...state, coincidir: action.payload };
         case 'TesteQuantCaracteres':

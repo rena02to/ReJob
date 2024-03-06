@@ -105,3 +105,6 @@
     opacity: 0.77;
     transform: scale(1.1);
 }
+form .coincidir{
+    margin-bottom: 0px !important;
+}

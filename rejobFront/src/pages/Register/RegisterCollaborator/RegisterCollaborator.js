@@ -40,9 +40,7 @@ function RegisterCollaboratory() {
     email: "",
     phoneNumber: "",
     password: "",
-    repeatPassword: "",
-    terms: false,
-    notify: false,
+    repeatPassword: ""
   });
 
   const options = [
@@ -76,7 +74,7 @@ function RegisterCollaboratory() {
         if (i === 0) {
           valorFormatado += "(";
         } else if (i === 2) {
-          valorFormatado += ")";
+          valorFormatado += ") ";
         } else if (i === 7) {
           valorFormatado += "-";
         }
@@ -209,7 +207,7 @@ function RegisterCollaboratory() {
 
   return (
     <section className="background">
-      <BackLink />
+      <BackLink className="back" />
       <ToastContainer autoClose={5000} />
       <form>
         <img src={ReJob} alt="ReJob" />
@@ -306,7 +304,7 @@ function RegisterCollaboratory() {
             type="button"
             className="eyeButton"
             onClick={() => {
-              dispatch({ type: "ChangeVisibilityPassword" });
+              dispatch({ type: "ChangeVisibilityPassword", payload: !visibilityPassword });
             }}
           >
             {visibilityPassword ? (
@@ -383,7 +381,7 @@ function RegisterCollaboratory() {
             type="button"
             className="eyeButton"
             onClick={() => {
-              dispatch({ type: "ChangeVisibilityRepeatPassword" });
+              dispatch({ type: "ChangeVisibilityRepeatPassword", payload: !visibilityRepeatPassword });
             }}
           >
             {visibilityRepeatPassword ? (
@@ -403,32 +401,8 @@ function RegisterCollaboratory() {
           <p>As senhas devem coincidir</p>
         </div>
 
-        <div className="termos">
-          <input
-            name="terms"
-            id="terms"
-            type="checkbox"
-            value={formData.terms}
-            onChange={handleInputChange}
-            required
-          />
-          <p>
-            Concordo com os <a href="/termos-uso">Termos de Uso</a>
-          </p>
-        </div>
-
-        <div className="notify">
-          <input
-            name="notify"
-            id="notify"
-            onChange={handleInputChange}
-            type="checkbox"
-          />
-          <p>Desejo receber notificações por e-mail</p>
-        </div>
-
         <button type="submit" className="submit" onClick={handleFormSubmit}>
-          Registrar-me
+          CADASTRAR
         </button>
 
         <p className="login">
