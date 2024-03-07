@@ -52,7 +52,16 @@ const JobDetails = () => {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       } catch (error) {
-        console.error("Erro ao fazer a solicitação PUT:", error);
+        if (error.response && error.response.status === 409) {
+          toast.error(`Você já aplicou para esta vaga.`, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        }
+        else 
+        {
+            console.error("Erro ao fazer a solicitação PUT:", error);
+        }
+
       }
     } else {
       toast.error(`Você não é EGRESSO para poder aplicar nesta vaga.`, {
