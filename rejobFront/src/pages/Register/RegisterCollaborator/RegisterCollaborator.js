@@ -164,13 +164,6 @@ function RegisterCollaboratory() {
       return;
     }
 
-    if (!formData.terms) {
-      toast.warn("Para continuar, é necessário aceitar os termos de uso.", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      return;
-    }
-
     try {
       const response = await api.post("/auth/register-collaborator", {
         name: formData.name,

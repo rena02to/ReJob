@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { useNavigate } from "react-router-dom";
+
 // Components
 import NavBar from "../../components/NavBar";
 import Title from "../../components/Title/Title";
@@ -19,6 +21,8 @@ import UserService from "../../services/UserService";
 
 const NewVacancy = () => {
   const [states, setStates] = useState([]);
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     companyLocation: {
       city: "",
@@ -67,7 +71,7 @@ const NewVacancy = () => {
       const fetchUsers = async () => {
         try {
           const response = await api.get(
-            `/companies/collaborator-list/${userData?.user?.id}`
+            `/companies/collaborator-list/${userData?.collaboratorId}`
           );
           setUsers(response.data);
         } catch (error) {
@@ -109,11 +113,9 @@ const NewVacancy = () => {
 
     if (
       !formData.companyLocation ||
-      !formData.jobType ||
       !formData.categories ||
       !formData.contactPersonId ||
       !formData.jobTitle ||
-      !formData.requirements ||
       !formData.jobDescription ||
       !formData.benefits ||
       !formData.employmentType ||
@@ -178,6 +180,10 @@ const NewVacancy = () => {
       toast.success("A nova vaga foi ofertada com sucesso.", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
+
+      setTimeout(async () => {
+        navigate("/dashboard/colaborador");
+      }, 2000);
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
     }
@@ -202,16 +208,6 @@ const NewVacancy = () => {
               id="jobTitle"
               name="jobTitle"
               value={formData.jobTitle}
-              onChange={handleInputChange}
-            />
-
-            <InputCustom
-              label="Tipo de Vaga"
-              placeholder="Digite o tipo da vaga"
-              type="text"
-              id="jobType"
-              name="jobType"
-              value={formData.jobType}
               onChange={handleInputChange}
             />
 
@@ -277,16 +273,6 @@ const NewVacancy = () => {
                 value: user.id,
                 label: user.user.name,
               }))}
-            />
-
-            <InputCustom
-              label="Requisitos"
-              placeholder="Digite os conhecimentos necessários para a vaga"
-              type="text"
-              id="requirements"
-              name="requirements"
-              value={formData.requirements}
-              onChange={handleInputChange}
             />
 
             <InputCustom
