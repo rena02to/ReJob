@@ -81,16 +81,16 @@ function Rotas() {
         <Route
           exact
           path="/nova-vaga"
-          element={typeUser === "COLLABORATOR" ? <NewVacancy /> : <Navigate to="/login" />}
+          element={<NewVacancy />}
         />
 
         <Route
           exact
           path="/dashboard/colaborador"
-          element={typeUser === "COLLABORATOR" ? <DashboardCollaborator /> : <Navigate to="/login" />}
+          element={ <DashboardCollaborator /> }
         ></Route>
 
-        <Route exact path="/dashboard/empresa" element={typeUser === "COMPANY" ? <DashboardCompany /> : <Navigate to="/login" />} />
+        <Route exact path="/dashboard/empresa" element={ <DashboardCompany />} />
 
         {/* Rotas do Colaborador */}
 
@@ -104,13 +104,13 @@ function Rotas() {
         <Route
           exact
           path="/painel-egresso"
-          element={typeUser === "USER" ? <DashboardRemand /> : <Navigate to ="/login" />}
+          element={<DashboardRemand/>}
         />
 
         <Route
           exact
           path="/minha-candidatura"
-          element={typeUser === "USER" ? <ApplicationStatus /> : <Navigate to="/login" />}
+          element={<ApplicationStatus />}
         ></Route>
       </Routes>
     </Router>

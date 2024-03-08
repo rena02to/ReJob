@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { FaCheck } from "react-icons/fa6";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
@@ -25,6 +25,7 @@ const RegisterRemand = () => {
   const { visibilityPassword, visibilityRepeatPassword, coincidir, qCaracteres, maiusculo, minusculo, numero, simbolo } = useSelector((rootReducer) => rootReducer.useReducer);
   const dispatch = useDispatch();
   const [states, setStates] = useState([]);
+  const navigate = useNavigate();
   const [confirmationPassword, setConfirmationPassword] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -180,7 +181,7 @@ const RegisterRemand = () => {
       return;
     }
 
-    if (formData.password !== confirmationPassword) {
+    if (formData.password !== formData.repeatPassword) {
       toast.warn(
         "As senhas inseridas não coincidem. Por favor, tente novamente!",
         {
@@ -219,6 +220,7 @@ const RegisterRemand = () => {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
+      navigate("/painel-egresso");
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
 

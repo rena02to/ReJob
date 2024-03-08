@@ -204,7 +204,7 @@ const RegisterCompany = () => {
       return;
     }
 
-    if (formData.password !== confirmationPassword) {
+    if (formData.password !== formData.repeatPassword) {
       toast.warn(
         "As senhas inseridas não coincidem. Por favor, tente novamente!",
         {
@@ -261,7 +261,7 @@ const RegisterCompany = () => {
               value={formData.companyType}
               onChange={handleInputChange}
               options={[
-                { value: "EMPRESA_COMERCIAL", label: "Empresa Comercial" },
+                { value: "PRIVATE_ENTERPRISE", label: "Empresa Comercial" },
                 { value: "ONG", label: "ONG" },
               ]}
             />
