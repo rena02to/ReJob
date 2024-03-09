@@ -98,7 +98,7 @@ const VacancysRecommended = (props) => {
               nivel={formatedEducationLevel(educationLevel)}
               contrato={employmentContractType}
               vaga={vacancy}
-              recommended={false}
+              recommended={true}
             />
           );
         })}
