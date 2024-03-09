@@ -251,7 +251,7 @@ const ProfileCompany = () => {
             value={formData.companyType}
             onChange={handleInputChange}
             options={[
-              { value: "EMPRESA_COMERCIAL", label: "Empresa Comercial" },
+              { value: "PRIVATE_ENTERPRISE", label: "Empresa Comercial" },
               { value: "ONG", label: "ONG" },
             ]}
           />
