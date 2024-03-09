@@ -21,7 +21,16 @@ import api from "../../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 
 const RegisterCompany = () => {
-  const { visibilityPassword, visibilityRepeatPassword, coincidir, qCaracteres, maiusculo, minusculo, numero, simbolo } = useSelector((rootReducer) => rootReducer.useReducer);
+  const {
+    visibilityPassword,
+    visibilityRepeatPassword,
+    coincidir,
+    qCaracteres,
+    maiusculo,
+    minusculo,
+    numero,
+    simbolo,
+  } = useSelector((rootReducer) => rootReducer.useReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [states, setStates] = useState([]);
@@ -81,7 +90,7 @@ const RegisterCompany = () => {
         valorFormatado += ".";
       } else if (i === 8) {
         valorFormatado += "/";
-      }else if(i === 12){
+      } else if (i === 12) {
         valorFormatado += "-";
       }
       valorFormatado += valor.charAt(i);
@@ -137,7 +146,7 @@ const RegisterCompany = () => {
       } else {
         setFormData({ ...formData, [name]: Number(value) });
       }
-    }else if (name === "password" || name === "repeatPassword") {
+    } else if (name === "password" || name === "repeatPassword") {
       setFormData({ ...formData, [name]: value });
       if (name === "password") {
         const TemMaisDeOito = value.length >= 8;
@@ -223,19 +232,21 @@ const RegisterCompany = () => {
     }
 
     try {
-      const response = await api.post("/auth/register-Company", formData);
+      const response = await api
+        .post("/auth/register-Company", formData)
+        .then((_) => {
+          const token = response.data;
 
-      const token = response.data;
+          localStorage.setItem("token", token.token);
 
-      localStorage.setItem("token", token.token);
-
-      toast.success(
-        `A empresa: ${formData.name}, foi registrada na ReJob com sucesso.`,
-        {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        }
-      );
-      navigate("/dashboard/empresa");
+          toast.success(
+            `A empresa: ${formData.name}, foi registrada na ReJob com sucesso.`,
+            {
+              position: toast.POSITION.BOTTOM_RIGHT,
+            }
+          );
+          navigate("/dashboard/empresa");
+        });
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
     }
@@ -392,7 +403,10 @@ const RegisterCompany = () => {
                 type="button"
                 className="eyeButton"
                 onClick={() => {
-                  dispatch({ type: "ChangeVisibilityPassword", payload: !visibilityPassword });
+                  dispatch({
+                    type: "ChangeVisibilityPassword",
+                    payload: !visibilityPassword,
+                  });
                 }}
               >
                 {visibilityPassword ? (
@@ -436,11 +450,7 @@ const RegisterCompany = () => {
               </div>
 
               <div className="number">
-                {numero ? (
-                  <FaCheck className="v" />
-                ) : (
-                  <IoClose className="x" />
-                )}
+                {numero ? <FaCheck className="v" /> : <IoClose className="x" />}
                 <p>Possuir pelo menos 1 número</p>
               </div>
 
@@ -469,7 +479,10 @@ const RegisterCompany = () => {
                 type="button"
                 className="eyeButton"
                 onClick={() => {
-                  dispatch({ type: "ChangeVisibilityRepeatPassword", payload: !visibilityRepeatPassword });
+                  dispatch({
+                    type: "ChangeVisibilityRepeatPassword",
+                    payload: !visibilityRepeatPassword,
+                  });
                 }}
               >
                 {visibilityRepeatPassword ? (

@@ -40,7 +40,7 @@ function RegisterCollaboratory() {
     email: "",
     phoneNumber: "",
     password: "",
-    repeatPassword: ""
+    repeatPassword: "",
   });
 
   const options = [
@@ -106,7 +106,6 @@ function RegisterCollaboratory() {
     }
   };
 
-  // se tiver um usuario logado
   if (userData.companyType && !formData.collaboratorType) {
     setFormData({ ...formData, collaboratorType: userData.companyType });
   }
@@ -165,27 +164,29 @@ function RegisterCollaboratory() {
     }
 
     try {
-      const response = await api.post("/auth/register-collaborator", {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        phoneNumber: formData.phoneNumber,
-        jobTitle: formData.jobTitle,
-        collaboratorType: formData.collaboratorType,
-        companyId: Number(formData.companyId),
-      });
+      const response = await api
+        .post("/auth/register-collaborator", {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          phoneNumber: formData.phoneNumber,
+          jobTitle: formData.jobTitle,
+          collaboratorType: formData.collaboratorType,
+          companyId: Number(formData.companyId),
+        })
+        .then((_) => {
+          const token = response.data;
 
-      const token = response.data;
+          localStorage.setItem("token", token.token);
 
-      localStorage.setItem("token", token.token);
-
-      toast.success(
-        `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
-        {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        }
-      );
-      navigate("/dashboard/colaborador");
+          toast.success(
+            `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
+            {
+              position: toast.POSITION.BOTTOM_RIGHT,
+            }
+          );
+          navigate("/dashboard/empresa");
+        });
     } catch (error) {
       if (error.response && error.response.status === 409) {
         toast.error(
@@ -297,7 +298,10 @@ function RegisterCollaboratory() {
             type="button"
             className="eyeButton"
             onClick={() => {
-              dispatch({ type: "ChangeVisibilityPassword", payload: !visibilityPassword });
+              dispatch({
+                type: "ChangeVisibilityPassword",
+                payload: !visibilityPassword,
+              });
             }}
           >
             {visibilityPassword ? (
@@ -323,38 +327,22 @@ function RegisterCollaboratory() {
           </div>
 
           <div className="maiusculo">
-            {maiusculo ? (
-              <FaCheck className="v" />
-            ) : (
-              <IoClose className="x" />
-            )}
+            {maiusculo ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 caractere maiúsculo</p>
           </div>
 
           <div className="minusculo">
-            {minusculo ? (
-              <FaCheck className="v" />
-            ) : (
-              <IoClose className="x" />
-            )}
+            {minusculo ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 caractere minúsculo</p>
           </div>
 
           <div className="number">
-            {numero ? (
-              <FaCheck className="v" />
-            ) : (
-              <IoClose className="x" />
-            )}
+            {numero ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 número</p>
           </div>
 
           <div className="simbolo">
-            {simbolo ? (
-              <FaCheck className="v" />
-            ) : (
-              <IoClose className="x" />
-            )}
+            {simbolo ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 caractere especial</p>
           </div>
         </div>
@@ -374,7 +362,10 @@ function RegisterCollaboratory() {
             type="button"
             className="eyeButton"
             onClick={() => {
-              dispatch({ type: "ChangeVisibilityRepeatPassword", payload: !visibilityRepeatPassword });
+              dispatch({
+                type: "ChangeVisibilityRepeatPassword",
+                payload: !visibilityRepeatPassword,
+              });
             }}
           >
             {visibilityRepeatPassword ? (
@@ -386,11 +377,7 @@ function RegisterCollaboratory() {
         </div>
 
         <div className="coincidir">
-          {coincidir ? (
-            <FaCheck className="v" />
-          ) : (
-            <IoClose className="x" />
-          )}
+          {coincidir ? <FaCheck className="v" /> : <IoClose className="x" />}
           <p>As senhas devem coincidir</p>
         </div>
 
