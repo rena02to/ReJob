@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
 
-import VacancyFinished from "../VacancyFinished/VacancyFinished";
 import VacancyInProgress from "../VacancyInProgress/VacancyInProgress";
 
 import api from "../../services/api";
-
-import PaginationRounded from "../../pages/PaginationRounded/PaginationRounded";
-import SearchIcon from '@mui/icons-material/Search';
 
 const VacancysRecommended = (props) => {
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -37,11 +33,9 @@ const VacancysRecommended = (props) => {
     }
   }, [id]);
 
-  // GET STATES
   useEffect(() => {
     const carregarStates = async () => {
       try {
-        // Importar diretamente o arquivo JSON
         const data = require("../../utils/states.json");
         setStates(data.estados);
       } catch (error) {
@@ -83,34 +77,30 @@ const VacancysRecommended = (props) => {
     }
   };
 
-  // FUNÇÃO PARA ATUALIZAR AS VAGAS QUANDO ALGUMA VAGA FOR FINALIZADA
-  const fetchData = async () => {
-    try {
-      const response = await api.get(`${props.url}/${id}`);
-      const allVacancies = response.data;
-
-      setVacancies(allVacancies);
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-    }
-  };
-
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-[12px] px-[12px]">
         {vacancies.map((vacancy, index) => {
-            return (
-              <VacancyInProgress
-                key={index}
-                tituloDaVaga={vacancy.jobTitle}
-                empresa={vacancy.companyName}
-                localizacao={`${vacancy.companyLocation.address}, ${vacancy.companyLocation.city}, ${vacancy.companyLocation.state}`}
-                nivel={formatedEducationLevel(vacancy.educationLevel)}
-                contrato={vacancy.employmentContractType}
-                vaga={vacancy}
-                recommended={true}
-              />
-            );
+          const {
+            jobTitle,
+            companyName,
+            companyLocation,
+            educationLevel,
+            employmentContractType,
+          } = vacancy || {};
+          const localizacao = `${companyLocation?.address}, ${companyLocation?.city}, ${companyLocation?.state}`;
+          return (
+            <VacancyInProgress
+              key={index}
+              tituloDaVaga={jobTitle}
+              empresa={companyName}
+              localizacao={localizacao}
+              nivel={formatedEducationLevel(educationLevel)}
+              contrato={employmentContractType}
+              vaga={vacancy}
+              recommended={false}
+            />
+          );
         })}
       </div>
     </div>
