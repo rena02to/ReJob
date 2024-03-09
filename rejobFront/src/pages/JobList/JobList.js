@@ -44,7 +44,7 @@ function JobList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get("/jobs");
+        const response = await api.get("/jobs/open");
         const data = require("../../utils/states.json");
         setStates(data.estados);
         setJobs(response.data);
