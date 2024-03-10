@@ -173,6 +173,8 @@ function RegisterCollaboratory() {
       return;
     }
 
+    console.log(formData)
+
     try {
       const response = await api.post("/auth/register-collaborator", {
         name: formData.name,

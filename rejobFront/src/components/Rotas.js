@@ -21,6 +21,7 @@ import ApplicationStatus from "../pages/ApplicationStatus/ApplicationStatus";
 import DashboardCompany from "../pages/Dashboard/DashboardCompany/DashboardCompany";
 import DashboardRemand from "../pages/Dashboard/DashboardRemand/DashboardRemand"
 import DashboardCollaborator from "../pages/Dashboard/DashboardCollaborator/DashboardCollaborator";
+import DashboardOng from "../pages/Dashboard/DashboardOng/DashboardOng";
 
 function Rotas() {
   const { isLoged, typeUser } = useSelector((rooteRedux) => rooteRedux.useReducer);
@@ -92,6 +93,8 @@ function Rotas() {
 
         <Route exact path="/dashboard/empresa" element={typeUser === "COMPANY" ? <DashboardCompany /> : <Navigate to="/login" />} />
 
+        <Route exact path="/dashboard/ong" element= {<DashboardOng />} />
+
         {/* Rotas do Colaborador */}
 
         {/* Rotas do Egresso */}
@@ -104,7 +107,7 @@ function Rotas() {
         <Route
           exact
           path="/painel-egresso"
-          element={typeUser === "USER" ? <DashboardRemand /> : <Navigate to ="/login" />}
+          element={typeUser === "USER" ? <DashboardRemand /> : <Navigate to="/login" />}
         />
 
         <Route

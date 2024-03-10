@@ -63,6 +63,30 @@
     /* Centraliza horizontal e verticalmente */
 }
 
+form .password {
+    position: relative;
+    width: 100%;
+}
+
+form .password .eyeButton {
+    border: none;
+    position: absolute;
+    background-color: transparent;
+    width: 35px;
+    padding: 0;
+    height: 35px;
+    bottom: 0;
+    right: 30px;
+}
+
+form .password .eye {
+    color: black;
+}
+
+form input[type="password"] {
+    padding-right: 40px;
+}
+
 .box-botao-registrar-empresa {
     display: flex;
     flex-direction: column;

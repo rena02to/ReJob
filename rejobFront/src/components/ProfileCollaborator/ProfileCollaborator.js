@@ -67,9 +67,9 @@ const ProfileCollaborator = () => {
     }
   }, [userData]);
 
-  if (!userData) {
-    return <div>Carregando...</div>;
-  }
+  // if (!userData) {
+  //   return <div>Carregando...</div>;
+  // }
 
   const handleEnableEditing = (event) => {
     event.preventDefault();
