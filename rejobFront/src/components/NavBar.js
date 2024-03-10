@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CgMenuCheese, CgClose } from "react-icons/cg";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -116,12 +116,12 @@ function NavBar() {
   };
 
   const Dashboard = () => {
-    if(typeUser === "USER"){
+    if (typeUser === "USER") {
       navigate("/painel-egresso");
-    }else if(typeUser === "COLLABORATOR"){
-      navigate("/dashboard/colaborador");
-    }else if(typeUser === "COMPANY"){
-      navigate("/dashboard/empresa");
+    } else if (typeUser === "COLLABORATOR") {
+      navigate("/painel-colaborador");
+    } else if (typeUser === "COMPANY") {
+      navigate("/painel-empresa");
     }
   };
 
@@ -187,7 +187,9 @@ function NavBar() {
           {profileOpen ? (
             <div className={style.profileMenu} ref={profileRef}>
               <p>{nameUser}</p>
-              <button className={style.go} onClick={Dashboard}>Ir para o dashboard</button>
+              <button className={style.go} onClick={Dashboard}>
+                Ir para o dashboard
+              </button>
               <button className={style.out} onClick={Logoff}>
                 Sair
               </button>

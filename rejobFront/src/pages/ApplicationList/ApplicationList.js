@@ -16,11 +16,13 @@ const ApplicationList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await api.get(`/jobs/${id}`);
-        setJob(response.data);
-      } catch (error) {
-        console.error("Erro na requisição:", error);
+      if (id) {
+        try {
+          const response = await api.get(`/jobs/${id}`);
+          setJob(response.data);
+        } catch (error) {
+          console.error("Erro na requisição:", error);
+        }
       }
     };
 
@@ -68,7 +70,7 @@ const ApplicationList = () => {
             className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-3px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full"
           />
         </div>
-        <ApplicationListTable />
+        <ApplicationListTable id={id} />
         <div className="botoes">
           <button className="back">VOLTAR</button>
           <button onClick={() => finishJob()} className="save !bg-red-500">

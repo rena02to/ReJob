@@ -245,7 +245,7 @@ const RegisterCompany = () => {
               position: toast.POSITION.BOTTOM_RIGHT,
             }
           );
-          navigate("/dashboard/empresa");
+          navigate("/painel-empresa");
         });
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);

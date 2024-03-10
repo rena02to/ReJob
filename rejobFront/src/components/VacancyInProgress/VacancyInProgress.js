@@ -4,14 +4,15 @@ import React, { useState } from "react";
 import locationIcon from "../../images/locationIcon.jpg";
 import contractIcon from "../../images/contractIcon.jpg";
 import nivelIcon from "../../images/nivelIcon.jpg";
-
 import "./CustomModal.css";
 import { ToastContainer, toast } from "react-toastify";
 import api from "../../services/api";
 import UserService from "../../services/UserService";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const VacancyInProgress = (props) => {
+  const { typeUser } = useSelector((rooteRedux) => rooteRedux.useReducer);
   const [modalOpen, setModalOpen] = useState(false);
   const [finalizeVacancy, setFinalizeVacancy] = useState(false);
   const user = UserService();
@@ -23,6 +24,10 @@ const VacancyInProgress = (props) => {
 
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  const viewApplications = () => {
+    if (props.vaga) navigate(`/candidaturas/${props.vaga?.id}`);
   };
 
   const openFinalize = () => {
@@ -66,8 +71,8 @@ const VacancyInProgress = (props) => {
   return (
     <div
       className="flex w-[400px] md:w-[300px] h-[250px] py-[24px] flex-col justify-between items-center border-2 
-        rounded border-solid border-[#D2D4D4]
-        "
+        rounded border-solid border-[#D2D4D4] hover:bg-gray-200 transition duration-300"
+      onClick={typeUser === "COLLABORATOR" ? viewApplications : null}
     >
       <h3 className="text-[#00A3FF] px-[12px] text-center font-bold">
         {props.tituloDaVaga}

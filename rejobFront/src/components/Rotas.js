@@ -90,7 +90,7 @@ function Rotas() {
 
         <Route
           exact
-          path="/dashboard/colaborador"
+          path="/painel-colaborador"
           element={
             typeUser === "COLLABORATOR" ? (
               <DashboardCollaborator />
@@ -117,7 +117,7 @@ function Rotas() {
 
         <Route
           exact
-          path="/dashboard/empresa"
+          path="/painel-empresa"
           element={
             typeUser === "COMPANY" ? (
               <DashboardCompany />
