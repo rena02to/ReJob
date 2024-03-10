@@ -166,6 +166,7 @@ export default function CustomPaginationActionsTable(props) {
         onClose={closeModal}
         candidate={selectedCandidate}
         height={"600px"}
+        jobId={jobId}
       />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
