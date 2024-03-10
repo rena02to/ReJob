@@ -185,7 +185,7 @@ function RegisterCollaboratory() {
               position: toast.POSITION.BOTTOM_RIGHT,
             }
           );
-          navigate("/dashboard/empresa");
+          navigate("/painel-empresa");
         });
     } catch (error) {
       if (error.response && error.response.status === 409) {
