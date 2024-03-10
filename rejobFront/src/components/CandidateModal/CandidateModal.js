@@ -3,7 +3,7 @@ import SelectCustom from "../../components/SelectCustom/SelectCustom";
 import TextareaCustom from "../../components/TextareaCustom/TextareaCustom";
 import { educationLevelMapper } from "../../utils/utils";
 import api from "../../services/api";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const CandidateModal = ({ isOpen, onClose, candidate, width, height, jobId }) => {
