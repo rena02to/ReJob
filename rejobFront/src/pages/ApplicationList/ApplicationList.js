@@ -34,11 +34,9 @@ const ApplicationList = () => {
   const handleFinalizeVacancy = async () => {
     const { createdAt, updatedAt, id, contactPerson, ...jobData } = job;
 
-    jobData.jobStatus = "CLOSED";
-
     try {
       if (id) {
-        await api.put(`/jobs/${id}`, jobData);
+        await api.patch(`/jobs/${id}`, { status: "CLOSED" } );
         toast.success(`A vaga '${job.jobTitle}' foi FINALIZADA.`, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
