@@ -6,7 +6,14 @@ import api from "../../services/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const CandidateModal = ({ isOpen, onClose, candidate, width, height, jobId }) => {
+const CandidateModal = ({
+  isOpen,
+  onClose,
+  candidate,
+  width,
+  height,
+  jobId,
+}) => {
   const [formData, setFormData] = useState({
     status: "",
     feedback: "",
@@ -20,8 +27,10 @@ const CandidateModal = ({ isOpen, onClose, candidate, width, height, jobId }) =>
 
   const fetchData = async () => {
     try {
-      const response = await api.get(`/jobApplications/${candidate.id}/${jobId}`)
-      const data = response.data 
+      const response = await api.get(
+        `/jobApplications/${candidate.id}/${jobId}`
+      );
+      const data = response.data;
 
       setFormData({
         status: data.status,
@@ -35,21 +44,20 @@ const CandidateModal = ({ isOpen, onClose, candidate, width, height, jobId }) =>
   const options = [
     { value: "IN_PROGRESS", label: "Em Progresso" },
     { value: "ACCEPTED", label: "Aceito" },
-    { value: "REJECTED", label: "Rejeitado" }
-];
-
+    { value: "REJECTED", label: "Rejeitado" },
+  ];
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const isFormValid = formData.status.trim() !== "" && formData.feedback.trim() !== "";
+  const isFormValid =
+    formData.status.trim() !== "" && formData.feedback.trim() !== "";
 
   const handleSubmit = async () => {
-
     try {
-      await api.put(`/jobApplications/${candidate.id}/${jobId}`, formData)
+      await api.put(`/jobApplications/${candidate.id}/${jobId}`, formData);
       toast.success("A aplicação foi atualizada!", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
@@ -145,7 +153,9 @@ const CandidateModal = ({ isOpen, onClose, candidate, width, height, jobId }) =>
               countchar={formData.feedback.length}
               maxWidth={"100%"}
             />
-          <button onClick={handleSubmit} disabled={!isFormValid}>Enviar</button>
+            <button onClick={handleSubmit} disabled={!isFormValid}>
+              Enviar
+            </button>
           </div>
         </div>
       )}
