@@ -7,6 +7,7 @@ import api from "../../services/api";
 
 import PaginationRounded from "../../pages/PaginationRounded/PaginationRounded";
 import SearchIcon from "@mui/icons-material/Search";
+import { educationLevelMapper } from "../../utils/utils";
 
 const VacancysCompany = (props) => {
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -45,11 +46,9 @@ const VacancysCompany = (props) => {
     }
   }, [id]);
 
-  // GET STATES
   useEffect(() => {
     const carregarStates = async () => {
       try {
-        // Importar diretamente o arquivo JSON
         const data = require("../../utils/states.json");
         setStates(data.estados);
       } catch (error) {
@@ -92,7 +91,7 @@ const VacancysCompany = (props) => {
     const vagasFiltradas = vacanciesOpen.filter((vaga) => {
       const searchString = `${vaga.jobTitle} ${vaga.companyName} ${
         vaga.companyLocation.city
-      } ${vaga.companyLocation.state} ${formatedEducationLevel(
+      } ${vaga.companyLocation.state} ${educationLevelMapper(
         vaga.educationLevel
       )} ${vaga.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
@@ -109,7 +108,7 @@ const VacancysCompany = (props) => {
     const vagasFiltradas = vacanciesClosed.filter((vaga) => {
       const searchString = `${vaga.jobTitle} ${vaga.companyName} ${
         vaga.companyLocation.city
-      } ${vaga.companyLocation.state} ${formatedEducationLevel(
+      } ${vaga.companyLocation.state} ${educationLevelMapper(
         vaga.educationLevel
       )} ${vaga.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
@@ -122,38 +121,6 @@ const VacancysCompany = (props) => {
     return vagasFiltradas.slice(indiceInicial, indiceFinal);
   };
 
-  const formatedEducationLevel = (educationLevel) => {
-    switch (educationLevel) {
-      case "ENSINO_FUNDAMENTAL_COMPLETO":
-        return "Ensino Fundamental Completo";
-      case "ENSINO_FUNDAMENTAL_INCOMPLETO":
-        return "Ensino Fundamental Incompleto";
-      case "ENSINO_MEDIO_COMPLETO":
-        return "Ensino Médio Completo";
-      case "ENSINO_MEDIO_INCOMPLETO":
-        return "Ensino Médio Incomplento";
-      case "EDUCACAO_SUPERIOR_COMPLETA":
-        return "Ensino Superior Completo";
-      case "EDUCACAO_SUPERIOR_INCOMPLETA":
-        return "Ensino Superior Inompleto";
-      case "POS_GRADUACAO_COMPLETA":
-        return "Pos Graduação Completa";
-      case "POS_GRADUACAO_INCOMPLETA":
-        return "Pos Graduação Incompleta";
-      case "MESTRADO_COMPLETO":
-        return "Mestrado Completo";
-      case "MESTRADO_INCOMPLETO":
-        return "Mestrado Incompleto";
-      case "DOUTORADO_COMPLETO":
-        return "Doutorado Completo";
-      case "DOUTORADO_INCOMPLETO":
-        return "Doutorado Incompleto";
-      case "OUTRO":
-        return "Outro";
-    }
-  };
-
-  // FUNÇÃO PARA ATUALIZAR AS VAGAS QUANDO ALGUMA VAGA FOR FINALIZADA
   const fetchData = async () => {
     try {
       const response = await api.get(`${props.url}/${id}`);
@@ -220,7 +187,7 @@ const VacancysCompany = (props) => {
                 tituloDaVaga={jobTitle}
                 empresa={companyName}
                 localizacao={localizacao}
-                nivel={formatedEducationLevel(educationLevel)}
+                nivel={educationLevelMapper(educationLevel)}
                 contrato={employmentContractType}
                 vaga={vacancy}
                 finalizeVacancy={handleFinalizeVacancy}
@@ -249,8 +216,9 @@ const VacancysCompany = (props) => {
                 tituloDaVaga={jobTitle}
                 empresa={companyName}
                 localizacao={localizacao}
-                nivel={formatedEducationLevel(educationLevel)}
+                nivel={educationLevelMapper(educationLevel)}
                 contrato={employmentContractType}
+                vaga={vacancy}
               />
             );
           }

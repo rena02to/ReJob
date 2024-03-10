@@ -16,7 +16,8 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { useEffect, useState } from "react";
-
+import DescriptionIcon from "@mui/icons-material/Description";
+import CandidateModal from "../../CandidateModal/CandidateModal";
 import api from "../../../services/api";
 
 function TablePaginationActions(props) {
@@ -88,8 +89,8 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(name, email, phone, status) {
-  return { name, email, phone, status };
+function createData(name, email, phone) {
+  return { name, email, phone };
 }
 
 export default function CustomPaginationActionsTable(props) {
@@ -109,20 +110,25 @@ export default function CustomPaginationActionsTable(props) {
   };
 
   const [candidates, setCandidates] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
   const jobId = props.id ?? null;
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await api.get(`/jobApplications/${jobId}`);
-
-        setCandidates(response.data.candidates);
-      } catch (error) {
-        console.error("Erro ao obter candidatos:", error);
+    const fetchCandidates = async () => {
+      if (jobId) {
+        try {
+          const response = await api.get(
+            `/jobApplications/applicants/${jobId}`
+          );
+          setCandidates(response.data);
+        } catch (error) {
+          console.error("Erro ao obter candidatos:", error);
+        }
       }
     };
 
-    fetchUsers();
+    fetchCandidates();
   }, [jobId]);
 
   candidates.map((candidate, _) => {
@@ -130,66 +136,90 @@ export default function CustomPaginationActionsTable(props) {
   });
 
   const rows = [];
-  const columns = ["NOME", "EMAIL", "TELEFONE", "STATUS"];
 
-  rows.push(createData("NOME", "EMAIL", "TELEFONE", "STATUS"));
+  rows.push(createData("NOME", "EMAIL", "TELEFONE"));
 
   candidates.forEach((candidate, _) => {
     rows.push(
       createData(
         candidate.user.name,
         candidate.user.email,
-        candidate.user.phoneNumber,
-        "sdadsad"
+        candidate.user.phoneNumber
       )
     );
   });
 
+  const openModal = (candidate) => {
+    setSelectedCandidate(candidate);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedCandidate(null);
+    setModalOpen(false);
+  };
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-        <TableBody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row, index) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.email}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.phone}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.status}
-              </TableCell>
+    <div>
+      <CandidateModal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        candidate={selectedCandidate}
+        height={"600px"}
+      />
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+          <TableBody>
+            {(rowsPerPage > 0
+              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : rows
+            ).map((row, index) => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.email}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.phone}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {index != 0 ? (
+                    <IconButton
+                      onClick={() => openModal(candidates[index - 1])}
+                    >
+                      <DescriptionIcon className="text-customColor" />
+                    </IconButton>
+                  ) : (
+                    <p></p>
+                  )}
+                </TableCell>
+              </TableRow>
+            ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: "Todos", value: -1 }]}
+                colSpan={3}
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                labelRowsPerPage="Linhas por Página"
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
             </TableRow>
-          ))}
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "Todos", value: -1 }]}
-              colSpan={3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              labelRowsPerPage="Linhas por Página"
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+    </div>
   );
 }
