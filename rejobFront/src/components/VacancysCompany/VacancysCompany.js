@@ -6,7 +6,7 @@ import VacancyInProgress from "../VacancyInProgress/VacancyInProgress";
 import api from "../../services/api";
 
 import PaginationRounded from "../../pages/PaginationRounded/PaginationRounded";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 const VacancysCompany = (props) => {
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -90,10 +90,11 @@ const VacancysCompany = (props) => {
 
   const calcularVagasAbertasExibidas = () => {
     const vagasFiltradas = vacanciesOpen.filter((vaga) => {
-      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${vaga.companyLocation.city
-        } ${vaga.companyLocation.state} ${formatedEducationLevel(
-          vaga.educationLevel
-        )} ${vaga.employmentContractType}`;
+      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${
+        vaga.companyLocation.city
+      } ${vaga.companyLocation.state} ${formatedEducationLevel(
+        vaga.educationLevel
+      )} ${vaga.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -106,10 +107,11 @@ const VacancysCompany = (props) => {
 
   const calcularVagasFechadasExibidas = () => {
     const vagasFiltradas = vacanciesClosed.filter((vaga) => {
-      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${vaga.companyLocation.city
-        } ${vaga.companyLocation.state} ${formatedEducationLevel(
-          vaga.educationLevel
-        )} ${vaga.employmentContractType}`;
+      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${
+        vaga.companyLocation.city
+      } ${vaga.companyLocation.state} ${formatedEducationLevel(
+        vaga.educationLevel
+      )} ${vaga.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -191,8 +193,11 @@ const VacancysCompany = (props) => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-        <SearchIcon onClick={(e) => setSearchTerm(e.target.value)} style={{color: "#00a3ff"}} className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-82px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full" />
-
+        <SearchIcon
+          onClick={(e) => setSearchTerm(e.target.value)}
+          style={{ color: "#00a3ff" }}
+          className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-82px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full"
+        />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-[12px] pt-[12px] px-[12px]">
         {vagasAbertasExibidas.map((vacancy, index) => {
@@ -201,14 +206,22 @@ const VacancysCompany = (props) => {
             (vacancy.jobStatus === "ACTIVE" ||
               vacancy.jobStatus === "IN_PROGRESS")
           ) {
+            const {
+              jobTitle,
+              companyName,
+              companyLocation,
+              educationLevel,
+              employmentContractType,
+            } = vacancy || {};
+            const localizacao = `${companyLocation?.address}, ${companyLocation?.city}, ${companyLocation?.state}`;
             return (
               <VacancyInProgress
                 key={index}
-                tituloDaVaga={vacancy.jobTitle}
-                empresa={vacancy.companyName}
-                localizacao={`${vacancy.companyLocation.city}, ${vacancy.companyLocation.city}, ${vacancy.companyLocation.state}`}
-                nivel={formatedEducationLevel(vacancy.educationLevel)}
-                contrato={vacancy.employmentContractType}
+                tituloDaVaga={jobTitle}
+                empresa={companyName}
+                localizacao={localizacao}
+                nivel={formatedEducationLevel(educationLevel)}
+                contrato={employmentContractType}
                 vaga={vacancy}
                 finalizeVacancy={handleFinalizeVacancy}
               />
@@ -222,14 +235,22 @@ const VacancysCompany = (props) => {
             (vacancy.jobStatus === "CLOSED" ||
               vacancy.jobStatus === "COMPLETED")
           ) {
+            const {
+              jobTitle,
+              companyName,
+              companyLocation,
+              educationLevel,
+              employmentContractType,
+            } = vacancy || {};
+            const localizacao = `${companyLocation?.address}, ${companyLocation?.city}, ${companyLocation?.state}`;
             return (
               <VacancyFinished
                 key={index}
-                tituloDaVaga={vacancy.jobTitle}
-                empresa={vacancy.companyName}
-                localizacao={`${vacancy.companyLocation.city}, ${vacancy.companyLocation.city}, ${vacancy.companyLocation.state}`}
-                nivel={formatedEducationLevel(vacancy.educationLevel)}
-                contrato={vacancy.employmentContractType}
+                tituloDaVaga={jobTitle}
+                empresa={companyName}
+                localizacao={localizacao}
+                nivel={formatedEducationLevel(educationLevel)}
+                contrato={employmentContractType}
               />
             );
           }

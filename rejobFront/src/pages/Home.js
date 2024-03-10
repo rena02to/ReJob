@@ -3,7 +3,7 @@ import NavBar from "./../components/NavBar";
 import Footer from "./../components/Footer";
 import backImageHome from "./../images/backImageHome.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { FaAddressCard, FaClock } from "react-icons/fa";
 import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import RejobSimbol from "./../images/newJob.png";
