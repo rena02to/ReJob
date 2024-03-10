@@ -36,7 +36,7 @@ const ApplicationList = () => {
 
     try {
       if (id) {
-        await api.patch(`/jobs/${id}`, { status: "CLOSED" } );
+        await api.patch(`/jobs/${id}`, { status: "CLOSED" });
         toast.success(`A vaga '${job.jobTitle}' foi FINALIZADA.`, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
@@ -76,7 +76,7 @@ const ApplicationList = () => {
         </div>
         <ApplicationListTable id={id} />
         <div className="botoes">
-          <button className="back" onClick={() => navigate(-1)}> 
+          <button className="back" onClick={() => navigate(-1)}>
             VOLTAR
           </button>
           <button onClick={handleFinalizeVacancy} className="save !bg-red-500">
