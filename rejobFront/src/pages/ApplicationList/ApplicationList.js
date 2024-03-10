@@ -8,11 +8,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import { ToastContainer, toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ApplicationList = () => {
   const { id } = useParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [job, setJob] = useState({});
+  let navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,7 +78,9 @@ const ApplicationList = () => {
         </div>
         <ApplicationListTable id={id} />
         <div className="botoes">
-          <button className="back">VOLTAR</button>
+          <button className="back" onClick={() => navigate(-1)}> 
+            VOLTAR
+          </button>
           <button onClick={handleFinalizeVacancy} className="save !bg-red-500">
             ENCERRAR A VAGA
           </button>
