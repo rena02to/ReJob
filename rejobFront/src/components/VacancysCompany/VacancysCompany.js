@@ -7,6 +7,7 @@ import api from "../../services/api";
 
 import PaginationRounded from "../../pages/PaginationRounded/PaginationRounded";
 import SearchIcon from "@mui/icons-material/Search";
+import UserService from "../../services/UserService";
 
 const VacancysCompany = (props) => {
   const [paginaAtual, setPaginaAtual] = useState(1);
