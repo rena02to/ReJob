@@ -29,19 +29,23 @@ const ApplicationList = () => {
     fetchData();
   }, [id]);
 
-  const finishJob = async () => {
+  const handleFinalizeVacancy = async () => {
     const { createdAt, updatedAt, id, contactPerson, ...jobData } = job;
 
     jobData.jobStatus = "CLOSED";
 
     try {
-      await api.put(`/jobs/${id}`, jobData);
-
-      toast.success(`A vaga '${job.jobTitle}' foi FINALIZADA.`, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
+      if (id) {
+        await api.put(`/jobs/${id}`, jobData);
+        toast.success(`A vaga '${job.jobTitle}' foi FINALIZADA.`, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      }
     } catch (error) {
       console.error("Erro ao fazer a solicitação PUT:", error);
+      toast.error("Ocorreu um erro ao finalizar vaga.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
@@ -73,7 +77,7 @@ const ApplicationList = () => {
         <ApplicationListTable id={id} />
         <div className="botoes">
           <button className="back">VOLTAR</button>
-          <button onClick={() => finishJob()} className="save !bg-red-500">
+          <button onClick={handleFinalizeVacancy} className="save !bg-red-500">
             ENCERRAR A VAGA
           </button>
         </div>
