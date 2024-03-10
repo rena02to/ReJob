@@ -1,22 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SelectCustom from "../../components/SelectCustom/SelectCustom";
 import TextareaCustom from "../../components/TextareaCustom/TextareaCustom";
 import { educationLevelMapper } from "../../utils/utils";
+import api from "../../services/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const CandidateModal = ({ isOpen, onClose, candidate, width, height }) => {
+const CandidateModal = ({ isOpen, onClose, candidate, width, height, jobId }) => {
   const [formData, setFormData] = useState({
     status: "",
     feedback: "",
   });
 
+  useEffect(() => {
+    if (candidate) {
+      fetchData();
+    }
+  }, [candidate]);
+
+  const fetchData = async () => {
+    try {
+      const response = await api.get(`/jobApplications/${candidate.id}/${jobId}`)
+      const data = response.data 
+
+      setFormData({
+        status: data.status,
+        feedback: data.feedback,
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const options = [
-    { value: "PRIVATE_ENTERPRISE", label: "Empresa" },
-    { value: "ONG", label: "ONG" },
-  ];
+    { value: "IN_PROGRESS", label: "Em Progresso" },
+    { value: "ACCEPTED", label: "Aceito" },
+    { value: "REJECTED", label: "Rejeitado" }
+];
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const isFormValid = formData.status.trim() !== "" && formData.feedback.trim() !== "";
+
+  const handleSubmit = async () => {
+
+    try {
+      await api.put(`/jobApplications/${candidate.id}/${jobId}`, formData)
+      toast.success("A aplicação foi atualizada!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -106,6 +145,7 @@ const CandidateModal = ({ isOpen, onClose, candidate, width, height }) => {
               countchar={formData.feedback.length}
               maxWidth={"100%"}
             />
+          <button onClick={handleSubmit} disabled={!isFormValid}>Enviar</button>
           </div>
         </div>
       )}
