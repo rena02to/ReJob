@@ -441,7 +441,9 @@ const NewVacancy = () => {
           </div>
 
           <div className="botoes">
-            <button className="back">VOLTAR</button>
+            <button className="back" onClick={() => navigate(-1)}>
+              VOLTAR
+            </button>
             <button type="submit" onClick={handleFormSubmit} className="save">
               CADASTRAR NOVA VAGA
             </button>
