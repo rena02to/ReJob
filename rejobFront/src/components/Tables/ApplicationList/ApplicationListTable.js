@@ -91,7 +91,7 @@ TablePaginationActions.propTypes = {
 };
 
 function createData(name, email, phone, status) {
-  return { name, email, phone, status:statusMapper(status) };
+  return { name, email, phone, status: statusMapper(status) };
 }
 
 export default function CustomPaginationActionsTable(props) {
@@ -118,13 +118,10 @@ export default function CustomPaginationActionsTable(props) {
 
   useEffect(() => {
     const fetchCandidates = async () => {
-      console.log(jobId)
       if (jobId) {
         try {
-          const response = await api.get(
-            `/jobApplications/job/${jobId}`
-          );
-          console.log(response.data)
+          const response = await api.get(`/jobApplications/job/${jobId}`);
+          console.log(response.data);
           setCandidates(response.data);
         } catch (error) {
           console.error("Erro ao obter candidatos:", error);
@@ -140,7 +137,7 @@ export default function CustomPaginationActionsTable(props) {
   });
 
   useEffect(() => {
-    const values = []
+    const values = [];
     values.push(createData("NOME", "EMAIL", "TELEFONE", "STATUS"));
     candidates.forEach((candidate, _) => {
       values.push(
@@ -152,11 +149,9 @@ export default function CustomPaginationActionsTable(props) {
         )
       );
     });
-    console.log(candidates)
-    setRows(values)
-  }, [candidates])
-
-  
+    console.log(candidates);
+    setRows(values);
+  }, [candidates]);
 
   const openModal = (candidate) => {
     setSelectedCandidate(candidate);
