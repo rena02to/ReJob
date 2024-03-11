@@ -81,14 +81,14 @@ const CoursesOng = (props) => {
     <div className="">
       <div className="relative">
         <input
-          className="absolute top-[-92px] h-[42px] w-full"
+          className="absolute top-[-56px] h-[42px] w-full"
           type="text"
           placeholder="Pesquise qualquer informação de vaga aqui"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-        <SearchIcon onClick={(e) => setSearchTerm(e.target.value)} style={{ color: "#00a3ff" }} className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-82px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full" />
+        <SearchIcon onClick={(e) => setSearchTerm(e.target.value)} style={{ color: "#00a3ff" }} className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-46px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full" />
 
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-[12px] px-[12px] pb-[24px]">

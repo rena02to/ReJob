@@ -80,6 +80,7 @@ const DashboardOng = () => {
 
         cleanForm();
         setModalOpen(false);
+        
     };
 
     

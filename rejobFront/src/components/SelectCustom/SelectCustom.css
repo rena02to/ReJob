@@ -11,6 +11,7 @@ select {
     margin-top: 0;
     border-radius: 4px;
     appearance: none;
+    background-color: rgba(0, 163, 255, 0.03);
     border: solid 2px var(--first-gray);
     outline: none;
     color: var(--third-gray);

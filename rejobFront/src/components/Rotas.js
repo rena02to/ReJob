@@ -28,6 +28,7 @@ function Rotas() {
   const { isLoged, typeUser } = useSelector(
     (rooteRedux) => rooteRedux.useReducer
   );
+  
   return (
     <Router>
       <Routes>

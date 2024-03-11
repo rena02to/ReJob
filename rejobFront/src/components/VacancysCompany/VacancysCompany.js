@@ -27,10 +27,10 @@ const VacancysCompany = (props) => {
           const response = await api.get(`${props.url}/${id}`);
           const allVacancies = response.data;
           const activeVacancies = allVacancies.filter(
-            (vacancy) => vacancy.jobStatus === "ACTIVE"
+            (vacancy) => vacancy.jobStatus === "ACTIVE" || vacancy.jobStatus === "IN_PROGRESS"
           );
           const closedVacancies = allVacancies.filter(
-            (vacancy) => vacancy.jobStatus === "CLOSED"
+            (vacancy) => vacancy.jobStatus === "CLOSED" || vacancy.jobStatus === "COMPLETED"
           );
 
           setVacancies(allVacancies);
@@ -90,11 +90,10 @@ const VacancysCompany = (props) => {
 
   const calcularVagasAbertasExibidas = () => {
     const vagasFiltradas = vacanciesOpen.filter((vaga) => {
-      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${
-        vaga.companyLocation.city
-      } ${vaga.companyLocation.state} ${formatedEducationLevel(
-        vaga.educationLevel
-      )} ${vaga.employmentContractType}`;
+      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${vaga.companyLocation.city
+        } ${vaga.companyLocation.state} ${formatedEducationLevel(
+          vaga.educationLevel
+        )} ${vaga.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -107,11 +106,10 @@ const VacancysCompany = (props) => {
 
   const calcularVagasFechadasExibidas = () => {
     const vagasFiltradas = vacanciesClosed.filter((vaga) => {
-      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${
-        vaga.companyLocation.city
-      } ${vaga.companyLocation.state} ${formatedEducationLevel(
-        vaga.educationLevel
-      )} ${vaga.employmentContractType}`;
+      const searchString = `${vaga.jobTitle} ${vaga.companyName} ${vaga.companyLocation.city
+        } ${vaga.companyLocation.state} ${formatedEducationLevel(
+          vaga.educationLevel
+        )} ${vaga.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
