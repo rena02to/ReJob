@@ -91,11 +91,10 @@ const VacancysRemand = (props) => {
 
   const calcularVagasAbertasExibidas = () => {
     const vagasFiltradas = vacanciesOpen.filter((vaga) => {
-      const searchString = `${vaga.job.jobTitle} ${vaga.job.companyName} ${
-        vaga.job.companyLocation.city
-      } ${vaga.job.companyLocation.state} ${formatedEducationLevel(
-        vaga.job.educationLevel
-      )} ${vaga.job.employmentContractType}`;
+      const searchString = `${vaga.job.jobTitle} ${vaga.job.companyName} ${vaga.job.companyLocation.city
+        } ${vaga.job.companyLocation.state} ${formatedEducationLevel(
+          vaga.job.educationLevel
+        )} ${vaga.job.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -108,11 +107,10 @@ const VacancysRemand = (props) => {
 
   const calcularVagasFechadasExibidas = () => {
     const vagasFiltradas = vacanciesClosed.filter((vaga) => {
-      const searchString = `${vaga.job.jobTitle} ${vaga.job.companyName} ${
-        vaga.job.companyLocation.city
-      } ${vaga.job.companyLocation.state} ${formatedEducationLevel(
-        vaga.job.educationLevel
-      )} ${vaga.job.employmentContractType}`;
+      const searchString = `${vaga.job.jobTitle} ${vaga.job.companyName} ${vaga.job.companyLocation.city
+        } ${vaga.job.companyLocation.state} ${formatedEducationLevel(
+          vaga.job.educationLevel
+        )} ${vaga.job.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -241,14 +239,15 @@ const VacancysRemand = (props) => {
             } = vacancy.job || {};
             const localizacao = `${companyLocation?.address}, ${companyLocation?.city}, ${companyLocation?.state}`;
             return (
-              <VacancyFinished
-                key={index}
-                tituloDaVaga={jobTitle}
-                empresa={companyName}
-                localizacao={localizacao}
-                nivel={formatedEducationLevel(educationLevel)}
-                contrato={employmentContractType}
-              />
+                <VacancyFinished
+                  key={index}
+                  tituloDaVaga={jobTitle}
+                  empresa={companyName}
+                  localizacao={localizacao}
+                  nivel={formatedEducationLevel(educationLevel)}
+                  contrato={employmentContractType}
+                  statusRemand={vacancy.status}
+                />
             );
           }
         })}

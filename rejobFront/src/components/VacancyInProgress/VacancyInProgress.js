@@ -106,7 +106,7 @@ const VacancyInProgress = (props) => {
                 <h2 className="text-[#00A3FF]">{props.vaga?.jobTitle}</h2>
                 <button>{props.vaga.categories}</button>
                 <p>
-                  {props.vaga?.jobType} - {props.vaga?.requirements} - R${" "}
+                  R${" "}
                   {props.vaga?.salaryRange?.salaryRangeMin}~
                   {props.vaga?.salaryRange?.salaryRangeMax}
                 </p>
@@ -130,8 +130,8 @@ const VacancyInProgress = (props) => {
                 </p>
               </div>
               <hr></hr>
-              <div className="flex justify-between pt-[12px]">
-                <div className="max-w-[400px]">
+              <div className="flex justify-between items-center pt-[12px]">
+                <div className="max-w-[300px]">
                   <b>Feedback</b>:{" "}
                   {props.vaga?.feedback
                     ? props.vaga?.feedback
@@ -139,11 +139,11 @@ const VacancyInProgress = (props) => {
                 </div>
                 <div>
                   <b>Status</b>:
-                  {props.vaga?.status === "IN_PROGRESS" ? (
+                  {props.vaga?.jobStatus === "IN_PROGRESS" ? (
                     <span className="text-yellow-500"> Em Progresso</span>
-                  ) : props.vaga?.status === "ACCEPTED" ? (
+                  ) : props.vaga?.jobStatus === "ACCEPTED" ? (
                     <span className="text-green-500"> Aceito</span>
-                  ) : props.vaga?.status === "REJECTED" ? (
+                  ) : props.vaga?.jobStatus === "REJECTED" ? (
                     <span className="text-red-500"> Rejeitado</span>
                   ) : (
                     ""

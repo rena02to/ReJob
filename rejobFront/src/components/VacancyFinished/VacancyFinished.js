@@ -24,10 +24,30 @@ const VacancyFinished = (props) => {
                     {props.contrato}
                 </div>
             </div>
-            <div className="flex gap-[6px] items-center">
-                <button disabled className="border-none px-[12px] w-[124px] bg-[#D2D4D4] text-[#000] rounded">
-                    VAGA FINALIZADA
-                </button>
+            <div className="flex flex-col gap-[12px] items-center">
+                {props.statusRemand === 'ACCEPTED' && (
+                    <button
+                        disabled
+                        className="border-none font-bold px-[12px] w-[124px] bg-green-400 text-[#000] rounded"
+                    >
+                        VOCÊ FOI ACEITO
+                    </button>
+                )}
+                {props.statusRemand === 'REJECTED' && (
+                    <button
+                        className="border-none px-[12px] w-[124px] font-bold bg-red-400 text-[#fff] rounded"
+                    >
+                        VOCÊ FOI REJEITADO
+                    </button>
+                )}
+                {!(props.statusRemand === 'ACCEPTED' || props.statusRemand === 'REJECTED') && (
+                    <button
+                        disabled
+                        className="border-none px-[12px] w-[124px] bg-[#D2D4D4] text-[#000] rounded"
+                    >
+                        VAGA FINALIZADA
+                    </button>
+                )}
             </div>
         </div>
     );
