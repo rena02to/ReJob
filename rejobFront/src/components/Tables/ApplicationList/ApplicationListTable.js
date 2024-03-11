@@ -121,7 +121,6 @@ export default function CustomPaginationActionsTable(props) {
       if (jobId) {
         try {
           const response = await api.get(`/jobApplications/job/${jobId}`);
-          console.log(response.data);
           setCandidates(response.data);
         } catch (error) {
           console.error("Erro ao obter candidatos:", error);
@@ -149,7 +148,6 @@ export default function CustomPaginationActionsTable(props) {
         )
       );
     });
-    console.log(candidates);
     setRows(values);
   }, [candidates]);
 
