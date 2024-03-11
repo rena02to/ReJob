@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import DescriptionIcon from "@mui/icons-material/Description";
 import CandidateModal from "../../CandidateModal/CandidateModal";
 import api from "../../../services/api";
+import { statusMapper } from "../../../utils/utils";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -89,8 +90,8 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(name, email, phone) {
-  return { name, email, phone };
+function createData(name, email, phone, status) {
+  return { name, email, phone, status:statusMapper(status) };
 }
 
 export default function CustomPaginationActionsTable(props) {
@@ -110,17 +111,20 @@ export default function CustomPaginationActionsTable(props) {
   };
 
   const [candidates, setCandidates] = useState([]);
+  const [rows, setRows] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const jobId = props.id ?? null;
 
   useEffect(() => {
     const fetchCandidates = async () => {
+      console.log(jobId)
       if (jobId) {
         try {
           const response = await api.get(
-            `/jobApplications/applicants/${jobId}`
+            `/jobApplications/job/${jobId}`
           );
+          console.log(response.data)
           setCandidates(response.data);
         } catch (error) {
           console.error("Erro ao obter candidatos:", error);
@@ -129,25 +133,30 @@ export default function CustomPaginationActionsTable(props) {
     };
 
     fetchCandidates();
-  }, [jobId]);
+  }, []);
 
   candidates.map((candidate, _) => {
-    createData(candidate.user.name);
+    createData(candidate.applicant.user.name);
   });
 
-  const rows = [];
+  useEffect(() => {
+    const values = []
+    values.push(createData("NOME", "EMAIL", "TELEFONE", "STATUS"));
+    candidates.forEach((candidate, _) => {
+      values.push(
+        createData(
+          candidate.applicant.user.name,
+          candidate.applicant.user.email,
+          candidate.applicant.user.phoneNumber,
+          candidate.status
+        )
+      );
+    });
+    console.log(candidates)
+    setRows(values)
+  }, [candidates])
 
-  rows.push(createData("NOME", "EMAIL", "TELEFONE"));
-
-  candidates.forEach((candidate, _) => {
-    rows.push(
-      createData(
-        candidate.user.name,
-        candidate.user.email,
-        candidate.user.phoneNumber
-      )
-    );
-  });
+  
 
   const openModal = (candidate) => {
     setSelectedCandidate(candidate);
@@ -184,6 +193,9 @@ export default function CustomPaginationActionsTable(props) {
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
                   {row.phone}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {row.status}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
                   {index != 0 ? (
