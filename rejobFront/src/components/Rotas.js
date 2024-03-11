@@ -22,6 +22,7 @@ import ApplicationStatus from "../pages/ApplicationStatus/ApplicationStatus";
 import DashboardCompany from "../pages/Dashboard/DashboardCompany/DashboardCompany";
 import DashboardRemand from "../pages/Dashboard/DashboardRemand/DashboardRemand";
 import DashboardCollaborator from "../pages/Dashboard/DashboardCollaborator/DashboardCollaborator";
+import DashboardOng from "../pages/Dashboard/DashboardOng/DashboardOng";
 
 function Rotas() {
   const { isLoged, typeUser } = useSelector(
@@ -95,6 +96,14 @@ function Rotas() {
             ) : (
               <Navigate to="/login" />
             )
+          }
+        ></Route>
+
+        <Route
+          exact
+          path="/dashboard/ong"
+          element={
+            <DashboardOng />
           }
         ></Route>
 
