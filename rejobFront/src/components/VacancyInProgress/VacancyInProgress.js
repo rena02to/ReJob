@@ -72,11 +72,6 @@ const VacancyInProgress = (props) => {
     <div
       className="flex w-[400px] md:w-[300px] h-[250px] py-[24px] flex-col justify-between items-center border-2 
         rounded border-solid border-[#D2D4D4] hover:bg-gray-200 transition duration-300"
-      onClick={
-        typeUser === "COLLABORATOR" || typeUser === "COMPANY"
-          ? viewApplications
-          : null
-      }
     >
       <h3 className="text-[#00A3FF] px-[12px] text-center font-bold">
         {props.tituloDaVaga}
