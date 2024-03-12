@@ -10,6 +10,7 @@ import api from "../../services/api";
 import UserService from "../../services/UserService";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import JobInformationModal from "../JobInformationModal/JobInformationModa";
 
 const VacancyInProgress = (props) => {
   const { typeUser } = useSelector((rooteRedux) => rooteRedux.useReducer);
@@ -105,65 +106,12 @@ const VacancyInProgress = (props) => {
         >
           MAIS DETALHES
         </button>
-        {modalOpen && (
-          <div className="modal-background" onClick={handleBackgroundClick}>
-            <div className="modal relative">
-              <button
-                className="close-button absolute right-[24px] cursor-pointer hover:bg-[#00A3FF] hover:text-white"
-                onClick={closeModal}
-              >
-                X
-              </button>
-              <div className="">
-                <h2 className="text-[#00A3FF]">{props.vaga?.jobTitle}</h2>
-                <button>{props.vaga.categories}</button>
-                <p>
-                  R$ {props.vaga?.salaryRange?.salaryRangeMin}~
-                  {props.vaga?.salaryRange?.salaryRangeMax}
-                </p>
-
-                <div className="">
-                  <h3 className="text-[#00A3FF]">Descrição da Vaga</h3>
-                  <p className="text-justify">{props.vaga?.jobDescription}</p>
-                </div>
-
-                <h3 className="text-[#00A3FF]">Experiência</h3>
-                <p className="text-justify">{props.vaga?.requiredExperience}</p>
-
-                <h3 className="text-[#00A3FF]">Responsabilidades</h3>
-                <p className="text-justify">{props.vaga?.responsibilities}</p>
-
-                <h3 className="text-[#00A3FF]">Localização</h3>
-                <p className="text-justify">
-                  {props.vaga?.companyLocation?.city},{" "}
-                  {props.vaga?.companyLocation?.state},{" "}
-                  {props.vaga?.companyLocation?.address}
-                </p>
-              </div>
-              <hr></hr>
-              <div className="flex justify-between items-center pt-[12px]">
-                <div className="max-w-[300px]">
-                  <b>Feedback</b>:{" "}
-                  {props.vaga?.feedback
-                    ? props.vaga?.feedback
-                    : "Nenhum feedback foi dado pela empresa até o momento."}
-                </div>
-                <div>
-                  <b>Status</b>:
-                  {props.vaga?.jobStatus === "IN_PROGRESS" ? (
-                    <span className="text-yellow-500"> Em Progresso</span>
-                  ) : props.vaga?.jobStatus === "ACCEPTED" ? (
-                    <span className="text-green-500"> Aceito</span>
-                  ) : props.vaga?.jobStatus === "REJECTED" ? (
-                    <span className="text-red-500"> Rejeitado</span>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+        <JobInformationModal
+          isOpen={modalOpen}
+          closeModal={closeModal}
+          job={props.vaga}
+          height={"600px"}
+        ></JobInformationModal>
       </div>
       <ToastContainer />
     </div>
