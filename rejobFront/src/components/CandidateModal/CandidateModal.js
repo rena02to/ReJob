@@ -104,7 +104,6 @@ const CandidateModal = ({
               <p>Regime de Sentença: {candidate?.applicant?.sentenceRegime}</p>
             </div>
 
-            {/* Seção de Experiência Profissional */}
             {candidate?.applicant?.professionalExperience && (
               <div className="">
                 <h3 className="text-[#00A3FF]">Experiência Profissional</h3>
@@ -112,7 +111,6 @@ const CandidateModal = ({
               </div>
             )}
 
-            {/* Seção de Áreas de Interesse */}
             {candidate?.applicant?.areasOfInterest && (
               <div className="">
                 <h3 className="text-[#00A3FF]">Áreas de Interesse</h3>
@@ -120,7 +118,6 @@ const CandidateModal = ({
               </div>
             )}
 
-            {/* Seção de Habilidades e Qualificações */}
             {candidate?.applicant?.skillsAndQualifications && (
               <div className="">
                 <h3 className="text-[#00A3FF]">Habilidades e Qualificações</h3>
@@ -128,7 +125,6 @@ const CandidateModal = ({
               </div>
             )}
 
-            {/* Seção de Histórico Educacional */}
             {candidate?.applicant?.educationalHistory && (
               <div className="">
                 <h3 className="text-[#00A3FF]">Histórico Educacional</h3>
@@ -158,7 +154,7 @@ const CandidateModal = ({
               maxWidth={"100%"}
             />
             <button
-              className="save w-full mt-2"
+              className="save hover:bg-blue-400 w-full mt-2"
               onClick={handleSubmit}
               disabled={!isFormValid}
             >
