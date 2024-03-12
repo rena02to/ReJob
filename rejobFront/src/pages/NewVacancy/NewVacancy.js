@@ -22,7 +22,7 @@ import UserService from "../../services/UserService";
 const NewVacancy = () => {
   const [states, setStates] = useState([]);
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     companyLocation: {
       city: "",
@@ -182,7 +182,7 @@ const NewVacancy = () => {
       });
 
       setTimeout(async () => {
-        navigate("/dashboard/colaborador");
+        navigate("/painel-colaborador");
       }, 2000);
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
@@ -441,7 +441,9 @@ const NewVacancy = () => {
           </div>
 
           <div className="botoes">
-            <button className="back">VOLTAR</button>
+            <button className="back" onClick={() => navigate(-1)}>
+              VOLTAR
+            </button>
             <button type="submit" onClick={handleFormSubmit} className="save">
               CADASTRAR NOVA VAGA
             </button>

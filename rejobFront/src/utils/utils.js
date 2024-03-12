@@ -27,6 +27,16 @@ export const collaboratorTypeMapper = (collaborator) => {
   return collaboratorType[collaborator] || "Desconhecido";
 };
 
+export const statusMapper = (status) => {
+  const collaboratorType = {
+    IN_PROGRESS: "ABERTO",
+    ACCEPTED: "ACEITO",
+    REJECTED: "REJEITADO"
+  };
+
+  return collaboratorType[status] || "STATUS";
+};
+
 export const validatePassword = (password) => {
   const uppercaseRegex = /[A-Z]/;
 

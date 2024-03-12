@@ -164,29 +164,26 @@ function RegisterCollaboratory() {
     }
 
     try {
-      const response = await api
-        .post("/auth/register-collaborator", {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          phoneNumber: formData.phoneNumber,
-          jobTitle: formData.jobTitle,
-          collaboratorType: formData.collaboratorType,
-          companyId: Number(formData.companyId),
-        })
-        .then((_) => {
-          const token = response.data;
+      const response = await api.post("/auth/register-collaborator", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        phoneNumber: formData.phoneNumber,
+        jobTitle: formData.jobTitle,
+        collaboratorType: formData.collaboratorType,
+        companyId: Number(formData.companyId),
+      });
+      const token = response.data;
 
-          localStorage.setItem("token", token.token);
+      localStorage.setItem("token", token.token);
 
-          toast.success(
-            `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
-            {
-              position: toast.POSITION.BOTTOM_RIGHT,
-            }
-          );
-          navigate("/dashboard/empresa");
-        });
+      toast.success(
+        `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        }
+      );
+      navigate("/painel-empresa");
     } catch (error) {
       if (error.response && error.response.status === 409) {
         toast.error(

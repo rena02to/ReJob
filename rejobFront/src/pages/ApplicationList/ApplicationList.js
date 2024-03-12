@@ -8,38 +8,44 @@ import SearchIcon from "@mui/icons-material/Search";
 import { ToastContainer, toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ApplicationList = () => {
   const { id } = useParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [job, setJob] = useState({});
+  let navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await api.get(`/jobs/${id}`);
-        setJob(response.data);
-      } catch (error) {
-        console.error("Erro na requisição:", error);
+      if (id) {
+        try {
+          const response = await api.get(`/jobs/${id}`);
+          setJob(response.data);
+        } catch (error) {
+          console.error("Erro na requisição:", error);
+        }
       }
     };
 
     fetchData();
   }, [id]);
 
-  const finishJob = async () => {
+  const handleFinalizeVacancy = async () => {
     const { createdAt, updatedAt, id, contactPerson, ...jobData } = job;
 
-    jobData.jobStatus = "CLOSED";
-
     try {
-      await api.put(`/jobs/${id}`, jobData);
-
-      toast.success(`A vaga '${job.jobTitle}' foi FINALIZADA.`, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
+      if (id) {
+        await api.patch(`/jobs/${id}`, { status: "CLOSED" });
+        toast.success(`A vaga '${job.jobTitle}' foi FINALIZADA.`, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      }
     } catch (error) {
       console.error("Erro ao fazer a solicitação PUT:", error);
+      toast.error("Ocorreu um erro ao finalizar vaga.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
@@ -68,10 +74,12 @@ const ApplicationList = () => {
             className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-3px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full"
           />
         </div>
-        <ApplicationListTable />
+        <ApplicationListTable id={id} />
         <div className="botoes">
-          <button className="back">VOLTAR</button>
-          <button onClick={() => finishJob()} className="save !bg-red-500">
+          <button className="back" onClick={() => navigate(-1)}>
+            VOLTAR
+          </button>
+          <button onClick={handleFinalizeVacancy} className="save !bg-red-500">
             ENCERRAR A VAGA
           </button>
         </div>

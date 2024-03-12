@@ -232,23 +232,23 @@ const RegisterCompany = () => {
     }
 
     try {
-      const response = await api
-        .post("/auth/register-Company", formData)
-        .then((_) => {
-          const token = response.data;
+      const response = await api.post("/auth/register-Company", formData);
+      const token = response.data;
 
-          localStorage.setItem("token", token.token);
+      localStorage.setItem("token", token.token);
 
-          toast.success(
-            `A empresa: ${formData.name}, foi registrada na ReJob com sucesso.`,
-            {
-              position: toast.POSITION.BOTTOM_RIGHT,
-            }
-          );
-          navigate("/dashboard/empresa");
-        });
+      toast.success(
+        `A empresa: ${formData.name}, foi registrada na ReJob com sucesso.`,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        }
+      );
+      navigate("/painel-empresa");
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
+      toast.error("Ocorreu um erro ao tentar registrar empresa.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 

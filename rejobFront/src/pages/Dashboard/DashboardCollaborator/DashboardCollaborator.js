@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
 import Title from "../../../components/Title/Title";
-import VacancysCompany from "../../../components/VacancysCompany/VacancysCompany";
+import Vacancys from "../../../components/VacancysCompany/VacancysCompany";
 import ProfileCollaborator from "../../../components/ProfileCollaborator/ProfileCollaborator";
 import UserService from "../../../services/UserService";
 import "./DashboardCollaborator.css";
@@ -76,7 +76,7 @@ const DashboardCollaborator = () => {
                 <div className="relative z-10 left-[86px] w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
               </div>
             )}
-            <VacancysCompany
+            <Vacancys
               id={userData?.collaboratorId}
               toggle={toggle}
               url={"jobs/job-by-collaborator"}
