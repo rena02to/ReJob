@@ -72,7 +72,7 @@ const CandidateModal = ({
       {isOpen && (
         <div className="modal-background" onClick={onClose}>
           <div
-            className="modal relative"
+            className="modal relative mt-16"
             style={{ width, height }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -157,7 +157,11 @@ const CandidateModal = ({
               countchar={formData.feedback?.length}
               maxWidth={"100%"}
             />
-            <button onClick={handleSubmit} disabled={!isFormValid}>
+            <button
+              className="save w-full mt-2"
+              onClick={handleSubmit}
+              disabled={!isFormValid}
+            >
               Enviar
             </button>
           </div>
