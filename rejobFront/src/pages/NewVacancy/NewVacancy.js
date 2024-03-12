@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -29,7 +30,6 @@ const NewVacancy = () => {
       state: "",
       address: "",
     },
-    jobType: "",
     categories: "",
     contactPersonId: "",
     jobTitle: "",

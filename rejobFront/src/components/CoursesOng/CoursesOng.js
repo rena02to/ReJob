@@ -13,6 +13,8 @@ const CoursesOng = (props) => {
   const [cursosExibidos, setCursosExibidos] = useState([]);
   const id = props.id;
 
+  console.log(props.newCourse)
+
   useEffect(() => {
     if (id) {
       const fetchData = async () => {
@@ -28,6 +30,25 @@ const CoursesOng = (props) => {
       fetchData();
     }
   }, [id]);
+
+  useEffect(() => {
+    if (props.newCourse) {
+      const fetchData = async () => {
+        try {
+          const response = await api.get(`${props.url}/${id}`);
+
+          setCourses(response.data);
+        } catch (error) {
+          console.error("Erro na requisição:", error);
+        }
+
+        props.toggleNewCourse();
+      };
+
+      fetchData();
+    }
+  }, [props.newCourse]);
+
 
   useEffect(() => {
     setCursosExibidos(calcularCursosExibidos());
@@ -49,30 +70,15 @@ const CoursesOng = (props) => {
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
-    const cursosPorPagina = 6;
+    const cursosPorPagina = 8;
     const indiceInicial = (paginaAtual - 1) * cursosPorPagina;
     const indiceFinal = indiceInicial + cursosPorPagina;
 
     return cursosFiltrados.slice(indiceInicial, indiceFinal);
   };
 
-  const handleFinalizeVacancy = async () => {
-    fetchData();
-  };
-
   const handleChangePagina = (novaPagina) => {
     setPaginaAtual(novaPagina);
-  };
-
-  // FUNÇÃO PARA ATUALIZAR AS VAGAS QUANDO ALGUMA VAGA FOR FINALIZADA
-  const fetchData = async () => {
-    try {
-      const response = await api.get(`${props.url}/${id}`);
-
-      setCourses(response.data);
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-    }
   };
 
   return (
