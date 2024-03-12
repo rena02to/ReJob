@@ -56,7 +56,7 @@ const CandidateModal = ({
 
   const handleSubmit = async () => {
     try {
-      await api.put(`/jobApplications/${candidate.id}/${jobId}`, formData);
+      await api.put(`/jobApplications/${candidate.applicant.id}/${jobId}`, formData);
       toast.success("A aplicação foi atualizada!", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });

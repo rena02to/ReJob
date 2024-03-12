@@ -90,8 +90,8 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(name, email, phone, status) {
-  return { name, email, phone, status: statusMapper(status) };
+function createData(name, email, phone, status, similarity) {
+  return { name, email, phone, status: statusMapper(status), similarity };
 }
 
 export default function CustomPaginationActionsTable(props) {
@@ -137,14 +137,15 @@ export default function CustomPaginationActionsTable(props) {
 
   useEffect(() => {
     const values = [];
-    values.push(createData("NOME", "EMAIL", "TELEFONE", "STATUS"));
+    values.push(createData("NOME", "EMAIL", "TELEFONE", "STATUS", "MATCH"));
     candidates.forEach((candidate, _) => {
       values.push(
         createData(
           candidate.applicant?.user?.name,
           candidate.applicant?.user?.email,
           candidate.applicant?.user?.phoneNumber,
-          candidate.status
+          candidate.status,
+          candidate.similarity
         )
       );
     });
@@ -189,6 +190,9 @@ export default function CustomPaginationActionsTable(props) {
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
                   {row.status}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {typeof row.similarity === 'number' ? (row.similarity * 100).toFixed(2) + '%' : 'MATCH'}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
                   {index != 0 ? (
