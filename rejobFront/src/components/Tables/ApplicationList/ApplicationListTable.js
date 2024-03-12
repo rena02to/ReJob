@@ -141,9 +141,9 @@ export default function CustomPaginationActionsTable(props) {
     candidates.forEach((candidate, _) => {
       values.push(
         createData(
-          candidate.applicant.user.name,
-          candidate.applicant.user.email,
-          candidate.applicant.user.phoneNumber,
+          candidate.applicant?.user?.name,
+          candidate.applicant?.user?.email,
+          candidate.applicant?.user?.phoneNumber,
           candidate.status
         )
       );

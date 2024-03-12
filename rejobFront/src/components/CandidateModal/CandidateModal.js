@@ -31,7 +31,6 @@ const CandidateModal = ({
         `/jobApplications/${candidate.id}/${jobId}`
       );
       const data = response.data;
-
       setFormData({
         status: data.status,
         feedback: data.feedback,
@@ -53,7 +52,7 @@ const CandidateModal = ({
   };
 
   const isFormValid =
-    formData.status.trim() !== "" && formData.feedback.trim() !== "";
+    formData.status?.trim() !== "" && formData.feedback?.trim() !== "";
 
   const handleSubmit = async () => {
     try {
@@ -62,7 +61,9 @@ const CandidateModal = ({
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     } catch (error) {
-      console.error("Error:", error);
+      toast.error("Erro ao atualizar aplicação.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
@@ -82,53 +83,56 @@ const CandidateModal = ({
               X
             </button>
             <div className="">
-              <h2 className="text-[#00A3FF]">{candidate?.user?.name}</h2>
-              <p>Email: {candidate?.user?.email}</p>
-              <p>Telefone: {candidate?.user?.phoneNumber}</p>
-              <p>CPF: {candidate?.cpf}</p>
-              <p>Prisão: {candidate?.prisonCode}</p>
+              <h2 className="text-[#00A3FF]">
+                {candidate?.applicant?.user?.name}
+              </h2>
+              <p>Email: {candidate?.applicant?.user?.email}</p>
+              <p>Telefone: {candidate?.applicant?.user?.phoneNumber}</p>
+              <p>CPF: {candidate?.applicant?.cpf}</p>
+              <p>Prisão: {candidate?.applicant?.prisonCode}</p>
               <p>
                 Nível de Educação:{" "}
-                {educationLevelMapper(candidate?.educationLevel)}
+                {educationLevelMapper(candidate?.applicant?.educationLevel)}
               </p>
-              <p>Data de Nascimento: {candidate?.dateOfBirth}</p>
+              <p>Data de Nascimento: {candidate?.applicant?.dateOfBirth}</p>
               <p>
-                Local de Residência: {candidate?.residenceLocation?.city},{" "}
-                {candidate?.residenceLocation?.state},{" "}
-                {candidate?.residenceLocation?.address}
+                Local de Residência:{" "}
+                {candidate?.applicant?.residenceLocation?.city},{" "}
+                {candidate?.applicant?.residenceLocation?.state},{" "}
+                {candidate?.applicant?.residenceLocation?.address}
               </p>
-              <p>Regime de Sentença: {candidate?.sentenceRegime}</p>
+              <p>Regime de Sentença: {candidate?.applicant?.sentenceRegime}</p>
             </div>
 
             {/* Seção de Experiência Profissional */}
-            {candidate?.professionalExperience && (
+            {candidate?.applicant?.professionalExperience && (
               <div className="">
                 <h3 className="text-[#00A3FF]">Experiência Profissional</h3>
-                <p>{candidate.professionalExperience}</p>
+                <p>{candidate?.applicant?.professionalExperience}</p>
               </div>
             )}
 
             {/* Seção de Áreas de Interesse */}
-            {candidate?.areasOfInterest && (
+            {candidate?.applicant?.areasOfInterest && (
               <div className="">
                 <h3 className="text-[#00A3FF]">Áreas de Interesse</h3>
-                <p>{candidate.areasOfInterest}</p>
+                <p>{candidate?.applicant?.areasOfInterest}</p>
               </div>
             )}
 
             {/* Seção de Habilidades e Qualificações */}
-            {candidate?.skillsAndQualifications && (
+            {candidate?.applicant?.skillsAndQualifications && (
               <div className="">
                 <h3 className="text-[#00A3FF]">Habilidades e Qualificações</h3>
-                <p>{candidate.skillsAndQualifications}</p>
+                <p>{candidate?.applicant?.skillsAndQualifications}</p>
               </div>
             )}
 
             {/* Seção de Histórico Educacional */}
-            {candidate?.educationalHistory && (
+            {candidate?.applicant?.educationalHistory && (
               <div className="">
                 <h3 className="text-[#00A3FF]">Histórico Educacional</h3>
-                <p>{candidate.educationalHistory}</p>
+                <p>{candidate?.applicant?.educationalHistory}</p>
               </div>
             )}
 
@@ -150,7 +154,7 @@ const CandidateModal = ({
               rows={20}
               placeholder="Deixe aqui um feedback para o candidato da vaga"
               charmax={1000}
-              countchar={formData.feedback.length}
+              countchar={formData.feedback?.length}
               maxWidth={"100%"}
             />
             <button onClick={handleSubmit} disabled={!isFormValid}>
