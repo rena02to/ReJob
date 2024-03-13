@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { FaCheck } from "react-icons/fa6";
+import { FaRegEye, FaEyeSlash } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 
 // Components
@@ -16,9 +19,13 @@ import logo from "../../../images/newJob.png";
 
 // Services
 import api from "../../../services/api";
+import { useDispatch, useSelector } from "react-redux";
 
 const RegisterRemand = () => {
+  const { visibilityPassword, visibilityRepeatPassword, coincidir, qCaracteres, maiusculo, minusculo, numero, simbolo } = useSelector((rootReducer) => rootReducer.useReducer);
+  const dispatch = useDispatch();
   const [states, setStates] = useState([]);
+  const navigate = useNavigate();
   const [confirmationPassword, setConfirmationPassword] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -46,7 +53,7 @@ const RegisterRemand = () => {
     const carregarStates = async () => {
       try {
         // Importar diretamente o arquivo JSON
-        const data = require("./states.json");
+        const data = require("../../../utils/states.json");
         setStates(data.estados);
       } catch (error) {
         console.error("Erro ao carregar Estados:", error);
@@ -57,33 +64,35 @@ const RegisterRemand = () => {
   }, [setStates]);
 
   const formatCpf = (cpf) => {
-    const onlyNumbers = cpf.replace(/[^\d]/g, "");
+    let valor = cpf.replace(/\D/g, "").slice(0, 11);
+    let valorFormatado = "";
 
-    const formattedCpf = onlyNumbers.slice(0, 11);
-
-    const displayCpf = formattedCpf.replace(
-      /^(\d{3})(\d{3})(\d{3})(\d{2})$/,
-      "$1.$2.$3-$4"
-    );
-
-    setFormData({ ...formData, cpf: formattedCpf, displayCpf });
+    for (let i = 0; i < valor.length; i++) {
+      if (i === 3 || i === 6) {
+        valorFormatado += ".";
+      } else if (i === 9) {
+        valorFormatado += "-";
+      }
+      valorFormatado += valor.charAt(i);
+    }
+    setFormData({ ...formData, cpf: valorFormatado });
   };
 
-  const formatPhoneNumber = (phoneNumber) => {
-    const onlyNumbers = phoneNumber.replace(/[^\d]/g, "");
+  const formatPhone = (phone) => {
+    let valor = phone.replace(/\D/g, "").slice(0, 11);
+    let valorFormatado = "";
 
-    const formattedPhoneNumber = onlyNumbers.slice(0, 11);
-
-    const displayPhoneNumber = formattedPhoneNumber.replace(
-      /^(\d{2})(\d{4,5})(\d{4})$/,
-      "($1) $2-$3"
-    );
-
-    setFormData({
-      ...formData,
-      phoneNumber: formattedPhoneNumber,
-      displayPhoneNumber,
-    });
+    for (let i = 0; i < valor.length; i++) {
+      if (i === 0) {
+        valorFormatado += "(";
+      } else if (i === 2) {
+        valorFormatado += ") ";
+      } else if (i === 7) {
+        valorFormatado += "-";
+      }
+      valorFormatado += valor.charAt(i);
+    }
+    setFormData({ ...formData, phoneNumber: valorFormatado });
   };
 
   const handleInputChange = (event) => {
@@ -92,7 +101,7 @@ const RegisterRemand = () => {
     if (name === "cpf") {
       formatCpf(value);
     } else if (name === "phoneNumber") {
-      formatPhoneNumber(value);
+      formatPhone(value);
     } else if (name === "confirmationPassword") {
       setConfirmationPassword(value);
     } else if (name === "state" || name === "city" || name === "address") {
@@ -103,6 +112,26 @@ const RegisterRemand = () => {
           [name]: value,
         },
       }));
+    }else if (name === "password" || name === "repeatPassword") {
+      setFormData({ ...formData, [name]: value });
+      if (name === "password") {
+        const TemMaisDeOito = value.length >= 8;
+        const TemNumeros = /\d/.test(value);
+        const TemMaiusculos = /[A-Z]/.test(value);
+        const TemMinusculos = /[a-z]/.test(value);
+        const TemSimbolos = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+
+        dispatch({ type: "TesteQuantCaracteres", payload: TemMaisDeOito });
+        dispatch({ type: "setNumeros", payload: TemNumeros });
+        dispatch({ type: "setMaiusculo", payload: TemMaiusculos });
+        dispatch({ type: "setMinusculo", payload: TemMinusculos });
+        dispatch({ type: "setSimbolos", payload: TemSimbolos });
+      } else {
+        dispatch({
+          type: "TesteCoincidencia",
+          payload: formData.password === value && formData.password !== "",
+        });
+      }
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -130,14 +159,14 @@ const RegisterRemand = () => {
       !formData.educationalHistory
     ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
 
     if (!isValidEmail(formData.email)) {
       toast.warn("Por favor, verifique o seu e-mail e tente novamente!", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -146,17 +175,17 @@ const RegisterRemand = () => {
       toast.warn(
         "A senha deve ter pelo menos uma letra maiúscula, no mínimo 8 caracteres e um símbolo especial. Por favor, tente novamente!",
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       return;
     }
 
-    if (formData.password !== confirmationPassword) {
+    if (formData.password !== formData.repeatPassword) {
       toast.warn(
         "As senhas inseridas não coincidem. Por favor, tente novamente!",
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       return;
@@ -164,21 +193,21 @@ const RegisterRemand = () => {
 
     if (formData.professionalExperience.length > 1000) {
       toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
 
     if (formData.skillsAndQualifications.length > 1000) {
       toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
 
     if (formData.educationalHistory.length > 1000) {
       toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -188,9 +217,10 @@ const RegisterRemand = () => {
       toast.success(
         `${formData.name}, sua conta foi criada na ReJob com sucesso.`,
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
+      navigate("/painel-egresso");
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
 
@@ -198,7 +228,7 @@ const RegisterRemand = () => {
         toast.error(
           "Já existe uma conta cadastrada neste email. Por favor, insira outro e-mail ou logue na conta.",
           {
-            position: toast.POSITION.TOP_RIGHT,
+            position: toast.POSITION.BOTTOM_RIGHT,
           }
         );
       }
@@ -232,9 +262,9 @@ const RegisterRemand = () => {
               label="Telefone"
               id="phoneNumber"
               name="phoneNumber"
-              value={formData.displayPhoneNumber || ""}
+              value={formData.phoneNumber}
               onChange={handleInputChange}
-              placeholder="(XX) XXXX-XXXX"
+              placeholder="Digite seu número de telefone"
               type="text"
             />
 
@@ -249,35 +279,125 @@ const RegisterRemand = () => {
               autoComplete="username"
             />
 
-            <InputCustom
-              label="Senha"
-              placeholder="*******"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              type="password"
-              autoComplete="new-password"
-            />
+            <div className="password">
+              <InputCustom
+                label="Senha"
+                placeholder="Digite uma senha"
+                type={visibilityPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                autoComplete="password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
+              <button
+                type="button"
+                className="eyeButton"
+                onClick={() => {
+                  dispatch({ type: "ChangeVisibilityPassword", payload: !visibilityPassword });
+                }}
+              >
+                {visibilityPassword ? (
+                  <FaRegEye className="eye" />
+                ) : (
+                  <FaEyeSlash className="eye" />
+                )}
+              </button>
+            </div>
 
-            <InputCustom
-              label="Confirme a Senha"
-              placeholder="*******"
-              id="confirmationPassword"
-              name="confirmationPassword"
-              value={confirmationPassword}
-              onChange={handleInputChange}
-              type="password"
-              autoComplete="new-password"
-            />
+            <div className="regras">
+              <p>
+                <strong>A senha deve:</strong>
+              </p>
+
+              <div className="qCaracteres">
+                {qCaracteres ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 8 caracteres</p>
+              </div>
+
+              <div className="maiusculo">
+                {maiusculo ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 1 caractere maiúsculo</p>
+              </div>
+
+              <div className="minusculo">
+                {minusculo ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 1 caractere minúsculo</p>
+              </div>
+
+              <div className="number">
+                {numero ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 1 número</p>
+              </div>
+
+              <div className="simbolo">
+                {simbolo ? (
+                  <FaCheck className="v" />
+                ) : (
+                  <IoClose className="x" />
+                )}
+                <p>Possuir pelo menos 1 caractere especial</p>
+              </div>
+            </div>
+
+            <div className="password">
+              <InputCustom
+                label="Repita sua senha"
+                placeholder="Repita sua senha"
+                type={visibilityRepeatPassword ? "text" : "password"}
+                id="repeatPassword"
+                name="repeatPassword"
+                autoComplete="repeatPassword"
+                value={formData.repeatPassword}
+                onChange={handleInputChange}
+              />
+              <button
+                type="button"
+                className="eyeButton"
+                onClick={() => {
+                  dispatch({ type: "ChangeVisibilityRepeatPassword", payload: !visibilityRepeatPassword });
+                }}
+              >
+                {visibilityRepeatPassword ? (
+                  <FaRegEye className="eye" />
+                ) : (
+                  <FaEyeSlash className="eye" />
+                )}
+              </button>
+            </div>
+
+            <div className="coincidir">
+              {coincidir ? (
+                <FaCheck className="v" />
+              ) : (
+                <IoClose className="x" />
+              )}
+              <p>As senhas devem coincidir</p>
+            </div>
 
             <InputCustom
               label="CPF"
               id="cpf"
               name="cpf"
-              value={formData.displayCpf || ""}
+              value={formData.cpf}
               onChange={handleInputChange}
-              placeholder="XXX.XXX.XXX-XX"
+              placeholder="Digite seu CPF"
               type="text"
             />
 
@@ -347,7 +467,7 @@ const RegisterRemand = () => {
               name="dateOfBirth"
               value={formData.dateOfBirth}
               onChange={handleInputChange}
-              placeholder="Digite o Data de Aniversário"
+              placeholder="Digite a data de Aniversário"
               type="date"
             />
 
@@ -390,16 +510,6 @@ const RegisterRemand = () => {
               value={formData.residenceLocation.address}
               onChange={handleInputChange}
             />
-
-            {/* <InputCustom
-                            label="Local de Residência"
-                            id="residenceLocation"
-                            name="residenceLocation"
-                            value={formData.residenceLocation}
-                            onChange={handleInputChange}
-                            placeholder="Digite o Local de Residência"
-                            type="text"
-                        /> */}
 
             <SelectCustom
               label="Regime de Cumprimento de Pena"
@@ -468,7 +578,7 @@ const RegisterRemand = () => {
 
               <div className="links-registro-empresa">
                 <Link to="/">Voltar</Link>
-                <Link to="/Login">Já tem uma conta?Login</Link>
+                <Link to="/Login">Já tem uma conta? Faça login</Link>
               </div>
             </div>
           </div>

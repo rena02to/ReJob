@@ -20,7 +20,7 @@ import api from "../../services/api";
 
 const Profile = () => {
   const [userData, setUserData] = useState();
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
 
   const [formData, setFormData] = useState({

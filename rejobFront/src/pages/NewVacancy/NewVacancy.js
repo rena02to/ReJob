@@ -1,7 +1,10 @@
+
 import React from "react";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { useNavigate } from "react-router-dom";
 
 // Components
 import NavBar from "../../components/NavBar";
@@ -18,17 +21,15 @@ import api from "../../services/api";
 import UserService from "../../services/UserService";
 
 const NewVacancy = () => {
-  // Variaveis
   const [states, setStates] = useState([]);
-  // eslint-disable-next-line
-  const [empresa, setEmpresa] = useState("Starbucks");
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     companyLocation: {
       city: "",
       state: "",
       address: "",
     },
-    jobType: "",
     categories: "",
     contactPersonId: "",
     jobTitle: "",
@@ -49,15 +50,12 @@ const NewVacancy = () => {
   });
   const [users, setUsers] = useState([]);
   const userData = UserService();
-  console.log(userData);
-  const token = sessionStorage.getItem("token");
-
   // GET STATES
   useEffect(() => {
     const carregarStates = async () => {
       try {
         // Importar diretamente o arquivo JSON
-        const data = require("../../states.json");
+        const data = require("../../utils/states.json");
         setStates(data.estados);
       } catch (error) {
         console.error("Erro ao carregar Estados:", error);
@@ -69,23 +67,24 @@ const NewVacancy = () => {
 
   // GET USERS
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await api.get(`/companies/collaborator-list/${userData.id}`);
-        setUsers(response.data);
-      } catch (error) {
-        console.error("Erro ao obter usuários:", error);
-      }
-    };
+    if (userData) {
+      const fetchUsers = async () => {
+        try {
+          const response = await api.get(
+            `/companies/collaborator-list/${userData?.collaboratorId}`
+          );
+          setUsers(response.data);
+        } catch (error) {
+          console.error("Erro ao obter usuários:", error);
+        }
+      };
+      fetchUsers();
+    }
+  }, [userData]);
 
-    fetchUsers();
-  }, [token]);
-
-  // Atualizar valores dos inputs, selects e textareas nas variáveis
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name.startsWith("salaryRange")) {
-      // Se o campo pertencer a salaryRange, atualize apenas esse campo
       setFormData((formData) => ({
         ...formData,
         salaryRange: {
@@ -111,17 +110,12 @@ const NewVacancy = () => {
   // POST JOB
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    
-    console.log(formData);
 
-    // Verificação de campos vazios
     if (
       !formData.companyLocation ||
-      !formData.jobType ||
       !formData.categories ||
       !formData.contactPersonId ||
       !formData.jobTitle ||
-      !formData.requirements ||
       !formData.jobDescription ||
       !formData.benefits ||
       !formData.employmentType ||
@@ -137,7 +131,7 @@ const NewVacancy = () => {
       !formData.companyLocation.address
     ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -145,19 +139,19 @@ const NewVacancy = () => {
     // Limite de caracteres
     if (formData.jobDescription.length > 1000) {
       toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
     if (formData.benefits.length > 1000) {
       toast.warn("O limite de caracteres máximo em BENEFÍCIOS é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
     if (formData.responsibilities.length > 1000) {
       toast.warn("O limite de caracteres máximo em RESPONSABILIDADES é: 1000", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -165,7 +159,7 @@ const NewVacancy = () => {
       toast.warn(
         "O limite de caracteres máximo em EXPERIÊNCIA REQUERIDA é: 1000",
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       return;
@@ -176,7 +170,7 @@ const NewVacancy = () => {
     const dataAtual = new Date();
     if (dataInseridaObj <= dataAtual) {
       toast.warn("A data inserida deve ser posterior à data atual.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -184,8 +178,12 @@ const NewVacancy = () => {
     try {
       await api.post("/jobs", formData);
       toast.success("A nova vaga foi ofertada com sucesso.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
+
+      setTimeout(async () => {
+        navigate("/painel-colaborador");
+      }, 2000);
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
     }
@@ -213,16 +211,6 @@ const NewVacancy = () => {
               onChange={handleInputChange}
             />
 
-            <InputCustom
-              label="Tipo de Vaga"
-              placeholder="Digite o tipo da vaga"
-              type="text"
-              id="jobType"
-              name="jobType"
-              value={formData.jobType}
-              onChange={handleInputChange}
-            />
-
             <SelectCustom
               label="Carga Horária"
               id="employmentType"
@@ -234,15 +222,6 @@ const NewVacancy = () => {
                 { value: "Período Integral", label: "Período Integral" },
               ]}
             />
-
-            {/* <InputCustom
-              label="ID da Empresa"
-              type="text"
-              id="company"
-              name="company"
-              value={userData.id}
-              disabled
-            /> */}
 
             <SelectCustom
               label="Estado"
@@ -294,16 +273,6 @@ const NewVacancy = () => {
                 value: user.id,
                 label: user.user.name,
               }))}
-            />
-
-            <InputCustom
-              label="Requisitos"
-              placeholder="Digite os conhecimentos necessários para a vaga"
-              type="text"
-              id="requirements"
-              name="requirements"
-              value={formData.requirements}
-              onChange={handleInputChange}
             />
 
             <InputCustom
@@ -472,7 +441,9 @@ const NewVacancy = () => {
           </div>
 
           <div className="botoes">
-            <button className="back">VOLTAR</button>
+            <button className="back" onClick={() => navigate(-1)}>
+              VOLTAR
+            </button>
             <button type="submit" onClick={handleFormSubmit} className="save">
               CADASTRAR NOVA VAGA
             </button>

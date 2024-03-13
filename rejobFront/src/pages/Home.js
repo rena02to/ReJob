@@ -15,7 +15,7 @@ import api from "../services/api";
 
 function Home() {
   const dispatch = useDispatch();
-  const { vagas, empresas, depoimentos, ongs } = useSelector(
+  const { vagas, empresas, depoimentos, ongs, isLoged, nameUser } = useSelector(
     (rootrRedux) => rootrRedux.useReducer
   );
   const ultimasVagas = vagas.length > 6 ? vagas.slice(-6).reverse() : vagas;
@@ -24,9 +24,21 @@ function Home() {
   const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
 
   useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#sou-empresa') {
+      const souEmpresaElement = document.getElementById('sou-empresa');
+      if (souEmpresaElement) {
+        souEmpresaElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+        // Você pode ajustar o valor de 'top' abaixo para definir o deslocamento
+        window.scrollBy(0, -600); // Rola 100 pixels para cima (valor negativo para rolar para baixo)
+      }
+    }
+  }, []);
+  
+  useEffect(() => {
     const loadVacancies = async () => {
       try {
-        const response = await api.get("/jobs");
+        const response = await api.get("/jobs/open");
         dispatch({ type: "setVagas", payload: response.data });
       } catch (error) {
         console.error("Erro na requisição:", error);
@@ -51,7 +63,7 @@ function Home() {
   return (
     <>
       <NavBar />
-      <section className={style.vagas}>
+      <section className={`${style.vagas}`}>
         <div className={style.containerMain}>
           <div className={style.perfilHome}>
             <img alt="Imagem de fundo da página de vagas" src={backImageHome} />
@@ -62,36 +74,41 @@ function Home() {
                 <br />
                 <span>REINTEGRAÇÃO SOCIAL</span>
               </p>
-              <p className={style.cadastre}>
-                Cadastre-se e comece a construir um novo futuro!
-              </p>
-              <div className={style.interno}>
-                <div className={style.buttons}>
-                  <a href="/cadastro/colaborador" className={style.colaborador}>
-                    <button>Sou colaborador</button>
-                  </a>
-                  <a
-                    href="/cadastro/empresa"
-                    className={style.colaboradorEmpresa}
-                  >
-                    <button>Sou empresa</button>
-                  </a>
-                  <a
-                    href="/cadastro/egresso"
-                    className={style.colaboradorEmpresa}
-                  >
-                    <button>Sou egresso</button>
-                  </a>
+              {isLoged ? 
+              <>
+                <p className={style.welcome}>Seja bem vindo, <span>{nameUser}</span>!</p>
+              </> : <>
+                <p className={style.cadastre}>
+                  Cadastre-se e comece a construir um novo futuro!
+                </p>
+                <div className={style.interno}>
+                  <div className={style.buttons}>
+                    <a href="/cadastro/colaborador" className={style.colaborador}>
+                      <button>Sou colaborador</button>
+                    </a>
+                    <a
+                      href="/cadastro/empresa"
+                      className={style.colaboradorEmpresa}
+                    >
+                      <button>Sou empresa</button>
+                    </a>
+                    <a
+                      href="/cadastro/egresso"
+                      className={style.colaboradorEmpresa}
+                    >
+                      <button>Sou egresso</button>
+                    </a>
+                  </div>
+                  <i>
+                    <p className={style.legenda}>
+                      Tenha acesso a diversas oportunidades de emprego.
+                      <br />
+                      Encontre a vaga perfeita para de acordo com o perfil do
+                      usuário.
+                    </p>
+                  </i>
                 </div>
-                <i>
-                  <p className={style.legenda}>
-                    Tenha acesso a diversas oportunidades de emprego.
-                    <br />
-                    Encontre a vaga perfeita para de acordo com o perfil do
-                    usuário.
-                  </p>
-                </i>
-              </div>
+              </>}
             </div>
           </div>
           <div className={style.ultimasVagas}>
@@ -160,7 +177,7 @@ function Home() {
               <a href="/vagas">Mais vagas</a>
             </button>
           </div>
-          <div className={style.beneficios}>
+          <div id="sou-empresa" className={style.beneficios}>
             <h2 className={style.quaisbeneficios}>
               Quais benefícios minha empresa receberá ao recrutar trabalhadores
               na ReJob?
@@ -227,7 +244,7 @@ function Home() {
                 ))}
               </div>
             </div>
-            <div className={style.sobreRejob}>
+            <div id="sobre-rejob" className={style.sobreRejob}>
               <h2>
                 Sobre a Re<span>Job</span>
               </h2>

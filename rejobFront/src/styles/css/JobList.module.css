@@ -167,3 +167,9 @@
   min-width: 240px;
   width: auto;
 }
+a{
+  text-decoration: none;
+}
+.new button{
+  font-size: 1.2em;
+}

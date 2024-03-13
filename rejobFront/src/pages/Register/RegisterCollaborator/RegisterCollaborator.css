@@ -93,11 +93,14 @@
   padding: 0;
   height: 35px;
   bottom: 0;
-  right: 16px;
+  right: 0px;
+  cursor: pointer;
 }
 
 .background form .password .eye {
   color: black;
+  width: 20px;
+  height: 20px;
 }
 .background form input[type="password"] {
   padding-right: 40px;
@@ -126,8 +129,13 @@
   height: 17px;
 }
 .background form .login {
-  font-size: 17px;
+  font-size: 16px;
   color: gray;
+  transition: transform 0.3s ease !important;
+}
+.background form .login:hover {
+  opacity: 0.77;
+  transform: scale(1.1);
 }
 .background form .login a {
   color: gray;
@@ -138,7 +146,6 @@
   border: 0px solid transparent;
   border-radius: 5px;
   font-size: 24px;
-  padding: 0px 24px;
   font-weight: 600;
   cursor: pointer;
   height: 45px;
@@ -146,8 +153,12 @@
   margin-bottom: 10px;
   font-size: 20px;
   width: 100%;
+  transition: transform 0.3s ease !important;
 }
-
+.background form .submit:hover {
+  opacity: 0.77;
+  transform: scale(1.1);
+}
 .background form .regras p,
 .background form .coincidir p {
   font-size: 14px;
@@ -179,18 +190,18 @@
   width: 20px;
   height: 20px;
 }
-.background form .regras .qCaracteres .check,
-.background form .regras .maiusculo .check,
-.background form .regras .minusculo .check,
-.background form .regras .number .check,
-.background form .regras .simbolo .check {
+.background form .regras .qCaracteres .v,
+.background form .regras .maiusculo .v,
+.background form .regras .minusculo .v,
+.background form .regras .number .v,
+.background form .regras .simbolo .v {
   color: rgba(0, 150, 0, 0.7);
 }
-.background form .regras .qCaracteres .close,
-.background form .regras .maiusculo .close,
-.background form .regras .minusculo .close,
-.background form .regras .number .close,
-.background form .regras .simbolo .close {
+.background form .regras .qCaracteres .x,
+.background form .regras .maiusculo .x,
+.background form .regras .minusculo .x,
+.background form .regras .number .x,
+.background form .regras .simbolo .x {
   color: rgba(255, 0, 0, 0.7);
 }
 .background form .coincidir {
@@ -206,10 +217,10 @@
   width: 20px;
   height: 20px;
 }
-.background form .coincidir .check {
+.background form .coincidir .v {
   color: rgba(0, 150, 0, 0.7);
 }
-.background form .coincidir .close {
+.background form .coincidir .x {
   color: rgba(255, 0, 0, 0.7);
 }
 
@@ -218,4 +229,7 @@
   width: auto;
   align-items: center;
   justify-content: center;
+}
+.back{
+  transition: transform 0.3s ease;
 }

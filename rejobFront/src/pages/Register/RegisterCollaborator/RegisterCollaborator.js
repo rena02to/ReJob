@@ -12,11 +12,13 @@ import { ToastContainer, toast } from "react-toastify";
 import { isValidEmail, validatePassword } from "../../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../../services/api";
+import UserService from "../../../services/UserService";
 import { useNavigate } from "react-router-dom";
 
 function RegisterCollaboratory() {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
+  const userData = UserService();
   const dispatch = useDispatch();
   const {
     visibilityPassword,
@@ -39,8 +41,6 @@ function RegisterCollaboratory() {
     phoneNumber: "",
     password: "",
     repeatPassword: "",
-    terms: false,
-    notify: false,
   });
 
   const options = [
@@ -74,7 +74,7 @@ function RegisterCollaboratory() {
         if (i === 0) {
           valorFormatado += "(";
         } else if (i === 2) {
-          valorFormatado += ")";
+          valorFormatado += ") ";
         } else if (i === 7) {
           valorFormatado += "-";
         }
@@ -106,6 +106,14 @@ function RegisterCollaboratory() {
     }
   };
 
+  if (userData.companyType && !formData.collaboratorType) {
+    setFormData({ ...formData, collaboratorType: userData.companyType });
+  }
+
+  if (userData.id && !formData.companyId) {
+    setFormData({ ...formData, companyId: userData.id });
+  }
+
   useEffect(() => {
     const getCompanies = async () => {
       try {
@@ -133,14 +141,14 @@ function RegisterCollaboratory() {
       !formData.repeatPassword
     ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
 
     if (!isValidEmail(formData.email)) {
       toast.warn("Por favor, verifique o seu e-mail e tente novamente!", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
@@ -149,21 +157,14 @@ function RegisterCollaboratory() {
       toast.warn(
         "A senha deve ter pelo menos uma letra maiúscula, no mínimo 8 caracteres e um símbolo especial. Por favor, tente novamente!",
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
       return;
     }
 
-    if (!formData.terms) {
-      toast.warn("Para continuar, é necessário aceitar os termos de uso.", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      return;
-    }
-
     try {
-      await api.post("/auth/register-collaborator", {
+      const response = await api.post("/auth/register-collaborator", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -172,19 +173,23 @@ function RegisterCollaboratory() {
         collaboratorType: formData.collaboratorType,
         companyId: Number(formData.companyId),
       });
+      const token = response.data;
+
+      localStorage.setItem("token", token.token);
+
       toast.success(
         `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
         {
-          position: toast.POSITION.TOP_RIGHT,
+          position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/painel-colaborador");
+      navigate("/painel-empresa");
     } catch (error) {
       if (error.response && error.response.status === 409) {
         toast.error(
           "Já existe uma conta cadastrada neste email. Por favor, insira outro e-mail ou logue na conta.",
           {
-            position: toast.POSITION.TOP_RIGHT,
+            position: toast.POSITION.BOTTOM_RIGHT,
           }
         );
       }
@@ -193,7 +198,7 @@ function RegisterCollaboratory() {
 
   return (
     <section className="background">
-      <BackLink />
+      <BackLink className="back" />
       <ToastContainer autoClose={5000} />
       <form>
         <img src={ReJob} alt="ReJob" />
@@ -229,6 +234,7 @@ function RegisterCollaboratory() {
           value={formData.collaboratorType}
           onChange={handleInputChange}
           options={options}
+          disabled={userData}
         />
 
         <SelectCustom
@@ -241,6 +247,7 @@ function RegisterCollaboratory() {
           options={companies.map((company) => {
             return { value: company.id, label: company.name };
           })}
+          disabled={userData}
         />
 
         <InputCustom
@@ -288,7 +295,10 @@ function RegisterCollaboratory() {
             type="button"
             className="eyeButton"
             onClick={() => {
-              dispatch({ type: "ChangeVisibilityPassword" });
+              dispatch({
+                type: "ChangeVisibilityPassword",
+                payload: !visibilityPassword,
+              });
             }}
           >
             {visibilityPassword ? (
@@ -306,46 +316,30 @@ function RegisterCollaboratory() {
 
           <div className="qCaracteres">
             {qCaracteres ? (
-              <FaCheck className="check" />
+              <FaCheck className="v" />
             ) : (
-              <IoClose className="close" />
+              <IoClose className="x" />
             )}
             <p>Possuir pelo menos 8 caracteres</p>
           </div>
 
           <div className="maiusculo">
-            {maiusculo ? (
-              <FaCheck className="check" />
-            ) : (
-              <IoClose className="close" />
-            )}
+            {maiusculo ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 caractere maiúsculo</p>
           </div>
 
           <div className="minusculo">
-            {minusculo ? (
-              <FaCheck className="check" />
-            ) : (
-              <IoClose className="close" />
-            )}
+            {minusculo ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 caractere minúsculo</p>
           </div>
 
           <div className="number">
-            {numero ? (
-              <FaCheck className="check" />
-            ) : (
-              <IoClose className="close" />
-            )}
+            {numero ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 número</p>
           </div>
 
           <div className="simbolo">
-            {simbolo ? (
-              <FaCheck className="check" />
-            ) : (
-              <IoClose className="close" />
-            )}
+            {simbolo ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 caractere especial</p>
           </div>
         </div>
@@ -365,7 +359,10 @@ function RegisterCollaboratory() {
             type="button"
             className="eyeButton"
             onClick={() => {
-              dispatch({ type: "ChangeVisibilityRepeatPassword" });
+              dispatch({
+                type: "ChangeVisibilityRepeatPassword",
+                payload: !visibilityRepeatPassword,
+              });
             }}
           >
             {visibilityRepeatPassword ? (
@@ -377,40 +374,12 @@ function RegisterCollaboratory() {
         </div>
 
         <div className="coincidir">
-          {coincidir ? (
-            <FaCheck className="check" />
-          ) : (
-            <IoClose className="close" />
-          )}
+          {coincidir ? <FaCheck className="v" /> : <IoClose className="x" />}
           <p>As senhas devem coincidir</p>
         </div>
 
-        <div className="termos">
-          <input
-            name="terms"
-            id="terms"
-            type="checkbox"
-            value={formData.terms}
-            onChange={handleInputChange}
-            required
-          />
-          <p>
-            Concordo com os <a href="/termos-uso">Termos de Uso</a>
-          </p>
-        </div>
-
-        <div className="notify">
-          <input
-            name="notify"
-            id="notify"
-            onChange={handleInputChange}
-            type="checkbox"
-          />
-          <p>Desejo receber notificações por e-mail</p>
-        </div>
-
         <button type="submit" className="submit" onClick={handleFormSubmit}>
-          Registrar-me
+          CADASTRAR
         </button>
 
         <p className="login">

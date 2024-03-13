@@ -3,8 +3,8 @@ import Icone from "./../images/newJob.png";
 import { useDispatch, useSelector } from "react-redux";
 import { CgMenuCheese, CgClose } from "react-icons/cg";
 import { useEffect, useRef } from "react";
-import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -23,10 +23,9 @@ function NavBar() {
   } = useSelector((rootReducer) => rootReducer.useReducer);
 
   const itens = [
-    { key: 1, value: "Home", link: "/" },
-    { key: 2, value: "Ver vagas", link: "/vagas" },
-    { key: 3, value: "Sou empresa", link: "/beneficios-empresa" },
-    { key: 4, value: "Sobre o projeto", link: "/sobre-projeto" },
+    { key: 1, value: "Ver vagas", link: "/vagas" },
+    { key: 2, value: "Sou empresa", link: "/#sou-empresa" },
+    { key: 3, value: "Sobre o projeto", link: "/#sobre-rejob" },
   ];
 
   useEffect(() => {
@@ -95,34 +94,6 @@ function NavBar() {
       type: "ChangeActivatedItem",
       payload: rotaAtual,
     });
-
-    const loadLoged = async () => {
-      try{
-        const data = await api.get("users/me");
-        console.log(data)
-        dispatch({
-          type: "ChangeLoged",
-          payload: true,
-        })
-        dispatch({
-          type: "setTypeUser",
-          payload: data.data.user.role,
-        })
-        dispatch({
-          type: "setNameUser",
-          payload: data.data.user.name,
-        })
-      }catch(error){
-        dispatch({
-          type: "ChangeLoged",
-          payload: false,
-        })
-        console.log("Erro ao carregar os dados do login: ", error);
-      }
-    }
-
-    loadLoged();
-
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
@@ -135,22 +106,32 @@ function NavBar() {
     });
   };
 
-  const Out = () => {
-    sessionStorage.removeItem('token');
+  const Logoff = () => {
+    localStorage.removeItem("token");
     navigate("/");
     dispatch({
       type: "ChangeLoged",
       payload: false,
-    })
-  }
+    });
+  };
+
+  const Dashboard = () => {
+    if (typeUser === "USER") {
+      navigate("/painel-egresso");
+    } else if (typeUser === "COLLABORATOR") {
+      navigate("/painel-colaborador");
+    } else if (typeUser === "COMPANY") {
+      navigate("/painel-empresa");
+    }
+  };
 
   return (
     <nav className={style.navbar}>
-      <div className={style.textIcon}>
+      <Link to="/" className={style.textIcon}>
         <img src={Icone} alt="Ícone" width={43} height={43} />
         <span className={style.re}>Re</span>
         <span className={style.job}>Job</span>
-      </div>
+      </Link>
 
       {windowWidth <= 1100 ? (
         <div className={style.containerMenu}>
@@ -164,7 +145,7 @@ function NavBar() {
             <div className={style.menu} ref={menuRef}>
               <ul>
                 {itens.map((item) => (
-                  <a key={item.key} href={item.link}>
+                  <Link key={item.key} href={item.link}>
                     <li
                       className={
                         item.link === activatedItem ? style.ativado : null
@@ -173,7 +154,7 @@ function NavBar() {
                     >
                       {item.value}
                     </li>
-                  </a>
+                  </Link>
                 ))}
               </ul>
             </div>
@@ -194,18 +175,22 @@ function NavBar() {
       )}
       {isLoged ? (
         <>
-          <button className={style.dash} title={`Dashboard de ${nameUser}`} onClick={(event) =>openMenu(event, "ChangeProfileOpen", !profileOpen)}>
+          <button
+            className={style.dash}
+            title={`Dashboard de ${nameUser}`}
+            onClick={(event) =>
+              openMenu(event, "ChangeProfileOpen", !profileOpen)
+            }
+          >
             Dashboard
           </button>
           {profileOpen ? (
             <div className={style.profileMenu} ref={profileRef}>
               <p>{nameUser}</p>
-              <a href={typeUser === "COMPANY" ? "/painel-empresa" : typeUser === "COLLABORATOR" ? "/painel-colaborador" : typeUser === "USER" ? "/painel-egresso" : "##"}>
-                <button className={style.go}>
-                  Ir para o dashboard
-                </button>
-              </a>
-              <button className={style.out} onClick={Out}>
+              <button className={style.go} onClick={Dashboard}>
+                Ir para o dashboard
+              </button>
+              <button className={style.out} onClick={Logoff}>
                 Sair
               </button>
             </div>

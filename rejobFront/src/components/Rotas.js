@@ -17,13 +17,18 @@ import JobList from "../pages/JobList/JobList";
 
 import NewVacancy from "../pages/NewVacancy/NewVacancy";
 import Profile from "../pages/Profile/Profile";
+import ApplicationList from "../pages/ApplicationList/ApplicationList";
 import ApplicationStatus from "../pages/ApplicationStatus/ApplicationStatus";
 import DashboardCompany from "../pages/Dashboard/DashboardCompany/DashboardCompany";
-import CollaboratorDashboard from "../pages/CollaboratorDashboard/CollaboratorDashboard";
+import DashboardRemand from "../pages/Dashboard/DashboardRemand/DashboardRemand";
+import DashboardCollaborator from "../pages/Dashboard/DashboardCollaborator/DashboardCollaborator";
+import DashboardOng from "../pages/Dashboard/DashboardOng/DashboardOng";
 
 function Rotas() {
-  const { isLoged } = useSelector((rooteRedux) => rooteRedux.useReducer);
-
+  const { isLoged, typeUser } = useSelector(
+    (rooteRedux) => rooteRedux.useReducer
+  );
+  
   return (
     <Router>
       <Routes>
@@ -42,18 +47,10 @@ function Rotas() {
           path="/cadastro"
           element={isLoged ? <Navigate to="/" /> : <Register />}
         />
-        
-        <Route
-          exact
-          path="/vagas/"
-          element={<JobList />}>
-        </Route>
 
-        <Route
-          exact
-          path="/vagas/:id"
-          element={isLoged ? <Navigate to="/" /> : <JobDetails />}
-        ></Route>
+        <Route exact path="/vagas/" element={<JobList />}></Route>
+
+        <Route exact path="/vagas/:id" element={<JobDetails />}></Route>
 
         {/* Rotas de Registro */}
 
@@ -77,20 +74,58 @@ function Rotas() {
 
         <Route path="/*" element={<NotFound />} />
 
-        {/* Rotas da Empresa */}
         <Route
           exact
           path="/nova-vaga"
-          element={isLoged ? <Navigate to="/login" /> : <NewVacancy />}
-        />
-
-        <Route
-          exact
-          path="/dashboard/empresa"
-          element={ <DashboardCompany />}
+          element={
+            typeUser === "COLLABORATOR" ? (
+              <NewVacancy />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
 
         {/* Rotas do Colaborador */}
+
+        <Route
+          exact
+          path="/painel-colaborador"
+          element={
+            typeUser === "COLLABORATOR" ? (
+              <DashboardCollaborator />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        ></Route>
+
+        <Route
+          exact
+          path="/dashboard/ong"
+          element={
+            <DashboardOng />
+          }
+        ></Route>
+
+        <Route
+          exact
+          path="/candidaturas/:id"
+          element={<ApplicationList />}
+        ></Route>
+        {/* Rotas da Empresa */}
+
+        <Route
+          exact
+          path="/painel-empresa"
+          element={
+            typeUser === "COMPANY" ? (
+              <DashboardCompany />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
 
         {/* Rotas do Egresso */}
         <Route
@@ -101,14 +136,22 @@ function Rotas() {
 
         <Route
           exact
-          path="/minha-candidatura"
-          element={<ApplicationStatus />}
-        ></Route>
+          path="/painel-egresso"
+          element={
+            typeUser === "USER" ? <DashboardRemand /> : <Navigate to="/login" />
+          }
+        />
 
         <Route
           exact
-          path="/painel-colaborador"
-          element={<CollaboratorDashboard />}
+          path="/minha-candidatura"
+          element={
+            typeUser === "USER" ? (
+              <ApplicationStatus />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         ></Route>
       </Routes>
     </Router>

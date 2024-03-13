@@ -1,0 +1,250 @@
+:root {
+  --first-blue: #00a3ff;
+  --dark-black: #0f0f0f;
+  --first-gray: #edeff0;
+  --second-gray: #d2d4d4;
+  --third-gray: #7c7c8a;
+}
+
+main {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.title {
+  padding-top: 130px;
+  padding-bottom: 28px;
+}
+
+.title h1 {
+  color: var(--first-blue);
+  padding: 0;
+  margin: 0;
+}
+
+.title p {
+  font-size: 18px;
+}
+
+.image-box {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.edit-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
+  color: white; /* Ajuste a cor do texto conforme necessário */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adicione um fundo semi-transparente para destacar o botão */
+  padding: 8px; /* Adicione espaço interno ao redor do ícone */
+  border-radius: 50%; /* Torna o botão circular, ajuste conforme necessário */
+  z-index: 1; /* Coloca o botão acima da imagem */
+}
+
+.edit-button:hover {
+  opacity: 0.8;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form .campos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.campo {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.campo label {
+  color: var(--dark-black);
+  font-weight: 600;
+}
+
+.campo label span {
+  color: var(--first-blue);
+}
+
+.botoes {
+  display: flex;
+  padding: 64px 0px;
+  justify-content: center;
+  gap: 12px;
+}
+
+.botoes button {
+  color: white;
+  padding: 12px;
+  border-radius: 4px;
+  border: solid 2px var(--first-gray);
+}
+
+.botoes button:hover {
+  opacity: 0.92;
+  cursor: pointer;
+}
+
+.botoes .back {
+  background-color: var(--third-gray);
+  min-width: 200px;
+  font-weight: 600;
+}
+
+.botoes .save {
+  min-width: 209px;
+  font-weight: 600;
+  background-color: var(--first-blue);
+}
+
+.interests-container {
+  grid-column: span 4;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.interests-container h2 {
+  font-size: 16px;
+}
+
+.interest-checkboxes {
+  display: flex;
+  gap: 10px 15px;
+  flex-wrap: wrap;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+/* Opcional: Estilizando as checkboxes para melhor aparência */
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.textarea-box {
+  display: flex;
+  grid-column: span 4;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.textarea-box textarea {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* Estilos para telas entre 768 pixels e 991 pixels de largura */
+  .title {
+    text-align: center;
+  }
+
+  form .campos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .interests-container {
+    grid-column: span 2;
+  }
+
+  .textarea-box {
+    grid-column: span 2;
+  }
+
+  .textarea-box textarea {
+    width: 400px;
+  }
+
+  .botoes .back {
+    background-color: var(--third-gray);
+    min-width: 200px;
+    font-weight: 600;
+  }
+
+  .botoes .save {
+    min-width: 400px;
+    font-weight: 600;
+    background-color: var(--first-blue);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* Estilos para telas menores ou iguais a 767 pixels de largura */
+
+  .title {
+    text-align: center;
+  }
+
+  .campo {
+    margin: 0 auto;
+  }
+
+  form .campos {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .interests-container {
+    grid-column: span 1;
+    margin: 0 auto;
+  }
+
+  .textarea-box {
+    grid-column: span 1;
+  }
+
+  .textarea-box textarea {
+    width: 400px;
+  }
+
+  .botoes .back {
+    background-color: var(--third-gray);
+    min-width: 100px;
+    font-weight: 600;
+  }
+
+  .botoes .save {
+    min-width: 130px;
+    font-weight: 600;
+    background-color: var(--first-blue);
+  }
+}
+
+.selecionarImagem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

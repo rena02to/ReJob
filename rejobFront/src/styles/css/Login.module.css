@@ -1,5 +1,5 @@
 .background {
-  background-color: #D9D9D9;
+  background-color: #00a3ff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -134,8 +134,10 @@
 .background form .inputBox .eye {
   position: absolute;
   cursor: pointer;
-  bottom: 12px;
+  bottom: 8px;
   right: 15px;
+  width: 20px;
+  height: 20px;
 }
 .background form .selectBox {
   display: flex;

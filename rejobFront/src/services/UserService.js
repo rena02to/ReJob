@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import api from './api';
+import { useState, useEffect } from "react";
+import api from "./api";
 
 const UserService = () => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState("");
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await api.get('users/me');
+        const response = await api.get("users/me");
         setUserData(response.data);
       } catch (error) {
-        console.error('Erro ao buscar dados do usuário:', error);
+        console.error("Erro ao buscar dados do usuário:", error);
       }
     };
 
