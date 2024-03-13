@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
 import Title from "../../../components/Title/Title";
 import ProfileCollaborator from "../../../components/ProfileCollaborator/ProfileCollaborator";
@@ -14,10 +13,9 @@ import "react-toastify/dist/ReactToastify.css";
 import CoursesOng from "../../../components/CoursesOng/CoursesOng";
 
 const DashboardOng = () => {
-  const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
-  const [toggle, setToggle] = useState(1);
   const userData = UserService();
+  const [newCourse, setNewCourse] = useState(false);
 
   const [formData, setFormData] = useState({
     courseTitle: "",
@@ -28,12 +26,6 @@ const DashboardOng = () => {
     contactPersonId: userData.collaboratorId,
   });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData({ ...formData, [name]: value });
-  };
-
   const cleanForm = () => {
     setFormData({
       courseTitle: "",
@@ -43,6 +35,12 @@ const DashboardOng = () => {
       duration: "",
       contactPersonId: "",
     });
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
@@ -56,6 +54,14 @@ const DashboardOng = () => {
       !formData.duration
     ) {
       toast.warn("Por favor, preencha todos os campos obrigatórios.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      return;
+    }
+
+    // Limite de caracteres
+    if (formData.description.length > 1000) {
+      toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
@@ -81,10 +87,7 @@ const DashboardOng = () => {
 
     cleanForm();
     setModalOpen(false);
-  };
-
-  const updateToggle = (id) => {
-    setToggle(id);
+    setNewCourse(true);
   };
 
   const openModal = () => {
@@ -97,9 +100,12 @@ const DashboardOng = () => {
 
   const handleBackgroundClick = (event) => {
     if (event.target === event.currentTarget) {
-      // Verifica se o clique foi fora do modal
       closeModal();
     }
+  };
+
+  const toggleNewCourse = () => {
+    setNewCourse(false)
   };
 
   return (
@@ -206,6 +212,8 @@ const DashboardOng = () => {
             <CoursesOng
               id={userData?.collaboratorId}
               url={"courses/course-list-by-collaborator"}
+              newCourse={newCourse}
+              toggleNewCourse={toggleNewCourse}
             />
           </div>
         </div>
