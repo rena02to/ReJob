@@ -239,12 +239,15 @@ const ProfileCollaborator = () => {
               <button onClick={handleDisableEditing} className="back">
                 CANCELAR
               </button>
-              <button type="submit" className="save">
+              <button type="submit" className="save hover:bg-blue-400">
                 SALVAR INFORMAÇÕES
               </button>
             </div>
           ) : (
-            <button onClick={handleEnableEditing} className="save">
+            <button
+              onClick={handleEnableEditing}
+              className="save hover:bg-blue-400"
+            >
               HABILITAR EDIÇÃO
             </button>
           )}

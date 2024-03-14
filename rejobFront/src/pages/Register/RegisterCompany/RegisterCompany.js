@@ -86,7 +86,7 @@ const RegisterCompany = () => {
         valorFormatado += ".";
       } else if (i === 8) {
         valorFormatado += "/";
-      }else if(i === 12){
+      } else if (i === 12) {
         valorFormatado += "-";
       }
       valorFormatado += valor.charAt(i);
@@ -140,7 +140,7 @@ const RegisterCompany = () => {
       } else {
         setFormData({ ...formData, [name]: Number(value) });
       }
-    }else if (name === "password" || name === "repeatPassword") {
+    } else if (name === "password" || name === "repeatPassword") {
       setFormData({ ...formData, [name]: value });
       if (name === "password") {
         const TemMaisDeOito = value.length >= 8;
@@ -224,7 +224,6 @@ const RegisterCompany = () => {
 
     try {
       const response = await api.post("/auth/register-Company", formData);
-
       const token = response.data;
 
       localStorage.setItem("token", token.token);
@@ -235,9 +234,12 @@ const RegisterCompany = () => {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/dashboard/empresa");
+      navigate("/painel-empresa");
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
+      toast.error("Ocorreu um erro ao tentar registrar empresa.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
@@ -434,11 +436,7 @@ const RegisterCompany = () => {
               </div>
 
               <div className="number">
-                {numero ? (
-                  <FaCheck className="v" />
-                ) : (
-                  <IoClose className="x" />
-                )}
+                {numero ? <FaCheck className="v" /> : <IoClose className="x" />}
                 <p>Possuir pelo menos 1 número</p>
               </div>
 

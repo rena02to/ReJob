@@ -6,7 +6,8 @@ import VacancyInProgress from "../VacancyInProgress/VacancyInProgress";
 import api from "../../services/api";
 
 import PaginationRounded from "../../pages/PaginationRounded/PaginationRounded";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
+import { educationLevelMapper } from "../../utils/utils";
 
 const VacancysRemand = (props) => {
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -30,7 +31,8 @@ const VacancysRemand = (props) => {
             (vacancy) => vacancy.status === "IN_PROGRESS"
           );
           const closedVacancies = allVacancies.filter(
-            (vacancy) => vacancy.status === "ACCEPTED" || vacancy.status === "REJECTED"
+            (vacancy) =>
+              vacancy.status === "ACCEPTED" || vacancy.status === "REJECTED"
           );
 
           setVacancies(allVacancies);
@@ -90,10 +92,11 @@ const VacancysRemand = (props) => {
 
   const calcularVagasAbertasExibidas = () => {
     const vagasFiltradas = vacanciesOpen.filter((vaga) => {
-      const searchString = `${vaga.job.jobTitle} ${vaga.job.companyName} ${vaga.job.companyLocation.city
-        } ${vaga.job.companyLocation.state} ${formatedEducationLevel(
-          vaga.job.educationLevel
-        )} ${vaga.job.employmentContractType}`;
+      const searchString = `${vaga.job.jobTitle} ${vaga.job.companyName} ${
+        vaga.job.companyLocation.city
+      } ${vaga.job.companyLocation.state} ${educationLevelMapper(
+        vaga.job.educationLevel
+      )} ${vaga.job.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -106,10 +109,11 @@ const VacancysRemand = (props) => {
 
   const calcularVagasFechadasExibidas = () => {
     const vagasFiltradas = vacanciesClosed.filter((vaga) => {
-      const searchString = `${vaga.job.jobTitle} ${vaga.job.companyName} ${vaga.job.companyLocation.city
-        } ${vaga.job.companyLocation.state} ${formatedEducationLevel(
-          vaga.job.educationLevel
-        )} ${vaga.job.employmentContractType}`;
+      const searchString = `${vaga.job.jobTitle} ${vaga.job.companyName} ${
+        vaga.job.companyLocation.city
+      } ${vaga.job.companyLocation.state} ${educationLevelMapper(
+        vaga.job.educationLevel
+      )} ${vaga.job.employmentContractType}`;
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
@@ -118,37 +122,6 @@ const VacancysRemand = (props) => {
     const indiceFinal = indiceInicial + vagasPorPagina;
 
     return vagasFiltradas.slice(indiceInicial, indiceFinal);
-  };
-
-  const formatedEducationLevel = (educationLevel) => {
-    switch (educationLevel) {
-      case "ENSINO_FUNDAMENTAL_COMPLETO":
-        return "Ensino Fundamental Completo";
-      case "ENSINO_FUNDAMENTAL_INCOMPLETO":
-        return "Ensino Fundamental Incompleto";
-      case "ENSINO_MEDIO_COMPLETO":
-        return "Ensino Médio Completo";
-      case "ENSINO_MEDIO_INCOMPLETO":
-        return "Ensino Médio Incomplento";
-      case "EDUCACAO_SUPERIOR_COMPLETA":
-        return "Ensino Superior Completo";
-      case "EDUCACAO_SUPERIOR_INCOMPLETA":
-        return "Ensino Superior Inompleto";
-      case "POS_GRADUACAO_COMPLETA":
-        return "Pos Graduação Completa";
-      case "POS_GRADUACAO_INCOMPLETA":
-        return "Pos Graduação Incompleta";
-      case "MESTRADO_COMPLETO":
-        return "Mestrado Completo";
-      case "MESTRADO_INCOMPLETO":
-        return "Mestrado Incompleto";
-      case "DOUTORADO_COMPLETO":
-        return "Doutorado Completo";
-      case "DOUTORADO_INCOMPLETO":
-        return "Doutorado Incompleto";
-      case "OUTRO":
-        return "Outro";
-    }
   };
 
   // FUNÇÃO PARA ATUALIZAR AS VAGAS QUANDO ALGUMA VAGA FOR FINALIZADA
@@ -161,7 +134,8 @@ const VacancysRemand = (props) => {
         (vacancy) => vacancy.status === "IN_PROGRESS"
       );
       const closedVacancies = allVacancies.filter(
-        (vacancy) => vacancy.status === "ACCEPTED" || vacancy.status === "REJECTED"
+        (vacancy) =>
+          vacancy.status === "ACCEPTED" || vacancy.status === "REJECTED"
       );
 
       setVacancies(allVacancies);
@@ -191,24 +165,32 @@ const VacancysRemand = (props) => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-        <SearchIcon onClick={(e) => setSearchTerm(e.target.value)} style={{ color: "#00a3ff" }} className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-82px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full" />
-
+        <SearchIcon
+          onClick={(e) => setSearchTerm(e.target.value)}
+          style={{ color: "#00a3ff" }}
+          className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-82px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full"
+        />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-[12px] pt-[12px] px-[12px]">
-      {vagasAbertasExibidas.map((vacancy, index) => {
-          if (
-            props.toggle === 1 &&
-            (vacancy.status === "IN_PROGRESS")
-          ) {
+        {vagasAbertasExibidas.map((vacancy, index) => {
+          if (props.toggle === 1 && vacancy.status === "IN_PROGRESS") {
+            const {
+              jobTitle,
+              companyName,
+              companyLocation,
+              educationLevel,
+              employmentContractType,
+            } = vacancy.job || {};
+            const localizacao = `${companyLocation?.address}, ${companyLocation?.city}, ${companyLocation?.state}`;
             return (
               <VacancyInProgress
                 key={index}
-                tituloDaVaga={vacancy.job.jobTitle}
-                empresa={vacancy.job.companyName}
-                localizacao={`${vacancy.job.companyLocation.city}, ${vacancy.job.companyLocation.city}, ${vacancy.job.companyLocation.state}`}
-                nivel={formatedEducationLevel(vacancy.job.educationLevel)}
-                contrato={vacancy.job.employmentContractType}
-                vaga={vacancy}
+                tituloDaVaga={jobTitle}
+                empresa={companyName}
+                localizacao={localizacao}
+                nivel={educationLevelMapper(educationLevel)}
+                contrato={employmentContractType}
+                vaga={vacancy.job}
                 finalizeVacancy={handleFinalizeVacancy}
               />
             );
@@ -218,17 +200,25 @@ const VacancysRemand = (props) => {
         {vagasFechadasExibidas.map((vacancy, index) => {
           if (
             props.toggle === 2 &&
-            (vacancy.status === "ACCEPTED" ||
-              vacancy.status === "REJECTED")
+            (vacancy.status === "ACCEPTED" || vacancy.status === "REJECTED")
           ) {
+            const {
+              jobTitle,
+              companyName,
+              companyLocation,
+              educationLevel,
+              employmentContractType,
+            } = vacancy.job || {};
+            const localizacao = `${companyLocation?.address}, ${companyLocation?.city}, ${companyLocation?.state}`;
             return (
               <VacancyFinished
                 key={index}
-                tituloDaVaga={vacancy.job.jobTitle}
-                empresa={vacancy.job.companyName}
-                localizacao={`${vacancy.job.companyLocation.city}, ${vacancy.job.companyLocation.city}, ${vacancy.job.companyLocation.state}`}
-                nivel={formatedEducationLevel(vacancy.job.educationLevel)}
-                contrato={vacancy.job.employmentContractType}
+                tituloDaVaga={jobTitle}
+                empresa={companyName}
+                localizacao={localizacao}
+                nivel={educationLevelMapper(educationLevel)}
+                contrato={employmentContractType}
+                statusRemand={vacancy.status}
               />
             );
           }

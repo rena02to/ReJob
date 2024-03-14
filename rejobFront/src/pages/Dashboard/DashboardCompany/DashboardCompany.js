@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // COMPONENTS
 import NavBar from "../../../components/NavBar";
 import Title from "../../../components/Title/Title";
-import VacancysCompany from "../../../components/VacancysCompany/VacancysCompany";
+import Vacancys from "../../../components/VacancysCompany/VacancysCompany";
 import ProfileCompany from "../../../components/ProfileCompany/ProfileCompany";
 import CompanyEmployees from "../../../components/Tables/CompanyEmployees/CompanyEmployees";
 import UserService from "../../../services/UserService";
@@ -15,7 +15,7 @@ const DashboardCompany = () => {
 
   if (!userData) {
     return null;
-  } 
+  }
 
   const updateToggle = (id) => {
     setToggle(id);
@@ -73,11 +73,7 @@ const DashboardCompany = () => {
                 <div className="relative z-10 left-[86px] w-[124px] border-3 rounded border-[#00A3FF] border-solid "></div>
               </div>
             )}
-            <VacancysCompany
-              id={userData?.id}
-              toggle={toggle}
-              url={"jobs/job-list"}
-            />
+            <Vacancys id={userData?.id} toggle={toggle} url={"jobs/job-list"} />
           </div>
         </div>
       </div>
@@ -100,9 +96,7 @@ const DashboardCompany = () => {
             </button>
           </Link>
         </div>
-        <CompanyEmployees
-          id={userData?.id}
-        />
+        <CompanyEmployees id={userData?.id} />
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ function RegisterCollaboratory() {
     email: "",
     phoneNumber: "",
     password: "",
-    repeatPassword: ""
+    repeatPassword: "",
   });
 
   const options = [
@@ -99,7 +99,6 @@ function RegisterCollaboratory() {
     }
   };
 
-  // se tiver um usuario logado
   if (userData.companyType && !formData.collaboratorType) {
     setFormData({ ...formData, collaboratorType: userData.companyType });
   }
@@ -167,7 +166,6 @@ function RegisterCollaboratory() {
         collaboratorType: formData.collaboratorType,
         companyId: Number(formData.companyId),
       });
-
       const token = response.data;
 
       localStorage.setItem("token", token.token);
@@ -178,7 +176,7 @@ function RegisterCollaboratory() {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/dashboard/colaborador");
+      navigate("/painel-empresa");
     } catch (error) {
       if (error.response && error.response.status === 409) {
         toast.error(
@@ -314,38 +312,22 @@ function RegisterCollaboratory() {
           </div>
 
           <div className="maiusculo">
-            {maiusculo ? (
-              <FaCheck className="v" />
-            ) : (
-              <IoClose className="x" />
-            )}
+            {maiusculo ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 caractere maiúsculo</p>
           </div>
 
           <div className="minusculo">
-            {minusculo ? (
-              <FaCheck className="v" />
-            ) : (
-              <IoClose className="x" />
-            )}
+            {minusculo ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 caractere minúsculo</p>
           </div>
 
           <div className="number">
-            {numero ? (
-              <FaCheck className="v" />
-            ) : (
-              <IoClose className="x" />
-            )}
+            {numero ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 número</p>
           </div>
 
           <div className="simbolo">
-            {simbolo ? (
-              <FaCheck className="v" />
-            ) : (
-              <IoClose className="x" />
-            )}
+            {simbolo ? <FaCheck className="v" /> : <IoClose className="x" />}
             <p>Possuir pelo menos 1 caractere especial</p>
           </div>
         </div>
@@ -375,11 +357,7 @@ function RegisterCollaboratory() {
         </div>
 
         <div className="coincidir">
-          {coincidir ? (
-            <FaCheck className="v" />
-          ) : (
-            <IoClose className="x" />
-          )}
+          {coincidir ? <FaCheck className="v" /> : <IoClose className="x" />}
           <p>As senhas devem coincidir</p>
         </div>
 
