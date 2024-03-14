@@ -3,7 +3,6 @@ import "./RegisterCollaborator.css";
 import { FaCheck } from "react-icons/fa6";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { useDispatch, useSelector } from "react-redux";
 import InputCustom from "../../../components/InputCustom/InputCustom";
 import SelectCustom from "../../../components/SelectCustom/SelectCustom";
 import BackLink from "../../../components/BackLink/BackLink";
@@ -19,17 +18,14 @@ function RegisterCollaboratory() {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
   const userData = UserService();
-  const dispatch = useDispatch();
-  const {
-    visibilityPassword,
-    visibilityRepeatPassword,
-    coincidir,
-    qCaracteres,
-    maiusculo,
-    minusculo,
-    numero,
-    simbolo,
-  } = useSelector((rootReducer) => rootReducer.useReducer);
+  const [ visibilityPassword, setVisibilityPassword ] = useState(false);
+  const [ visibilityRepeatPassword, setVisibilityRepeatPassword ] = useState(false);
+  const [ coincidir, setCoincidir ] = useState(false);
+  const [ qCaracteres, setQCaracteres ] = useState(false);
+  const [ maiusculo, setMaiusculo ] = useState(false);
+  const [ minusculo, setMinusculo ] = useState(false);
+  const [ simbolo, setSimbolo ] = useState(false);
+  const [ numero, setNumero ] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -90,16 +86,13 @@ function RegisterCollaboratory() {
         const TemMinusculos = /[a-z]/.test(value);
         const TemSimbolos = /[!@#$%^&*(),.?":{}|<>]/.test(value);
 
-        dispatch({ type: "TesteQuantCaracteres", payload: TemMaisDeOito });
-        dispatch({ type: "setNumeros", payload: TemNumeros });
-        dispatch({ type: "setMaiusculo", payload: TemMaiusculos });
-        dispatch({ type: "setMinusculo", payload: TemMinusculos });
-        dispatch({ type: "setSimbolos", payload: TemSimbolos });
+        setQCaracteres(TemMaisDeOito);
+        setNumero(TemNumeros);
+        setMaiusculo(TemMaiusculos);
+        setMinusculo(TemMinusculos);
+        setSimbolo(TemSimbolos);
       } else {
-        dispatch({
-          type: "TesteCoincidencia",
-          payload: formData.password === value && formData.password !== "",
-        });
+        setCoincidir(formData.password === value && formData.password !== "");
       }
     } else {
       setFormData({ ...formData, [name]: value });
@@ -161,13 +154,6 @@ function RegisterCollaboratory() {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      return;
-    }
-
-    if (!formData.terms) {
-      toast.warn("Para continuar, é necessário aceitar os termos de uso.", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
       return;
     }
 
@@ -303,9 +289,7 @@ function RegisterCollaboratory() {
           <button
             type="button"
             className="eyeButton"
-            onClick={() => {
-              dispatch({ type: "ChangeVisibilityPassword", payload: !visibilityPassword });
-            }}
+            onClick={() => {setVisibilityPassword(!visibilityPassword)}}
           >
             {visibilityPassword ? (
               <FaRegEye className="eye" />
@@ -380,9 +364,7 @@ function RegisterCollaboratory() {
           <button
             type="button"
             className="eyeButton"
-            onClick={() => {
-              dispatch({ type: "ChangeVisibilityRepeatPassword", payload: !visibilityRepeatPassword });
-            }}
+            onClick={() => {setVisibilityRepeatPassword(!visibilityRepeatPassword)}}
           >
             {visibilityRepeatPassword ? (
               <FaRegEye className="eye" />

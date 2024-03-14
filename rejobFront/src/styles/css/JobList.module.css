@@ -170,6 +170,7 @@
 a{
   text-decoration: none;
 }
-.new button{
+.new{
   font-size: 1.2em;
+  cursor: pointer;
 }

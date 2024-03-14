@@ -93,7 +93,7 @@ function Vacancies() {
 
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar/>
       <div className={styles.container}>
         <div className={styles.section}>
           <div className={styles.header_container}>
