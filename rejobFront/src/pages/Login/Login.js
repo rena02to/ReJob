@@ -103,6 +103,7 @@ function Login() {
             ) : (
               <FaRegEye
                 className={style.eye}
+                onClick={() => { setVisibilityPassword(!visibilityPassword) }}
               />
             )}
           </div>

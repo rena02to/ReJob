@@ -19,7 +19,7 @@ function Home() {
   const navigate = useNavigate();
   const isLoged = useSelector(state => state.isLoged.isLoged);
   const nameUser = useSelector(state => state.nameUser.nameUser);
-  const typeUser = useSelector(state => state.typeUser.typeUser);
+  const typeUser = useSelector(state => state?.typeUser?.typeUser);
   const ongs = useSelector(state => state.ongs.ongs);
   const depoimentos = useSelector(state => state.depoimentos.depoimentos);
   const empresas = useSelector(state => state.empresas.empresas);

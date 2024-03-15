@@ -176,7 +176,7 @@ function RegisterCollaboratory() {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/painel-empresa");
+      navigate("/login");
     } catch (error) {
       if (error.response && error.response.status === 409) {
         toast.error(

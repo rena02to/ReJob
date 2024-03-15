@@ -26,7 +26,7 @@ import DashboardOng from "../pages/Dashboard/DashboardOng/DashboardOng";
 
 function Rotas() {
   const isLoged = useSelector(state => state.isLoged.isLoged);
-  const typeUser = useSelector(state => state.typeUser.typeUser);
+  const typeUser = useSelector(state => state?.typeUser?.typeUser);
   
   return (
     <Router>

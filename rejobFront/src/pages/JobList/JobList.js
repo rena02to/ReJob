@@ -14,7 +14,7 @@ import { educationLevelMapper } from "../../utils/utils";
 import { useSelector } from "react-redux";
 
 function JobList() {
-  const typeUser = useSelector(state => state.typeUser.typeUser);
+  const typeUser = useSelector(state => state?.typeUser?.typeUser);
   const navigate = useNavigate();
   const [state, setState] = useState(null);
   const [presencial, setPresencial] = useState(false);

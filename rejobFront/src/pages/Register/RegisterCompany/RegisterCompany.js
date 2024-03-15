@@ -234,7 +234,7 @@ const RegisterCompany = () => {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/painel-empresa");
+      navigate("/login");
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
       toast.error("Ocorreu um erro ao tentar registrar empresa.", {

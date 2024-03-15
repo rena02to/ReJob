@@ -13,7 +13,7 @@ function NavBar() {
   const profileRef = useRef(null);
   const activatedItem = useSelector(state => state.activatedItem.activatedItem);
   const isLoged = useSelector(state => state.isLoged.isLoged);
-  const typeUser = useSelector(state => state.typeUser.typeUser);
+  const typeUser = useSelector(state => state?.typeUser?.typeUser);
   const nameUser = useSelector(state => state.nameUser.nameUser);
   const [ windowWidth, setWindowWidth ] = useState(null);
   const [ menuOpen, setMenuOpen ] = useState(false);

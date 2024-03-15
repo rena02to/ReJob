@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const VacancyFinished = (props) => {
-  const { typeUser } = useSelector((rooteRedux) => rooteRedux.useReducer);
+  const typeUser = useSelector(state => state?.typeUser?.typeUser);
   const navigate = useNavigate();
 
   const viewApplications = () => {
