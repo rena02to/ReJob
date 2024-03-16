@@ -372,7 +372,7 @@ const RegisterRemand = () => {
               <button
                 type="button"
                 className="eyeButton"
-                onClick={() => {setVisibilityPassword(!visibilityPassword)}}
+                onClick={() => {setVisibilityRepeatPassword(!visibilityRepeatPassword)}}
               >
                 {visibilityRepeatPassword ? (
                   <FaRegEye className="eye" />

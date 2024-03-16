@@ -87,12 +87,20 @@ function NavBar() {
   };
 
   const Logoff = () => {
-    localStorage.removeItem("token");
-    navigate("/");
     dispatch({
       type: "ChangeLoged",
       payload: false,
     });
+    dispatch({
+      type: "setTypeUser",
+      payload: null,
+    });
+    dispatch({
+      type: "setNameUser",
+      payload: null,
+    });
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   const Dashboard = () => {
