@@ -2,7 +2,7 @@ import style from "./../styles/css/NavBar.module.css";
 import Icone from "./../images/newJob.png";
 import { useDispatch, useSelector } from "react-redux";
 import { CgMenuCheese, CgClose } from "react-icons/cg";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -11,16 +11,14 @@ function NavBar() {
   const rotaAtual = window.location.pathname;
   const menuRef = useRef(null);
   const profileRef = useRef(null);
+  const activatedItem = useSelector(state => state.activatedItem.activatedItem);
+  const isLoged = useSelector(state => state.isLoged.isLoged);
+  const typeUser = useSelector(state => state?.typeUser?.typeUser);
+  const nameUser = useSelector(state => state.nameUser.nameUser);
+  const [ windowWidth, setWindowWidth ] = useState(null);
+  const [ menuOpen, setMenuOpen ] = useState(false);
+  const [ profileOpen, setProfileOpen ] = useState(false);
   const dispatch = useDispatch();
-  const {
-    activatedItem,
-    isLoged,
-    windowWidth,
-    menuOpen,
-    profileOpen,
-    typeUser,
-    nameUser,
-  } = useSelector((rootReducer) => rootReducer.useReducer);
 
   const itens = [
     { key: 1, value: "Ver vagas", link: "/vagas" },
@@ -30,41 +28,31 @@ function NavBar() {
 
   useEffect(() => {
     const updateWindowSize = () => {
-      dispatch({
-        type: "ChangeWindowWidth",
-        payload: window.innerWidth,
-      });
+      setWindowWidth(window.innerWidth);
     };
 
     if (typeof window !== "undefined") {
-      dispatch({
-        type: "ChangeWindowWidth",
-        payload: window.innerWidth,
-      });
+      setWindowWidth(window.innerWidth);
       window.addEventListener("resize", updateWindowSize);
     }
     return () => {
       window.removeEventListener("resize", updateWindowSize);
     };
-  }, [dispatch]);
+  }, [windowWidth, setWindowWidth]);
 
   const openMenu = (event, type, value) => {
     event.stopPropagation();
-    dispatch({
-      type: type,
-      payload: value,
-    });
 
-    if (type === "ChangeMenuOpen" && profileOpen) {
-      dispatch({
-        type: "ChangeProfileOpen",
-        payload: false,
-      });
-    } else if (type === "ChangeProfileOpen" && menuOpen) {
-      dispatch({
-        type: "ChangeMenuOpen",
-        payload: false,
-      });
+    if (type === "ChangeMenuOpen") {
+      setMenuOpen(value);
+      if(profileOpen){
+        setMenuOpen(false);
+      }
+    } else if (type === "ChangeProfileOpen") {
+      setProfileOpen(value);
+      if(menuOpen){
+        setMenuOpen(false);
+      }
     }
   };
 
@@ -78,15 +66,8 @@ function NavBar() {
           profileRef.current &&
           !profileRef.current.contains(event.target))
       ) {
-        dispatch({
-          type: "ChangeMenuOpen",
-          payload: false,
-        });
-
-        dispatch({
-          type: "ChangeProfileOpen",
-          payload: false,
-        });
+        setMenuOpen(false);
+        setProfileOpen(false);
       }
     };
 
@@ -98,21 +79,28 @@ function NavBar() {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [menuOpen, profileOpen, dispatch, rotaAtual]);
+  }, [menuOpen, profileOpen, dispatch, rotaAtual, setMenuOpen, setProfileOpen]);
 
   const changeActivatedItem = () => {
-    dispatch({
-      type: "ChangeMenuOpen",
-    });
+    setMenuOpen(false);
+    setProfileOpen(false);
   };
 
   const Logoff = () => {
-    localStorage.removeItem("token");
-    navigate("/");
     dispatch({
       type: "ChangeLoged",
       payload: false,
     });
+    dispatch({
+      type: "setTypeUser",
+      payload: null,
+    });
+    dispatch({
+      type: "setNameUser",
+      payload: null,
+    });
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   const Dashboard = () => {
@@ -173,7 +161,7 @@ function NavBar() {
           ))}
         </ul>
       )}
-      {isLoged ? (
+      {isLoged === true ? (
         <>
           <button
             className={style.dash}

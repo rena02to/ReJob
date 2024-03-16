@@ -14,7 +14,7 @@ import { educationLevelMapper } from "../../utils/utils";
 import { useSelector } from "react-redux";
 
 function JobList() {
-  const { typeUser } = useSelector((rootReducer) => rootReducer.useReducer);
+  const typeUser = useSelector(state => state?.typeUser?.typeUser);
   const navigate = useNavigate();
   const [state, setState] = useState(null);
   const [presencial, setPresencial] = useState(false);
@@ -87,11 +87,7 @@ function JobList() {
               <span className="text-customColor">REINTEGRAÇÃO SOCIAL</span>
             </h2>
             {typeUser === "COLLABORATOR" ? (
-              <a href="/nova-vaga">
-                <a href="/nova-vaga" className={styles.new}>
-                  <button>Cadastrar nova vaga</button>
-                </a>
-              </a>
+              <button className={styles.new} onClick={() => {navigate("/nova-vaga")}}>Cadastrar nova vaga</button>
             ) : null}
           </div>
           <div className={styles.body_container}>

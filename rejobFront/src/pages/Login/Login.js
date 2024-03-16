@@ -1,6 +1,5 @@
 import style from "./../../styles/css/Login.module.css";
 import { Formik, Form, Field } from "formik";
-import { FaArrowLeftLong } from "react-icons/fa6";
 import ReJob from "./../../images/newJob.png";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
@@ -11,13 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../services/api";
+import { useState } from "react";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { visibilityPassword } = useSelector(
-    (rootReducer) => rootReducer.useReducer
-  );
+  const [ visibilityPassword, setVisibilityPassword ] = useState(false);
 
   const initialValues = {
     email: "",
@@ -100,22 +98,12 @@ function Login() {
             {visibilityPassword ? (
               <FaEyeSlash
                 className={style.eye}
-                onClick={() => {
-                  dispatch({
-                    type: "ChangeVisibilityPassword",
-                    payload: !visibilityPassword,
-                  });
-                }}
+                onClick={() => { setVisibilityPassword(!visibilityPassword) }}
               />
             ) : (
               <FaRegEye
                 className={style.eye}
-                onClick={() => {
-                  dispatch({
-                    type: "ChangeVisibilityPassword",
-                    payload: !visibilityPassword,
-                  });
-                }}
+                onClick={() => { setVisibilityPassword(!visibilityPassword) }}
               />
             )}
           </div>

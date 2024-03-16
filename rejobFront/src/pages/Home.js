@@ -12,17 +12,23 @@ import { MdOutlineCategory } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { educationLevelMapper } from "../utils/utils";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const dispatch = useDispatch();
-  const { vagas, empresas, depoimentos, ongs, isLoged, nameUser } = useSelector(
-    (rootrRedux) => rootrRedux.useReducer
-  );
+  const navigate = useNavigate();
+  const isLoged = useSelector(state => state.isLoged.isLoged);
+  const nameUser = useSelector(state => state.nameUser.nameUser);
+  const typeUser = useSelector(state => state?.typeUser?.typeUser);
+  const ongs = useSelector(state => state.ongs.ongs);
+  const depoimentos = useSelector(state => state.depoimentos.depoimentos);
+  const empresas = useSelector(state => state.empresas.empresas);
+  const vagas = useSelector(state => state.vagas.vagas);
   const ultimasVagas = vagas.length > 6 ? vagas.slice(-6).reverse() : vagas;
   const melhoresEmpresas = empresas.length > 6 ? empresas.slice(-6) : empresas;
   const ultimosDepoimentos = depoimentos.length > 3 ? depoimentos.slice(-3) : depoimentos;
   const melhoresOngs = ongs.length > 5 ? ongs.slice(-5) : ongs;
-
+  
   useEffect(() => {
     const hash = window.location.hash;
     if (hash === '#sou-empresa') {
@@ -33,9 +39,7 @@ function Home() {
         window.scrollBy(0, -600); // Rola 100 pixels para cima (valor negativo para rolar para baixo)
       }
     }
-  }, []);
-  
-  useEffect(() => {
+
     const loadVacancies = async () => {
       try {
         const response = await api.get("/jobs/open");
@@ -45,19 +49,19 @@ function Home() {
       }
     };
 
-    const loadDataStates = async () => {
+    const loadData = async () => {
       try {
         const data = require("./componentsForHome.json");
         dispatch({ type: "setEmpresas", payload: data.empresas });
         dispatch({ type: "setOngs", payload: data.ongs });
         dispatch({ type: "setDepoimentos", payload: data.depoimentos });
       } catch (error) {
-        console.error("Erro ao carregar Estados:", error);
+        console.error("Erro ao carregar dados:", error);
       }
     };
 
     loadVacancies();
-    loadDataStates();
+    loadData();
   }, [dispatch]);
 
   return (
@@ -69,12 +73,13 @@ function Home() {
             <img alt="Imagem de fundo da página de vagas" src={backImageHome} />
             <div className={style.conteudo}>
               <p className={style.title}>
+                {typeUser}
                 OPORTUNIDADES DE <br />
                 TRABALHO COM FOCO EM
                 <br />
                 <span>REINTEGRAÇÃO SOCIAL</span>
               </p>
-              {isLoged ? 
+              {isLoged === true ? 
               <>
                 <p className={style.welcome}>Seja bem vindo, <span>{nameUser}</span>!</p>
               </> : <>
@@ -173,8 +178,8 @@ function Home() {
                 </div>
               ))}
             </div>
-            <button>
-              <a href="/vagas">Mais vagas</a>
+            <button onClick={() => (navigate("/vagas"))}>
+              Mais vagas
             </button>
           </div>
           <div id="sou-empresa" className={style.beneficios}>

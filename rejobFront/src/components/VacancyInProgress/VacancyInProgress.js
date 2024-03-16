@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import JobInformationModal from "../JobInformationModal/JobInformationModa";
 
 const VacancyInProgress = (props) => {
-  const { typeUser } = useSelector((rooteRedux) => rooteRedux.useReducer);
+  const typeUser = useSelector(state => state?.typeUser?.typeUser);
   const [modalOpen, setModalOpen] = useState(false);
   const [finalizeVacancy, setFinalizeVacancy] = useState(false);
   const user = UserService();
