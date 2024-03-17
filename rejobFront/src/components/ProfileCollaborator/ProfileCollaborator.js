@@ -140,17 +140,7 @@ const ProfileCollaborator = () => {
         titulo="PERFIL"
         subtitulo="Detalhes pessoais e profissionais do usuário."
       />
-
-      <div className="image-box">
-        <img src={profileImg} />
-      </div>
-
-      {isEditing ? (
-        <div className="selecionarImagem">
-          <input type="file" accept="image/*" style={{ display: "none" }} />
-        </div>
-      ) : null}
-
+      
       <form>
         <div className="campos md:!grid-cols-3">
           <InputCustom
