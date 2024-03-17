@@ -39,9 +39,12 @@ const DashboardOng = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
   };
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -119,7 +122,7 @@ const DashboardOng = () => {
 
       {/* VAGAS DA EMPRESA */}
       <div className="max-w-[1440px] m-auto px-[42px] flex flex-col">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center">
           <Title
             titulo="POSTAGEM DE CURSOS"
             subtitulo="Acompanhe abaixo o andamento de todas as vagas que sua empresa ofertou."
@@ -207,7 +210,7 @@ const DashboardOng = () => {
           )}
         </div>
 
-        <div className="w-full flex pt-[24px]">
+        <div className="w-full flex pt-[72px]">
           <div className="w-full">
             <CoursesOng
               id={userData?.collaboratorId}
