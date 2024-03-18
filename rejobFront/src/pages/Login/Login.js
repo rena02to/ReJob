@@ -37,13 +37,10 @@ function Login() {
       dispatch({ type: "setTypeUser", payload: response.data?.user?.role });
       dispatch({ type: "setNameUser", payload: response.data.user?.name });
 
-      if (response.data?.user?.role === Roles.COLLABORATOR) {
-        navigate("/painel-colaborador");
-      } else if (response.data?.user?.role === Roles.COMPANY) {
-        navigate("/painel-empresa");
-      } else {
-        navigate("/");
+      if (response.data?.user?.role === Roles.COMPANY) {
+        dispatch({ type: "setTypeCompany", payload: response.data?.companyType});
       }
+      navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 403) {
         toast.error("Email ou senha incorretos. Por favor, tente novamente.", {

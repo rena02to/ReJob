@@ -14,6 +14,7 @@ function NavBar() {
   const activatedItem = useSelector(state => state.activatedItem.activatedItem);
   const isLoged = useSelector(state => state.isLoged.isLoged);
   const typeUser = useSelector(state => state?.typeUser?.typeUser);
+  const typeCompany = useSelector(state => state?.typeCompany?.typeCompany);
   const nameUser = useSelector(state => state.nameUser.nameUser);
   const [ windowWidth, setWindowWidth ] = useState(null);
   const [ menuOpen, setMenuOpen ] = useState(false);
@@ -109,7 +110,11 @@ function NavBar() {
     } else if (typeUser === "COLLABORATOR") {
       navigate("/painel-colaborador");
     } else if (typeUser === "COMPANY") {
-      navigate("/painel-empresa");
+      if(typeCompany === "ONG"){
+        navigate("/painel-ong");
+      }else{
+        navigate("/painel-empresa");
+      }
     }
   };
 

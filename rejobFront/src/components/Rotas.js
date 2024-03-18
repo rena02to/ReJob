@@ -27,6 +27,7 @@ import DashboardOng from "../pages/Dashboard/DashboardOng/DashboardOng";
 function Rotas() {
   const isLoged = useSelector(state => state.isLoged.isLoged);
   const typeUser = useSelector(state => state?.typeUser?.typeUser);
+  const typeCompany = useSelector(state => state?.typeCompany?.typeCompany);
   
   return (
     <Router>
@@ -94,11 +95,8 @@ function Rotas() {
         ></Route>
 
         <Route
-          exact
-          path="/painel-ong"
-          element={
-            <DashboardOng />
-          }
+          exact path="/painel-ong"
+          element={typeCompany === "ONG" ? <DashboardOng /> : <Navigate to="/login" />}
         ></Route>
 
         <Route
@@ -109,9 +107,8 @@ function Rotas() {
         {/* Rotas da Empresa */}
 
         <Route
-          exact
-          path="/painel-empresa"
-          element={<DashboardCompany />}
+          exact path="/painel-empresa"
+          element={typeCompany === "PRIVATE_ENTERPRISE" ? <DashboardCompany /> : <Navigate to="/login" />}
         />
 
         {/* Rotas do Egresso */}
