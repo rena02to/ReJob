@@ -10,11 +10,8 @@ function Register(){
             <section className={style.register}>
                 <img src={BackgroundImage} alt='Imagem de fundo da página de registro'/>
                 <div className={style.conteudo}>
-                    <p>Bem vindo!<br />Cadastre-se como <span>colaborador</span><br />ou <span>empresa</span></p>
+                    <p>Bem vindo!<br />Cadastre-se como <span>egresso</span><br />ou <span>empresa</span></p>
                     <div className={style.buttons}>
-                        <a href='/cadastro/colaborador'>
-                            <button>Sou colaborador</button>
-                        </a>
                         <a href='/cadastro/empresa'>
                             <button>Sou empresa</button>
                         </a>
