@@ -79,11 +79,6 @@
   position: relative;
   padding-left: 40px;
 }
-@media (max-width: 500px) {
-  .background form .inputBox .input input, .background form .inputBox .inputTel input {
-    width: 250px;
-  }
-}
 .background form .inputBox .input input:focus, .background form .inputBox .inputTel input:focus {
   border: 3px solid #00A3FF;
 }
