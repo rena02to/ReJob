@@ -69,6 +69,17 @@ const VacancyInProgress = (props) => {
     props.finalizeVacancy();
   };
 
+  const giveup = async () => {
+    try{
+      await api.delete(`/jobApplications/${props.vaga.id}`);
+      toast.success(`Você desistiu da vaga com sucesso!`, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    }catch(error){
+      console.log("Erro ao excluir candidatura: ", error);
+    }
+  }
+
   return (
     <div
       className="flex w-[400px] md:w-[300px] h-[250px] py-[24px] flex-col justify-between items-center border-2 
@@ -105,6 +116,12 @@ const VacancyInProgress = (props) => {
           className="px-[12px] w-[124px] bg-[#00A3FF] text-[#FFF] rounded hover:opacity-85 cursor-pointer"
         >
           MAIS DETALHES
+        </button>
+        <button
+          onClick={giveup}
+          className="px-[12px] w-[124px] bg-[red] text-[#FFF] rounded border border-red-500 hover:opacity-85 cursor-pointer"
+        >
+          DESISTIR
         </button>
         <JobInformationModal
           isOpen={modalOpen}
