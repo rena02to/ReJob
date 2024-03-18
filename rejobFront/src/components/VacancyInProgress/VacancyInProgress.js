@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import locationIcon from "../../images/locationIcon.jpg";
 import contractIcon from "../../images/contractIcon.jpg";
 import nivelIcon from "../../images/nivelIcon.jpg";
+import updatedIcon from "../../images/update2.png";
 import "./CustomModal.css";
 import { ToastContainer, toast } from "react-toastify";
 import api from "../../services/api";
@@ -18,6 +19,7 @@ const VacancyInProgress = (props) => {
   const [finalizeVacancy, setFinalizeVacancy] = useState(false);
   const user = UserService();
   const navigate = useNavigate();
+  console.log(props)
 
   const openModal = () => {
     setModalOpen(true);
@@ -74,9 +76,14 @@ const VacancyInProgress = (props) => {
       className="flex w-[400px] md:w-[300px] h-[250px] py-[24px] flex-col justify-between items-center border-2 
         rounded border-solid border-[#D2D4D4] hover:bg-gray-200 transition duration-300"
     >
-      <h3 className="text-[#00A3FF] px-[12px] text-center font-bold">
-        {props.tituloDaVaga}
-      </h3>
+      <div className="flex items-center">
+        <h3 className="text-[#00A3FF] px-[12px] text-center font-bold">
+          {props.tituloDaVaga}
+          {props.novaAplicacao && (
+              <img src={updatedIcon} alt="Green Icon" className="h-6 w-6" />
+          )}
+        </h3>
+      </div>
       <div className="w-full flex flex-col list-none px-[12px] gap-[6px] items-center justify-center text-[#7C7C8A] text-[12px]">
         <div className="flex gap-[6px] items-center">
           <img src={locationIcon} />

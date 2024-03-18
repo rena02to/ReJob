@@ -183,6 +183,7 @@ const VacancysCompany = (props) => {
               companyLocation,
               educationLevel,
               employmentContractType,
+              hasNewApplicant,
             } = vacancy || {};
             const localizacao = `${companyLocation?.address}, ${companyLocation?.city}, ${companyLocation?.state}`;
             return (
@@ -194,6 +195,7 @@ const VacancysCompany = (props) => {
                 nivel={educationLevelMapper(educationLevel)}
                 contrato={employmentContractType}
                 vaga={vacancy}
+                novaAplicacao={hasNewApplicant}
                 finalizeVacancy={handleFinalizeVacancy}
               />
             );
