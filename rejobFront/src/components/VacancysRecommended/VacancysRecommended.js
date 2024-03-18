@@ -42,7 +42,7 @@ const VacancysRecommended = (props) => {
 
   return (
     <div>
-      <div className="flex flex-wrap md:grid-cols-4 gap-[12px] px-[12px] pb-[64px]">
+      <div className="flex flex-wrap gap-[12px] pb-[64px]">
         {vacancies.map((vacancy, index) => {
           const {
             jobTitle,

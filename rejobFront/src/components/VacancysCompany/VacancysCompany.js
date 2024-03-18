@@ -170,7 +170,7 @@ const VacancysCompany = (props) => {
           className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-82px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full"
         />
       </div>
-      <div className="flex flex-wrap items-center gap-[12px] pt-[12px] px-[12px]">
+      <div className="flex flex-wrap items-center gap-[12px] pt-[12px]">
         {vagasAbertasExibidas.map((vacancy, index) => {
           if (
             props.toggle === 1 &&

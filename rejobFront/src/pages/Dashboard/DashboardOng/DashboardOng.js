@@ -76,7 +76,7 @@ const DashboardOng = () => {
     };
 
     try {
-      const response = await api.post("/courses", updatedFormData);
+      await api.post("/courses", updatedFormData);
 
       toast.success(
         `O Curso: ${formData.courseTitle}, foi ofertado na ReJob com sucesso.`,
