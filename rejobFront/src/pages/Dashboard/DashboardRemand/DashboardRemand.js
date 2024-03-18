@@ -86,7 +86,7 @@ const DashboardRemand = () => {
 
       {/* VAGAS RECOMENDADAS  */}
       <div className="max-w-[1440px] m-auto px-[42px] flex flex-col h-screen">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center">
           <Title
             titulo="VAGAS RECOMENDADAS PARA VOCÊ"
             subtitulo="Acompanhe abaixo algumas vacas recomendadas para você de acordo com seu perfil."

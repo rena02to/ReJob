@@ -17,9 +17,7 @@ import api from "../../services/api";
 import UserService from "../../services/UserService";
 
 const ProfileCollaborator = () => {
-  const [profileImage, setProfileImage] = useState(profileImg);
   const [companies, setCompanies] = useState([]);
-  const [states, setStates] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const userData = UserService();
   const [formData, setFormData] = useState({
@@ -37,24 +35,8 @@ const ProfileCollaborator = () => {
     { value: "ONG", label: "ONG" },
   ];
 
-  // GET STATES
   useEffect(() => {
-    const carregarStates = async () => {
-      try {
-        const data = require("../../utils/states.json");
-        const response = await api.get("/companies");
-        setCompanies(response.data);
-        setStates(data.estados);
-      } catch (error) {
-        console.error("Erro ao carregar Estados:", error);
-      }
-    };
-
-    carregarStates();
-  }, [setStates]);
-
-  useEffect(() => {
-    if (userData) {
+    if (userData && userData.user) {
       setFormData({
         name: userData.user?.name,
         email: userData.user?.email,
@@ -158,17 +140,7 @@ const ProfileCollaborator = () => {
         titulo="PERFIL"
         subtitulo="Detalhes pessoais e profissionais do usuário."
       />
-
-      <div className="image-box">
-        <img src={profileImg} />
-      </div>
-
-      {isEditing ? (
-        <div className="selecionarImagem">
-          <input type="file" accept="image/*" style={{ display: "none" }} />
-        </div>
-      ) : null}
-
+      
       <form>
         <div className="campos md:!grid-cols-3">
           <InputCustom
