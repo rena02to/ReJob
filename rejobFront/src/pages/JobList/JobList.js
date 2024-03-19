@@ -15,7 +15,7 @@ import InputCustom from "../../components/InputCustom/InputCustom";
 import CoursesInProgress from "../../components/CoursesInProgress/CoursesInProgress";
 
 function JobList() {
-  const typeUser = useSelector(state => state?.typeUser?.typeUser);
+  const typeCollaborator = useSelector(state => state?.typeCollaborator?.typeCollaborator);
   const navigate = useNavigate();
   const [state, setState] = useState(null);
   const [presencial, setPresencial] = useState(false);
@@ -150,7 +150,7 @@ function JobList() {
               As melhores vagas com foco em{" "}
               <span className="text-customColor">REINTEGRAÇÃO SOCIAL</span>
             </h2>
-            {typeUser === "COLLABORATOR" ? (
+            {typeCollaborator === "PRIVATE_ENTERPRISE" ? (
               <button className={styles.new} onClick={() => { navigate("/nova-vaga") }}>Cadastrar nova vaga</button>
             ) : null}
           </div>

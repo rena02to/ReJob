@@ -4,15 +4,19 @@ import React, { useState } from "react";
 import TimerIcon from "@mui/icons-material/Timer";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import DeleteIcon from '@mui/icons-material/Delete';
+import UserService from '../../services/UserService';
 
 import "./CustomModal.css";
 import { ToastContainer, toast } from "react-toastify";
 import CourseInformationModal from "../CourseInformationModal/CourseInformationModal";
 import api from "../../services/api";
+import { useSelector } from "react-redux";
 
 const CourseInProgress = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const typeCollaborator = useSelector(state => state?.typeCollaborator?.typeCollaborator);
+  const isLoged = useSelector(state => state.isLoged.isLoged);
 
   const openModal = () => {
     setModalOpen(true);
@@ -43,8 +47,6 @@ const CourseInProgress = (props) => {
 
     try {
       const response = await api.delete(`courses/${idCourse}`);
-
-      console.log(response.status);
 
       if (response.status === 204) {
         props.handleDeletedCourse();
@@ -87,13 +89,16 @@ const CourseInProgress = (props) => {
         >
           Mais detalhes
         </button>
-
-        <button
-          onClick={openDeleteModal}
-          className="p-[6px] flex justify-center items-center absolute right-[12px] top-[12px] bg-red-500 border-none shadow text-[#FFF] rounded-full hover:opacity-85 cursor-pointer"
-        >
-          <DeleteIcon />
-        </button>
+        {
+          typeCollaborator === "ONG" && (
+            <button
+              onClick={openDeleteModal}
+              className="p-[6px] flex justify-center items-center absolute right-[12px] top-[12px] bg-red-500 border-none shadow text-[#FFF] rounded-full hover:opacity-85 cursor-pointer"
+            >
+              <DeleteIcon />
+            </button>
+          )
+        }
 
         <CourseInformationModal
           isOpen={modalOpen}
