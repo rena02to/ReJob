@@ -12,6 +12,8 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
 import { educationLevelMapper } from "../../utils/utils";
 import { useSelector } from "react-redux";
+import axios from 'axios';
+import InputCustom from "../../components/InputCustom/InputCustom";
 
 function JobList() {
   const typeUser = useSelector(state => state?.typeUser?.typeUser);
@@ -21,7 +23,15 @@ function JobList() {
   const [remoto, setRemoto] = useState(false);
   const [salaryRange, setSalaryRange] = useState([1000, 30000]);
   const [jobs, setJobs] = useState([]);
+  const [jobsSearched, setJobsSearched] = useState([]);
   const [states, setStates] = useState([]);
+  const [filter, setFilter] = useState({
+    name: "",
+    categories: "",
+    minSalary: salaryRange[0],
+    maxSalary: salaryRange[1],
+    state: ""
+  });
 
   const handlePresencialChange = () => {
     setPresencial(!presencial);
@@ -39,6 +49,17 @@ function JobList() {
 
   const handleSalaryRangeChange = (e) => {
     setSalaryRange(e.value);
+
+    const min = e.value[0];
+    const max = e.value[1];
+
+    // Atualizando o estado de uma vez só
+    setFilter(prevFilter => ({
+      ...prevFilter,
+      minSalary: min,
+      maxSalary: max
+    }));
+
   };
 
   useEffect(() => {
@@ -56,20 +77,51 @@ function JobList() {
     fetchData();
   }, []);
 
-  const handleFilterClick = () => {
-    const filters = {
-      state,
-      presencial,
-      remoto,
-      salaryRange,
-    };
+
+  const loadJobs = async () => {
+    try {
+      const response = await api.get("/jobs/open");
+      setJobs(response.data);
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+    }
   };
 
-  const clearFilters = () => {
-    setState(null);
-    setPresencial(false);
-    setRemoto(false);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setFilter({ ...filter, [name]: value });
+  };
+
+  const handleFilterClick = async () => {
+    try {
+      const response = await api.get("/jobs/jobs",
+        {
+          params: {
+            name: filter.name.toLowerCase(),
+            categories: filter.categories.toLowerCase(),
+            state: filter.state.toLowerCase(),
+            salaryMin: filter.salaryMin,
+            salaryMax: filter.salaryMax
+          }
+        });
+      setJobs(response.data);
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+    }
+  };
+
+  const clearFilters = async () => {
+    setFilter({
+      name: "",
+      categories: "",
+      minSalary: salaryRange[0],
+      maxSalary: salaryRange[1],
+      state: ""
+    });
     setSalaryRange([1000, 30000]);
+
+    loadJobs();
   };
 
   const goToDetailsPage = (jobId) => {
@@ -81,13 +133,13 @@ function JobList() {
       <NavBar></NavBar>
       <div className={styles.container}>
         <div className={styles.section}>
-          <div className="flex flex-col items-center justify-center bg-black w-full h-[250px] w-full text-white">
+          <div className="flex flex-col items-center justify-center bg-black h-[250px] w-full text-white">
             <h2 className="w-full mx-auto text-center text-[32px] font-bold">
               As melhores vagas com foco em{" "}
               <span className="text-customColor">REINTEGRAÇÃO SOCIAL</span>
             </h2>
             {typeUser === "COLLABORATOR" ? (
-              <button className={styles.new} onClick={() => {navigate("/nova-vaga")}}>Cadastrar nova vaga</button>
+              <button className={styles.new} onClick={() => { navigate("/nova-vaga") }}>Cadastrar nova vaga</button>
             ) : null}
           </div>
           <div className={styles.body_container}>
@@ -169,70 +221,66 @@ function JobList() {
                 ))}
               </div>
             </div>
-            <div className={styles.filters_container}>
-              <div className={styles.filter_header}>
-                <h2>Filtro de vagas</h2>
-                <button onClick={clearFilters}>Limpar</button>
-              </div>
-              <div className={styles.filters}>
-                <SelectCustom
-                  label="Categoria da vaga"
-                  options={[
-                    { value: "Meio Período", label: "Meio Período" },
-                    { value: "Período Integral", label: "Período Integral" },
-                  ]}
-                />
-                <SelectCustom
-                  label="Habilidades"
-                  options={[
-                    { value: "Meio Período", label: "Meio Período" },
-                    { value: "Período Integral", label: "Período Integral" },
-                  ]}
-                />
-                <p>Tipo de Vaga</p>
-                <div className={styles.type_of_vacancy}>
-                  <div>
-                    <Checkbox
-                      inputId="remoteCheckbox"
-                      value="remoto"
-                      onChange={handleRemotoChange}
-                      checked={remoto}
-                    />
-                    <label htmlFor="remoteCheckbox"> Remoto</label>
-                  </div>
-                  <div>
-                    <Checkbox
-                      inputId="presencialCheckbox"
-                      value="presencial"
-                      onChange={handlePresencialChange}
-                      checked={presencial}
-                    />
-                    <label htmlFor="presencialCheckbox"> Presencial</label>
-                  </div>
+            <div className="flex flex-col gap-[24px]">
+              <div className={styles.filters_container}>
+                <div className={styles.filter_header}>
+                  <h2>Filtro de vagas</h2>
+                  <button onClick={clearFilters}>Limpar</button>
                 </div>
-                <SelectCustom
-                  label="Estado"
-                  options={states.map((state) => ({
-                    value: state.sigla,
-                    label: state.nome,
-                  }))}
-                />
-                <p>Faixa Salarial (Mensal)</p>
-                <div className={styles.salary_range}>
-                  <span>
-                    R$ {salaryRange[0]} - R$ {salaryRange[1]}
-                  </span>
-                  <Slider
-                    value={salaryRange}
-                    onChange={handleSalaryRangeChange}
-                    range
-                    min={0}
-                    max={30000}
-                    step={1000}
+                <div className={styles.filters}>
+                  <InputCustom
+                    label="Titulo da Vaga"
+                    id="name"
+                    name="name"
+                    value={filter.name}
+                    onChange={handleInputChange}
+                    type="text"
                   />
-                  <button onClick={handleFilterClick}>Filtrar</button>
+
+                  <InputCustom
+                    label="Categorias"
+                    id="categories"
+                    name="categories"
+                    value={filter.categories}
+                    onChange={handleInputChange}
+                    type="text"
+                  />
+
+                  <SelectCustom
+                    label="Estado"
+                    name="state"
+                    id="state"
+                    options={states.map((state) => ({
+                      value: state.sigla,
+                      label: state.nome,
+                    }))}
+                    value={filter.state}
+                    onChange={handleInputChange}
+                  />
+                  <p>Faixa Salarial (Mensal)</p>
+                  <div className={styles.salary_range}>
+                    <span>
+                      R$ {salaryRange[0]} - R$ {salaryRange[1]}
+                    </span>
+                    <Slider
+                      value={salaryRange}
+                      onChange={handleSalaryRangeChange}
+                      range
+                      min={1000}
+                      max={30000}
+                      step={1000}
+                    />
+                    <button onClick={handleFilterClick}>Filtrar</button>
+                  </div>
                 </div>
               </div>
+
+              {/* <div className="flex flex-col">
+                <div className='text-[#00A3FF]'>
+                  <h2>Cursos Anunciados</h2>
+                </div>
+              </div> */}
+
             </div>
           </div>
         </div>
