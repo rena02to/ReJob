@@ -19,7 +19,7 @@ const CourseInformationModal = ({
             >
               X
             </button>
-            <div class="flex flex-col gap-[32px]">
+            <div className="flex flex-col gap-[32px]">
               <div>
                 <h2 className="text-[#00A3FF]">{course?.courseTitle}</h2>
                 <div className="w-full flex list-none gap-[6px] items-center text-[#7C7C8A] text-[12px]">

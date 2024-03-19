@@ -77,7 +77,7 @@ function Rotas() {
         <Route
           exact
           path="/nova-vaga"
-          element={typeUser === "COLLABORATOR" ? <NewVacancy /> : <Navigate to="/" />}
+          element={typeCollaborator === "PRIVATE_ENTERPRISE" ? <NewVacancy /> : <Navigate to="/" />}
         />
 
         {/* Rotas do Colaborador */}
