@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   isLoged: persistReducer(persistConfig, reducer),
   nameUser: persistReducer(persistConfig, reducer),
   typeUser: persistReducer(persistConfig, reducer),
-  typeCompany: persistReducer(persistConfig, reducer),
+  typeCollaborator: persistReducer(persistConfig, reducer),
   vagas: persistReducer(persistConfig, reducer),
   empresas: persistReducer(persistConfig, reducer),
   depoimentos: persistReducer(persistConfig, reducer),

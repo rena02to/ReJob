@@ -37,8 +37,8 @@ function Login() {
       dispatch({ type: "setTypeUser", payload: response.data?.user?.role });
       dispatch({ type: "setNameUser", payload: response.data.user?.name });
 
-      if (response.data?.user?.role === Roles.COMPANY) {
-        dispatch({ type: "setTypeCompany", payload: response.data?.companyType});
+      if (response.data?.user?.role === Roles.COLLABORATOR) {
+        dispatch({ type: "setTypeCollaborator", payload: response.data?.collaboratorType});
       }
       navigate("/");
     } catch (error) {

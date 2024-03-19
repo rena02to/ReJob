@@ -27,7 +27,7 @@ import DashboardOng from "../pages/Dashboard/DashboardOng/DashboardOng";
 function Rotas() {
   const isLoged = useSelector(state => state.isLoged.isLoged);
   const typeUser = useSelector(state => state?.typeUser?.typeUser);
-  const typeCompany = useSelector(state => state?.typeCompany?.typeCompany);
+  const typeCollaborator = useSelector(state => state?.typeCollaborator?.typeCollaborator);
   
   return (
     <Router>
@@ -63,13 +63,13 @@ function Rotas() {
         <Route
           exact
           path="/cadastro/colaborador"
-          element={isLoged === true ? <Navigate to="/" /> : <RegisterCollaborator />}
+          element={isLoged === false ? <Navigate to="/" /> : <RegisterCollaborator />}
         />
 
         <Route
           exact
           path="/cadastro/egresso"
-          element={isLoged === true ? <Navigate to="/login" /> : <RegisterRemand />}
+          element={isLoged === false ? <Navigate to="/login" /> : <RegisterRemand />}
         />
 
         <Route path="/*" element={<NotFound />} />
@@ -85,18 +85,12 @@ function Rotas() {
         <Route
           exact
           path="/painel-colaborador"
-          element={
-            typeUser === "COLLABORATOR" ? (
-              <DashboardCollaborator />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
+          element={typeCollaborator === "PRIVATE_ENTERPRISE" ? <DashboardCollaborator /> : <Navigate to="/login" />}
         ></Route>
 
         <Route
           exact path="/painel-ong"
-          element={typeCompany === "ONG" ? <DashboardOng /> : <Navigate to="/login" />}
+          element={typeCollaborator === "ONG" ? <DashboardOng /> : <Navigate to="/" />}
         ></Route>
 
         <Route
@@ -108,7 +102,7 @@ function Rotas() {
 
         <Route
           exact path="/painel-empresa"
-          element={typeCompany === "PRIVATE_ENTERPRISE" ? <DashboardCompany /> : <Navigate to="/login" />}
+          element={typeUser === "COMPANY" ? <DashboardCompany /> : <Navigate to="/" />}
         />
 
         {/* Rotas do Egresso */}
