@@ -4,7 +4,6 @@ import styles from "./../../styles/css/JobList.module.css";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import SelectCustom from "../../components/SelectCustom/SelectCustom";
-import { Checkbox } from "primereact/checkbox";
 import { Slider } from "primereact/slider";
 import { FaBuildingUser, FaLocationDot } from "react-icons/fa6";
 import { ImStatsBars } from "react-icons/im";
@@ -12,8 +11,8 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import api from "../../services/api";
 import { educationLevelMapper } from "../../utils/utils";
 import { useSelector } from "react-redux";
-import axios from 'axios';
 import InputCustom from "../../components/InputCustom/InputCustom";
+import CoursesInProgress from "../../components/CoursesInProgress/CoursesInProgress";
 
 function JobList() {
   const typeUser = useSelector(state => state?.typeUser?.typeUser);
@@ -23,7 +22,7 @@ function JobList() {
   const [remoto, setRemoto] = useState(false);
   const [salaryRange, setSalaryRange] = useState([1000, 30000]);
   const [jobs, setJobs] = useState([]);
-  const [jobsSearched, setJobsSearched] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [states, setStates] = useState([]);
   const [filter, setFilter] = useState({
     name: "",
@@ -69,6 +68,19 @@ function JobList() {
         const data = require("../../utils/states.json");
         setStates(data.estados);
         setJobs(response.data);
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/courses");
+        setCourses(response.data);
       } catch (error) {
         console.error("Erro na requisição:", error);
       }
@@ -275,11 +287,23 @@ function JobList() {
                 </div>
               </div>
 
-              {/* <div className="flex flex-col">
+              <div className="flex flex-col p-[12px]">
                 <div className='text-[#00A3FF]'>
                   <h2>Cursos Anunciados</h2>
                 </div>
-              </div> */}
+                <div className="flex flex-col justify-center items-center gap-[12px]">
+                  {courses.map((course, index) => {
+                    {
+                      return (
+                        <CoursesInProgress
+                          key={index}
+                          course={course}
+                        />
+                      );
+                    }
+                  })}
+                </div>
+              </div>
 
             </div>
           </div>

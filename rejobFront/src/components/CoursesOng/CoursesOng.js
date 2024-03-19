@@ -13,8 +13,6 @@ const CoursesOng = (props) => {
   const [cursosExibidos, setCursosExibidos] = useState([]);
   const id = props.id;
 
-  console.log(props.newCourse)
-
   useEffect(() => {
     if (id) {
       const fetchData = async () => {
@@ -103,12 +101,7 @@ const CoursesOng = (props) => {
           {
             return (
               <CoursesInProgress
-                key={index}
-                courseTitle={course.courseTitle}
-                platform={course.platform}
-                link={course.link}
-                description={course.description}
-                duration={course.duration}
+                course={course}
               />
             );
           }
