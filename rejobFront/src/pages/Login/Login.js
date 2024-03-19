@@ -38,12 +38,9 @@ function Login() {
       dispatch({ type: "setNameUser", payload: response.data.user?.name });
 
       if (response.data?.user?.role === Roles.COLLABORATOR) {
-        navigate("/painel-colaborador");
-      } else if (response.data?.user?.role === Roles.COMPANY) {
-        navigate("/painel-empresa");
-      } else {
-        navigate("/");
+        dispatch({ type: "setTypeCollaborator", payload: response.data?.collaboratorType});
       }
+      navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 403) {
         toast.error("Email ou senha incorretos. Por favor, tente novamente.", {

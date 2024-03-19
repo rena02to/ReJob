@@ -1,6 +1,7 @@
 const initialState = {
     isLoged: false,
     typeUser: null,
+    typeCollaborator: null,
     nameUser: null,
     activatedItem: '/',
     ongs: [],
@@ -15,6 +16,8 @@ const reducer = (state = initialState, action) => {
             return { ...state, isLoged: action.payload };
         case 'setTypeUser':
             return{ ...state, typeUser: action.payload };
+        case 'setTypeCollaborator':
+            return{ ...state, typeCollaborator: action.payload };
         case 'setNameUser':
             return{ ...state, nameUser: action.payload };
         case 'ChangeActivatedItem':
