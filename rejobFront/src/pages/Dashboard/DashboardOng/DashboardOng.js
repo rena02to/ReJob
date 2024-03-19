@@ -78,19 +78,20 @@ const DashboardOng = () => {
     try {
       await api.post("/courses", updatedFormData);
 
+      cleanForm();
+      setModalOpen(false);
+      setNewCourse(true);
+
       toast.success(
         `O Curso: ${formData.courseTitle}, foi ofertado na ReJob com sucesso.`,
         {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
+      return;
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
     }
-
-    cleanForm();
-    setModalOpen(false);
-    setNewCourse(true);
   };
 
   const openModal = () => {
@@ -134,14 +135,14 @@ const DashboardOng = () => {
 
           {modalOpen && (
             <div className="modal-background" onClick={handleBackgroundClick}>
-              <div className="modal relative h-[800px] mt-16">
+              <div className="modal relative mt-16 overflow-auto max-w-[800px] h-[600px]">
                 <button
                   className="close-button absolute right-[24px] cursor-pointer hover:bg-[#00A3FF] hover:text-white"
                   onClick={closeModal}
                 >
                   X
                 </button>
-                <div className="flex flex-col gap-[12px] justify-center items-center p-[24px]">
+                <div className="flex flex-col gap-[12px] justify-center items-center">
                   <h2 className="text-[#00A3FF]">OFERTAR NOVO CURSO</h2>
                   <div className="grid grid-cols-2 gap-[24px] items-center">
                     <InputCustom
@@ -194,6 +195,7 @@ const DashboardOng = () => {
                         rows={20}
                         placeholder="Digite uma descrição a respeito do curso"
                         charmax={1000}
+                        countchar={formData.description.length}
                       />
                       <button
                         type="submit"
@@ -222,7 +224,6 @@ const DashboardOng = () => {
         </div>
       </div>
 
-      <ToastContainer autoClose={5000} />
     </div>
   );
 };

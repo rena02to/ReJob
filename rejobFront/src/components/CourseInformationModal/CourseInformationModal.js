@@ -12,7 +12,7 @@ const CourseInformationModal = ({
     <>
       {isOpen && (
         <div className="modal-background" onClick={handleBackgroundClick}>
-          <div className="modal relative  mt-16" style={{ width, height }}>
+          <div className="modal relative mt-16" style={{ width, height }}>
             <button
               className="close-button absolute right-[24px] cursor-pointer hover:bg-[#00A3FF] hover:text-white"
               onClick={closeModal}
