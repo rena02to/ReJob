@@ -88,9 +88,6 @@ function Home() {
                 </p>
                 <div className={style.interno}>
                   <div className={style.buttons}>
-                    <a href="/cadastro/colaborador" className={style.colaborador}>
-                      <button>Sou colaborador</button>
-                    </a>
                     <a
                       href="/cadastro/empresa"
                       className={style.colaboradorEmpresa}

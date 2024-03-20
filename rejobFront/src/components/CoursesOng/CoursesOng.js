@@ -11,9 +11,8 @@ const CoursesOng = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [courses, setCourses] = useState([]);
   const [cursosExibidos, setCursosExibidos] = useState([]);
+  const [deletedCourse, setDeletedCourse] = useState(false);
   const id = props.id;
-
-  console.log(props.newCourse)
 
   useEffect(() => {
     if (id) {
@@ -32,11 +31,12 @@ const CoursesOng = (props) => {
   }, [id]);
 
   useEffect(() => {
-    if (props.newCourse) {
+    if (props.newCourse || deletedCourse) {
       const fetchData = async () => {
         try {
           const response = await api.get(`${props.url}/${id}`);
 
+          setDeletedCourse(false);
           setCourses(response.data);
         } catch (error) {
           console.error("Erro na requisição:", error);
@@ -47,7 +47,7 @@ const CoursesOng = (props) => {
 
       fetchData();
     }
-  }, [props.newCourse]);
+  }, [props.newCourse, deletedCourse]);
 
 
   useEffect(() => {
@@ -81,6 +81,10 @@ const CoursesOng = (props) => {
     setPaginaAtual(novaPagina);
   };
 
+  const handleDeletedCourse = () => {
+    setDeletedCourse(true);
+  }
+
   return (
     <div className="">
       <div className="relative">
@@ -104,11 +108,8 @@ const CoursesOng = (props) => {
             return (
               <CoursesInProgress
                 key={index}
-                courseTitle={course.courseTitle}
-                platform={course.platform}
-                link={course.link}
-                description={course.description}
-                duration={course.duration}
+                course={course}
+                handleDeletedCourse = {handleDeletedCourse}
               />
             );
           }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // COMPONENTS
 import NavBar from "../../../components/NavBar";
@@ -13,7 +13,6 @@ import UserService from "../../../services/UserService";
 const DashboardRemand = () => {
   const [toggle, setToggle] = useState(1);
   const userData = UserService();
-  const [paginaAtual, setPaginaAtual] = useState(1);
 
   if (!userData) {
     return null;
