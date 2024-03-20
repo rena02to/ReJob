@@ -285,7 +285,7 @@ function JobList() {
                       range
                       min={0}
                       max={30000}
-                      step={1000}
+                      step={50}
                     />
                     <button onClick={handleFilterClick}>Filtrar</button>
                   </div>
