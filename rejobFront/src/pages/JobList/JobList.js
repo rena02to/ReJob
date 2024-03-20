@@ -15,12 +15,14 @@ import InputCustom from "../../components/InputCustom/InputCustom";
 import CoursesInProgress from "../../components/CoursesInProgress/CoursesInProgress";
 
 function JobList() {
-  const typeCollaborator = useSelector(state => state?.typeCollaborator?.typeCollaborator);
+  const typeCollaborator = useSelector(
+    (state) => state?.typeCollaborator?.typeCollaborator
+  );
   const navigate = useNavigate();
   const [state, setState] = useState(null);
   const [presencial, setPresencial] = useState(false);
   const [remoto, setRemoto] = useState(false);
-  const [salaryRange, setSalaryRange] = useState([1000, 30000]);
+  const [salaryRange, setSalaryRange] = useState([0, 30000]);
   const [jobs, setJobs] = useState([]);
   const [courses, setCourses] = useState([]);
   const [states, setStates] = useState([]);
@@ -29,7 +31,7 @@ function JobList() {
     categories: "",
     minSalary: salaryRange[0],
     maxSalary: salaryRange[1],
-    state: ""
+    state: "",
   });
 
   const handlePresencialChange = () => {
@@ -52,13 +54,11 @@ function JobList() {
     const min = e.value[0];
     const max = e.value[1];
 
-    // Atualizando o estado de uma vez só
-    setFilter(prevFilter => ({
+    setFilter((prevFilter) => ({
       ...prevFilter,
       minSalary: min,
-      maxSalary: max
+      maxSalary: max,
     }));
-
   };
 
   useEffect(() => {
@@ -89,7 +89,6 @@ function JobList() {
     fetchData();
   }, []);
 
-
   const loadJobs = async () => {
     try {
       const response = await api.get("/jobs/open");
@@ -107,16 +106,15 @@ function JobList() {
 
   const handleFilterClick = async () => {
     try {
-      const response = await api.get("/jobs/jobs",
-        {
-          params: {
-            name: filter.name.toLowerCase(),
-            categories: filter.categories.toLowerCase(),
-            state: filter.state.toLowerCase(),
-            salaryMin: filter.salaryMin,
-            salaryMax: filter.salaryMax
-          }
-        });
+      const response = await api.get("/jobs/jobs", {
+        params: {
+          name: filter.name.toLowerCase(),
+          categories: filter.categories.toLowerCase(),
+          state: filter.state.toLowerCase(),
+          minSalary: filter.minSalary,
+          maxSalary: filter.maxSalary,
+        },
+      });
       setJobs(response.data);
     } catch (error) {
       console.error("Erro na requisição:", error);
@@ -129,9 +127,9 @@ function JobList() {
       categories: "",
       minSalary: salaryRange[0],
       maxSalary: salaryRange[1],
-      state: ""
+      state: "",
     });
-    setSalaryRange([1000, 30000]);
+    setSalaryRange([0, 30000]);
 
     loadJobs();
   };
@@ -151,7 +149,14 @@ function JobList() {
               <span className="text-customColor">REINTEGRAÇÃO SOCIAL</span>
             </h2>
             {typeCollaborator === "PRIVATE_ENTERPRISE" ? (
-              <button className={styles.new} onClick={() => { navigate("/nova-vaga") }}>Cadastrar nova vaga</button>
+              <button
+                className={styles.new}
+                onClick={() => {
+                  navigate("/nova-vaga");
+                }}
+              >
+                Cadastrar nova vaga
+              </button>
             ) : null}
           </div>
           <div className={styles.body_container}>
@@ -278,7 +283,7 @@ function JobList() {
                       value={salaryRange}
                       onChange={handleSalaryRangeChange}
                       range
-                      min={1000}
+                      min={0}
                       max={30000}
                       step={1000}
                     />
@@ -288,23 +293,17 @@ function JobList() {
               </div>
 
               <div className="flex flex-col p-[12px]">
-                <div className='text-[#00A3FF]'>
+                <div className="text-[#00A3FF]">
                   <h2>Cursos Anunciados</h2>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-[12px]">
                   {courses.map((course, index) => {
                     {
-                      return (
-                        <CoursesInProgress
-                          key={index}
-                          course={course}
-                        />
-                      );
+                      return <CoursesInProgress key={index} course={course} />;
                     }
                   })}
                 </div>
               </div>
-
             </div>
           </div>
         </div>
