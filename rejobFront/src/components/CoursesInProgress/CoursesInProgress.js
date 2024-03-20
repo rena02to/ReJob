@@ -11,12 +11,14 @@ import { ToastContainer, toast } from "react-toastify";
 import CourseInformationModal from "../CourseInformationModal/CourseInformationModal";
 import api from "../../services/api";
 import { useSelector } from "react-redux";
+import { useLocation } from 'react-router-dom';
 
 const CourseInProgress = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const typeCollaborator = useSelector(state => state?.typeCollaborator?.typeCollaborator);
   const isLoged = useSelector(state => state.isLoged.isLoged);
+  const location = useLocation();
 
   const openModal = () => {
     setModalOpen(true);
@@ -55,7 +57,6 @@ const CourseInProgress = (props) => {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
         return;
-
       }
 
     } catch (error) {
@@ -90,7 +91,7 @@ const CourseInProgress = (props) => {
           Mais detalhes
         </button>
         {
-          typeCollaborator === "ONG" && (
+          typeCollaborator && typeCollaborator === "ONG" && !props.jobList && (
             <button
               onClick={openDeleteModal}
               className="p-[6px] flex justify-center items-center absolute right-[12px] top-[12px] bg-red-500 border-none shadow text-[#FFF] rounded-full hover:opacity-85 cursor-pointer"

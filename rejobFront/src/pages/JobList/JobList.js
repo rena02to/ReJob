@@ -299,7 +299,7 @@ function JobList() {
                 <div className="flex flex-col justify-center items-center gap-[12px]">
                   {courses.map((course, index) => {
                     {
-                      return <CoursesInProgress key={index} course={course} />;
+                      return <CoursesInProgress key={index} course={course} jobList={true} />;
                     }
                   })}
                 </div>

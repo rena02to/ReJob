@@ -147,7 +147,7 @@ const ProfileCollaborator = () => {
             label="Nome Completo"
             id="name"
             name="name"
-            value={formData.name}
+            value={formData.name || ""}
             type="text"
             disabled={!isEditing}
             onChange={handleInputChange}
@@ -157,7 +157,7 @@ const ProfileCollaborator = () => {
             label="Colaborador vinculado a uma..."
             id="collaboratorType"
             name="collaboratorType"
-            value={formData.collaboratorType}
+            value={formData.collaboratorType || ""}
             onChange={handleInputChange}
             disabled={!isEditing}
             options={options}
@@ -167,7 +167,7 @@ const ProfileCollaborator = () => {
             label="Empresa"
             id="companyId"
             name="companyId"
-            value={formData.companyId}
+            value={formData.companyId || ""}
             onChange={handleInputChange}
             disabled={!isEditing}
             options={companies.map((company) => {
@@ -180,7 +180,7 @@ const ProfileCollaborator = () => {
             type="text"
             id="jobTitle"
             name="jobTitle"
-            value={formData.jobTitle}
+            value={formData.jobTitle || ""}
             onChange={handleInputChange}
           />
 
@@ -188,7 +188,7 @@ const ProfileCollaborator = () => {
             label="Endereço de E-mail"
             id="email"
             name="email"
-            value={formData.email}
+            value={formData.email || ""}
             type="text"
             disabled={!isEditing}
             onChange={handleInputChange}
@@ -199,7 +199,7 @@ const ProfileCollaborator = () => {
             id="password"
             name="password"
             autoComplete="password"
-            value={formData.password}
+            value={formData.password || ""}
             disabled={!isEditing}
             onChange={handleInputChange}
           />
