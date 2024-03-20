@@ -150,7 +150,7 @@ const DashboardOng = () => {
                       placeholder="Digite o título do curso"
                       id="courseTitle"
                       name="courseTitle"
-                      value={formData.courseTitle}
+                      value={formData.courseTitle || ""}
                       onChange={handleInputChange}
                       type="text"
                     />
@@ -160,7 +160,7 @@ const DashboardOng = () => {
                       placeholder="Digite o nome da plataforma do curso"
                       id="platform"
                       name="platform"
-                      value={formData.platform}
+                      value={formData.platform || ""}
                       onChange={handleInputChange}
                       type="text"
                     />
@@ -170,7 +170,7 @@ const DashboardOng = () => {
                       placeholder="Coloque o link do curso"
                       id="link"
                       name="link"
-                      value={formData.link}
+                      value={formData.link || ""}
                       onChange={handleInputChange}
                       type="text"
                     />
@@ -180,7 +180,7 @@ const DashboardOng = () => {
                       placeholder="Coloque a duração do curso (horas)"
                       id="duration"
                       name="duration"
-                      value={formData.duration}
+                      value={formData.duration || ""}
                       onChange={handleInputChange}
                       type="number"
                     />
@@ -190,7 +190,7 @@ const DashboardOng = () => {
                         label="Descrição do Curso"
                         id="description"
                         name="description"
-                        value={formData.description}
+                        value={formData.description || ""}
                         onChange={handleInputChange}
                         rows={20}
                         placeholder="Digite uma descrição a respeito do curso"
