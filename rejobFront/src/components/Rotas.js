@@ -25,10 +25,12 @@ import DashboardCollaborator from "../pages/Dashboard/DashboardCollaborator/Dash
 import DashboardOng from "../pages/Dashboard/DashboardOng/DashboardOng";
 
 function Rotas() {
-  const isLoged = useSelector(state => state.isLoged.isLoged);
-  const typeUser = useSelector(state => state?.typeUser?.typeUser);
-  const typeCollaborator = useSelector(state => state?.typeCollaborator?.typeCollaborator);
-  
+  const isLoged = useSelector((state) => state.isLoged.isLoged);
+  const typeUser = useSelector((state) => state?.typeUser?.typeUser);
+  const typeCollaborator = useSelector(
+    (state) => state?.typeCollaborator?.typeCollaborator
+  );
+
   return (
     <Router>
       <Routes>
@@ -63,13 +65,17 @@ function Rotas() {
         <Route
           exact
           path="/cadastro/colaborador"
-          element={isLoged === false ? <Navigate to="/" /> : <RegisterCollaborator />}
+          element={
+            isLoged === false ? <Navigate to="/" /> : <RegisterCollaborator />
+          }
         />
 
         <Route
           exact
           path="/cadastro/egresso"
-          element={isLoged === false ? <Navigate to="/login" /> : <RegisterRemand />}
+          element={
+            isLoged === false ? <Navigate to="/login" /> : <RegisterRemand />
+          }
         />
 
         <Route path="/*" element={<NotFound />} />
@@ -77,7 +83,13 @@ function Rotas() {
         <Route
           exact
           path="/nova-vaga"
-          element={typeUser === "COLLABORATOR" ? <NewVacancy /> : <Navigate to="/" />}
+          element={
+            typeCollaborator === "PRIVATE_ENTERPRISE" ? (
+              <NewVacancy />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
 
         {/* Rotas do Colaborador */}
@@ -85,12 +97,21 @@ function Rotas() {
         <Route
           exact
           path="/painel-colaborador"
-          element={typeCollaborator === "PRIVATE_ENTERPRISE" ? <DashboardCollaborator /> : <Navigate to="/login" />}
+          element={
+            typeCollaborator === "PRIVATE_ENTERPRISE" ? (
+              <DashboardCollaborator />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         ></Route>
 
         <Route
-          exact path="/painel-ong"
-          element={typeCollaborator === "ONG" ? <DashboardOng /> : <Navigate to="/" />}
+          exact
+          path="/painel-ong"
+          element={
+            typeCollaborator === "ONG" ? <DashboardOng /> : <Navigate to="/" />
+          }
         ></Route>
 
         <Route
@@ -101,8 +122,11 @@ function Rotas() {
         {/* Rotas da Empresa */}
 
         <Route
-          exact path="/painel-empresa"
-          element={typeUser === "COMPANY" ? <DashboardCompany /> : <Navigate to="/" />}
+          exact
+          path="/painel-empresa"
+          element={
+            typeUser === "COMPANY" ? <DashboardCompany /> : <Navigate to="/" />
+          }
         />
 
         {/* Rotas do Egresso */}
@@ -112,11 +136,7 @@ function Rotas() {
           element={isLoged === true ? <Navigate to="/login" /> : <Profile />}
         />
 
-        <Route
-          exact
-          path="/painel-egresso"
-          element={<DashboardRemand />}
-        />
+        <Route exact path="/painel-egresso" element={<DashboardRemand />} />
 
         <Route
           exact

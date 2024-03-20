@@ -97,6 +97,10 @@ function NavBar() {
       payload: null,
     });
     dispatch({
+      type: "setTypeCollaborator",
+      payload: null,
+    });
+    dispatch({
       type: "setNameUser",
       payload: null,
     });
