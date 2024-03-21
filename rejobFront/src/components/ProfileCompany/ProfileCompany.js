@@ -193,7 +193,9 @@ const ProfileCompany = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     } catch (error) {
-      console.error("Erro ao fazer a solicitação POST:", error);
+      toast.error("Não foi possível atualizar os dados da empresa.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
 
     handleDisableEditing(event);

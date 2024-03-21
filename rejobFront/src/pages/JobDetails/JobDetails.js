@@ -31,18 +31,17 @@ const JobDetails = () => {
   }, [id, userData]);
 
   const applayingVacancy = async () => {
-
     if (!userData) {
-      navigate('/login')
-      return
+      navigate("/login");
+      return;
     }
 
     const applicationData = {
       applicantId: userData.id,
       jobId: job.id,
       status: "IN_PROGRESS",
-      feedback: ""
-    }
+      feedback: "",
+    };
 
     if (userData.user.role === "USER") {
       try {
@@ -56,19 +55,18 @@ const JobDetails = () => {
           toast.error(`Você já aplicou para esta vaga.`, {
             position: toast.POSITION.BOTTOM_RIGHT,
           });
+        } else {
+          toast.error("Não foi possível se aplicar à vaga.", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
         }
-        else 
-        {
-            console.error("Erro ao fazer a solicitação PUT:", error);
-        }
-
       }
     } else {
       toast.error(`Você não é EGRESSO para poder aplicar nesta vaga.`, {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
-  }
+  };
 
   return (
     <>
@@ -125,7 +123,9 @@ const JobDetails = () => {
               Ficou com interesse na vaga? Demonstre o seu interesse e seja
               encontrado pela empresa.
             </span>
-            <button onClick={applayingVacancy} className={styles.button}>Inscrever-se</button>
+            <button onClick={applayingVacancy} className={styles.button}>
+              Inscrever-se
+            </button>
           </div>
         </div>
       </div>
@@ -177,7 +177,9 @@ const JobDetails = () => {
             <div className={styles.subscribeCard}>
               <h1>Ficou interessado na vaga?</h1>
               <h3> Demonstre o seu interesse e seja encontrado pela empresa</h3>
-              <button onClick={applayingVacancy} className={styles.button}>Inscrever-se</button>
+              <button onClick={applayingVacancy} className={styles.button}>
+                Inscrever-se
+              </button>
             </div>
           </div>
         </div>

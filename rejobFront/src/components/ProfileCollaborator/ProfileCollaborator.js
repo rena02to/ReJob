@@ -128,7 +128,9 @@ const ProfileCollaborator = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     } catch (error) {
-      console.error("Erro ao fazer a solicitação POST:", error);
+      toast.error("Não foi possível atualizar os dados do colaborador.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
 
     handleDisableEditing(event);
@@ -140,7 +142,7 @@ const ProfileCollaborator = () => {
         titulo="PERFIL"
         subtitulo="Detalhes pessoais e profissionais do usuário."
       />
-      
+
       <form>
         <div className="campos md:!grid-cols-3">
           <InputCustom

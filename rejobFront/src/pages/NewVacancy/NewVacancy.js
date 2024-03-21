@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -165,7 +164,6 @@ const NewVacancy = () => {
       return;
     }
 
-    // Verificação de prazo da candidatura
     const dataInseridaObj = new Date(formData.applicationDeadline);
     const dataAtual = new Date();
     if (dataInseridaObj <= dataAtual) {
@@ -185,7 +183,9 @@ const NewVacancy = () => {
         navigate("/painel-colaborador");
       }, 2000);
     } catch (error) {
-      console.error("Erro ao fazer a solicitação POST:", error);
+      toast.error("Não foi possível cadastrar a vaga.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
