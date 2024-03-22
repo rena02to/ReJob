@@ -17,9 +17,7 @@ import api from "../../services/api";
 import UserService from "../../services/UserService";
 
 const ProfileCollaborator = () => {
-  const [profileImage, setProfileImage] = useState(profileImg);
   const [companies, setCompanies] = useState([]);
-  const [states, setStates] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const userData = UserService();
   const [formData, setFormData] = useState({
@@ -37,24 +35,8 @@ const ProfileCollaborator = () => {
     { value: "ONG", label: "ONG" },
   ];
 
-  // GET STATES
   useEffect(() => {
-    const carregarStates = async () => {
-      try {
-        const data = require("../../utils/states.json");
-        const response = await api.get("/companies");
-        setCompanies(response.data);
-        setStates(data.estados);
-      } catch (error) {
-        console.error("Erro ao carregar Estados:", error);
-      }
-    };
-
-    carregarStates();
-  }, [setStates]);
-
-  useEffect(() => {
-    if (userData) {
+    if (userData && userData.user) {
       setFormData({
         name: userData.user?.name,
         email: userData.user?.email,
@@ -146,7 +128,9 @@ const ProfileCollaborator = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     } catch (error) {
-      console.error("Erro ao fazer a solicitação POST:", error);
+      toast.error("Não foi possível atualizar os dados do colaborador.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
 
     handleDisableEditing(event);
@@ -159,23 +143,13 @@ const ProfileCollaborator = () => {
         subtitulo="Detalhes pessoais e profissionais do usuário."
       />
 
-      <div className="image-box">
-        <img src={profileImg} />
-      </div>
-
-      {isEditing ? (
-        <div className="selecionarImagem">
-          <input type="file" accept="image/*" style={{ display: "none" }} />
-        </div>
-      ) : null}
-
       <form>
         <div className="campos md:!grid-cols-3">
           <InputCustom
             label="Nome Completo"
             id="name"
             name="name"
-            value={formData.name}
+            value={formData.name || ""}
             type="text"
             disabled={!isEditing}
             onChange={handleInputChange}
@@ -185,7 +159,7 @@ const ProfileCollaborator = () => {
             label="Colaborador vinculado a uma..."
             id="collaboratorType"
             name="collaboratorType"
-            value={formData.collaboratorType}
+            value={formData.collaboratorType || ""}
             onChange={handleInputChange}
             disabled={!isEditing}
             options={options}
@@ -195,7 +169,7 @@ const ProfileCollaborator = () => {
             label="Empresa"
             id="companyId"
             name="companyId"
-            value={formData.companyId}
+            value={formData.companyId || ""}
             onChange={handleInputChange}
             disabled={!isEditing}
             options={companies.map((company) => {
@@ -208,7 +182,7 @@ const ProfileCollaborator = () => {
             type="text"
             id="jobTitle"
             name="jobTitle"
-            value={formData.jobTitle}
+            value={formData.jobTitle || ""}
             onChange={handleInputChange}
           />
 
@@ -216,7 +190,7 @@ const ProfileCollaborator = () => {
             label="Endereço de E-mail"
             id="email"
             name="email"
-            value={formData.email}
+            value={formData.email || ""}
             type="text"
             disabled={!isEditing}
             onChange={handleInputChange}
@@ -227,7 +201,7 @@ const ProfileCollaborator = () => {
             id="password"
             name="password"
             autoComplete="password"
-            value={formData.password}
+            value={formData.password || ""}
             disabled={!isEditing}
             onChange={handleInputChange}
           />

@@ -18,23 +18,19 @@ import logo from "../../../images/newJob.png";
 
 // Services
 import api from "../../../services/api";
-import { useDispatch, useSelector } from "react-redux";
 
 const RegisterCompany = () => {
-  const {
-    visibilityPassword,
-    visibilityRepeatPassword,
-    coincidir,
-    qCaracteres,
-    maiusculo,
-    minusculo,
-    numero,
-    simbolo,
-  } = useSelector((rootReducer) => rootReducer.useReducer);
-  const dispatch = useDispatch();
+  const [visibilityPassword, setVisibilityPassword] = useState(false);
+  const [visibilityRepeatPassword, setVisibilityRepeatPassword] =
+    useState(false);
+  const [coincidir, setCoincidir] = useState(false);
+  const [qCaracteres, setQCaracteres] = useState(false);
+  const [maiusculo, setMaiusculo] = useState(false);
+  const [minusculo, setMinusculo] = useState(false);
+  const [simbolo, setSimbolo] = useState(false);
+  const [numero, setNumero] = useState(false);
   const navigate = useNavigate();
   const [states, setStates] = useState([]);
-  const [confirmationPassword, setConfirmationPassword] = useState("");
   const [formData, setFormData] = useState({
     cnpj: "",
     name: "",
@@ -50,6 +46,7 @@ const RegisterCompany = () => {
     institutionalDescription: "",
     email: "",
     password: "",
+    repeatPassword: "",
   });
 
   // GET STATES
@@ -130,8 +127,6 @@ const RegisterCompany = () => {
       formatCnpj(value);
     } else if (name === "phone") {
       formatPhone(value);
-    } else if (name === "confirmationPassword") {
-      setConfirmationPassword(value);
     } else if (name === "state" || name === "city" || name === "address") {
       setFormData((formData) => ({
         ...formData,
@@ -155,16 +150,13 @@ const RegisterCompany = () => {
         const TemMinusculos = /[a-z]/.test(value);
         const TemSimbolos = /[!@#$%^&*(),.?":{}|<>]/.test(value);
 
-        dispatch({ type: "TesteQuantCaracteres", payload: TemMaisDeOito });
-        dispatch({ type: "setNumeros", payload: TemNumeros });
-        dispatch({ type: "setMaiusculo", payload: TemMaiusculos });
-        dispatch({ type: "setMinusculo", payload: TemMinusculos });
-        dispatch({ type: "setSimbolos", payload: TemSimbolos });
+        setQCaracteres(TemMaisDeOito);
+        setNumero(TemNumeros);
+        setMaiusculo(TemMaiusculos);
+        setMinusculo(TemMinusculos);
+        setSimbolo(TemSimbolos);
       } else {
-        dispatch({
-          type: "TesteCoincidencia",
-          payload: formData.password === value && formData.password !== "",
-        });
+        setCoincidir(formData.password === value && formData.password !== "");
       }
     } else {
       setFormData({ ...formData, [name]: value });
@@ -243,10 +235,9 @@ const RegisterCompany = () => {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/painel-empresa");
+      navigate("/login");
     } catch (error) {
-      console.error("Erro ao fazer a solicitação POST:", error);
-      toast.error("Ocorreu um erro ao tentar registrar empresa.", {
+      toast.error("Não foi possível registrar a empresa.", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
@@ -403,10 +394,7 @@ const RegisterCompany = () => {
                 type="button"
                 className="eyeButton"
                 onClick={() => {
-                  dispatch({
-                    type: "ChangeVisibilityPassword",
-                    payload: !visibilityPassword,
-                  });
+                  setVisibilityPassword(!visibilityPassword);
                 }}
               >
                 {visibilityPassword ? (
@@ -479,10 +467,7 @@ const RegisterCompany = () => {
                 type="button"
                 className="eyeButton"
                 onClick={() => {
-                  dispatch({
-                    type: "ChangeVisibilityRepeatPassword",
-                    payload: !visibilityRepeatPassword,
-                  });
+                  setVisibilityRepeatPassword(!visibilityRepeatPassword);
                 }}
               >
                 {visibilityRepeatPassword ? (

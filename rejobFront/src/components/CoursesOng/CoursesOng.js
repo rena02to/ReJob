@@ -11,9 +11,8 @@ const CoursesOng = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [courses, setCourses] = useState([]);
   const [cursosExibidos, setCursosExibidos] = useState([]);
+  const [deletedCourse, setDeletedCourse] = useState(false);
   const id = props.id;
-
-  console.log(props.newCourse)
 
   useEffect(() => {
     if (id) {
@@ -32,11 +31,12 @@ const CoursesOng = (props) => {
   }, [id]);
 
   useEffect(() => {
-    if (props.newCourse) {
+    if (props.newCourse || deletedCourse) {
       const fetchData = async () => {
         try {
           const response = await api.get(`${props.url}/${id}`);
 
+          setDeletedCourse(false);
           setCourses(response.data);
         } catch (error) {
           console.error("Erro na requisição:", error);
@@ -47,7 +47,7 @@ const CoursesOng = (props) => {
 
       fetchData();
     }
-  }, [props.newCourse]);
+  }, [props.newCourse, deletedCourse]);
 
 
   useEffect(() => {
@@ -81,6 +81,10 @@ const CoursesOng = (props) => {
     setPaginaAtual(novaPagina);
   };
 
+  const handleDeletedCourse = () => {
+    setDeletedCourse(true);
+  }
+
   return (
     <div className="">
       <div className="relative">
@@ -98,17 +102,14 @@ const CoursesOng = (props) => {
           className="absolute hover:scale-110 hover:-translate-y-1 transition duration-300 ease-in-out delay-150 top-[-46px] right-[24px] h-[42px] w-full hover:bg-slate-100 hover: cursor-pointer rounded-full"
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-[12px] px-[12px] pb-[24px]">
+      <div className="flex flex-wrap md:grid-cols-4 gap-[12px] px-[12px] pb-[24px]">
         {cursosExibidos.map((course, index) => {
           {
             return (
               <CoursesInProgress
                 key={index}
-                courseTitle={course.courseTitle}
-                platform={course.platform}
-                link={course.link}
-                description={course.description}
-                duration={course.duration}
+                course={course}
+                handleDeletedCourse = {handleDeletedCourse}
               />
             );
           }

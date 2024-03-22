@@ -39,8 +39,10 @@ const DashboardOng = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
   const handleFormSubmit = async (event) => {
@@ -73,21 +75,25 @@ const DashboardOng = () => {
     };
 
     try {
-      const response = await api.post("/courses", updatedFormData);
+      await api.post("/courses", updatedFormData);
+
+      cleanForm();
+      setModalOpen(false);
+      setNewCourse(true);
 
       toast.success(
-        `O Curso: ${formData.courseTitle}, foi ofertado na ReJob com sucesso.`,
+        `O Curso: ${formData.courseTitle} foi cadastrado na ReJob com sucesso.`,
         {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
+      return;
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
+      toast.error("Não foi possível cadastrar o curso.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
-
-    cleanForm();
-    setModalOpen(false);
-    setNewCourse(true);
   };
 
   const openModal = () => {
@@ -105,7 +111,7 @@ const DashboardOng = () => {
   };
 
   const toggleNewCourse = () => {
-    setNewCourse(false)
+    setNewCourse(false);
   };
 
   return (
@@ -119,7 +125,7 @@ const DashboardOng = () => {
 
       {/* VAGAS DA EMPRESA */}
       <div className="max-w-[1440px] m-auto px-[42px] flex flex-col">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center">
           <Title
             titulo="POSTAGEM DE CURSOS"
             subtitulo="Acompanhe abaixo o andamento de todas as vagas que sua empresa ofertou."
@@ -131,14 +137,14 @@ const DashboardOng = () => {
 
           {modalOpen && (
             <div className="modal-background" onClick={handleBackgroundClick}>
-              <div className="modal relative h-[800px] mt-16">
+              <div className="modal relative mt-16 overflow-auto max-w-[800px] h-[600px]">
                 <button
                   className="close-button absolute right-[24px] cursor-pointer hover:bg-[#00A3FF] hover:text-white"
                   onClick={closeModal}
                 >
                   X
                 </button>
-                <div className="flex flex-col gap-[12px] justify-center items-center p-[24px]">
+                <div className="flex flex-col gap-[12px] justify-center items-center">
                   <h2 className="text-[#00A3FF]">OFERTAR NOVO CURSO</h2>
                   <div className="grid grid-cols-2 gap-[24px] items-center">
                     <InputCustom
@@ -146,7 +152,7 @@ const DashboardOng = () => {
                       placeholder="Digite o título do curso"
                       id="courseTitle"
                       name="courseTitle"
-                      value={formData.courseTitle}
+                      value={formData.courseTitle || ""}
                       onChange={handleInputChange}
                       type="text"
                     />
@@ -156,7 +162,7 @@ const DashboardOng = () => {
                       placeholder="Digite o nome da plataforma do curso"
                       id="platform"
                       name="platform"
-                      value={formData.platform}
+                      value={formData.platform || ""}
                       onChange={handleInputChange}
                       type="text"
                     />
@@ -166,7 +172,7 @@ const DashboardOng = () => {
                       placeholder="Coloque o link do curso"
                       id="link"
                       name="link"
-                      value={formData.link}
+                      value={formData.link || ""}
                       onChange={handleInputChange}
                       type="text"
                     />
@@ -176,7 +182,7 @@ const DashboardOng = () => {
                       placeholder="Coloque a duração do curso (horas)"
                       id="duration"
                       name="duration"
-                      value={formData.duration}
+                      value={formData.duration || ""}
                       onChange={handleInputChange}
                       type="number"
                     />
@@ -186,11 +192,12 @@ const DashboardOng = () => {
                         label="Descrição do Curso"
                         id="description"
                         name="description"
-                        value={formData.description}
+                        value={formData.description || ""}
                         onChange={handleInputChange}
                         rows={20}
                         placeholder="Digite uma descrição a respeito do curso"
                         charmax={1000}
+                        countchar={formData.description.length}
                       />
                       <button
                         type="submit"
@@ -207,7 +214,7 @@ const DashboardOng = () => {
           )}
         </div>
 
-        <div className="w-full flex pt-[24px]">
+        <div className="w-full flex pt-[72px]">
           <div className="w-full">
             <CoursesOng
               id={userData?.collaboratorId}
@@ -218,8 +225,6 @@ const DashboardOng = () => {
           </div>
         </div>
       </div>
-
-      <ToastContainer autoClose={5000} />
     </div>
   );
 };

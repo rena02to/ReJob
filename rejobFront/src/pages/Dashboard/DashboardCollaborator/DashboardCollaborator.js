@@ -30,11 +30,11 @@ const DashboardCollaborator = () => {
       </div>
 
       {/* VAGAS DA EMPRESA */}
-      <div className="max-w-[1440px] m-auto px-[42px] flex flex-col">
-        <div className="flex justify-between items-center">
+      <div className="max-w-[1440px] m-auto px-[42px] flex flex-col gap-[48px] md:gap-[12px]">
+        <div className="flex flex-col md:flex-row justify-between items-center">
           <Title
             titulo="POSTAGEM DE VAGAS"
-            subtitulo="Acompanhe abaixo o andamento de todas as vagas que sua empresa ofertou."
+            subtitulo="Acompanhe abaixo o andamento de todas as vagas que estão sob sua responsabilidade."
           ></Title>
 
           <button className="submit" onClick={() => createNewJob()}>

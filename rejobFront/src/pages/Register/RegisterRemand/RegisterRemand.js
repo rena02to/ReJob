@@ -22,7 +22,15 @@ import api from "../../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 
 const RegisterRemand = () => {
-  const { visibilityPassword, visibilityRepeatPassword, coincidir, qCaracteres, maiusculo, minusculo, numero, simbolo } = useSelector((rootReducer) => rootReducer.useReducer);
+  const [visibilityPassword, setVisibilityPassword] = useState(false);
+  const [visibilityRepeatPassword, setVisibilityRepeatPassword] =
+    useState(false);
+  const [coincidir, setCoincidir] = useState(false);
+  const [qCaracteres, setQCaracteres] = useState(false);
+  const [maiusculo, setMaiusculo] = useState(false);
+  const [minusculo, setMinusculo] = useState(false);
+  const [simbolo, setSimbolo] = useState(false);
+  const [numero, setNumero] = useState(false);
   const dispatch = useDispatch();
   const [states, setStates] = useState([]);
   const navigate = useNavigate();
@@ -112,7 +120,7 @@ const RegisterRemand = () => {
           [name]: value,
         },
       }));
-    }else if (name === "password" || name === "repeatPassword") {
+    } else if (name === "password" || name === "repeatPassword") {
       setFormData({ ...formData, [name]: value });
       if (name === "password") {
         const TemMaisDeOito = value.length >= 8;
@@ -121,16 +129,13 @@ const RegisterRemand = () => {
         const TemMinusculos = /[a-z]/.test(value);
         const TemSimbolos = /[!@#$%^&*(),.?":{}|<>]/.test(value);
 
-        dispatch({ type: "TesteQuantCaracteres", payload: TemMaisDeOito });
-        dispatch({ type: "setNumeros", payload: TemNumeros });
-        dispatch({ type: "setMaiusculo", payload: TemMaiusculos });
-        dispatch({ type: "setMinusculo", payload: TemMinusculos });
-        dispatch({ type: "setSimbolos", payload: TemSimbolos });
+        setQCaracteres(TemMaisDeOito);
+        setNumero(TemNumeros);
+        setMaiusculo(TemMaiusculos);
+        setMinusculo(TemMinusculos);
+        setSimbolo(TemSimbolos);
       } else {
-        dispatch({
-          type: "TesteCoincidencia",
-          payload: formData.password === value && formData.password !== "",
-        });
+        setCoincidir(formData.password === value && formData.password !== "");
       }
     } else {
       setFormData({ ...formData, [name]: value });
@@ -220,7 +225,7 @@ const RegisterRemand = () => {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/painel-egresso");
+      navigate("/login");
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
 
@@ -231,6 +236,10 @@ const RegisterRemand = () => {
             position: toast.POSITION.BOTTOM_RIGHT,
           }
         );
+      } else {
+        toast.error("Não foi possível se cadastrar na Rejob.", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
       }
     }
   };
@@ -294,7 +303,7 @@ const RegisterRemand = () => {
                 type="button"
                 className="eyeButton"
                 onClick={() => {
-                  dispatch({ type: "ChangeVisibilityPassword", payload: !visibilityPassword });
+                  setVisibilityPassword(!visibilityPassword);
                 }}
               >
                 {visibilityPassword ? (
@@ -338,11 +347,7 @@ const RegisterRemand = () => {
               </div>
 
               <div className="number">
-                {numero ? (
-                  <FaCheck className="v" />
-                ) : (
-                  <IoClose className="x" />
-                )}
+                {numero ? <FaCheck className="v" /> : <IoClose className="x" />}
                 <p>Possuir pelo menos 1 número</p>
               </div>
 
@@ -371,7 +376,7 @@ const RegisterRemand = () => {
                 type="button"
                 className="eyeButton"
                 onClick={() => {
-                  dispatch({ type: "ChangeVisibilityRepeatPassword", payload: !visibilityRepeatPassword });
+                  setVisibilityRepeatPassword(!visibilityRepeatPassword);
                 }}
               >
                 {visibilityRepeatPassword ? (
