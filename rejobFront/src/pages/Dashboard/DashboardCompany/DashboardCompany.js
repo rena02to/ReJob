@@ -83,7 +83,7 @@ const DashboardCompany = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <Title
             titulo="COLABORADORES DA EMPRESA"
-            subtitulo="Acompanhe abaixo a lista de colaboradores vinculados a empresa."
+            subtitulo="Acompanhe abaixo a lista de colaboradores vinculados a sua empresa."
           ></Title>
 
           <Link
