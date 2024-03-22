@@ -74,7 +74,7 @@ function Rotas() {
           exact
           path="/cadastro/egresso"
           element={
-            isLoged === true ? <Navigate to="/login" /> : <RegisterRemand />
+            <RegisterRemand />
           }
         />
 
