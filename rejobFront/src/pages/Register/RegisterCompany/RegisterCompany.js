@@ -20,14 +20,15 @@ import logo from "../../../images/newJob.png";
 import api from "../../../services/api";
 
 const RegisterCompany = () => {
-  const [ visibilityPassword, setVisibilityPassword ] = useState(false);
-  const [ visibilityRepeatPassword, setVisibilityRepeatPassword ] = useState(false);
-  const [ coincidir, setCoincidir ] = useState(false);
-  const [ qCaracteres, setQCaracteres ] = useState(false);
-  const [ maiusculo, setMaiusculo ] = useState(false);
-  const [ minusculo, setMinusculo ] = useState(false);
-  const [ simbolo, setSimbolo ] = useState(false);
-  const [ numero, setNumero ] = useState(false);
+  const [visibilityPassword, setVisibilityPassword] = useState(false);
+  const [visibilityRepeatPassword, setVisibilityRepeatPassword] =
+    useState(false);
+  const [coincidir, setCoincidir] = useState(false);
+  const [qCaracteres, setQCaracteres] = useState(false);
+  const [maiusculo, setMaiusculo] = useState(false);
+  const [minusculo, setMinusculo] = useState(false);
+  const [simbolo, setSimbolo] = useState(false);
+  const [numero, setNumero] = useState(false);
   const navigate = useNavigate();
   const [states, setStates] = useState([]);
   const [formData, setFormData] = useState({
@@ -236,8 +237,7 @@ const RegisterCompany = () => {
       );
       navigate("/login");
     } catch (error) {
-      console.error("Erro ao fazer a solicitação POST:", error);
-      toast.error("Ocorreu um erro ao tentar registrar empresa.", {
+      toast.error("Não foi possível registrar a empresa.", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
@@ -393,7 +393,9 @@ const RegisterCompany = () => {
               <button
                 type="button"
                 className="eyeButton"
-                onClick={() => {setVisibilityPassword(!visibilityPassword)}}
+                onClick={() => {
+                  setVisibilityPassword(!visibilityPassword);
+                }}
               >
                 {visibilityPassword ? (
                   <FaRegEye className="eye" />
@@ -464,7 +466,9 @@ const RegisterCompany = () => {
               <button
                 type="button"
                 className="eyeButton"
-                onClick={() => {setVisibilityRepeatPassword(!visibilityRepeatPassword)}}
+                onClick={() => {
+                  setVisibilityRepeatPassword(!visibilityRepeatPassword);
+                }}
               >
                 {visibilityRepeatPassword ? (
                   <FaRegEye className="eye" />

@@ -18,14 +18,15 @@ function RegisterCollaboratory() {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
   const userData = UserService();
-  const [ visibilityPassword, setVisibilityPassword ] = useState(false);
-  const [ visibilityRepeatPassword, setVisibilityRepeatPassword ] = useState(false);
-  const [ coincidir, setCoincidir ] = useState(false);
-  const [ qCaracteres, setQCaracteres ] = useState(false);
-  const [ maiusculo, setMaiusculo ] = useState(false);
-  const [ minusculo, setMinusculo ] = useState(false);
-  const [ simbolo, setSimbolo ] = useState(false);
-  const [ numero, setNumero ] = useState(false);
+  const [visibilityPassword, setVisibilityPassword] = useState(false);
+  const [visibilityRepeatPassword, setVisibilityRepeatPassword] =
+    useState(false);
+  const [coincidir, setCoincidir] = useState(false);
+  const [qCaracteres, setQCaracteres] = useState(false);
+  const [maiusculo, setMaiusculo] = useState(false);
+  const [minusculo, setMinusculo] = useState(false);
+  const [simbolo, setSimbolo] = useState(false);
+  const [numero, setNumero] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -185,6 +186,10 @@ function RegisterCollaboratory() {
             position: toast.POSITION.BOTTOM_RIGHT,
           }
         );
+      } else {
+        toast.error("Não foi possível registrar o colaborador.", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
       }
     }
   };
@@ -287,7 +292,9 @@ function RegisterCollaboratory() {
           <button
             type="button"
             className="eyeButton"
-            onClick={() => {setVisibilityPassword(!visibilityPassword)}}
+            onClick={() => {
+              setVisibilityPassword(!visibilityPassword);
+            }}
           >
             {visibilityPassword ? (
               <FaRegEye className="eye" />
@@ -346,7 +353,9 @@ function RegisterCollaboratory() {
           <button
             type="button"
             className="eyeButton"
-            onClick={() => {setVisibilityRepeatPassword(!visibilityRepeatPassword)}}
+            onClick={() => {
+              setVisibilityRepeatPassword(!visibilityRepeatPassword);
+            }}
           >
             {visibilityRepeatPassword ? (
               <FaRegEye className="eye" />

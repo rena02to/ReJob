@@ -22,14 +22,15 @@ import api from "../../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 
 const RegisterRemand = () => {
-  const [ visibilityPassword, setVisibilityPassword ] = useState(false);
-  const [ visibilityRepeatPassword, setVisibilityRepeatPassword ] = useState(false);
-  const [ coincidir, setCoincidir ] = useState(false);
-  const [ qCaracteres, setQCaracteres ] = useState(false);
-  const [ maiusculo, setMaiusculo ] = useState(false);
-  const [ minusculo, setMinusculo ] = useState(false);
-  const [ simbolo, setSimbolo ] = useState(false);
-  const [ numero, setNumero ] = useState(false);
+  const [visibilityPassword, setVisibilityPassword] = useState(false);
+  const [visibilityRepeatPassword, setVisibilityRepeatPassword] =
+    useState(false);
+  const [coincidir, setCoincidir] = useState(false);
+  const [qCaracteres, setQCaracteres] = useState(false);
+  const [maiusculo, setMaiusculo] = useState(false);
+  const [minusculo, setMinusculo] = useState(false);
+  const [simbolo, setSimbolo] = useState(false);
+  const [numero, setNumero] = useState(false);
   const dispatch = useDispatch();
   const [states, setStates] = useState([]);
   const navigate = useNavigate();
@@ -119,7 +120,7 @@ const RegisterRemand = () => {
           [name]: value,
         },
       }));
-    }else if (name === "password" || name === "repeatPassword") {
+    } else if (name === "password" || name === "repeatPassword") {
       setFormData({ ...formData, [name]: value });
       if (name === "password") {
         const TemMaisDeOito = value.length >= 8;
@@ -235,6 +236,10 @@ const RegisterRemand = () => {
             position: toast.POSITION.BOTTOM_RIGHT,
           }
         );
+      } else {
+        toast.error("Não foi possível se cadastrar na Rejob.", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
       }
     }
   };
@@ -297,7 +302,9 @@ const RegisterRemand = () => {
               <button
                 type="button"
                 className="eyeButton"
-                onClick={() => {setVisibilityPassword(!visibilityPassword)}}
+                onClick={() => {
+                  setVisibilityPassword(!visibilityPassword);
+                }}
               >
                 {visibilityPassword ? (
                   <FaRegEye className="eye" />
@@ -340,11 +347,7 @@ const RegisterRemand = () => {
               </div>
 
               <div className="number">
-                {numero ? (
-                  <FaCheck className="v" />
-                ) : (
-                  <IoClose className="x" />
-                )}
+                {numero ? <FaCheck className="v" /> : <IoClose className="x" />}
                 <p>Possuir pelo menos 1 número</p>
               </div>
 
@@ -372,7 +375,9 @@ const RegisterRemand = () => {
               <button
                 type="button"
                 className="eyeButton"
-                onClick={() => {setVisibilityRepeatPassword(!visibilityRepeatPassword)}}
+                onClick={() => {
+                  setVisibilityRepeatPassword(!visibilityRepeatPassword);
+                }}
               >
                 {visibilityRepeatPassword ? (
                   <FaRegEye className="eye" />

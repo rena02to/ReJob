@@ -41,10 +41,9 @@ const DashboardOng = () => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value
+      [name]: value,
     }));
   };
-
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -83,7 +82,7 @@ const DashboardOng = () => {
       setNewCourse(true);
 
       toast.success(
-        `O Curso: ${formData.courseTitle}, foi ofertado na ReJob com sucesso.`,
+        `O Curso: ${formData.courseTitle} foi cadastrado na ReJob com sucesso.`,
         {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
@@ -91,6 +90,9 @@ const DashboardOng = () => {
       return;
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
+      toast.error("Não foi possível cadastrar o curso.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
@@ -109,7 +111,7 @@ const DashboardOng = () => {
   };
 
   const toggleNewCourse = () => {
-    setNewCourse(false)
+    setNewCourse(false);
   };
 
   return (
@@ -223,7 +225,6 @@ const DashboardOng = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

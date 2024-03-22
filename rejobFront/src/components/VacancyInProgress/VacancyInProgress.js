@@ -14,12 +14,11 @@ import { useSelector } from "react-redux";
 import JobInformationModal from "../JobInformationModal/JobInformationModa";
 
 const VacancyInProgress = (props) => {
-  const typeUser = useSelector(state => state?.typeUser?.typeUser);
+  const typeUser = useSelector((state) => state?.typeUser?.typeUser);
   const [modalOpen, setModalOpen] = useState(false);
   const [finalizeVacancy, setFinalizeVacancy] = useState(false);
   const user = UserService();
   const navigate = useNavigate();
-  console.log(props)
 
   const openModal = () => {
     setModalOpen(true);
@@ -78,7 +77,12 @@ const VacancyInProgress = (props) => {
     >
       {props.novaAplicacao && (
         <div className="flex justify-center items-center absolute right-[6px] top-[6px] bg-green-500 p-[4px] rounded-full">
-          <img src={updatedIcon} alt="Green Icon" title="Novo candidato inscrito na vaga!" className="w-full" />
+          <img
+            src={updatedIcon}
+            alt="Green Icon"
+            title="Novo candidato inscrito na vaga!"
+            className="w-full"
+          />
         </div>
       )}
       <div className="flex items-center">
