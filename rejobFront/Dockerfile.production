@@ -2,12 +2,15 @@ FROM node:16-alpine as build-stage
 
 WORKDIR /app
 
-
 COPY package*.json ./
+
+RUN npm install redux-persist
 
 RUN npm install
 
+
 COPY . .
+
 
 RUN npm run build
 
