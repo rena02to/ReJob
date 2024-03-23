@@ -167,17 +167,13 @@ function RegisterCollaboratory() {
         collaboratorType: formData.collaboratorType,
         companyId: Number(formData.companyId),
       });
-      const token = response.data;
-
-      localStorage.setItem("token", token.token);
-
       toast.success(
         `O colaborador: ${formData.name}, foi registrado na ReJob com sucesso.`,
         {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/login");
+      navigate("/painel-colaborador");
     } catch (error) {
       if (error.response && error.response.status === 409) {
         toast.error(

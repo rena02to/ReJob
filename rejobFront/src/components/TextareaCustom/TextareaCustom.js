@@ -8,7 +8,7 @@ const TextareaCustom = ({ label, maxWidth, ...props }) => {
       </label>
       <textarea {...props} />
       <span className="countChar">
-        {props.countchar}/{props.charmax}
+        {props.charmax === Infinity ? `${props.countchar} Caracteres` : `${props.countchar}/${props.charmax}`}
       </span>
     </div>
   );
