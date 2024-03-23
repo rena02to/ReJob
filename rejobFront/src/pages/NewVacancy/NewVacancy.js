@@ -154,15 +154,6 @@ const NewVacancy = () => {
       });
       return;
     }
-    if (formData.requiredExperience.length > 1000) {
-      toast.warn(
-        "O limite de caracteres máximo em EXPERIÊNCIA REQUERIDA é: 1000",
-        {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        }
-      );
-      return;
-    }
 
     const dataInseridaObj = new Date(formData.applicationDeadline);
     const dataAtual = new Date();
@@ -435,7 +426,7 @@ const NewVacancy = () => {
               placeholder="Digite quais experiências são necessárias para a vaga"
               value={formData.requiredExperience}
               onChange={handleInputChange}
-              charmax={1000}
+              charmax={Infinity}
               countchar={formData.requiredExperience.length}
             />
           </div>

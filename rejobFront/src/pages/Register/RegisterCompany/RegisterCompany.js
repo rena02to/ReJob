@@ -235,7 +235,10 @@ const RegisterCompany = () => {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/login");
+      
+      setTimeout(async () => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
       toast.error("Não foi possível registrar a empresa.", {
         position: toast.POSITION.BOTTOM_RIGHT,

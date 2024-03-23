@@ -196,13 +196,6 @@ const RegisterRemand = () => {
       return;
     }
 
-    if (formData.professionalExperience.length > 1000) {
-      toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      return;
-    }
-
     if (formData.skillsAndQualifications.length > 1000) {
       toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -225,7 +218,10 @@ const RegisterRemand = () => {
           position: toast.POSITION.BOTTOM_RIGHT,
         }
       );
-      navigate("/login");
+      
+      setTimeout(async () => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
       console.error("Erro ao fazer a solicitação POST:", error);
 
@@ -548,7 +544,7 @@ const RegisterRemand = () => {
               onChange={handleInputChange}
               rows={20}
               placeholder="Digite uma descrição sobre sua Experiência Profissional"
-              charmax={1000}
+              charmax={Infinity}
               countchar={formData.professionalExperience.length}
             />
 
