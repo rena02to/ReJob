@@ -182,13 +182,6 @@ const ProfileRemand = () => {
     }
 
     // Limite de caracteres
-    if (formData.professionalExperience.length > 1000) {
-      toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      return;
-    }
-
     if (formData.skillsAndQualifications.length > 1000) {
       toast.warn("O limite de caracteres máximo em DESCRIÇÃO é: 1000", {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -410,7 +403,7 @@ const ProfileRemand = () => {
             onChange={handleInputChange}
             rows={20}
             placeholder="Digite uma descrição sobre sua Experiência Profissional"
-            charmax={1000}
+            charmax={Infinity}
             countchar={formData.professionalExperience.length}
           />
 
