@@ -297,9 +297,19 @@ function JobList() {
                   <h2>Cursos Anunciados</h2>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-[12px]">
+                  {courses.length === 0 && (
+                    <div>Não há cursos disponíveis no momento.</div>
+                  )}
+
                   {courses.map((course, index) => {
                     {
-                      return <CoursesInProgress key={index} course={course} jobList={true} />;
+                      return (
+                        <CoursesInProgress
+                          key={index}
+                          course={course}
+                          jobList={true}
+                        />
+                      );
                     }
                   })}
                 </div>
