@@ -97,19 +97,6 @@ function createData(name, calories, fat) {
 export default function CustomPaginationActionsTable(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
   const [collaborators, setCollaborators] = useState([]);
   const companyId = props.id ?? null;
 
@@ -118,19 +105,13 @@ export default function CustomPaginationActionsTable(props) {
     const fetchUsers = async () => {
       try {
         const response = await api.get(`/companies/${companyId}`);
-
         setCollaborators(response.data.collaborators);
       } catch (error) {
         console.error("Erro ao obter usuários:", error);
       }
     };
-
     fetchUsers();
   }, [companyId]);
-
-  collaborators.map((collaborator, index) => {
-    createData(collaborator.user.name);
-  });
 
   const rows = [];
 
@@ -145,6 +126,19 @@ export default function CustomPaginationActionsTable(props) {
       )
     );
   });
+
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
 
   return (
     <TableContainer component={Paper}>
