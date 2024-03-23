@@ -76,7 +76,6 @@ function Home() {
             <img alt="Imagem de fundo da página de vagas" src={backImageHome} />
             <div className={style.conteudo}>
               <p className={style.title}>
-                {typeUser}
                 OPORTUNIDADES DE <br />
                 TRABALHO COM FOCO EM
                 <br />
