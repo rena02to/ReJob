@@ -52,7 +52,7 @@ const ApplicationList = () => {
   return (
     <div>
       <NavBar />
-      <div className="max-w-[1440px] m-auto px-[42px] h-screen">
+      <div className="max-w-[1440px] m-auto px-[42px]">
         <div className="flex justify-between items-center">
           <Title
             titulo={`CANDIDATOS DA VAGA: ${job?.jobTitle}`}

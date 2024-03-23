@@ -28,7 +28,7 @@ const CandidateModal = ({
   const fetchData = async () => {
     try {
       const response = await api.get(
-        `/jobApplications/${candidate.id}/${jobId}`
+        `/jobApplications/${candidate.id}`
       );
       const data = response.data;
       setFormData({
