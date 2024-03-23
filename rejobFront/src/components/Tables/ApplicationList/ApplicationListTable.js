@@ -98,17 +98,6 @@ export default function CustomPaginationActionsTable(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
 
   const [candidates, setCandidates] = useState([]);
   const [rows, setRows] = useState([]);
@@ -152,6 +141,18 @@ export default function CustomPaginationActionsTable(props) {
     setRows(values);
   }, [candidates]);
 
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   const openModal = (candidate) => {
     setSelectedCandidate(candidate);
     setModalOpen(true);
@@ -178,7 +179,7 @@ export default function CustomPaginationActionsTable(props) {
               ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : rows
             ).map((row, index) => (
-              <TableRow key={row.name}>
+              <TableRow key={index}>
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
@@ -195,14 +196,10 @@ export default function CustomPaginationActionsTable(props) {
                   {typeof row.similarity === 'number' ? (row.similarity * 100).toFixed(2) + '%' : 'MATCH'}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {index != 0 ? (
-                    <IconButton
-                      onClick={() => openModal(candidates[index - 1])}
-                    >
+                  {(index === 0 && page === 0) ? null : (
+                    <IconButton onClick={() => openModal(candidates[index - (page === 0 ? 1 : 1 - rowsPerPage)])}>
                       <DescriptionIcon className="text-customColor" />
                     </IconButton>
-                  ) : (
-                    <p></p>
                   )}
                 </TableCell>
               </TableRow>
