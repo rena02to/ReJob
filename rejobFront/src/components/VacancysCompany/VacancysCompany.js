@@ -172,7 +172,7 @@ const VacancysCompany = (props) => {
       </div>
       <div className="flex flex-wrap items-center gap-[12px] pt-[12px]">
         {vagasAbertasExibidas.length === 0 && props.toggle === 1 && (
-          <div>Não há vagas abertas no momento.</div>
+          <div>Não há vagas abertas.</div>
         )}
 
         {vagasAbertasExibidas.map((vacancy, index) => {
@@ -207,7 +207,7 @@ const VacancysCompany = (props) => {
         })}
 
         {vagasFechadasExibidas.length === 0 && props.toggle === 2 && (
-          <div>Não há vagas fechadas no momento.</div>
+          <div>Não há vagas finalizadas.</div>
         )}
 
         {vagasFechadasExibidas.map((vacancy, index) => {
