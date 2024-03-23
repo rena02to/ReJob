@@ -36,18 +36,30 @@ const ProfileCollaborator = () => {
   ];
 
   useEffect(() => {
-    if (userData && userData.user) {
-      setFormData({
-        name: userData.user?.name,
-        email: userData.user?.email,
-        cpf: userData.user?.cpf,
-        collaboratorType: userData?.collaboratorType,
-        companyId: userData?.companyId,
-        jobTitle: userData.jobTitle,
-        password: userData.user?.password,
-      });
-    }
+    const fetchData = async () => {
+      if (userData && userData.user) {
+        try {
+          const company = await api.get(`/companies/${userData?.companyId}`);
+          const companyData = company.data;
+          console.log(companyData.name);
+          setFormData({
+            name: userData.user?.name,
+            email: userData.user?.email,
+            cpf: userData.user?.cpf,
+            collaboratorType: userData?.collaboratorType,
+            companyName: companyData.name,
+            jobTitle: userData.jobTitle,
+            password: userData.user?.password,
+          });
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+    };
+  
+    fetchData();
   }, [userData]);
+  
 
   if (!userData) {
     return <div>Carregando...</div>;
@@ -161,21 +173,24 @@ const ProfileCollaborator = () => {
             name="collaboratorType"
             value={formData.collaboratorType || ""}
             onChange={handleInputChange}
-            disabled={!isEditing}
+            readOnly 
+            disabled={true}
             options={options}
           />
 
-          <SelectCustom
+          <InputCustom
             label="Empresa"
             id="companyId"
             name="companyId"
-            value={formData.companyId || ""}
+            value={formData.companyName}
             onChange={handleInputChange}
-            disabled={!isEditing}
+            disabled={true}
+            readOnly 
             options={companies.map((company) => {
-              return { value: company.id, label: company.name };
+              return { value: company.name, label: company.name };
             })}
           />
+
 
           <InputCustom
             label="Cargo ou Função"
@@ -192,16 +207,6 @@ const ProfileCollaborator = () => {
             name="email"
             value={formData.email || ""}
             type="text"
-            disabled={!isEditing}
-            onChange={handleInputChange}
-          />
-
-          <InputCustom
-            label="Senha"
-            id="password"
-            name="password"
-            autoComplete="password"
-            value={formData.password || ""}
             disabled={!isEditing}
             onChange={handleInputChange}
           />
