@@ -173,7 +173,7 @@ const VacancysRemand = (props) => {
       </div>
       <div className="flex flex-wrap gap-[12px] pt-[12px]">
         {vagasAbertasExibidas.length === 0 && props.toggle === 1 && (
-          <div>Nenhuma aplicação feita até o momento.</div>
+          <div>Nenhuma inscrição feita até o momento.</div>
         )}
 
         {vagasAbertasExibidas.map((vacancy, index) => {
@@ -202,7 +202,7 @@ const VacancysRemand = (props) => {
         })}
 
         {vagasFechadasExibidas.length === 0 && props.toggle === 2 && (
-          <div>Aplicações encerradas.</div>
+          <div>Inscrições feitas e encerradas.</div>
         )}
 
         {vagasFechadasExibidas.map((vacancy, index) => {
