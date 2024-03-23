@@ -49,7 +49,6 @@ const CoursesOng = (props) => {
     }
   }, [props.newCourse, deletedCourse]);
 
-
   useEffect(() => {
     setCursosExibidos(calcularCursosExibidos());
   }, [paginaAtual, courses]);
@@ -83,7 +82,7 @@ const CoursesOng = (props) => {
 
   const handleDeletedCourse = () => {
     setDeletedCourse(true);
-  }
+  };
 
   return (
     <div className="">
@@ -103,13 +102,17 @@ const CoursesOng = (props) => {
         />
       </div>
       <div className="flex flex-wrap md:grid-cols-4 gap-[12px] px-[12px] pb-[24px]">
+        {cursosExibidos.length === 0 && (
+          <div>Não há cursos ofertados no momento.</div>
+        )}
+
         {cursosExibidos.map((course, index) => {
           {
             return (
               <CoursesInProgress
                 key={index}
                 course={course}
-                handleDeletedCourse = {handleDeletedCourse}
+                handleDeletedCourse={handleDeletedCourse}
               />
             );
           }
