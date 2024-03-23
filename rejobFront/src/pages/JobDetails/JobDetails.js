@@ -79,7 +79,7 @@ const JobDetails = () => {
               <span className="w-max text-[52px]">{job.jobTitle}</span>
               <span className="text-customColor">{job.categories}</span>
             </div>
-            <div className="flex flex-wrap justify-center gap-2 text-[26.57px] text-gray-500 h-[40px] w-full">
+            <div className="flex flex-wrap justify-center gap-2 text-[26.57px] text-gray-500 h-[40px] w-full px-4">
               {job.companyName && (
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2 md:mb-0">
                   <FaBuildingUser />
@@ -132,7 +132,7 @@ const JobDetails = () => {
       <div className="flex justify-center w-full">
         <div className={styles.body_container}>
           <div className="flex flex-col justify-center items-center gap-8 w-[843px] md:w-5/6">
-            <div className="w-5/6 h-[467px] p-8 rounded shadow-md bg-white">
+            <div className="w-5/6 h-[490px] overflow-auto p-8 rounded shadow-md bg-white">
               <h1 className="text-lg md:text-xl font-semibold">
                 Empresa -{" "}
                 <span className="text-customColor">{job.companyName}</span>
@@ -156,7 +156,7 @@ const JobDetails = () => {
                 {job.benefits}
               </p>
             </div>
-            <div className="flex flex-col gap-4 w-5/6 rounded h-[467px] p-8 shadow-md bg-white">
+            <div className="flex flex-col gap-4 w-5/6 rounded h-[490px] overflow-auto p-8 shadow-md bg-white">
               <span className="text-lg text-customColor md:text-xl font-semibold">
                 Requisitos
               </span>
@@ -165,7 +165,7 @@ const JobDetails = () => {
               </p>
             </div>
             {job.responsibilities && (
-              <div className="flex flex-col gap-4 w-5/6 rounded h-[467px] p-8 shadow-md bg-white">
+              <div className="flex flex-col gap-4 w-5/6 rounded h-[490px] overflow-auto p-8 shadow-md bg-white">
                 <span className="text-lg text-customColor md:text-xl font-semibold">
                   Atividades
                 </span>
