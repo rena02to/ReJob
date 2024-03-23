@@ -345,6 +345,8 @@ const ProfileCompany = () => {
             name="institutionalDescription"
             value={formData.institutionalDescription}
             rows={10}
+            charmax={1000}
+            countchar={formData.institutionalDescription.length}
             disabled={!isEditing}
             onChange={handleInputChange}
           />
