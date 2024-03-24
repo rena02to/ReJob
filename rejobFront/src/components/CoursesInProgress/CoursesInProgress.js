@@ -43,6 +43,17 @@ const CourseInProgress = (props) => {
     }
   };
 
+  const maxLength = 42; // Defina o comprimento máximo desejado
+  let title = props.course.courseTitle;
+  let platform = props.course.platform;
+
+  // Verifica se o comprimento do título é maior que o comprimento máximo
+  if (title.length > maxLength) {
+    // Se for, corta o título e adiciona "..."
+    title = title.substring(0, maxLength - 3) + "...";
+    platform = platform.substring(0, maxLength - 3) + "...";
+  }
+
   const deleteCourse = async () => {
     const nameCourse = props.course?.courseTitle;
     const idCourse = props.course?.id;
@@ -70,17 +81,17 @@ const CourseInProgress = (props) => {
     rounded border-solid border-[#D2D4D4] relative
     "
     >
-      <h3 className="text-[#00A3FF] px-[12px] text-center font-bold">
-        {props.course.courseTitle}
+      <h3 className="text-[#00A3FF] px-[12px] text-center font-bold max-w-[250px] ">
+        {title}
       </h3>
-      <div className="w-full flex list-none px-[12px] gap-[6px] items-center justify-center text-[#7C7C8A] text-[12px]">
+      <div className="w-full flex flex-wrap list-none px-[12px] gap-[4px] items-center justify-center text-[#7C7C8A] text-[12px]">
         <div className="flex gap-[6px] items-center">
           <TimerIcon />
           {props.course.duration} Horas
         </div>
         <div className="flex gap-[6px] items-center">
           <ApartmentIcon />
-          {props.course.platform}
+          {platform}
         </div>
       </div>
       <div className="flex pt-[12px] items-center">

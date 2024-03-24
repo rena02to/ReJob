@@ -50,9 +50,9 @@ const ApplicationList = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <NavBar />
-      <div className="max-w-[1440px] m-auto px-[42px]">
+      <div className="max-w-[1440px] m-auto px-[42px] py-[52px]">
         <div className="flex justify-between items-center">
           <Title
             titulo={`CANDIDATOS DA VAGA: ${job?.jobTitle}`}
@@ -84,8 +84,8 @@ const ApplicationList = () => {
           </button>
         </div>
       </div>
+        <Footer></Footer>
       <ToastContainer />
-      <Footer></Footer>
     </div>
   );
 };
