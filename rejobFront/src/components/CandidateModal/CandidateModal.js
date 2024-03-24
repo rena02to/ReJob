@@ -27,9 +27,7 @@ const CandidateModal = ({
 
   const fetchData = async () => {
     try {
-      const response = await api.get(
-        `/jobApplications/${candidate.id}`
-      );
+      const response = await api.get(`/jobApplications/${candidate.id}`);
       const data = response.data;
       setFormData({
         status: data.status,
@@ -56,10 +54,14 @@ const CandidateModal = ({
 
   const handleSubmit = async () => {
     try {
-      await api.put(`/jobApplications/${candidate.applicant.id}/${jobId}`, formData);
+      await api.put(
+        `/jobApplications/${candidate.applicant.id}/${jobId}`,
+        formData
+      );
       toast.success("A aplicação foi atualizada!", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
+      window.location.reload();
     } catch (error) {
       toast.error("Erro ao atualizar aplicação.", {
         position: toast.POSITION.BOTTOM_RIGHT,
@@ -154,7 +156,7 @@ const CandidateModal = ({
               maxWidth={"100%"}
             />
             <button
-              className="save hover:bg-blue-400 w-full mt-2"
+              className="save hover:bg-blue-400 w-full mt-2 cursor-pointer"
               onClick={handleSubmit}
               disabled={!isFormValid}
             >
