@@ -101,7 +101,7 @@ const VacancysCompany = (props) => {
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
-    const vagasPorPagina = 6;
+    const vagasPorPagina = 8;
     const indiceInicial = (paginaAtual - 1) * vagasPorPagina;
     const indiceFinal = indiceInicial + vagasPorPagina;
 
@@ -118,7 +118,7 @@ const VacancysCompany = (props) => {
       return searchString.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
-    const vagasPorPagina = 6;
+    const vagasPorPagina = 8;
     const indiceInicial = (paginaAtual - 1) * vagasPorPagina;
     const indiceFinal = indiceInicial + vagasPorPagina;
 
